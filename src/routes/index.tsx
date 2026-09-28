@@ -105,9 +105,9 @@ const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }
 const industries = ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics"];
 
 const cases = [
-  { tag: "B2B Marketplace", title: "From Traditional Sales to a Scalable Digital Platform", type: "Manufacturing", stats: [["3X", "Sales Growth"], ["200+", "Active Buyers"], ["50%", "Faster Orders"]] },
-  { tag: "Ecommerce Website", title: "Modern Ecommerce Experience for a Lifestyle Brand", type: "Lifestyle", stats: [["2.5X", "Conversion"], ["60%", "Repeat Customers"], ["40%", "Higher AOV"]] },
-  { tag: "Custom Web Application", title: "Business Management Portal for a Distribution Company", type: "Distribution", stats: [["70%", "Manual Work Reduced"], ["100+", "Team Members"], ["Real-time", "Inventory Tracking"]] },
+  { tag: "B2B Marketplace", title: "From Traditional Sales to a Scalable Digital Platform", type: "Manufacturing", image: IMAGES.caseManufacturing, alt: "Laptop showing a B2B marketplace dashboard inside a warehouse", stats: [["3X", "Sales Growth"], ["200+", "Active Buyers"], ["50%", "Faster Orders"]] },
+  { tag: "Ecommerce Website", title: "Modern Ecommerce Experience for a Lifestyle Brand", type: "Lifestyle", image: IMAGES.caseLifestyle, alt: "Laptop showing a furniture and home decor ecommerce catalog beside a plant", stats: [["2.5X", "Conversion"], ["60%", "Repeat Customers"], ["40%", "Higher AOV"]] },
+  { tag: "Custom Web Application", title: "Business Management Portal for a Distribution Company", type: "Distribution", image: IMAGES.caseDistribution, alt: "Laptop showing a business management dashboard with floating charts and servers", stats: [["70%", "Manual Work Reduced"], ["100+", "Team Members"], ["Real-time", "Inventory Tracking"]] },
 ];
 
 function Logo() {
@@ -223,7 +223,7 @@ function Services() {
 
 function Ecosystem() {
   return (
-    <section id="services" className="border-b border-border/60 bg-background py-5 md:py-3">
+    <section id="services" className="border-b border-border/60 bg-card py-5 md:py-3">
       <div className="page-shell grid items-center gap-5 md:min-h-[180px] md:grid-cols-[1.08fr_1.45fr_1.4fr] md:gap-3 lg:grid-cols-[1.05fr_1.5fr_1.35fr]">
         <div className="md:pr-2">
           <h2 className="max-w-[360px] text-[20px] font-bold leading-[1.08] text-navy md:text-[17px] lg:text-[20px]">From Storefront to Back Office —<br className="hidden lg:block" /> One Technology Partner.</h2>
@@ -269,7 +269,7 @@ function CaseStudies() {
     <section id="case-studies" className="bg-background py-7">
       <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
         <div><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[27px] leading-[0.95]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-3">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">View All Case Studies <ArrowRight /></Button></div>
-        <div className="grid gap-3 md:grid-cols-3">{cases.map((item, index) => <article key={item.title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className={`case-art case-art-${index}`}><BarChart3 className="h-11 w-11" /></div><div className="p-4"><span className="text-[8px] font-bold text-warning">▣ {item.tag}</span><h3 className="mt-2 min-h-10 text-[11px] font-extrabold leading-tight text-navy">{item.title}</h3><span className="mt-2 inline-block bg-muted px-2 py-1 text-[7px] font-semibold text-muted-foreground">{item.type}</span><div className="mt-4 grid grid-cols-3 gap-2">{item.stats.map(([number, label]) => <div key={label}><strong className="block text-base font-extrabold text-primary">{number}</strong><span className="text-[7px] leading-none text-muted-foreground">{label}</span></div>)}</div></div></article>)}</div>
+        <div className="grid gap-3 md:grid-cols-3">{cases.map((item) => <article key={item.title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className="aspect-[1934/813] w-full overflow-hidden border-b border-border/70"><img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" className="h-full w-full object-cover" /></div><div className="p-4"><span className="text-[8px] font-bold text-warning">▣ {item.tag}</span><h3 className="mt-2 min-h-10 text-[11px] font-extrabold leading-tight text-navy">{item.title}</h3><span className="mt-2 inline-block bg-muted px-2 py-1 text-[7px] font-semibold text-muted-foreground">{item.type}</span><div className="mt-4 grid grid-cols-3 gap-2">{item.stats.map(([number, label]) => <div key={label}><strong className="block text-base font-extrabold text-primary">{number}</strong><span className="text-[7px] leading-none text-muted-foreground">{label}</span></div>)}</div></div></article>)}</div>
       </div>
     </section>
   );
@@ -277,7 +277,7 @@ function CaseStudies() {
 
 function Technology() {
   return (
-    <section id="resources" className="border-t border-border bg-background py-6">
+    <section id="resources" className="bg-background py-6">
       <div className="page-shell grid gap-4 md:grid-cols-[178px_1fr] md:items-center lg:grid-cols-[205px_1fr]">
         <div>
           <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">Technology That<br />Works Together</h2>

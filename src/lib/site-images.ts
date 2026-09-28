@@ -21,6 +21,10 @@ export const IMAGES = {
   b2b: `${lib}/B2B%20Commerce.png`,
   marketplace: `${lib}/Marketplace%20Development.png`,
   custom: `${lib}/Custom%20Commerce%20Platforms.png`,
+  /** Case-study card artwork — wide device shots, one per case study. */
+  caseManufacturing: `${lib}/From%20Traditional%20Sales%20to%20a%20Scalable%20Digital%20Platform.png`,
+  caseLifestyle: `${lib}/Modern%20Ecommerce%20Experience%20for%20a%20Lifestyle%20Brand.png`,
+  caseDistribution: `${lib}/Business%20Management%20Portal%20for%20a%20Distribution%20Company.png`,
 } as const;
 
 /** Brand logos shown under "Trusted by Businesses Building Their Digital Future". */
