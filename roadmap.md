@@ -12,3 +12,4 @@
 - [x] Remove the review-seal and statistics row, reduce hero height, and remove solution-card image dividers.
 - [x] Keep the desktop composition on tablet widths.
 - [x] Match the storefront-to-back-office section to the supplied single-row reference.
+- [x] Match the technology section to the supplied single-row reference (text left, divider, 12 tiles in one row).

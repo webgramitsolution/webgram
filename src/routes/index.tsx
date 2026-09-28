@@ -278,7 +278,24 @@ function CaseStudies() {
 function Technology() {
   return (
     <section id="resources" className="border-t border-border bg-background py-6">
-      <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]"><div><h2 className="section-title">Technology That<br />Works Together</h2><p className="section-subtitle mt-2">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p></div><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-12">{technologyStack.map(({ name, src }) => <div key={name} className="text-center"><span className="mx-auto grid h-14 w-14 place-items-center rounded-md border border-border bg-card p-2 shadow-card"><img src={src} alt={`${name} logo`} width={1200} height={1200} loading="lazy" className="h-full w-full object-contain" /></span><strong className="mt-2 block text-[8px] text-navy">{name}</strong></div>)}</div></div>
+      <div className="page-shell grid gap-4 md:grid-cols-[165px_1fr] md:items-center lg:grid-cols-[190px_1fr]">
+        <div>
+          <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">Technology That<br />Works Together</h2>
+          <p className="mt-2 max-w-[165px] text-[10px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[190px] lg:text-[11px]">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p>
+        </div>
+        <div className="md:border-l md:border-border md:pl-5 lg:pl-7">
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-6 md:grid-cols-12">
+            {technologyStack.map(({ name, src }) => (
+              <div key={name} className="flex flex-col items-center">
+                <span className="grid h-14 w-14 place-items-center rounded-xl border border-border/80 bg-card p-3 shadow-card lg:h-16 lg:w-16">
+                  <img src={src} alt={`${name} logo`} width={1200} height={1200} loading="lazy" className="h-full w-full object-contain" />
+                </span>
+                <span className="mt-2 block text-center text-[9px] leading-none text-muted-foreground lg:text-[10px]">{name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
