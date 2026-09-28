@@ -292,9 +292,6 @@
 .industry-shade { position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in oklab, var(--navy) 90%, transparent), transparent 60%); }
 .industry-card strong { position: absolute; bottom: 12px; left: 12px; color: var(--on-dark); font-size: 10px; }
 
-.case-art { display: grid; height: 92px; place-items: center; background: linear-gradient(135deg, var(--sky-soft), var(--primary-soft)); color: var(--primary); }
-.case-art-1 { background: linear-gradient(135deg, var(--warning-soft), var(--sky-soft)); color: var(--warning); }
-.case-art-2 { background: linear-gradient(135deg, var(--primary-soft), var(--navy)); color: var(--sky); }
 
 @media (max-width: 767px) {
   .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
