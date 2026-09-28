@@ -16,3 +16,4 @@
 - [x] Keep the desktop composition on tablet widths.
 - [x] Match the storefront-to-back-office section to the supplied single-row reference.
 - [x] Match the technology section to the supplied single-row reference (text left, divider, 12 tiles in one row).
+- [x] Match the case-studies section to the reference horizontal card layout (tag chip, title, chips, right-side image, stats row with dividers).
