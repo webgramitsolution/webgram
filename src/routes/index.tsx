@@ -278,10 +278,10 @@ function CaseStudies() {
 function Technology() {
   return (
     <section id="resources" className="border-t border-border bg-background py-6">
-      <div className="page-shell grid gap-4 md:grid-cols-[165px_1fr] md:items-center lg:grid-cols-[190px_1fr]">
+      <div className="page-shell grid gap-4 md:grid-cols-[178px_1fr] md:items-center lg:grid-cols-[205px_1fr]">
         <div>
           <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">Technology That<br />Works Together</h2>
-          <p className="mt-2 max-w-[165px] text-[10px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[190px] lg:text-[11px]">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p>
+          <p className="mt-2 max-w-[178px] text-[10px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[205px] lg:text-[11px]">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p>
         </div>
         <div className="md:border-l md:border-border md:pl-5 lg:pl-7">
           <div className="grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-6 md:grid-cols-12">
