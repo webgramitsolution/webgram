@@ -277,7 +277,13 @@
 .device-screen span:first-child { grid-column: 1 / -1; background: var(--primary-soft); }
 
 .industry-card { position: relative; min-height: 165px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent); border-radius: 5px; }
-.industry-card img { position: absolute; inset: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
+.industry-image { position: absolute; top: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
+.industry-image-0 { left: 0; }
+.industry-image-1 { left: -100%; }
+.industry-image-2 { left: -200%; }
+.industry-image-3 { left: -300%; }
+.industry-image-4 { left: -400%; }
+.industry-image-5 { left: -500%; }
 .industry-shade { position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in oklab, var(--navy) 90%, transparent), transparent 60%); }
 .industry-card strong { position: absolute; bottom: 12px; left: 12px; color: var(--on-dark); font-size: 10px; }
 

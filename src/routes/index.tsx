@@ -280,7 +280,7 @@ function Industries() {
       <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]">
         <div><p className="eyebrow">Industries</p><h2 className="mt-2 text-[27px] font-extrabold leading-[0.95]">Built Around<br />Your Industry</h2><p className="mt-3 text-[10px] leading-4 text-on-dark/75">We develop customized commerce solutions for diverse industries.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">Explore Industries <ArrowRight /></Button></div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-          {industries.map((industry, index) => <article key={industry} className="industry-card"><img src={industriesImage} alt="" loading="lazy" width={1536} height={512} style={{ objectPosition: `${index * 20}% center` }} /><div className="industry-shade" /><strong>{industry} →</strong></article>)}
+          {industries.map((industry, index) => <article key={industry} className="industry-card"><img src={industriesImage} alt="" loading="lazy" width={1536} height={512} className={`industry-image industry-image-${index}`} /><div className="industry-shade" /><strong>{industry} →</strong></article>)}
         </div>
       </div>
     </section>
