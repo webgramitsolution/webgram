@@ -183,7 +183,7 @@ function TrustStrip() {
     <section className="bg-background py-5">
       <div className="page-shell">
         <h2 className="text-sm font-extrabold text-navy">Trusted by Businesses Building Their Digital Future</h2>
-        <div className="mt-4 grid grid-cols-2 items-center gap-3 sm:grid-cols-4 md:grid-cols-7">
+        <div className="logo-scroll mt-4 grid grid-flow-col auto-cols-[150px] items-center gap-3 overflow-x-auto pb-2 md:grid-flow-row md:auto-cols-auto md:grid-cols-7 md:overflow-visible md:pb-0" aria-label="Trusted business logos">
           {clientLogos.map((logo) => (
             <div key={logo.name} className="flex h-14 items-center justify-center rounded-md border border-border/70 bg-card px-3 shadow-card">
               <img src={logo.src} alt={`${logo.name} logo`} width={2475} height={875} loading="lazy" className="max-h-8 w-full object-contain" />
@@ -266,29 +266,29 @@ function Industries() {
 
 function CaseStudies() {
   return (
-    <section id="case-studies" className="bg-sky-soft py-7">
-      <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
-        <div><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[30px] leading-[1.02]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-3">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">View All Case Studies <ArrowRight /></Button></div>
-        <div className="grid gap-3 md:grid-cols-3">
+    <section id="case-studies" className="bg-sky-soft py-4">
+      <div className="page-shell grid gap-4 md:grid-cols-[188px_minmax(0,1fr)] lg:grid-cols-[205px_minmax(0,1fr)]">
+        <div className="self-center"><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[25px] leading-[1.02]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-2 max-w-[190px]">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button asChild size="sm" className="mt-3 h-9 bg-gold px-4 text-[9px] font-bold text-navy shadow-card transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"><a href="#case-studies">View All Case Studies <ArrowRight /></a></Button></div>
+        <div className="case-scroll grid grid-flow-col auto-cols-[278px] gap-3 overflow-x-auto pb-2 md:auto-cols-auto md:grid-flow-row md:grid-cols-3 md:overflow-visible md:pb-0" aria-label="Case studies">
           {cases.map((item) => {
             const TagIcon = item.tagIcon;
             return (
-              <article key={item.title} className="relative flex min-h-[220px] flex-col overflow-hidden rounded-md border border-border bg-card shadow-card">
+              <article key={item.title} tabIndex={0} aria-label={`${item.title} case study`} className="group relative flex h-[155px] flex-col overflow-hidden rounded-md border border-border bg-card shadow-card outline-none transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-primary/45 hover:shadow-lg focus-visible:-translate-y-1 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-sky-soft">
                 <div className="case-visual">
                   <img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" />
                 </div>
-                <div className="relative z-10 p-4 pr-[47%]">
-                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-warning/20 bg-warning-soft px-2.5 py-1.5 text-[9px] font-extrabold text-navy"><TagIcon className="h-3.5 w-3.5 shrink-0 text-warning" />{item.tag}</span>
-                  <h3 className="mt-3 text-[12px] font-extrabold leading-snug text-navy">{item.title}</h3>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {item.chips.map((chip) => <span key={chip} className="whitespace-nowrap rounded bg-sky-soft px-2.5 py-1 text-[9px] font-semibold text-navy">{chip}</span>)}
+                <div className="relative z-10 min-h-0 flex-1 p-3 pr-[45%]">
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-warning/20 bg-warning-soft px-2 py-1 text-[7px] font-extrabold text-navy"><TagIcon className="h-2.5 w-2.5 shrink-0 text-warning" />{item.tag}</span>
+                  <h3 className="mt-2 text-[9px] font-extrabold leading-[1.3] text-navy">{item.title}</h3>
+                  <div className="mt-2 flex flex-nowrap gap-1">
+                    {item.chips.map((chip) => <span key={chip} className="whitespace-nowrap rounded bg-sky-soft px-2 py-1 text-[7px] font-semibold leading-none text-navy">{chip}</span>)}
                   </div>
                 </div>
-                <div className="relative z-10 mt-auto grid grid-cols-3 border-t border-border/60 bg-card">
+                <div className="relative z-10 grid h-[44px] shrink-0 grid-cols-3 border-t border-border/60 bg-card">
                   {item.stats.map(([number, label], index) => (
-                    <div key={label} className={`px-3 py-3 ${index > 0 ? "border-l border-border/60" : ""}`}>
-                      <strong className="block text-[15px] font-extrabold leading-none text-navy">{number}</strong>
-                      <span className="mt-1 block text-[8px] leading-tight text-muted-foreground">{label}</span>
+                    <div key={label} className={`min-w-0 px-2.5 py-2 ${index > 0 ? "border-l border-border/60" : ""}`}>
+                      <strong className="block truncate text-[13px] font-extrabold leading-none text-navy">{number}</strong>
+                      <span className="mt-1 block truncate text-[6px] leading-none text-muted-foreground">{label}</span>
                     </div>
                   ))}
                 </div>

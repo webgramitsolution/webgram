@@ -287,8 +287,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 50%;
-  height: 62%;
+  width: 52%;
+  height: 111px;
   overflow: hidden;
 }
 
@@ -296,7 +296,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: right center;
 }
 
 .case-visual::before {
@@ -304,8 +304,20 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, var(--card), transparent 40%);
+  background: linear-gradient(90deg, var(--card), transparent 32%);
 }
+
+.logo-scroll,
+.case-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--primary) 38%, transparent) transparent;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.logo-scroll > *,
+.case-scroll > * { scroll-snap-align: start; }
 
 .industry-card { position: relative; min-height: 165px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent); border-radius: 5px; }
 .industry-image { position: absolute; top: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
@@ -322,4 +334,6 @@
 @media (max-width: 767px) {
   .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
   .industry-card { min-height: 145px; }
+  .logo-scroll,
+  .case-scroll { margin-right: -1rem; padding-right: 1rem; }
 }
