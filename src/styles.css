@@ -229,6 +229,35 @@
   transform: skewX(-12deg);
 }
 
+/* Hero: the supplied banner is 2170x725, so on wide screens the frame keeps
+   that exact ratio and the picture is never cropped (its right-hand callouts
+   stay visible). Below 900px the frame falls back to a fixed height. */
+.hero-shell {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+  background: var(--navy);
+  color: var(--on-dark);
+}
+
+.hero-media { position: absolute; inset: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+.hero-copy {
+  position: relative;
+  display: flex;
+  min-height: 470px;
+  align-items: center;
+  padding-block: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .hero-shell { min-height: 440px; }
+  .hero-media { position: relative; aspect-ratio: 2170 / 725; min-height: 440px; }
+  .hero-media img { position: absolute; inset: 0; object-position: right center; }
+  .hero-copy { position: absolute; inset: 0; min-height: 0; padding-block: 1.5rem; }
+}
+
 .bg-hero-overlay {
   background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent) 0%, color-mix(in oklab, var(--navy) 92%, transparent) 30%, color-mix(in oklab, var(--navy) 35%, transparent) 58%, transparent 80%);
 }
@@ -237,44 +266,29 @@
   background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 96%, transparent), color-mix(in oklab, var(--navy) 60%, transparent) 52%, color-mix(in oklab, var(--navy) 48%, transparent));
 }
 
-.service-art {
+/* Solution card artwork: photo pinned to the right edge, faded into the card. */
+.service-visual {
   position: absolute;
-  right: -10px;
-  bottom: 0;
-  display: flex;
-  width: 42%;
-  height: 80%;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 6px solid var(--ink);
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
-  background: var(--on-dark);
-  padding: 12px;
-  color: var(--primary);
-  transform: rotate(-5deg);
-  box-shadow: -12px 6px 25px color-mix(in oklab, var(--navy) 18%, transparent);
+  inset: 0 0 0 auto;
+  width: 45%;
+  overflow: hidden;
+  border-left: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
 }
 
-.service-art span { font-size: 8px; font-weight: 800; color: var(--navy); }
-.service-art svg { width: 100%; height: 55%; }
-.service-art-1 { background: var(--warning-soft); }
-.service-art-2 { transform: rotate(3deg); }
-.service-art-3 { background: var(--navy); color: var(--sky); }
-
-.device-frame {
-  aspect-ratio: 4 / 3;
-  border: 6px solid var(--ink);
-  border-radius: 7px;
-  background: var(--on-dark);
-  padding: 6px;
-  box-shadow: 0 8px 18px color-mix(in oklab, var(--navy) 15%, transparent);
+.service-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.device-phone { aspect-ratio: 9 / 16; max-width: 65px; margin-inline: auto; border-radius: 12px; }
-.device-screen { display: grid; height: 100%; grid-template-columns: repeat(2, 1fr); gap: 4px; background: var(--sky-soft); padding: 5px; }
-.device-screen span { border-radius: 2px; background: var(--background); }
-.device-screen span:first-child { grid-column: 1 / -1; background: var(--primary-soft); }
+.service-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--card), transparent 38%);
+}
 
 .industry-card { position: relative; min-height: 165px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent); border-radius: 5px; }
 .industry-image { position: absolute; top: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
@@ -292,6 +306,6 @@
 .case-art-2 { background: linear-gradient(135deg, var(--primary-soft), var(--navy)); color: var(--sky); }
 
 @media (max-width: 767px) {
-  .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 98%, transparent), color-mix(in oklab, var(--navy) 82%, transparent) 72%, color-mix(in oklab, var(--navy) 60%, transparent)); }
+  .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
   .industry-card { min-height: 145px; }
 }
