@@ -277,16 +277,16 @@ function CaseStudies() {
                 <div className="case-visual">
                   <img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" />
                 </div>
-                <div className="relative z-10 p-4 pr-[52%]">
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-warning/20 bg-warning-soft px-2.5 py-1.5 text-[9px] font-extrabold text-navy"><TagIcon className="h-3.5 w-3.5 text-warning" />{item.tag}</span>
-                  <h3 className="mt-3 text-[12.5px] font-extrabold leading-snug text-navy">{item.title}</h3>
+                <div className="relative z-10 p-4 pr-[47%]">
+                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-warning/20 bg-warning-soft px-2.5 py-1.5 text-[9px] font-extrabold text-navy"><TagIcon className="h-3.5 w-3.5 shrink-0 text-warning" />{item.tag}</span>
+                  <h3 className="mt-3 text-[12px] font-extrabold leading-snug text-navy">{item.title}</h3>
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {item.chips.map((chip) => <span key={chip} className="rounded bg-sky-soft px-2.5 py-1 text-[9px] font-semibold text-navy">{chip}</span>)}
+                    {item.chips.map((chip) => <span key={chip} className="whitespace-nowrap rounded bg-sky-soft px-2.5 py-1 text-[9px] font-semibold text-navy">{chip}</span>)}
                   </div>
                 </div>
                 <div className="relative z-10 mt-auto grid grid-cols-3 border-t border-border/60 bg-card">
                   {item.stats.map(([number, label], index) => (
-                    <div key={label} className={`px-2.5 py-3 text-center ${index > 0 ? "border-l border-border/60" : ""}`}>
+                    <div key={label} className={`px-3 py-3 ${index > 0 ? "border-l border-border/60" : ""}`}>
                       <strong className="block text-[15px] font-extrabold leading-none text-navy">{number}</strong>
                       <span className="mt-1 block text-[8px] leading-tight text-muted-foreground">{label}</span>
                     </div>
