@@ -223,19 +223,19 @@ function Services() {
 
 function Ecosystem() {
   return (
-    <section id="services" className="bg-background py-7">
-      <div className="page-shell grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
-        <div>
-          <h2 className="section-title max-w-[280px]">From Storefront to Back Office — One Technology Partner.</h2>
-          <p className="section-subtitle mt-2 max-w-[360px]">We connect your entire commerce ecosystem — website, mobile app, inventory, payments, CRM and analytics.</p>
-          <Button size="sm" className="mt-4 bg-primary px-5 text-primary-foreground">Learn More <ArrowRight /></Button>
+    <section id="services" className="border-b border-border/60 bg-background py-5 md:py-3">
+      <div className="page-shell grid items-center gap-5 md:min-h-[180px] md:grid-cols-[1.08fr_1.45fr_1.4fr] md:gap-3 lg:grid-cols-[1.05fr_1.5fr_1.35fr]">
+        <div className="md:pr-2">
+          <h2 className="max-w-[360px] text-[20px] font-bold leading-[1.08] text-navy md:text-[17px] lg:text-[20px]">From Storefront to Back Office —<br className="hidden lg:block" /> One Technology Partner.</h2>
+          <p className="mt-2 max-w-[390px] text-[10px] font-normal leading-[1.55] text-muted-foreground md:text-[8px] lg:text-[10px]">We connect your entire commerce ecosystem — website, mobile app, inventory, payments, CRM and analytics.</p>
+          <Button size="sm" className="mt-3 h-9 bg-primary px-5 text-[10px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[9px] lg:h-9 lg:px-5 lg:text-[10px]">Learn More <ArrowRight /></Button>
         </div>
-        <div className="rounded-md border border-border/70 bg-card p-3 shadow-card sm:p-5">
+        <div className="min-w-0">
           <img src={IMAGES.ecosystem} alt="Webgram commerce ecosystem linking storefront, commerce, operations, payments, analytics and integrations" width={6075} height={2528} loading="lazy" className="h-auto w-full object-contain" />
         </div>
-      </div>
-      <div className="page-shell mt-7">
-        <img src={IMAGES.platforms} alt="Webgram storefront, admin dashboard and mobile app shown on a laptop, a monitor and a phone" width={1944} height={809} loading="lazy" className="mx-auto h-auto w-full max-w-[1040px] object-contain" />
+        <div className="min-w-0">
+          <img src={IMAGES.platforms} alt="Webgram ecommerce website, B2B portal and mobile app" width={1944} height={809} loading="lazy" className="h-auto w-full object-contain" />
+        </div>
       </div>
     </section>
   );
