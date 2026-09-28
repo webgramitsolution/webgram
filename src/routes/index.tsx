@@ -3,20 +3,14 @@ import {
   ArrowRight,
   BarChart3,
   Blocks,
-  Boxes,
   BriefcaseBusiness,
-  Building2,
   CheckCircle2,
   ChevronDown,
-  Cloud,
   Code2,
-  Database,
-  Globe2,
   Headphones,
   Layers3,
   Menu,
   MessageCircle,
-  PackageCheck,
   Phone,
   Search,
   ShieldCheck,
@@ -29,7 +23,7 @@ import {
 import { useState, type ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/commerce-hero.jpg";
+import { IMAGES, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import ctaImage from "@/assets/cta-mountain.jpg";
 
@@ -48,7 +42,9 @@ export const Route = createFileRoute("/")({
         content: "Build, sell and scale with a full-service digital commerce technology partner.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: IMAGES.hero },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: IMAGES.hero },
     ],
   }),
   component: HomePage,
@@ -56,34 +52,45 @@ export const Route = createFileRoute("/")({
 
 type Icon = ComponentType<{ className?: string }>;
 
-const services: Array<{ icon: Icon; title: string; text: string; link: string; art: string }> = [
+const services: Array<{
+  icon: Icon;
+  title: string;
+  text: string;
+  link: string;
+  image: string;
+  alt: string;
+}> = [
   {
     icon: ShoppingCart,
     title: "Ecommerce Development",
     text: "High-converting B2C ecommerce websites designed for performance and scalability.",
     link: "Explore Ecommerce",
-    art: "Storefront",
+    image: IMAGES.ecommerce,
+    alt: "Laptop and phone showing a fashion ecommerce storefront",
   },
   {
     icon: BriefcaseBusiness,
     title: "B2B Commerce",
     text: "Wholesale pricing, MOQ, RFQ, customer groups, credit terms and bulk ordering.",
     link: "Explore B2B",
-    art: "B2B Portal",
+    image: IMAGES.b2b,
+    alt: "Stacked cardboard shipping boxes for wholesale orders",
   },
   {
     icon: Store,
     title: "Marketplace Development",
     text: "Multi-vendor marketplaces with seller, buyer and admin ecosystems.",
     link: "Explore Marketplace",
-    art: "Marketplace",
+    image: IMAGES.marketplace,
+    alt: "Laptop and phone showing a furniture marketplace beside shipping boxes",
   },
   {
     icon: Code2,
     title: "Custom Commerce Platforms",
     text: "Custom-built commerce applications designed around your unique business model.",
     link: "Explore Custom Solutions",
-    art: "Custom Code",
+    image: IMAGES.custom,
+    alt: "Laptop showing custom commerce application source code",
   },
 ];
 
@@ -102,20 +109,6 @@ const cases = [
   { tag: "B2B Marketplace", title: "From Traditional Sales to a Scalable Digital Platform", type: "Manufacturing", stats: [["3X", "Sales Growth"], ["200+", "Active Buyers"], ["50%", "Faster Orders"]] },
   { tag: "Ecommerce Website", title: "Modern Ecommerce Experience for a Lifestyle Brand", type: "Lifestyle", stats: [["2.5X", "Conversion"], ["60%", "Repeat Customers"], ["40%", "Higher AOV"]] },
   { tag: "Custom Web Application", title: "Business Management Portal for a Distribution Company", type: "Distribution", stats: [["70%", "Manual Work Reduced"], ["100+", "Team Members"], ["Real-time", "Inventory Tracking"]] },
-];
-
-const technologies: Array<{ name: string; icon: Icon }> = [
-  { name: "React.js", icon: Blocks },
-  { name: "Next.js", icon: Code2 },
-  { name: "Node.js", icon: Boxes },
-  { name: "WordPress", icon: Globe2 },
-  { name: "WooCommerce", icon: ShoppingCart },
-  { name: "Supabase", icon: Zap },
-  { name: "PostgreSQL", icon: Database },
-  { name: "Razorpay", icon: ShieldCheck },
-  { name: "WhatsApp API", icon: MessageCircle },
-  { name: "AWS", icon: Cloud },
-  { name: "Google Cloud", icon: Cloud },
 ];
 
 function Logo() {
@@ -169,7 +162,7 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-[486px] overflow-hidden bg-navy text-on-dark md:min-h-[478px]">
-      <img src={heroImage} alt="Ecommerce dashboards displayed on a laptop and mobile phone" width={1536} height={640} className="absolute inset-0 h-full w-full object-cover object-[70%_center] md:object-center" />
+      <img src={IMAGES.hero} alt="Webgram ecommerce dashboards on a laptop and a mobile phone" width={2170} height={725} className="absolute inset-0 h-full w-full object-cover object-[62%_center] md:object-center" />
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell relative flex min-h-[486px] items-center py-14 md:min-h-[478px]">
         <div className="max-w-[570px]">
@@ -185,25 +178,29 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div className="pointer-events-none absolute right-5 top-6 hidden w-[178px] space-y-4 xl:block">
-        {["Marketplace", "Mobile Apps", "Integrations"].map((item, index) => <div key={item} className="border border-sky/40 bg-navy/65 p-4 text-[10px] font-bold backdrop-blur"><span className="text-sky">0{index + 1}</span><span className="ml-3">{item}</span></div>)}
-      </div>
     </section>
   );
 }
 
 function TrustStrip() {
-  const logos = ["asianpaints", "HAVELLS", "Kajaria", "Godrej", "L&T", "JSLA", "POLYCAB", "Crompton", "Supreme", "Hettich"];
+  const stats: Array<[string, string]> = [["100+", "Web Projects"], ["50+", "Commerce Solutions"], ["20+", "Industries Served"], ["24/7", "Technical Support"]];
   return (
     <section className="bg-background py-5">
       <div className="page-shell">
         <h2 className="text-sm font-extrabold text-navy">Trusted by Businesses Building Their Digital Future</h2>
-        <div className="mt-4 grid items-center gap-5 lg:grid-cols-[1fr_auto]">
-          <div className="grid grid-cols-3 items-center gap-4 sm:grid-cols-5 lg:grid-cols-10">
-            {logos.map((logo, index) => <span key={logo} className={`text-center text-[11px] font-black italic ${index % 3 === 0 ? "text-danger" : index % 3 === 1 ? "text-primary" : "text-navy"}`}>{logo}</span>)}
+        <div className="mt-4 grid grid-cols-2 items-center gap-3 sm:grid-cols-4 lg:grid-cols-7">
+          {clientLogos.map((logo) => (
+            <div key={logo.name} className="flex h-14 items-center justify-center rounded-md border border-border/70 bg-card px-3 shadow-card">
+              <img src={logo.src} alt={`${logo.name} logo`} width={2475} height={875} loading="lazy" className="max-h-8 w-full object-contain" />
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 grid items-center gap-5 lg:grid-cols-[1.15fr_1fr]">
+          <div className="rounded-md border border-border/70 bg-card px-4 py-3 shadow-card">
+            <img src={IMAGES.reviewBadges} alt="Trustpilot, Google Reviews, GoodFirms, Clutch, MSME and IndiaMART verification seals" width={1920} height={419} loading="lazy" className="mx-auto h-auto w-full max-w-[620px] object-contain" />
           </div>
-          <div className="grid grid-cols-4 divide-x divide-border border-t border-border pt-4 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
-            {[["100+", "Web Projects"], ["50+", "Commerce Solutions"], ["20+", "Industries Served"], ["24/7", "Technical Support"]].map(([value, label]) => <div key={label} className="min-w-[102px] px-3 text-center"><strong className="block text-xl font-extrabold text-navy">{value}</strong><span className="text-[8px] font-semibold text-muted-foreground">{label}</span></div>)}
+          <div className="grid grid-cols-2 divide-x divide-y divide-border border border-border/70 bg-card sm:grid-cols-4 sm:divide-y-0">
+            {stats.map(([value, label]) => <div key={label} className="min-w-[102px] px-3 py-3 text-center"><strong className="block text-xl font-extrabold text-navy">{value}</strong><span className="text-[8px] font-semibold text-muted-foreground">{label}</span></div>)}
           </div>
         </div>
       </div>
@@ -220,13 +217,15 @@ function Services() {
           <a href="#services" className="hidden text-[10px] font-bold text-primary underline sm:block">View All Solutions →</a>
         </div>
         <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {services.map(({ icon: IconComponent, title, text, link, art }, index) => (
-            <article key={title} className="relative min-h-[190px] overflow-hidden rounded-md border border-border bg-card p-4 pr-[42%] shadow-card">
+          {services.map(({ icon: IconComponent, title, text, link, image, alt }) => (
+            <article key={title} className="relative min-h-[210px] overflow-hidden rounded-md border border-border bg-card p-4 pr-[46%] shadow-card">
               <span className="grid h-11 w-11 place-items-center rounded-md bg-primary text-primary-foreground"><IconComponent className="h-6 w-6" /></span>
               <h3 className="mt-3 text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
               <p className="mt-2 text-[10px] font-medium leading-4 text-muted-foreground">{text}</p>
               <a href="#services" className="mt-3 inline-block text-[10px] font-extrabold text-primary">{link} →</a>
-              <div className={`service-art service-art-${index}`}><span>{art}</span><BarChart3 /></div>
+              <div className="service-visual">
+                <img src={image} alt={alt} width={1536} height={1024} loading="lazy" />
+              </div>
             </article>
           ))}
         </div>
@@ -236,29 +235,20 @@ function Services() {
 }
 
 function Ecosystem() {
-  const items: Array<{ icon: Icon; label: string; sub: string }> = [
-    { icon: ShoppingCart, label: "Storefront", sub: "Website | Mobile App" },
-    { icon: BriefcaseBusiness, label: "Commerce", sub: "B2B | B2C | Marketplace" },
-    { icon: Database, label: "Operations", sub: "Inventory | Orders | CRM" },
-    { icon: ShieldCheck, label: "Payments", sub: "Razorpay | PayU | COD" },
-    { icon: BarChart3, label: "Analytics", sub: "Reports | Growth" },
-    { icon: Blocks, label: "Integrations", sub: "WhatsApp | Shipping | ERP" },
-  ];
   return (
     <section id="services" className="bg-background py-7">
-      <div className="page-shell grid items-center gap-7 lg:grid-cols-[1fr_1.2fr_1fr]">
+      <div className="page-shell grid items-center gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
         <div>
           <h2 className="section-title max-w-[280px]">From Storefront to Back Office — One Technology Partner.</h2>
           <p className="section-subtitle mt-2 max-w-[360px]">We connect your entire commerce ecosystem — website, mobile app, inventory, payments, CRM and analytics.</p>
           <Button size="sm" className="mt-4 bg-primary px-5 text-primary-foreground">Learn More <ArrowRight /></Button>
         </div>
-        <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3">
-          <div className="absolute inset-0 m-auto hidden h-24 w-24 place-items-center rounded-full border-2 border-primary/30 bg-background text-center sm:grid"><strong className="text-primary">W</strong><span className="block text-[9px] font-bold text-navy">Webgram</span></div>
-          {items.map(({ icon: IconComponent, label, sub }) => <div key={label} className="flex min-h-16 items-center gap-2 rounded-md border border-primary/15 bg-background p-2 sm:odd:mr-12 sm:even:ml-12"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><span><strong className="block text-[9px] text-navy">{label}</strong><small className="text-[7px] text-muted-foreground">{sub}</small></span></div>)}
+        <div className="rounded-md border border-border/70 bg-card p-3 shadow-card sm:p-5">
+          <img src={IMAGES.ecosystem} alt="Webgram commerce ecosystem linking storefront, commerce, operations, payments, analytics and integrations" width={6075} height={2528} loading="lazy" className="h-auto w-full object-contain" />
         </div>
-        <div className="grid grid-cols-3 items-end gap-3">
-          {["Ecommerce Website", "B2B Portal", "Mobile App"].map((label, index) => <div key={label} className="text-center"><div className={`device-frame ${index === 2 ? "device-phone" : ""}`}><div className="device-screen"><span /><span /><span /></div></div><strong className="mt-2 block text-[8px] text-navy">{label}</strong></div>)}
-        </div>
+      </div>
+      <div className="page-shell mt-7">
+        <img src={IMAGES.platforms} alt="Webgram storefront, admin dashboard and mobile app shown on a laptop, a monitor and a phone" width={1944} height={809} loading="lazy" className="mx-auto h-auto w-full max-w-[1040px] object-contain" />
       </div>
     </section>
   );
@@ -301,7 +291,7 @@ function CaseStudies() {
 function Technology() {
   return (
     <section id="resources" className="border-t border-border bg-background py-6">
-      <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]"><div><h2 className="section-title">Technology That<br />Works Together</h2><p className="section-subtitle mt-2">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p></div><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 xl:grid-cols-11">{technologies.map(({ name, icon: IconComponent }, index) => <div key={name} className="text-center"><span className={`mx-auto grid h-12 w-12 place-items-center rounded-md border border-border bg-card ${index % 4 === 0 ? "text-cyan" : index % 4 === 1 ? "text-ink" : index % 4 === 2 ? "text-success" : "text-primary"}`}><IconComponent className="h-6 w-6" /></span><strong className="mt-2 block text-[8px] text-navy">{name}</strong></div>)}</div></div>
+      <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]"><div><h2 className="section-title">Technology That<br />Works Together</h2><p className="section-subtitle mt-2">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p></div><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 xl:grid-cols-12">{technologyStack.map(({ name, src }) => <div key={name} className="text-center"><span className="mx-auto grid h-14 w-14 place-items-center rounded-md border border-border bg-card p-2 shadow-card"><img src={src} alt={`${name} logo`} width={1200} height={1200} loading="lazy" className="h-full w-full object-contain" /></span><strong className="mt-2 block text-[8px] text-navy">{name}</strong></div>)}</div></div>
     </section>
   );
 }

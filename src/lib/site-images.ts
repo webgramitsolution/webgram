@@ -1,0 +1,51 @@
+/**
+ * Homepage imagery, served from the ImageKit library.
+ *
+ * Every picture used on the homepage lives here so a file can be swapped in one
+ * place (or the URL updated when a new version is uploaded) without touching the
+ * page markup.
+ */
+const lib = "https://ik.imagekit.io/home1/home%20page";
+
+export const IMAGES = {
+  /** Wide navy hero banner: laptop + phone storefronts, callouts on the right. */
+  hero: `${lib}/home%20page%20slider%201.png`,
+  /** Row of review / certification seals on white. */
+  reviewBadges: `${lib}/Media-2.webp`,
+  /** Hub-and-spoke commerce ecosystem diagram on white. */
+  ecosystem: `${lib}/From%20Storefront%20to%20Back%20Office.png`,
+  /** Storefront, admin dashboard and mobile app on three devices, transparent. */
+  platforms: `${lib}/website.png`,
+  /** Solution card artwork — each is a white-background photo. */
+  ecommerce: `${lib}/Ecommerce%20Development.png`,
+  b2b: `${lib}/B2B%20Commerce.png`,
+  marketplace: `${lib}/Marketplace%20Development.png`,
+  custom: `${lib}/Custom%20Commerce%20Platforms.png`,
+} as const;
+
+/** Brand logos shown under "Trusted by Businesses Building Their Digital Future". */
+export const clientLogos = [
+  { name: "GoKwik", src: `${lib}/1.png` },
+  { name: "Hostinger", src: `${lib}/2.png` },
+  { name: "Trustpilot", src: `${lib}/3.png` },
+  { name: "interakt", src: `${lib}/4.png` },
+  { name: "Judge.me", src: `${lib}/5.png` },
+  { name: "WATI", src: `${lib}/6.png` },
+  { name: "Shiprocket", src: `${lib}/7.png` },
+];
+
+/** Technology grid — transparent square logos, listed in reference order. */
+export const technologyStack = [
+  { name: "React.js", src: `${lib}/01_React.js.png` },
+  { name: "Next.js", src: `${lib}/02_Next.js.png` },
+  { name: "Node.js", src: `${lib}/03_Node.js.png` },
+  { name: "WordPress", src: `${lib}/04_WordPress.png` },
+  { name: "WooCommerce", src: `${lib}/05_WooCommerce.png` },
+  { name: "Supabase", src: `${lib}/06_Supabase.png` },
+  { name: "PostgreSQL", src: `${lib}/07_PostgreSQL.png` },
+  { name: "Razorpay", src: `${lib}/08_Razorpay.png` },
+  { name: "WhatsApp API", src: `${lib}/09_WhatsApp_API.png` },
+  { name: "AWS", src: `${lib}/10_AWS.png` },
+  { name: "Google Cloud", src: `${lib}/11_Google_Cloud.png` },
+  { name: "More", src: `${lib}/12_More.png` },
+];
