@@ -266,10 +266,36 @@ function Industries() {
 
 function CaseStudies() {
   return (
-    <section id="case-studies" className="bg-background py-7">
+    <section id="case-studies" className="bg-sky-soft py-7">
       <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
-        <div><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[27px] leading-[0.95]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-3">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">View All Case Studies <ArrowRight /></Button></div>
-        <div className="grid gap-3 md:grid-cols-3">{cases.map((item) => <article key={item.title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className="aspect-[1934/813] w-full overflow-hidden border-b border-border/70"><img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" className="h-full w-full object-cover" /></div><div className="p-4"><span className="text-[8px] font-bold text-warning">▣ {item.tag}</span><h3 className="mt-2 min-h-10 text-[11px] font-extrabold leading-tight text-navy">{item.title}</h3><span className="mt-2 inline-block bg-muted px-2 py-1 text-[7px] font-semibold text-muted-foreground">{item.type}</span><div className="mt-4 grid grid-cols-3 gap-2">{item.stats.map(([number, label]) => <div key={label}><strong className="block text-base font-extrabold text-primary">{number}</strong><span className="text-[7px] leading-none text-muted-foreground">{label}</span></div>)}</div></div></article>)}</div>
+        <div><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[30px] leading-[1.02]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-3">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">View All Case Studies <ArrowRight /></Button></div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {cases.map((item) => {
+            const TagIcon = item.tagIcon;
+            return (
+              <article key={item.title} className="relative flex min-h-[220px] flex-col overflow-hidden rounded-md border border-border bg-card shadow-card">
+                <div className="case-visual">
+                  <img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" />
+                </div>
+                <div className="relative z-10 p-4 pr-[52%]">
+                  <span className="inline-flex items-center gap-1.5 rounded-md border border-warning/20 bg-warning-soft px-2.5 py-1.5 text-[9px] font-extrabold text-navy"><TagIcon className="h-3.5 w-3.5 text-warning" />{item.tag}</span>
+                  <h3 className="mt-3 text-[12.5px] font-extrabold leading-snug text-navy">{item.title}</h3>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {item.chips.map((chip) => <span key={chip} className="rounded bg-sky-soft px-2.5 py-1 text-[9px] font-semibold text-navy">{chip}</span>)}
+                  </div>
+                </div>
+                <div className="relative z-10 mt-auto grid grid-cols-3 border-t border-border/60 bg-card">
+                  {item.stats.map(([number, label], index) => (
+                    <div key={label} className={`px-2.5 py-3 text-center ${index > 0 ? "border-l border-border/60" : ""}`}>
+                      <strong className="block text-[15px] font-extrabold leading-none text-navy">{number}</strong>
+                      <span className="mt-1 block text-[8px] leading-tight text-muted-foreground">{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -281,6 +281,32 @@
   background: linear-gradient(90deg, var(--card), transparent 38%);
 }
 
+/* Case-study card artwork: photo pinned to the top-right, faded into the card,
+   ending above the stats row like the reference. */
+.case-visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52%;
+  height: 62%;
+  overflow: hidden;
+}
+
+.case-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.case-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--card), transparent 40%);
+}
+
 .industry-card { position: relative; min-height: 165px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent); border-radius: 5px; }
 .industry-image { position: absolute; top: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
 .industry-image-0 { left: 0; }
