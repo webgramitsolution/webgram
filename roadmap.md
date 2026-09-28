@@ -7,7 +7,10 @@
 - [x] Swap in the ImageKit images: hero, client logos, solution cards, ecosystem diagram, device mockups, technology grid.
 - [x] Remove the review-seal and four-stat row as requested in the latest reference update.
 - [x] Verify every replaced image renders on desktop and mobile with no broken links.
-- [ ] Replace the six industries cards, three case-study cards and the bottom banner picture with ImageKit images — blocked until the links are sent.
+- [ ] Replace the six industries cards and the bottom banner picture with ImageKit images — blocked until the links are sent.
+- [x] Replace the three case-study card pictures with the supplied ImageKit images.
+- [x] Keep the storefront-to-back-office section on a pure white background.
+- [x] Remove the horizontal line above the technology section.
 - [x] Replace the header with the supplied Webgram reference styling and uploaded logo.
 - [x] Remove the review-seal and statistics row, reduce hero height, and remove solution-card image dividers.
 - [x] Keep the desktop composition on tablet widths.
