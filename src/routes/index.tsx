@@ -183,7 +183,7 @@ function TrustStrip() {
     <section className="bg-background py-5">
       <div className="page-shell">
         <h2 className="text-sm font-extrabold text-navy">Trusted by Businesses Building Their Digital Future</h2>
-        <div className="mt-4 grid grid-cols-2 items-center gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        <div className="mt-4 grid grid-cols-2 items-center gap-3 sm:grid-cols-4 md:grid-cols-7">
           {clientLogos.map((logo) => (
             <div key={logo.name} className="flex h-14 items-center justify-center rounded-md border border-border/70 bg-card px-3 shadow-card">
               <img src={logo.src} alt={`${logo.name} logo`} width={2475} height={875} loading="lazy" className="max-h-8 w-full object-contain" />
@@ -203,7 +203,7 @@ function Services() {
           <div><h2 className="section-title">Our Digital Commerce Solutions</h2><p className="section-subtitle">End-to-end solutions to build, sell and scale your business online.</p></div>
           <a href="#services" className="hidden text-[10px] font-bold text-primary underline sm:block">View All Solutions →</a>
         </div>
-        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-5 grid gap-3 md:grid-cols-4">
           {services.map(({ icon: IconComponent, title, text, link, image, alt }) => (
             <article key={title} className="relative min-h-[210px] overflow-hidden rounded-md border border-border bg-card p-4 pr-[46%] shadow-card">
               <span className="grid h-11 w-11 place-items-center rounded-md bg-primary text-primary-foreground"><IconComponent className="h-6 w-6" /></span>
@@ -224,7 +224,7 @@ function Services() {
 function Ecosystem() {
   return (
     <section id="services" className="bg-background py-7">
-      <div className="page-shell grid items-center gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
+      <div className="page-shell grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
         <div>
           <h2 className="section-title max-w-[280px]">From Storefront to Back Office — One Technology Partner.</h2>
           <p className="section-subtitle mt-2 max-w-[360px]">We connect your entire commerce ecosystem — website, mobile app, inventory, payments, CRM and analytics.</p>
@@ -245,7 +245,7 @@ function WhyUs() {
   return (
     <section id="company" className="border-y border-border bg-sky-soft py-6">
       <div className="page-shell"><h2 className="section-title">Why Businesses Choose Webgram</h2><p className="section-subtitle">More than just development — we are your long-term digital commerce partner.</p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">{strengths.map(({ icon: IconComponent, title, text, tone }) => <article key={title} className="grid grid-cols-[auto_1fr] gap-3"><span className={`grid h-10 w-10 shrink-0 place-items-center rounded-md ${tone}`}><IconComponent className="h-5 w-5" /></span><span><h3 className="text-[10px] font-extrabold leading-tight text-navy">{title}</h3><p className="mt-1 text-[8px] leading-3 text-muted-foreground">{text}</p></span></article>)}</div>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-6">{strengths.map(({ icon: IconComponent, title, text, tone }) => <article key={title} className="grid grid-cols-[auto_1fr] gap-3"><span className={`grid h-10 w-10 shrink-0 place-items-center rounded-md ${tone}`}><IconComponent className="h-5 w-5" /></span><span><h3 className="text-[10px] font-extrabold leading-tight text-navy">{title}</h3><p className="mt-1 text-[8px] leading-3 text-muted-foreground">{text}</p></span></article>)}</div>
       </div>
     </section>
   );
@@ -254,9 +254,9 @@ function WhyUs() {
 function Industries() {
   return (
     <section id="industries" className="bg-navy py-7 text-on-dark">
-      <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]">
+      <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
         <div><p className="eyebrow">Industries</p><h2 className="mt-2 text-[27px] font-extrabold leading-[0.95]">Built Around<br />Your Industry</h2><p className="mt-3 text-[10px] leading-4 text-on-dark/75">We develop customized commerce solutions for diverse industries.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">Explore Industries <ArrowRight /></Button></div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
           {industries.map((industry, index) => <article key={industry} className="industry-card"><img src={industriesImage} alt="" loading="lazy" width={1536} height={512} className={`industry-image industry-image-${index}`} /><div className="industry-shade" /><strong>{industry} →</strong></article>)}
         </div>
       </div>
@@ -267,7 +267,7 @@ function Industries() {
 function CaseStudies() {
   return (
     <section id="case-studies" className="bg-background py-7">
-      <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]">
+      <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
         <div><p className="eyebrow text-primary">Case Studies</p><h2 className="section-title mt-2 text-[27px] leading-[0.95]">Work That<br />Speaks for Itself</h2><p className="section-subtitle mt-3">Real businesses. Real results. Explore how we help companies grow with digital commerce.</p><Button size="sm" className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">View All Case Studies <ArrowRight /></Button></div>
         <div className="grid gap-3 md:grid-cols-3">{cases.map((item, index) => <article key={item.title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className={`case-art case-art-${index}`}><BarChart3 className="h-11 w-11" /></div><div className="p-4"><span className="text-[8px] font-bold text-warning">▣ {item.tag}</span><h3 className="mt-2 min-h-10 text-[11px] font-extrabold leading-tight text-navy">{item.title}</h3><span className="mt-2 inline-block bg-muted px-2 py-1 text-[7px] font-semibold text-muted-foreground">{item.type}</span><div className="mt-4 grid grid-cols-3 gap-2">{item.stats.map(([number, label]) => <div key={label}><strong className="block text-base font-extrabold text-primary">{number}</strong><span className="text-[7px] leading-none text-muted-foreground">{label}</span></div>)}</div></div></article>)}</div>
       </div>
@@ -278,7 +278,7 @@ function CaseStudies() {
 function Technology() {
   return (
     <section id="resources" className="border-t border-border bg-background py-6">
-      <div className="page-shell grid gap-5 lg:grid-cols-[220px_1fr]"><div><h2 className="section-title">Technology That<br />Works Together</h2><p className="section-subtitle mt-2">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p></div><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 xl:grid-cols-12">{technologyStack.map(({ name, src }) => <div key={name} className="text-center"><span className="mx-auto grid h-14 w-14 place-items-center rounded-md border border-border bg-card p-2 shadow-card"><img src={src} alt={`${name} logo`} width={1200} height={1200} loading="lazy" className="h-full w-full object-contain" /></span><strong className="mt-2 block text-[8px] text-navy">{name}</strong></div>)}</div></div>
+      <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]"><div><h2 className="section-title">Technology That<br />Works Together</h2><p className="section-subtitle mt-2">We use modern, reliable and scalable technologies to build high-performance commerce solutions.</p></div><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-12">{technologyStack.map(({ name, src }) => <div key={name} className="text-center"><span className="mx-auto grid h-14 w-14 place-items-center rounded-md border border-border bg-card p-2 shadow-card"><img src={src} alt={`${name} logo`} width={1200} height={1200} loading="lazy" className="h-full w-full object-contain" /></span><strong className="mt-2 block text-[8px] text-navy">{name}</strong></div>)}</div></div>
     </section>
   );
 }
@@ -286,7 +286,7 @@ function Technology() {
 function FinalCta() {
   const steps = [[MessageCircle, "Consultation", "Free discussion"], [Layers3, "Solution Design", "Tailored to your goals"], [Code2, "Development", "On-time delivery"], [Headphones, "Support", "Long-term partnership"]] as const;
   return (
-    <section className="relative min-h-[255px] overflow-hidden bg-navy text-on-dark"><img src={ctaImage} alt="Entrepreneur looking over mountain landscape at sunrise" loading="lazy" width={1536} height={512} className="absolute inset-0 h-full w-full object-cover object-[60%_center]" /><div className="absolute inset-0 bg-cta-overlay" /><div className="page-shell relative grid min-h-[255px] items-center gap-7 py-8 lg:grid-cols-[1fr_1.2fr]"><div><h2 className="text-[30px] font-extrabold leading-none">Have a Business Idea?<br />Let’s Build It.</h2><p className="mt-3 max-w-[470px] text-[11px] leading-4 text-on-dark/85">Tell us what you're building. We'll help you turn it into a scalable digital commerce experience.</p><div className="mt-5 flex flex-wrap gap-3"><Button className="h-11 bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90">Start Your Project <ArrowRight /></Button><Button variant="outline" className="h-11 border-on-dark/60 bg-transparent px-6 text-[10px] font-bold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark">Talk to an Expert</Button></div></div><div className="grid grid-cols-2 gap-5 sm:grid-cols-4">{steps.map(([IconComponent, title, text]) => <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/40"><IconComponent className="h-5 w-5" /></span><strong className="mt-2 block text-[9px]">{title}</strong><small className="mt-1 block text-[7px] text-on-dark/70">{text}</small></div>)}</div></div></section>
+    <section className="relative min-h-[255px] overflow-hidden bg-navy text-on-dark"><img src={ctaImage} alt="Entrepreneur looking over mountain landscape at sunrise" loading="lazy" width={1536} height={512} className="absolute inset-0 h-full w-full object-cover object-[60%_center]" /><div className="absolute inset-0 bg-cta-overlay" /><div className="page-shell relative grid min-h-[255px] items-center gap-7 py-8 md:grid-cols-[1fr_1.2fr]"><div><h2 className="text-[30px] font-extrabold leading-none">Have a Business Idea?<br />Let’s Build It.</h2><p className="mt-3 max-w-[470px] text-[11px] leading-4 text-on-dark/85">Tell us what you're building. We'll help you turn it into a scalable digital commerce experience.</p><div className="mt-5 flex flex-wrap gap-3"><Button className="h-11 bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90">Start Your Project <ArrowRight /></Button><Button variant="outline" className="h-11 border-on-dark/60 bg-transparent px-6 text-[10px] font-bold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark">Talk to an Expert</Button></div></div><div className="grid grid-cols-2 gap-5 sm:grid-cols-4">{steps.map(([IconComponent, title, text]) => <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/40"><IconComponent className="h-5 w-5" /></span><strong className="mt-2 block text-[9px]">{title}</strong><small className="mt-1 block text-[7px] text-on-dark/70">{text}</small></div>)}</div></div></section>
   );
 }
 
