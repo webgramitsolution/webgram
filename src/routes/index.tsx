@@ -5,27 +5,26 @@ import {
   Blocks,
   BriefcaseBusiness,
   CheckCircle2,
-  ChevronDown,
   Code2,
+  Facebook,
   Headphones,
+  Linkedin,
   Layers3,
-  Menu,
   MessageCircle,
-  Phone,
-  Search,
+  Send,
   ShieldCheck,
   ShoppingCart,
   Store,
   Users,
-  X,
   Zap,
 } from "lucide-react";
-import { useState, type ComponentType } from "react";
+import type { ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IMAGES, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import ctaImage from "@/assets/cta-mountain.jpg";
+import webgramLogo from "@/assets/webgram-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -113,48 +112,43 @@ const cases = [
 
 function Logo() {
   return (
-    <a href="#top" className="flex shrink-0 items-center gap-2" aria-label="Webgram IT Solution home">
-      <span className="brand-mark" aria-hidden="true">W</span>
-      <span className="leading-none">
-        <strong className="block text-[15px] text-ink">Webgram IT Solution</strong>
-        <small className="mt-1 block text-[8px] font-semibold text-muted-foreground">Build. Sell. Scale.</small>
-      </span>
+    <a href="#top" className="flex shrink-0 items-center" aria-label="Webgram IT Solution home">
+      <img src={webgramLogo.url} alt="Webgram IT Solution" width={720} height={323} className="h-[38px] w-auto object-contain sm:h-[44px]" />
     </a>
   );
 }
 
 function Header() {
-  const [open, setOpen] = useState(false);
-  const links = ["Home", "Solutions", "Services", "Industries", "Case Studies", "Resources", "Company"];
+  const links = ["Website Development", "Google Ads", "GMB Listing", "SMO", "SEO", "Facebook Ads", "Our Portfolio", "Blog"];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur">
-      <div className="page-shell grid h-[62px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:flex">
+    <header className="relative z-50 border-b border-on-dark/60 bg-navy text-on-dark">
+      <div className="hidden h-[31px] border-b border-on-dark/20 md:block">
+        <div className="header-shell flex h-full items-center justify-between text-[10px] font-medium uppercase">
+          <div className="flex h-full items-center">
+            <span className="border-x border-on-dark/15 px-3">English⌄</span>
+            <span className="border-r border-on-dark/15 px-3">Country⌄</span>
+            <strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong>
+          </div>
+          <div className="flex h-full items-center">
+            <span className="flex items-center gap-3 border-r border-on-dark/15 px-3" aria-label="Social channels">
+              <Facebook className="h-3.5 w-3.5" /><span className="font-bold">X</span><span className="font-bold">p</span><Linkedin className="h-3.5 w-3.5" /><Send className="h-3.5 w-3.5" />
+            </span>
+            {['Newsletter', 'Contact Us', 'FAQs'].map((item) => <span key={item} className="flex h-full items-center border-r border-on-dark/15 px-3">{item}</span>)}
+          </div>
+        </div>
+      </div>
+      <div className="header-shell flex h-[76px] items-center justify-between gap-5">
         <Logo />
-        <nav className="ml-auto hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
-          {links.map((link, index) => (
-            <a key={link} href={index === 0 ? "#top" : `#${link.toLowerCase().replaceAll(" ", "-")}`} className="flex items-center gap-1 text-[11px] font-bold text-ink transition-colors hover:text-primary">
-              {link}{[1, 2, 3, 5, 6].includes(index) && <ChevronDown className="h-3 w-3" />}
+        <nav className="hidden items-center gap-5 md:flex" aria-label="Primary navigation">
+          {links.map((link) => (
+            <a key={link} href="#top" className="whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75">
+              {link}
             </a>
           ))}
         </nav>
-        <div className="ml-4 hidden items-center gap-4 lg:flex">
-          <Search className="h-5 w-5 text-ink" />
-          <div className="h-8 w-px bg-border" />
-          <Phone className="h-5 w-5 text-primary" />
-          <div className="text-[10px] font-bold leading-tight text-ink"><span className="block">+91 98765 43210</span><span className="text-muted-foreground">Let's Talk</span></div>
-          <Button className="h-9 bg-navy px-5 text-[11px] text-on-dark hover:bg-navy/90">Start Your Project <ArrowRight /></Button>
-        </div>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)}>
-          {open ? <X /> : <Menu />}
-        </Button>
+        <div className="md:hidden text-[10px] font-medium uppercase">Webgram IT Solution</div>
       </div>
-      {open && (
-        <nav className="border-t border-border bg-background px-5 py-4 lg:hidden" aria-label="Mobile navigation">
-          {links.map((link, index) => <a key={link} href={index === 0 ? "#top" : `#${link.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setOpen(false)} className="block border-b border-border/70 py-3 text-sm font-bold text-ink">{link}</a>)}
-          <Button className="mt-4 w-full bg-navy text-on-dark">Start Your Project <ArrowRight /></Button>
-        </nav>
-      )}
     </header>
   );
 }
@@ -167,15 +161,15 @@ function Hero() {
       </div>
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
-        <div className="max-w-[570px]">
-          <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.24em] text-sky">Digital Commerce & Technology Partner</p>
-          <h1 className="max-w-[560px] text-[39px] font-extrabold leading-[1.02] tracking-normal sm:text-[50px] lg:text-[55px]">Digital Commerce,<br />Engineered for <span className="text-gold">Growth.</span></h1>
-          <p className="mt-5 max-w-[560px] text-[16px] font-medium leading-6 text-on-dark/90 sm:text-[18px]">We build high-performance B2B, B2C, marketplace and custom commerce platforms designed around your business.</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Button size="lg" className="h-12 bg-gold px-7 text-xs font-extrabold text-navy hover:bg-gold/90">Start Your Project <ArrowRight /></Button>
-            <Button size="lg" variant="outline" className="h-12 border-on-dark/60 bg-transparent px-7 text-xs font-extrabold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark">Explore Our Solutions</Button>
+        <div className="max-w-[510px]">
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">Digital Commerce & Technology Partner</p>
+          <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">Digital Commerce,<br />Engineered for <span className="text-gold">Growth.</span></h1>
+          <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">We build high-performance B2B, B2C, marketplace and custom commerce platforms designed around your business.</p>
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            <Button size="lg" className="h-10 bg-gold px-5 text-[11px] font-semibold text-navy hover:bg-gold/90">Start Your Project <ArrowRight /></Button>
+            <Button size="lg" variant="outline" className="h-10 border-on-dark/60 bg-transparent px-5 text-[11px] font-semibold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark">Explore Our Solutions</Button>
           </div>
-          <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-[10px] font-semibold text-on-dark/90">
+          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-medium text-on-dark/90">
             {["Ecommerce", "B2B & B2C", "Marketplace", "Custom Development"].map((item) => <span key={item} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-sky" />{item}</span>)}
           </div>
         </div>
@@ -185,7 +179,6 @@ function Hero() {
 }
 
 function TrustStrip() {
-  const stats: Array<[string, string]> = [["100+", "Web Projects"], ["50+", "Commerce Solutions"], ["20+", "Industries Served"], ["24/7", "Technical Support"]];
   return (
     <section className="bg-background py-5">
       <div className="page-shell">
@@ -196,14 +189,6 @@ function TrustStrip() {
               <img src={logo.src} alt={`${logo.name} logo`} width={2475} height={875} loading="lazy" className="max-h-8 w-full object-contain" />
             </div>
           ))}
-        </div>
-        <div className="mt-5 grid items-center gap-5 lg:grid-cols-[1.15fr_1fr]">
-          <div className="rounded-md border border-border/70 bg-card px-4 py-3 shadow-card">
-            <img src={IMAGES.reviewBadges} alt="Trustpilot, Google Reviews, GoodFirms, Clutch, MSME and IndiaMART verification seals" width={1920} height={419} loading="lazy" className="mx-auto h-auto w-full max-w-[620px] object-contain" />
-          </div>
-          <div className="grid grid-cols-2 divide-x divide-y divide-border border border-border/70 bg-card sm:grid-cols-4 sm:divide-y-0">
-            {stats.map(([value, label]) => <div key={label} className="min-w-[102px] px-3 py-3 text-center"><strong className="block text-xl font-extrabold text-navy">{value}</strong><span className="text-[8px] font-semibold text-muted-foreground">{label}</span></div>)}
-          </div>
         </div>
       </div>
     </section>

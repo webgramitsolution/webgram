@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the product as a single-page Webgram commerce homepage; the supplied reference controls section order and visual density.
+- Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
