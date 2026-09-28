@@ -161,10 +161,12 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-[486px] overflow-hidden bg-navy text-on-dark md:min-h-[478px]">
-      <img src={IMAGES.hero} alt="Webgram ecommerce dashboards on a laptop and a mobile phone" width={2170} height={725} className="absolute inset-0 h-full w-full object-cover object-[62%_center] md:object-center" />
+    <section id="top" className="hero-shell">
+      <div className="hero-media">
+        <img src={IMAGES.hero} alt="Webgram ecommerce dashboards on a laptop and a mobile phone" width={2170} height={725} />
+      </div>
       <div className="absolute inset-0 bg-hero-overlay" />
-      <div className="page-shell relative flex min-h-[486px] items-center py-14 md:min-h-[478px]">
+      <div className="page-shell hero-copy">
         <div className="max-w-[570px]">
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.24em] text-sky">Digital Commerce & Technology Partner</p>
           <h1 className="max-w-[560px] text-[39px] font-extrabold leading-[1.02] tracking-normal sm:text-[50px] lg:text-[55px]">Digital Commerce,<br />Engineered for <span className="text-gold">Growth.</span></h1>
