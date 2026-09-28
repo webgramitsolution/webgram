@@ -11,3 +11,4 @@
 - [x] Replace the header with the supplied Webgram reference styling and uploaded logo.
 - [x] Remove the review-seal and statistics row, reduce hero height, and remove solution-card image dividers.
 - [x] Keep the desktop composition on tablet widths.
+- [x] Match the storefront-to-back-office section to the supplied single-row reference.
