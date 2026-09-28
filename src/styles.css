@@ -279,7 +279,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: center;
 }
 
 .service-visual::before {
@@ -306,6 +306,6 @@
 .case-art-2 { background: linear-gradient(135deg, var(--primary-soft), var(--navy)); color: var(--sky); }
 
 @media (max-width: 767px) {
-  .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 98%, transparent), color-mix(in oklab, var(--navy) 82%, transparent) 72%, color-mix(in oklab, var(--navy) 60%, transparent)); }
+  .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
   .industry-card { min-height: 145px; }
 }
