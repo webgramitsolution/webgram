@@ -105,9 +105,9 @@ const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }
 const industries = ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics"];
 
 const cases = [
-  { tag: "B2B Marketplace", title: "From Traditional Sales to a Scalable Digital Platform", type: "Manufacturing", image: IMAGES.caseManufacturing, alt: "Laptop showing a B2B marketplace dashboard inside a warehouse", stats: [["3X", "Sales Growth"], ["200+", "Active Buyers"], ["50%", "Faster Orders"]] },
-  { tag: "Ecommerce Website", title: "Modern Ecommerce Experience for a Lifestyle Brand", type: "Lifestyle", image: IMAGES.caseLifestyle, alt: "Laptop showing a furniture and home decor ecommerce catalog beside a plant", stats: [["2.5X", "Conversion"], ["60%", "Repeat Customers"], ["40%", "Higher AOV"]] },
-  { tag: "Custom Web Application", title: "Business Management Portal for a Distribution Company", type: "Distribution", image: IMAGES.caseDistribution, alt: "Laptop showing a business management dashboard with floating charts and servers", stats: [["70%", "Manual Work Reduced"], ["100+", "Team Members"], ["Real-time", "Inventory Tracking"]] },
+  { tag: "B2B Marketplace", tagIcon: BriefcaseBusiness, title: "From Traditional Sales to a Scalable Digital Platform", chips: ["Manufacturing", "B2B Commerce"], image: IMAGES.caseManufacturing, alt: "Laptop showing a B2B marketplace dashboard inside a warehouse", stats: [["3X", "Sales Growth"], ["200+", "Active Buyers"], ["50%", "Faster Orders"]] },
+  { tag: "Ecommerce Website", tagIcon: ShoppingCart, title: "Modern Ecommerce Experience for a Lifestyle Brand", chips: ["Lifestyle", "B2C Ecommerce"], image: IMAGES.caseLifestyle, alt: "Laptop showing a furniture and home decor ecommerce catalog beside a plant", stats: [["2.5X", "Conversion"], ["60%", "Repeat Customers"], ["40%", "Higher AOV"]] },
+  { tag: "Custom Web Application", tagIcon: Code2, title: "Business Management Portal for a Distribution Company", chips: ["Distribution", "Custom Development"], image: IMAGES.caseDistribution, alt: "Laptop showing a business management dashboard with floating charts and servers", stats: [["70%", "Manual Work Reduced"], ["100+", "Team Members"], ["Real-time", "Inventory Tracking"]] },
 ];
 
 function Logo() {
