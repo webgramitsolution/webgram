@@ -91,9 +91,9 @@ function ContactHero() {
       <img src={contactImages.banner} alt="Webgram IT Solution reception" width={2170} height={725} className="absolute inset-0 h-full w-full object-cover object-right" />
       <div className="page-shell relative z-10 flex h-full items-center">
         <div className="max-w-[570px] py-6 text-on-dark">
-          <nav className="text-[9px] text-on-dark/80" aria-label="Breadcrumb"><Link to="/" className="hover:text-gold">Home</Link> <span className="mx-2">›</span> Contact Us</nav>
-          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.24em] text-gold">Get in Touch</p>
-          <h1 className="mt-2 text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]">Let’s Build Something<br />Great <span className="text-gold">Together.</span></h1>
+          <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link><span className="mx-2">›</span>Contact Us</nav>
+          <p className="sr-only">Get in Touch</p>
+          <h1 className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]">Let’s Build Something<br />Great <span className="text-gold">Together.</span></h1>
           <p className="mt-4 max-w-[540px] text-[13px] leading-5 text-on-dark/90">Have a project in mind? We’re here to help you turn your ideas into a powerful digital commerce experience.</p>
           <div className="mt-6 grid max-w-[520px] grid-cols-4 divide-x divide-on-dark/20">
             {promises.map(([Icon, first, second]) => <div key={second} className="px-3 first:pl-0"><span className="grid h-10 w-10 place-items-center rounded-full border border-on-dark/35"><Icon className="h-5 w-5" /></span><span className="mt-2 block text-[9px] leading-3">{first}<br />{second}</span></div>)}
@@ -104,33 +104,40 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-10 bg-card text-[10px] shadow-none placeholder:text-muted-foreground/60";
+const fieldClass = "h-10 bg-card text-[11px] shadow-none placeholder:text-muted-foreground/60";
 
 function ContactForm() {
-  return <form className="grid grid-cols-2 gap-3" onSubmit={(event) => event.preventDefault()}>
+  return <form className="grid grid-cols-2 gap-x-3.5 gap-y-3.5" onSubmit={(event) => event.preventDefault()}>
     <label className="contact-field">Your Name *<Input required placeholder="Enter your name" className={fieldClass} /></label>
     <label className="contact-field">Email Address *<Input required type="email" placeholder="Enter your email" className={fieldClass} /></label>
-    <label className="contact-field">Phone Number *<Input required type="tel" placeholder="Enter your phone number" className={fieldClass} /></label>
+    <label className="contact-field">Phone Number *
+      <div className="flex items-stretch overflow-hidden rounded-md border border-input bg-card">
+        <span className="flex shrink-0 items-center gap-1.5 border-r border-input px-2.5 text-[11px] font-semibold text-navy" aria-hidden="true"><span className="h-3.5 w-5 rounded-[2px] shadow-[inset_0_0_0_1px_rgb(0_0_0/8%)]" style={{ background: "linear-gradient(180deg, #FF9933 0 33.4%, #FFFFFF 33.4% 66.7%, #138808 66.7% 100%)" }} />+91 <ChevronDown className="h-3 w-3 text-muted-foreground" /></span>
+        <Input required type="tel" placeholder="Enter your phone number" className="h-10 min-w-0 rounded-none border-0 bg-card text-[11px] shadow-none focus-visible:ring-0" />
+      </div>
+    </label>
     <label className="contact-field">Project Type<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select project type" /></SelectTrigger><SelectContent><SelectItem value="website">Website</SelectItem><SelectItem value="ecommerce">Ecommerce</SelectItem><SelectItem value="marketing">Digital Marketing</SelectItem></SelectContent></Select></label>
     <label className="contact-field">Business Name<Input placeholder="Enter your business name" className={fieldClass} /></label>
     <label className="contact-field">Project Budget<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select budget range" /></SelectTrigger><SelectContent><SelectItem value="small">₹25k – ₹50k</SelectItem><SelectItem value="medium">₹50k – ₹1L</SelectItem><SelectItem value="large">₹1L+</SelectItem></SelectContent></Select></label>
-    <label className="contact-field col-span-2">Your Message *<Textarea required placeholder="Tell us about your project requirements..." className="min-h-[76px] bg-card text-[10px] shadow-none" /></label>
-    <label className="col-span-2 flex items-center justify-center gap-2 text-[10px] text-muted-foreground"><input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />I agree to the <a href="#faq" className="font-bold text-primary underline">Terms &amp; Privacy Policy</a></label>
-    <Button className="col-span-2 mx-auto h-11 min-w-[210px] bg-gold text-[12px] font-bold text-navy hover:bg-gold/90">Send Message <ArrowRight /></Button>
+    <label className="contact-field col-span-2">Your Message *<Textarea required placeholder="Tell us about your project requirements..." className="min-h-[86px] bg-card text-[11px] shadow-none" /></label>
+    <div className="col-span-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-1">
+      <label className="flex min-w-0 items-center gap-2 text-[10.5px] text-navy"><input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" /><span className="min-w-0">I agree to the <a href="#faq" className="font-bold text-primary underline">Terms &amp; Privacy Policy</a></span></label>
+      <Button className="h-11 shrink-0 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">Send Message <ArrowRight /></Button>
+    </div>
   </form>;
 }
 
 function DirectContact() {
-  const details = [[Phone, "Call Us", "+91 7551120242", "Mon - Sat, 9:00 AM - 7:00 PM"], [Mail, "Email Us", "info@webgramitsolution.com", "We’ll respond within 24 hours"], [MessageCircle, "Chat on WhatsApp", "+91 7551120242", "Quick support and project discussion"], [MapPin, "Our Location", "Delhi NCR, India", "Visit our office for a meeting"]] as const;
-  return <div className="contact-direct overflow-hidden rounded-md bg-navy text-on-dark shadow-card">
-    <div className="p-5 sm:p-6"><h2 className="text-[24px] font-extrabold leading-tight">Get in Touch Directly</h2><p className="mt-1 text-[10px] text-on-dark/75">Prefer to speak with our team? Use the details below.</p><div className="mt-5 space-y-4">{details.map(([Icon, title, value, note]) => <div key={title} className="grid grid-cols-[48px_1fr] items-center gap-4"><span className="grid h-12 w-12 place-items-center rounded-full bg-card text-primary"><Icon className="h-5 w-5" /></span><div><strong className="block text-[10px]">{title}</strong><span className="mt-0.5 block text-[13px] font-semibold">{value}</span><small className="mt-0.5 block text-[9px] text-on-dark/65">{note}</small></div></div>)}</div></div>
-    <div className="relative min-h-[395px]"><img src={contactImages.advisor} alt="Webgram customer support specialist" width={928} height={1695} className="absolute inset-0 h-full w-full object-cover object-top" /><div className="absolute inset-x-4 bottom-4 rounded-md bg-card p-4 text-navy shadow-card sm:inset-x-5 sm:bottom-5"><div className="flex items-start gap-3"><Headphones className="mt-0.5 h-7 w-7 shrink-0 text-primary" /><div><strong className="text-[12px]">Talk to Our Experts</strong><p className="mt-1 text-[9px] leading-3.5 text-muted-foreground">Get free consultation for your project requirements.</p></div></div><Button asChild className="mt-4 h-10 w-full bg-navy text-[10px] text-on-dark hover:bg-navy/90"><a href="tel:+917551120242">Schedule a Call <ArrowRight /></a></Button></div></div>
+  const details = [[Phone, "Call Us", "+91 98765 43210", "Mon - Sat, 9:00 AM - 7:00 PM", "text-primary"], [Mail, "Email Us", "info@webgram.in", "We’ll respond within 24 hours", "text-primary"], [MessageCircle, "Chat on WhatsApp", "+91 98765 43210", "Quick support and project discussion", "text-success"], [MapPin, "Our Location", "Delhi NCR, India", "Visit our office for a meeting", "text-primary"]] as const;
+  return <div className="contact-direct overflow-hidden rounded-lg bg-navy text-on-dark shadow-card">
+    <div className="p-5 sm:p-6 lg:py-7 lg:pl-7"><h2 className="text-[23px] font-extrabold leading-tight sm:text-[25px]">Get in Touch Directly</h2><p className="mt-1.5 text-[11px] text-on-dark/75">Prefer to speak with our team? Use the details below.</p><div className="mt-6 space-y-5">{details.map(([Icon, title, value, note, color]) => <div key={title} className="grid grid-cols-[46px_1fr] items-center gap-3.5"><span className="grid h-11 w-11 place-items-center rounded-full bg-card shadow-card"><Icon className={`h-5 w-5 ${color}`} /></span><div className="min-w-0"><strong className="block text-[11px] font-semibold text-on-dark/85">{title}</strong><span className="mt-0.5 block text-[15px] font-bold">{value}</span><small className="mt-0.5 block text-[10px] text-on-dark/60">{note}</small></div></div>)}</div></div>
+    <div className="relative min-h-[360px] md:min-h-0"><img src={contactImages.advisor} alt="Webgram customer support specialist" width={928} height={1695} className="absolute inset-0 h-full w-full object-cover object-top" /><div className="absolute inset-x-3.5 bottom-3.5 rounded-lg bg-card p-4 text-navy shadow-card sm:inset-x-4 sm:bottom-4"><div className="flex items-start gap-3"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary-soft"><Headphones className="h-5 w-5 text-primary" /></span><div className="min-w-0"><strong className="text-[12.5px] font-extrabold">Talk to Our Experts</strong><p className="mt-1 text-[10px] leading-4 text-muted-foreground">Get free consultation for your project requirements.</p></div></div><Button asChild className="mt-3.5 h-10 w-full bg-navy text-[11px] font-bold text-on-dark hover:bg-navy/90"><a href="tel:+919876543210">Schedule a Call <ArrowRight /></a></Button></div></div>
   </div>;
 }
 
 function ContactMain() {
-  return <section id="contact" className="bg-background py-5 md:py-4"><div className="page-shell grid gap-5 md:grid-cols-[.88fr_1.12fr]">
-    <div><p className="eyebrow flex items-center gap-3 text-primary"><span className="h-px w-8 bg-gold" />Contact Us</p><h2 className="mt-2 text-[25px] font-extrabold text-navy">Send Us a Message</h2><p className="mb-4 mt-1 max-w-[430px] text-[10px] leading-4 text-muted-foreground">Tell us about your project, and our team will get back to you within 24 hours.</p><ContactForm /></div>
+  return <section id="contact" className="bg-background py-6 md:py-8"><div className="page-shell grid items-stretch gap-5 lg:grid-cols-[.94fr_1.06fr]">
+    <div className="rounded-lg border border-border/80 bg-card p-5 shadow-card sm:p-6 lg:p-7"><p className="eyebrow flex items-center gap-3 text-muted-foreground"><span className="h-px w-8 bg-gold" />Contact Us</p><h2 className="mt-2.5 text-[27px] font-extrabold leading-tight text-navy sm:text-[29px]">Send Us a Message</h2><p className="mb-5 mt-2 max-w-[430px] text-[12px] leading-5 text-muted-foreground">Tell us about your project, and our team will get back to you within 24 hours.</p><ContactForm /></div>
     <DirectContact />
   </div></section>;
 }

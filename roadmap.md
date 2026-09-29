@@ -35,3 +35,7 @@
 - [x] Center the terms checkbox row and the Send Message button in the contact form.
 - [x] Rebuild "Our Office Location" to the supplied reference (light-blue address card, larger map) with bigger text.
 - [x] Increase font sizes across the form labels, office location, social row, and business hours.
+
+- [x] Hide "Home › Contact Us" breadcrumb + "Get in Touch" eyebrow visually (sr-only, kept for SEO)
+- [x] Rebuild "Send Us a Message" as white card (border + shadow), tricolor flag +91 phone field, one-row agree-left / Send Message-right, larger fonts
+- [x] Rebuild "Get in Touch Directly": bigger contact values, colored icons (WhatsApp green), Talk to Our Experts overlay card over advisor image; tablet = desktop design, cards stack below lg
