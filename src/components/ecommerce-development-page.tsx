@@ -36,7 +36,7 @@ import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { IMAGES, technologyStack } from "@/lib/site-images";
+import { technologyStack } from "@/lib/site-images";
 
 const heroImage = "https://ik.imagekit.io/home1/About%20us%20page/ecommer.png";
 
