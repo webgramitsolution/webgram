@@ -317,6 +317,13 @@
   background: var(--navy);
 }
 
+@media (min-width: 768px) {
+  .contact-hero {
+    height: 348px;
+    min-height: 348px;
+  }
+}
+
 .contact-direct {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
