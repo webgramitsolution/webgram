@@ -360,7 +360,6 @@ function FinalCta() {
 const footerColumns: Array<[string, string[]]> = [
   ["Solutions", ["Ecommerce", "B2B Commerce", "B2C Ecommerce", "Marketplace", "Custom Commerce"]],
   ["Services", ["Website Development", "Website Design", "WordPress", "WooCommerce", "Website Maintenance"]],
-  ["Industries", ["Manufacturing", "Retail", "Wholesale", "Fashion", "Building Materials"]],
   ["Work", ["Case Studies", "Portfolio", "Client Stories", "FAQ"]],
   ["Resources", ["Blog", "Guides", "FAQs", "Insights"]],
   ["Company", ["About Us", "Our Process", "Careers", "Contact"]],
