@@ -20,3 +20,6 @@
 - [x] Correct the case-study proportions and image crops to the supplied final reference.
 - [x] Add visible hover and keyboard-focus states to case-study cards and their action button.
 - [x] Keep case studies and trusted-business logos in one swipeable row on phones.
+- [x] Remove the Industries column from the footer.
+- [x] Add thin vertical divider lines between all footer columns.
+- [x] Tighten footer spacing and add hover/focus states to its links and social buttons.

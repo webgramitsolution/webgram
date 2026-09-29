@@ -360,7 +360,6 @@ function FinalCta() {
 const footerColumns: Array<[string, string[]]> = [
   ["Solutions", ["Ecommerce", "B2B Commerce", "B2C Ecommerce", "Marketplace", "Custom Commerce"]],
   ["Services", ["Website Development", "Website Design", "WordPress", "WooCommerce", "Website Maintenance"]],
-  ["Industries", ["Manufacturing", "Retail", "Wholesale", "Fashion", "Building Materials"]],
   ["Work", ["Case Studies", "Portfolio", "Client Stories", "FAQ"]],
   ["Resources", ["Blog", "Guides", "FAQs", "Insights"]],
   ["Company", ["About Us", "Our Process", "Careers", "Contact"]],
@@ -376,7 +375,7 @@ function Footer() {
   ].join(" ");
   return (
     <footer className="bg-navy text-on-dark">
-      <div className="page-shell grid gap-y-7 py-9 md:grid-cols-[1.2fr_repeat(6,1fr)] md:gap-0 lg:grid-cols-[1.5fr_repeat(6,1fr)]">
+      <div className="page-shell grid gap-y-7 py-9 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
         <div className="md:pr-6 lg:pr-10">
           <img src={webgramLogo.url} alt="Webgram IT Solution" width={720} height={323} loading="lazy" decoding="async" className="h-[52px] w-auto object-contain" />
           <p className="mt-4 max-w-[290px] text-[12px] leading-5 text-on-dark/90"><strong className="font-semibold text-on-dark">Webgram IT Solution</strong> excels in eCommerce website design, offering custom, user-friendly solutions to enhance online business success.</p>
