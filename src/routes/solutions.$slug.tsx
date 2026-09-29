@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { SubpageTemplate } from "@/components/subpage";
+import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 
 const section = menuSections.solutions;
@@ -15,7 +16,10 @@ export const Route = createFileRoute("/solutions/$slug")({
     meta: [
       { title: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
-      { property: "og:title", content: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution` },
+      {
+        property: "og:title",
+        content: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution`,
+      },
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
     ],
@@ -25,5 +29,7 @@ export const Route = createFileRoute("/solutions/$slug")({
 
 function SolutionsPage() {
   const page = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  if (slug === "ecommerce-development") return <EcommerceDevelopmentPage />;
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }

@@ -204,6 +204,34 @@
   margin-inline: auto;
 }
 
+@utility ecom-shell {
+  width: min(100% - 2rem, 1150px);
+  margin-inline: auto;
+}
+
+@utility ecom-title {
+  color: var(--navy);
+  font-size: 1.5rem;
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+@utility ecom-copy {
+  color: var(--muted-foreground);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+@utility ecom-eyebrow {
+  color: var(--gold);
+  font-size: 0.55rem;
+  line-height: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
 @utility section-title {
   color: var(--navy);
   font-size: 1.35rem;
@@ -262,11 +290,15 @@
 }
 
 @media (min-width: 640px) {
-  .page-title { font-size: 2.625rem; }
+  .page-title {
+    font-size: 2.625rem;
+  }
 }
 
 @media (min-width: 768px) {
-  .page-title { font-size: 2.875rem; }
+  .page-title {
+    font-size: 2.875rem;
+  }
 }
 
 @utility shadow-card {
@@ -283,8 +315,58 @@
   color: var(--on-dark);
 }
 
-.hero-media { position: absolute; inset: 0; }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.ecom-hero {
+  height: 560px;
+}
+.ecom-hero-shade {
+  background: linear-gradient(
+    90deg,
+    var(--navy) 0%,
+    color-mix(in oklab, var(--navy) 96%, transparent) 38%,
+    color-mix(in oklab, var(--navy) 18%, transparent) 67%,
+    transparent 100%
+  );
+}
+.ecom-scroll {
+  scrollbar-width: none;
+}
+.ecom-scroll::-webkit-scrollbar {
+  display: none;
+}
+.ecom-waves {
+  background:
+    radial-gradient(
+      ellipse at 70% 130%,
+      color-mix(in oklab, var(--primary) 28%, transparent),
+      transparent 54%
+    ),
+    linear-gradient(
+      125deg,
+      transparent 35%,
+      color-mix(in oklab, var(--primary) 18%, transparent) 36%,
+      transparent 37%,
+      transparent 51%,
+      color-mix(in oklab, var(--gold) 14%, transparent) 52%,
+      transparent 53%
+    );
+}
+
+@media (min-width: 768px) {
+  .ecom-hero {
+    height: 348px;
+  }
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
 .hero-copy {
   position: relative;
@@ -295,18 +377,45 @@
 }
 
 @media (min-width: 768px) {
-  .hero-shell { height: 348px; min-height: 0; }
-  .hero-media { position: absolute; inset: 0; min-height: 0; }
-  .hero-media img { position: absolute; inset: 0; object-position: right center; }
-  .hero-copy { position: absolute; inset: 0; min-height: 0; padding-block: 1.5rem; }
+  .hero-shell {
+    height: 348px;
+    min-height: 0;
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+  }
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    object-position: right center;
+  }
+  .hero-copy {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    padding-block: 1.5rem;
+  }
 }
 
 .bg-hero-overlay {
-  background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent) 0%, color-mix(in oklab, var(--navy) 92%, transparent) 30%, color-mix(in oklab, var(--navy) 35%, transparent) 58%, transparent 80%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--navy) 99%, transparent) 0%,
+    color-mix(in oklab, var(--navy) 92%, transparent) 30%,
+    color-mix(in oklab, var(--navy) 35%, transparent) 58%,
+    transparent 80%
+  );
 }
 
 .bg-cta-overlay {
-  background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 96%, transparent), color-mix(in oklab, var(--navy) 60%, transparent) 52%, color-mix(in oklab, var(--navy) 48%, transparent));
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--navy) 96%, transparent),
+    color-mix(in oklab, var(--navy) 60%, transparent) 52%,
+    color-mix(in oklab, var(--navy) 48%, transparent)
+  );
 }
 
 .contact-hero {
@@ -396,27 +505,96 @@
 }
 
 .logo-scroll > *,
-.case-scroll > * { scroll-snap-align: start; }
+.case-scroll > * {
+  scroll-snap-align: start;
+}
 
-.industry-card { position: relative; min-height: 165px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent); border-radius: 5px; }
-.industry-image { position: absolute; top: 0; height: 100%; width: 600%; max-width: none; object-fit: cover; }
-.industry-image-0 { left: 0; }
-.industry-image-1 { left: -100%; }
-.industry-image-2 { left: -200%; }
-.industry-image-3 { left: -300%; }
-.industry-image-4 { left: -400%; }
-.industry-image-5 { left: -500%; }
-.industry-shade { position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in oklab, var(--navy) 90%, transparent), transparent 60%); }
-.industry-card strong { position: absolute; bottom: 12px; left: 12px; color: var(--on-dark); font-size: 10px; }
-
+.industry-card {
+  position: relative;
+  min-height: 165px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--sky) 40%, transparent);
+  border-radius: 5px;
+}
+.industry-image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 600%;
+  max-width: none;
+  object-fit: cover;
+}
+.industry-image-0 {
+  left: 0;
+}
+.industry-image-1 {
+  left: -100%;
+}
+.industry-image-2 {
+  left: -200%;
+}
+.industry-image-3 {
+  left: -300%;
+}
+.industry-image-4 {
+  left: -400%;
+}
+.industry-image-5 {
+  left: -500%;
+}
+.industry-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--navy) 90%, transparent),
+    transparent 60%
+  );
+}
+.industry-card strong {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  color: var(--on-dark);
+  font-size: 10px;
+}
 
 @media (max-width: 767px) {
-  .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
-  .industry-card { min-height: 145px; }
+  .ecom-hero > img {
+    object-position: 62% center;
+    opacity: 0.42;
+  }
+  .ecom-hero-shade {
+    background: color-mix(in oklab, var(--navy) 86%, transparent);
+  }
+  .bg-hero-overlay {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--navy) 99%, transparent),
+      color-mix(in oklab, var(--navy) 95%, transparent) 62%,
+      color-mix(in oklab, var(--navy) 86%, transparent)
+    );
+  }
+  .industry-card {
+    min-height: 145px;
+  }
   .logo-scroll,
-  .case-scroll { margin-right: -1rem; padding-right: 1rem; }
-  .contact-hero { height: 430px; min-height: 430px; }
-  .contact-hero > img { object-position: 70% center; opacity: 0.38; }
-  .contact-direct { grid-template-columns: 1fr; }
-  .contact-field { grid-column: span 2; }
+  .case-scroll {
+    margin-right: -1rem;
+    padding-right: 1rem;
+  }
+  .contact-hero {
+    height: 430px;
+    min-height: 430px;
+  }
+  .contact-hero > img {
+    object-position: 70% center;
+    opacity: 0.38;
+  }
+  .contact-direct {
+    grid-template-columns: 1fr;
+  }
+  .contact-field {
+    grid-column: span 2;
+  }
 }
