@@ -30,6 +30,8 @@ import industryHealthcare from "@/assets/b2b-industry-6.jpg";
 import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
 import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
 import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
+import mysqlLogo from "@/assets/mysql.png.asset.json";
+import phpLogo from "@/assets/php.svg.asset.json";
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
@@ -78,17 +80,17 @@ const industries = [
 
 const technologies = [
   technologyStack[3],
-  { name: "PHP", src: "https://cdn.simpleicons.org/php/777BB4" },
-  { name: "Laravel", src: "https://cdn.simpleicons.org/laravel/FF2D20" },
+  { name: "PHP", src: phpLogo.url },
+  { name: "Laravel", src: technologyStack[7]?.src ?? phpLogo.url },
   technologyStack[0],
   technologyStack[1],
   technologyStack[2],
-  { name: "MySQL", src: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "MySQL", src: mysqlLogo.url },
   technologyStack[9],
   technologyStack[10],
-  { name: "HTML5", src: "https://cdn.simpleicons.org/html5/E34F26" },
-  { name: "CSS3", src: "https://cdn.simpleicons.org/css/1572B6" },
-  { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "HTML5", src: technologyStack[11]?.src ?? technologyStack[0]?.src ?? "" },
+  { name: "CSS3", src: technologyStack[11]?.src ?? technologyStack[0]?.src ?? "" },
+  { name: "JavaScript", src: technologyStack[1]?.src ?? "" },
 ].filter((technology): technology is { name: string; src: string } => Boolean(technology));
 
 const projects = [
@@ -113,7 +115,7 @@ function ProjectCarousel() {
 
   return (
     <div className="relative mt-3">
-      <div ref={track} className="ecom-scroll grid snap-x grid-flow-col auto-cols-[245px] gap-3 overflow-x-auto md:auto-cols-[calc((100%-48px)/5)] md:grid-cols-5 md:overflow-visible">
+      <div ref={track} className="ecom-scroll grid snap-x grid-flow-col auto-cols-[245px] gap-3 overflow-x-auto md:grid-cols-5 md:overflow-visible">
         {projects.map(([image, title, category]) => (
           <article key={title} className="snap-start overflow-hidden rounded-md border border-border bg-card">
             <div className="h-[120px] overflow-hidden bg-muted md:h-[110px]">

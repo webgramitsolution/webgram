@@ -14,7 +14,11 @@ type Target =
   | { to: "/work/$slug"; params: { slug: string } }
   | { to: "/resources/$slug"; params: { slug: string } };
 
-const slugify = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
+const slugify = (label: string) =>
+  label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
 const subpage = (
   section: "solutions" | "services" | "industries" | "work" | "resources",

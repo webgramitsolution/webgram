@@ -32,7 +32,7 @@ export const menuSections: Record<SectionKey, MenuSection> = {
           "Wholesale pricing, MOQ, RFQ, customer groups, credit terms and bulk ordering — everything your B2B buyers expect, in one platform.",
         points: ["Customer-specific pricing", "Bulk & repeat ordering", "RFQ and quote management", "Credit terms and approvals"],
       },
-      "website-design-&-development": {
+      "website-design-development": {
         title: "Website Design & Development",
         tagline: "Professional websites that bring real results",
         description:

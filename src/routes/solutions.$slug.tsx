@@ -49,6 +49,6 @@ function SolutionsPage() {
   const { slug } = Route.useParams();
   if (slug === "ecommerce-development") return <EcommerceDevelopmentPage />;
   if (slug === "b2b-commerce") return <B2BCommercePage />;
-  if (slug === "website-design-&-development") return <WebsiteDesignDevelopmentPage />;
+  if (slug === "website-design-development") return <WebsiteDesignDevelopmentPage />;
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }
