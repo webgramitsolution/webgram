@@ -1,42 +1,12 @@
 # Roadmap
 
-- [x] Recreate the supplied design as one homepage only.
-- [x] Match the reference section order, imagery, typography, colors, and density.
-- [x] Make the same design responsive for desktop and mobile.
-- [x] Verify the page visually and confirm no extra pages were added.
-- [x] Swap in the ImageKit images: hero, client logos, solution cards, ecosystem diagram, device mockups, technology grid.
-- [x] Remove the review-seal and four-stat row as requested in the latest reference update.
-- [x] Verify every replaced image renders on desktop and mobile with no broken links.
-- [x] Replace the three case-study card pictures with the supplied ImageKit images.
-- [x] Keep the storefront-to-back-office section on a pure white background.
-- [x] Remove the horizontal line above the technology section.
-- [x] Replace the header with the supplied Webgram reference styling and uploaded logo.
-- [x] Remove the review-seal and statistics row, reduce hero height, and remove solution-card image dividers.
-- [x] Keep the desktop composition on tablet widths.
-- [x] Match the storefront-to-back-office section to the supplied single-row reference.
-- [x] Match the technology section to the supplied single-row reference (text left, divider, 12 tiles in one row).
-- [x] Match the case-studies section to the reference horizontal card layout (tag chip, title, chips, right-side image, stats row with dividers).
-- [x] Correct the case-study proportions and image crops to the supplied final reference.
-- [x] Add visible hover and keyboard-focus states to case-study cards and their action button.
-- [x] Keep case studies and trusted-business logos in one swipeable row on phones.
-- [x] Remove the Industries column from the footer.
-- [x] Add thin vertical divider lines between all footer columns.
-- [x] Tighten footer spacing and add hover/focus states to its links and social buttons.
-- [x] Reduce the hero headline size and weight slightly.
-- [x] Swap the hero banner to the About us banner image (ImageKit).
-- [x] Add the "Driven by Purpose, Focused on Your Growth" mission section with the ArchFacing image.
-- [x] Add the "A Creative & Collaborative Environment" workspace section with the three ImageKit photos.
-- [x] Rebuild the single homepage as the supplied contact-page reference with the new banner and advisor image.
-- [x] Add the contact form, direct contact details, embedded map, social row, business hours, FAQs, and final CTA.
-- [x] Remove the header search and project button from the contact page.
-- [x] Match the direct-contact card proportions, image placement, and expert callout to the supplied close-up reference.
-- [x] Increase the FAQ heading, question, and answer text sizes.
-- [x] Add a dedicated About Us page and connect the Company menu link to `/about`.
-- [x] Center the terms checkbox row and the Send Message button in the contact form.
-- [x] Rebuild "Our Office Location" to the supplied reference (light-blue address card, larger map) with bigger text.
-- [x] Increase font sizes across the form labels, office location, social row, and business hours.
+## Done
+- Menu restored to approved Sep 29 2:37 PM version (Home, Solutions, Services, Industries, Work, Resources, About Us, Contact Us)
+- Every menu item now opens its own separate page (/solutions/*, /services/*, /industries/*, /work/*, /resources/*)
+- Verified: all dropdown links clickable, logo returns home, no overflow on desktop/phone, build OK, TS2686 resolved
 
-- [x] Hide "Home › Contact Us" breadcrumb + "Get in Touch" eyebrow visually (sr-only, kept for SEO)
-- [x] Rebuild "Send Us a Message" as white card (border + shadow), tricolor flag +91 phone field, one-row agree-left / Send Message-right, larger fonts
-- [x] Rebuild "Get in Touch Directly": bigger contact values, colored icons (WhatsApp green), Talk to Our Experts overlay card over advisor image; tablet = desktop design, cards stack below lg
-- [x] Restore home page at /, contact at /contact, shared header; AI service suggestions in contact form
+## Pending (waiting on user)
+- Real office address to replace "A-123, Sector 63, Noida" on /contact
+- Real social media links (LinkedIn, Instagram, Facebook, WhatsApp) for footer
+- Video link for "Watch Video" button on /about
+- Real journey/timeline data for /about
