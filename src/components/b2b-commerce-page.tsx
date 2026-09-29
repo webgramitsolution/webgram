@@ -258,7 +258,7 @@ export function B2BCommercePage() {
         <div className="absolute inset-0 bg-cta-overlay" />
         <div className="ecom-shell relative grid items-center gap-8 md:min-h-[166px] md:grid-cols-[.9fr_1.1fr]">
           <div>
-            <h2 className="text-[28px] font-bold leading-[1.08] md:text-[31px]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
+            <h2 className="text-[25px] font-bold leading-[1.08] md:text-[27px]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
             <p className="mt-3 max-w-[420px] text-[11px] leading-[1.55] text-on-dark/85 md:text-[12px]">Discuss your requirements with our experts and get a customized<br className="hidden md:block" /> solution for your business.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
