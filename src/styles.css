@@ -227,6 +227,48 @@
   letter-spacing: 0.2em;
 }
 
+/* Shared typography for the standalone menu pages. Reference-led pages keep
+   their approved section-specific sizing while inheriting the same Manrope face. */
+@utility page-eyebrow {
+  font-size: 0.625rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+@utility page-title {
+  font-size: 2.1875rem;
+  line-height: 1.04;
+  font-weight: 700;
+}
+
+@utility page-lead {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+
+@utility content-title {
+  font-size: 1.35rem;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+@utility content-body {
+  font-size: 0.8125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .page-title { font-size: 2.625rem; }
+}
+
+@media (min-width: 768px) {
+  .page-title { font-size: 2.875rem; }
+}
+
 @utility shadow-card {
   box-shadow: 0 8px 24px color-mix(in oklab, var(--navy) 7%, transparent);
 }
