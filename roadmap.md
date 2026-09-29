@@ -14,6 +14,7 @@
 - Replaced B2C Ecommerce with the dedicated reference-matched Website Design & Development solution page
 - Corrected the Website Design page with six supplied website images, reference-matched colored benefit icons, connected six-step process, complete technology row, and improved delivered-project cards
 - Swapped the seven "Websites for Every Industry" photos to the supplied ImageKit images, each with its industry name as alt text
+- Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
 
 ## Pending (waiting on user)
 
