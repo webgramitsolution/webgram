@@ -29,7 +29,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
     items: [
       "Ecommerce Development",
       "B2B Commerce",
-      "B2C Ecommerce",
+      "Website Design & Development",
       "Marketplace Development",
       "Custom Commerce",
       "Mobile Commerce",

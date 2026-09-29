@@ -32,12 +32,12 @@ export const menuSections: Record<SectionKey, MenuSection> = {
           "Wholesale pricing, MOQ, RFQ, customer groups, credit terms and bulk ordering — everything your B2B buyers expect, in one platform.",
         points: ["Customer-specific pricing", "Bulk & repeat ordering", "RFQ and quote management", "Credit terms and approvals"],
       },
-      "b2c-ecommerce": {
-        title: "B2C Ecommerce",
-        tagline: "Retail experiences that convert",
+      "website-design-&-development": {
+        title: "Website Design & Development",
+        tagline: "Professional websites that bring real results",
         description:
-          "Beautiful, fast retail storefronts with smooth checkout, offers, reviews and loyalty features that keep customers coming back.",
-        points: ["Conversion-focused design", "Offers, coupons & loyalty", "Reviews and ratings", "One-page checkout"],
+          "We design and develop modern, high-performing websites that build your brand, attract customers and support measurable business growth.",
+        points: ["Business-focused strategy", "Creative modern design", "Responsive development", "Ongoing support"],
       },
       "marketplace-development": {
         title: "Marketplace Development",
