@@ -39,7 +39,7 @@ import professionalWebsites from "@/assets/professional-websites.png.asset.json"
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { technologyStack } from "@/lib/site-images";
+import { industryImages, technologyStack } from "@/lib/site-images";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
@@ -74,13 +74,13 @@ const process = [
 ] as const;
 
 const industries = [
-  [industryManufacturing, "Manufacturing"],
-  [industryArchitecture, "Architecture & Interior"],
-  [industryRealEstate, "Real Estate"],
-  [industryRetail, "Retail & Lifestyle"],
-  [industryEducation, "Education"],
-  [industryHealthcare, "Healthcare"],
-  [projectCorporate, "Finance & Consulting"],
+  [industryImages.manufacturing, "Manufacturing"],
+  [industryImages.architecture, "Architecture & Interior"],
+  [industryImages.realEstate, "Real Estate"],
+  [industryImages.retail, "Retail & Lifestyle"],
+  [industryImages.education, "Education"],
+  [industryImages.healthcare, "Healthcare"],
+  [industryImages.finance, "Finance & Consulting"],
 ] as const;
 
 const technologies = [
