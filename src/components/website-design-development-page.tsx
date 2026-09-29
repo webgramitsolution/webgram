@@ -24,12 +24,6 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import industryManufacturing from "@/assets/b2b-industry-1.jpg";
-import industryArchitecture from "@/assets/b2b-industry-2.jpg";
-import industryRealEstate from "@/assets/b2b-industry-3.jpg";
-import industryRetail from "@/assets/b2b-industry-4.jpg";
-import industryEducation from "@/assets/b2b-industry-5.jpg";
-import industryHealthcare from "@/assets/b2b-industry-6.jpg";
 import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
 import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
 import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";

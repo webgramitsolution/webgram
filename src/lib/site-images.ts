@@ -76,3 +76,19 @@ export const technologyStack = [
   { name: "Google Cloud", src: `${lib}/11_Google_Cloud.png` },
   { name: "More", src: `${lib}/12_More.png` },
 ];
+
+/**
+ * Industry cards — one photo per sector. The object key and the label used on
+ * the card match the ImageKit file name, so the same text doubles as alt text.
+ * URLs stay exactly as supplied: ImageKit serves them with a literal "&" and
+ * "(2)", which 404 once percent-encoded.
+ */
+export const industryImages = {
+  manufacturing: "https://ik.imagekit.io/home1/Manufacturing.png",
+  architecture: "https://ik.imagekit.io/home1/Architecture%20&%20Interior.png",
+  realEstate: "https://ik.imagekit.io/home1/Real%20Estate.png",
+  retail: "https://ik.imagekit.io/home1/Retail%20&%20Lifestyle.png",
+  education: "https://ik.imagekit.io/home1/Education.png",
+  healthcare: "https://ik.imagekit.io/home1/Healthcare%20(2).png",
+  finance: "https://ik.imagekit.io/home1/Finance%20&%20Consulting.png",
+} as const;
