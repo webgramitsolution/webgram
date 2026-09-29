@@ -35,8 +35,6 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
       "B2B Commerce",
       "Website Design & Development",
       "Marketplace Development",
-      "Custom Commerce",
-      "Mobile Commerce",
     ].map((label) => [label, subpage("solutions", label)]),
   },
   {
