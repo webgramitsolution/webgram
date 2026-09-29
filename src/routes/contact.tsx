@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Clock3, Facebook, FileText, Headphones, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Rocket, Send, Users, Youtube } from "lucide-react";
 
@@ -49,6 +50,9 @@ function ContactHero() {
 const fieldClass = "h-10 bg-card text-[11px] shadow-none placeholder:text-muted-foreground/60";
 
 function ContactForm() {
+  const [message, setMessage] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [budget, setBudget] = useState("");
   return <form className="grid grid-cols-2 gap-x-3.5 gap-y-3.5" onSubmit={(event) => event.preventDefault()}>
     <label className="contact-field">Your Name *<Input required placeholder="Enter your name" className={fieldClass} /></label>
     <label className="contact-field">Email Address *<Input required type="email" placeholder="Enter your email" className={fieldClass} /></label>
@@ -58,10 +62,11 @@ function ContactForm() {
         <Input required type="tel" placeholder="Enter your phone number" className="h-10 min-w-0 rounded-none border-0 bg-card text-[11px] shadow-none focus-visible:ring-0" />
       </div>
     </label>
-    <label className="contact-field">Project Type<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select project type" /></SelectTrigger><SelectContent><SelectItem value="website">Website</SelectItem><SelectItem value="ecommerce">Ecommerce</SelectItem><SelectItem value="marketing">Digital Marketing</SelectItem></SelectContent></Select></label>
+    <label className="contact-field">Project Type<Select value={projectType} onValueChange={setProjectType}><SelectTrigger className={fieldClass}><SelectValue placeholder="Select project type" /></SelectTrigger><SelectContent><SelectItem value="website">Website</SelectItem><SelectItem value="ecommerce">Ecommerce</SelectItem><SelectItem value="marketing">Digital Marketing</SelectItem></SelectContent></Select></label>
     <label className="contact-field">Business Name<Input placeholder="Enter your business name" className={fieldClass} /></label>
-    <label className="contact-field">Project Budget<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select budget range" /></SelectTrigger><SelectContent><SelectItem value="small">₹25k – ₹50k</SelectItem><SelectItem value="medium">₹50k – ₹1L</SelectItem><SelectItem value="large">₹1L+</SelectItem></SelectContent></Select></label>
-    <label className="contact-field col-span-2">Your Message *<Textarea required placeholder="Tell us about your project requirements..." className="min-h-[86px] bg-card text-[11px] shadow-none" /></label>
+    <label className="contact-field">Project Budget<Select value={budget} onValueChange={setBudget}><SelectTrigger className={fieldClass}><SelectValue placeholder="Select budget range" /></SelectTrigger><SelectContent><SelectItem value="small">₹25k – ₹50k</SelectItem><SelectItem value="medium">₹50k – ₹1L</SelectItem><SelectItem value="large">₹1L+</SelectItem></SelectContent></Select></label>
+    <label className="contact-field col-span-2">Your Message *<Textarea required value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Tell us about your project requirements..." className="min-h-[86px] bg-card text-[11px] shadow-none" /></label>
+    <ProjectAdvisor needs={message} projectType={projectType} budget={budget} />
     <div className="col-span-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-1">
       <label className="flex min-w-0 items-center gap-2 text-[10.5px] text-navy"><input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" /><span className="min-w-0">I agree to the <a href="#faq" className="font-bold text-primary underline">Terms &amp; Privacy Policy</a></span></label>
       <Button className="h-11 shrink-0 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">Send Message <ArrowRight /></Button>
