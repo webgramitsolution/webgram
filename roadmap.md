@@ -32,3 +32,6 @@
 - [x] Match the direct-contact card proportions, image placement, and expert callout to the supplied close-up reference.
 - [x] Increase the FAQ heading, question, and answer text sizes.
 - [x] Add a dedicated About Us page and connect the Company menu link to `/about`.
+- [x] Center the terms checkbox row and the Send Message button in the contact form.
+- [x] Rebuild "Our Office Location" to the supplied reference (light-blue address card, larger map) with bigger text.
+- [x] Increase font sizes across the form labels, office location, social row, and business hours.
