@@ -101,7 +101,7 @@ const projects = [
   [projectFurniture, "Business Website", "Interior & Furniture Brand"],
   [projectProfessional, "Professional Website", "Consultant & Coach"],
   [websiteHero, "Real Estate Website", "Property Developer"],
-  [industryHealthcare, "Healthcare Website", "Hospital & Clinic"],
+  [industryImages.healthcare, "Healthcare Website", "Hospital & Clinic"],
 ] as const;
 
 function Eyebrow({ children }: { children: ReactNode }) {
