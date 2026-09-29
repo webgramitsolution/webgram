@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
+  ArrowLeft,
   ArrowRight,
   BriefcaseBusiness,
   Building2,
@@ -21,7 +22,7 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 import industryManufacturing from "@/assets/b2b-industry-1.jpg";
 import industryArchitecture from "@/assets/b2b-industry-2.jpg";
@@ -34,10 +35,7 @@ import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
 import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
 import businessWebsites from "@/assets/business-websites.png.asset.json";
 import corporateWebsites from "@/assets/corporate-websites.png.asset.json";
-import cssLogo from "@/assets/css3.svg.asset.json";
 import educationalWebsite from "@/assets/educational-website.png.asset.json";
-import htmlLogo from "@/assets/html5.svg.asset.json";
-import javascriptLogo from "@/assets/javascript.svg.asset.json";
 import laravelLogo from "@/assets/laravel.svg.asset.json";
 import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
@@ -121,9 +119,12 @@ function Eyebrow({ children }: { children: ReactNode }) {
 }
 
 function ProjectCarousel() {
+  const track = useRef<HTMLDivElement>(null);
+  const move = (direction: number) => track.current?.scrollBy({ left: direction * 263, behavior: "smooth" });
+
   return (
     <div className="relative mt-3">
-      <div className="ecom-scroll grid snap-x grid-flow-col auto-cols-[250px] gap-3 overflow-x-auto scroll-smooth md:grid-cols-5 md:overflow-visible">
+      <div ref={track} className="ecom-scroll grid snap-x grid-flow-col auto-cols-[250px] gap-3 overflow-x-auto scroll-smooth md:grid-cols-5 md:overflow-visible">
         {projects.map(([image, title, category]) => (
           <article key={title} className="snap-start overflow-hidden rounded-md border border-border bg-card shadow-card">
             <div className="h-[145px] overflow-hidden bg-muted md:h-[132px]">
@@ -136,6 +137,8 @@ function ProjectCarousel() {
           </article>
         ))}
       </div>
+      <Button type="button" variant="outline" size="icon" aria-label="Previous projects" onClick={() => move(-1)} className="absolute -left-2 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowLeft /></Button>
+      <Button type="button" variant="outline" size="icon" aria-label="Next projects" onClick={() => move(1)} className="absolute -right-2 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowRight /></Button>
     </div>
   );
 }
@@ -195,7 +198,7 @@ export function WebsiteDesignDevelopmentPage() {
       </section>
 
       <section className="bg-card py-5 md:py-6">
-        <div className="ecom-shell grid gap-5 md:grid-cols-[320px_1fr] md:items-center"><div><Eyebrow>Technologies We Use</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.08] text-navy md:text-[27px]">Technology That<br />Works Together</h2></div><div className="grid grid-cols-5 gap-2 lg:grid-cols-10">{technologies.map(({ name, src }) => <div key={name} className="min-w-0 text-center"><span className="grid h-[62px] place-items-center rounded-md border border-border bg-card p-3"><img src={src} alt={`${name} logo`} width={56} height={56} loading="lazy" className="h-full min-h-0 w-full object-contain" /></span><span className="mt-1.5 block text-[7.5px] text-muted-foreground">{name}</span></div>)}</div></div>
+        <div className="ecom-shell grid gap-5 md:grid-cols-[320px_1fr] md:items-center"><div><Eyebrow>Modern Technology Stack</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.08] text-navy md:text-[27px]">Technology That<br />Works Together</h2></div><div className="grid grid-cols-5 gap-2 lg:grid-cols-10">{technologies.map(({ name, src }) => <div key={name} className="min-w-0 text-center"><span className="grid h-[62px] place-items-center rounded-md border border-border bg-card p-3"><img src={src} alt={`${name} logo`} width={56} height={56} loading="lazy" className="h-full min-h-0 w-full object-contain" /></span><span className="mt-1.5 block text-[7.5px] text-muted-foreground">{name}</span></div>)}</div></div>
       </section>
 
       <section className="bg-sky-soft py-6 md:py-7"><div className="ecom-shell"><div className="flex items-end justify-between gap-4"><div><Eyebrow>Our Recent Work</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">Websites We Have Delivered</h2><p className="mt-2 max-w-[540px] text-[10px] leading-[1.45] text-muted-foreground">Explore modern, responsive websites created for businesses across industries.</p></div><Button asChild variant="outline" className="hidden h-9 border-navy bg-card px-4 text-[8px] font-bold text-navy md:inline-flex"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View All Projects <ArrowRight /></Link></Button></div><ProjectCarousel /></div></section>
