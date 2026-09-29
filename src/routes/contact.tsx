@@ -249,7 +249,7 @@ function DirectContact() {
               </span>
               <div className="min-w-0">
                 <strong className="block text-[11px] font-semibold text-on-dark/85">{title}</strong>
-                <span className="mt-0.5 block whitespace-nowrap text-[13px] font-bold lg:text-[14px]">{value}</span>
+                <span className="mt-0.5 block break-all text-[13px] font-bold lg:whitespace-nowrap lg:break-normal lg:text-[14px]">{value}</span>
                 <small className="mt-0.5 block text-[10px] text-on-dark/60">{note}</small>
               </div>
             </div>
@@ -270,7 +270,7 @@ function DirectContact() {
               <Headphones className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <strong className="whitespace-nowrap text-[12px] font-extrabold">Talk to Our Experts</strong>
+              <strong className="text-[12px] font-extrabold lg:whitespace-nowrap">Talk to Our Experts</strong>
               <p className="mt-1 text-[9.5px] leading-[1.45] text-muted-foreground">
                 Get free consultation for your project requirements.
               </p>
