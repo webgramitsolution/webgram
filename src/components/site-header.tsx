@@ -121,23 +121,23 @@ export function SiteHeader() {
             alt="Webgram IT Solution"
             width={720}
             height={323}
-            className="h-[38px] w-auto object-contain sm:h-[44px]"
+            className="h-[38px] w-auto object-contain md:h-[34px] lg:h-[44px]"
           />
         </Link>
-        <nav className="hidden h-full items-center gap-5 md:flex" aria-label="Primary navigation">
+        <nav className="hidden h-full items-center gap-2.5 lg:gap-5 md:flex" aria-label="Primary navigation">
           {menu.map(({ label, target, items }) => (
             <div key={label} className="group relative flex h-full items-center">
               {target ? (
                 <Link
                   {...target}
-                  className="whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75"
+                  className="whitespace-nowrap text-[9px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[11px]"
                 >
                   {label}
                 </Link>
               ) : (
                 <button
                   type="button"
-                  className="flex items-center gap-1 whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75"
+                  className="flex items-center gap-1 whitespace-nowrap text-[9px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[11px]"
                 >
                   {label}
                   <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />

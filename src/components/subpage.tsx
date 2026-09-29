@@ -11,16 +11,16 @@ export function SubpageTemplate({ sectionLabel, page }: { sectionLabel: string; 
       <SiteHeader />
       <section className="contact-hero bg-navy py-12 text-on-dark md:py-16">
         <div className="header-shell">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-gold">{sectionLabel}</p>
-          <h1 className="mt-2 text-[28px] font-bold leading-tight sm:text-[34px] md:text-[40px]">{page.title}</h1>
-          <p className="mt-2 max-w-[560px] text-[13px] text-on-dark/80 sm:text-[14px]">{page.tagline}</p>
+          <p className="page-eyebrow text-gold">{sectionLabel}</p>
+          <h1 className="page-title mt-2">{page.title}</h1>
+          <p className="page-lead mt-2 max-w-[560px] text-on-dark/80">{page.tagline}</p>
         </div>
       </section>
       <section className="py-10 md:py-14">
         <div className="header-shell grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-start">
           <div>
-            <h2 className="text-[20px] font-bold text-navy sm:text-[23px]">Overview</h2>
-            <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground sm:text-[14px]">{page.description}</p>
+            <h2 className="content-title text-navy">Overview</h2>
+            <p className="content-body mt-3 text-muted-foreground">{page.description}</p>
             <Button asChild className="mt-6 h-11 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">
               <Link to="/contact">
                 Start Your Project <ArrowRight className="ml-1 h-4 w-4" />

@@ -197,7 +197,7 @@ function Hero() {
           <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
             Digital Commerce & Technology Partner
           </p>
-          <h1 className="max-w-[500px] text-[31px] font-semibold leading-[1.06] tracking-normal sm:text-[37px] lg:text-[41px]">
+          <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">
             Digital Commerce,
             <br />
             Engineered for <span className="text-gold">Growth.</span>
