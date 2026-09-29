@@ -47,7 +47,6 @@ export function ProjectAdvisor({ needs, projectType, budget }: Props) {
           {loading ? "Thinking..." : "Get AI Suggestions"}
         </Button>
       </div>
-      )}
       {error && (
         <p role="alert" className="mt-2 text-[11px] font-medium text-destructive">
           {error}
