@@ -23,3 +23,4 @@
 - [x] Remove the Industries column from the footer.
 - [x] Add thin vertical divider lines between all footer columns.
 - [x] Tighten footer spacing and add hover/focus states to its links and social buttons.
+- [x] Reduce the hero headline size and weight slightly.
