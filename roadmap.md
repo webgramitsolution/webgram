@@ -12,6 +12,7 @@
 - Verified: all dropdown links clickable, logo returns home, no overflow on desktop/phone, build OK, TS2686 resolved
 - Restored the homepage typography to the approved Sep 29 5:42 AM snapshot and locked a shared Manrope scale for standalone menu pages
 - Replaced B2C Ecommerce with the dedicated reference-matched Website Design & Development solution page
+- Corrected the Website Design page with six supplied website images, reference-matched colored benefit icons, connected six-step process, complete technology row, and improved delivered-project cards
 
 ## Pending (waiting on user)
 
