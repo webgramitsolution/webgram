@@ -258,6 +258,27 @@
   background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 96%, transparent), color-mix(in oklab, var(--navy) 60%, transparent) 52%, color-mix(in oklab, var(--navy) 48%, transparent));
 }
 
+.contact-hero {
+  position: relative;
+  height: min(430px, 33.41vw);
+  min-height: 330px;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.contact-direct {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(220px, 0.84fr);
+}
+
+.contact-field {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--navy);
+  font-size: 0.5rem;
+  font-weight: 700;
+}
+
 /* Solution card artwork: photo pinned to the right edge, faded into the card. */
 .service-visual {
   position: absolute;
@@ -336,4 +357,8 @@
   .industry-card { min-height: 145px; }
   .logo-scroll,
   .case-scroll { margin-right: -1rem; padding-right: 1rem; }
+  .contact-hero { height: 430px; min-height: 430px; }
+  .contact-hero > img { object-position: 70% center; opacity: 0.38; }
+  .contact-direct { grid-template-columns: 1fr; }
+  .contact-field { grid-column: span 2; }
 }
