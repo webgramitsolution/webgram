@@ -23,8 +23,18 @@ import {
 } from "lucide-react";
 
 import ctaImage from "@/assets/b2b-cta.jpg";
-import industriesImage from "@/assets/b2b-industries.jpg";
-import stakeholdersImage from "@/assets/b2b-stakeholders.jpg";
+import industry1 from "@/assets/b2b-industry-1.jpg";
+import industry2 from "@/assets/b2b-industry-2.jpg";
+import industry3 from "@/assets/b2b-industry-3.jpg";
+import industry4 from "@/assets/b2b-industry-4.jpg";
+import industry5 from "@/assets/b2b-industry-5.jpg";
+import industry6 from "@/assets/b2b-industry-6.jpg";
+import stakeholder1 from "@/assets/b2b-stakeholder-1.jpg";
+import stakeholder2 from "@/assets/b2b-stakeholder-2.jpg";
+import stakeholder3 from "@/assets/b2b-stakeholder-3.jpg";
+import stakeholder4 from "@/assets/b2b-stakeholder-4.jpg";
+import stakeholder5 from "@/assets/b2b-stakeholder-5.jpg";
+import stakeholder6 from "@/assets/b2b-stakeholder-6.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
@@ -61,12 +71,12 @@ const features = [
 ] as const;
 
 const stakeholders = [
-  ["Admin", "Full control over products, pricing, buyers and orders."],
-  ["Distributor", "Special pricing, bulk orders and sales management."],
-  ["Dealer", "Access to exclusive products and dealer pricing."],
-  ["Corporate Buyer", "Simplified procurement with RFQ and approvals."],
-  ["Wholesaler", "Tiered pricing and high volume ordering."],
-  ["Retailer", "Special rates for retail businesses."],
+  [stakeholder1, "Admin", "Full control over products, pricing, buyers and orders."],
+  [stakeholder2, "Distributor", "Special pricing, bulk orders and sales management."],
+  [stakeholder3, "Dealer", "Access to exclusive products and dealer pricing."],
+  [stakeholder4, "Corporate Buyer", "Simplified procurement with RFQ and approvals."],
+  [stakeholder5, "Wholesaler", "Tiered pricing and high-volume ordering."],
+  [stakeholder6, "Retailer", "Special rates for retail businesses."],
 ] as const;
 
 const process = [
@@ -79,12 +89,12 @@ const process = [
 ] as const;
 
 const industries = [
-  ["Manufacturing", "Industrial products and machinery"],
-  ["Furniture & Interiors", "Office and home furniture"],
-  ["Electronics & Electrical", "Components and equipment"],
-  ["Building Materials", "Construction and supplies"],
-  ["Fashion & Apparel", "Wholesale clothing and accessories"],
-  ["Food & Beverages", "Bulk supply and distribution"],
+  [industry1, "Manufacturing", "Industrial products and machinery"],
+  [industry2, "Furniture & Interiors", "Office and home furniture"],
+  [industry3, "Electronics & Electrical", "Components and equipment"],
+  [industry4, "Building Materials", "Construction and supplies"],
+  [industry5, "Fashion & Apparel", "Wholesale clothing and accessories"],
+  [industry6, "Food & Beverages", "Bulk supply and distribution"],
 ] as const;
 
 const ctaBenefits = [
@@ -98,8 +108,8 @@ function SectionIntro({ title, description }: { title: string; description: stri
   return (
     <div>
       <span className="mb-2 block h-0.5 w-8 bg-gold" />
-      <h2 className="text-[22px] font-extrabold leading-tight text-navy">{title}</h2>
-      <p className="mt-1 text-[9px] font-medium leading-[1.45] text-muted-foreground">
+      <h2 className="text-[23px] font-bold leading-tight text-navy md:text-[25px]">{title}</h2>
+      <p className="mt-1 text-[10px] font-medium leading-[1.5] text-muted-foreground md:text-[11px]">
         {description}
       </p>
     </div>
@@ -121,23 +131,23 @@ export function B2BCommercePage() {
         />
         <div className="ecom-hero-shade absolute inset-0" />
         <div className="ecom-shell relative flex h-full items-center py-5">
-          <div className="max-w-[505px]">
+          <div className="max-w-[520px]">
             <nav className="sr-only" aria-label="Breadcrumb">
               <Link to="/">Home</Link> <span>›</span> Solutions <span>›</span> B2B Ecommerce
               Development
             </nav>
             <p className="ecom-eyebrow">B2B Ecommerce Development</p>
-            <h1 className="mt-2 text-[31px] font-extrabold leading-[1.02] sm:text-[35px] md:text-[37px] lg:text-[40px]">
+            <h1 className="mt-2 text-[29px] font-semibold leading-[1.08] sm:text-[32px] md:text-[34px] lg:text-[36px]">
               Powerful B2B
               <br />
               Ecommerce Solutions
               <br />
               for <span className="text-gold">Wholesale Growth.</span>
             </h1>
-            <p className="mt-3 max-w-[490px] text-[10px] font-medium leading-[1.45] text-on-dark/90 md:text-[11px]">
-              We build feature-rich B2B ecommerce platforms with MOQ, RFQ, tier pricing,
-              customer groups, distributor/dealer portals and advanced business features to
-              streamline your wholesale operations.
+            <p className="mt-3 max-w-[505px] text-[11px] font-medium leading-[1.5] text-on-dark/90 md:text-[12px]">
+              We build secure B2B commerce platforms for manufacturers, wholesalers and
+              distributors, combining contract pricing, bulk ordering, RFQ workflows, dealer
+              portals, GST invoicing and ERP-ready integrations in one system.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90">
@@ -162,90 +172,94 @@ export function B2BCommercePage() {
         </div>
       </section>
 
-      <section className="bg-card py-5">
+      <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Why Choose Webgram for B2B Ecommerce" description="" />
           <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-6">
             {reasons.map(([Icon, title, text], index) => (
               <article key={title} className={`grid grid-cols-[38px_1fr] gap-2 px-1.5 py-1 ${index ? "md:border-l md:border-border" : ""}`}>
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-[18px] w-[18px]" /></span>
-                <div><h3 className="text-[8px] font-extrabold leading-tight text-navy">{title}</h3><p className="mt-1 text-[6.5px] leading-[1.35] text-muted-foreground">{text}</p></div>
+                <div><h3 className="text-[9px] font-extrabold leading-tight text-navy md:text-[10px]">{title}</h3><p className="mt-1 text-[7.5px] leading-[1.4] text-muted-foreground md:text-[8px]">{text}</p></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-sky-soft py-5">
+      <section className="bg-sky-soft py-6 md:py-7">
         <div className="ecom-shell">
           <div className="grid items-end gap-3 md:grid-cols-[1fr_1.1fr_auto]">
             <SectionIntro title="Key B2B Features" description="" />
-            <p className="text-[8px] leading-[1.45] text-muted-foreground">Everything you need to manage wholesale sales, dealers, distributors and bulk buyers — all in one powerful B2B ecommerce platform.</p>
-            <span className="text-[8px] font-bold text-primary">View All Features <ArrowRight className="inline h-3 w-3" /></span>
+            <p className="text-[9px] leading-[1.5] text-muted-foreground md:text-[10px]">Everything needed to manage wholesale sales, dealers, distributors and bulk buyers — from pricing and approvals to orders and invoicing.</p>
+            <span className="text-[9px] font-bold text-primary md:text-[10px]">View All Features <ArrowRight className="inline h-3 w-3" /></span>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-4">
             {features.map(([Icon, title, text], index) => (
-              <article key={title} className="grid min-h-[64px] grid-cols-[42px_1fr] items-center gap-2 rounded-md border border-border/70 bg-card p-2.5">
-                <span className={`grid h-9 w-9 place-items-center rounded-md ${index % 2 ? "bg-warning-soft text-warning" : "bg-primary-soft text-primary"}`}><Icon className="h-5 w-5" /></span>
-                <div><h3 className="text-[8px] font-extrabold leading-tight text-navy">{title}</h3><p className="mt-1 text-[6.5px] leading-[1.3] text-muted-foreground">{text}</p></div>
+              <article key={title} className="grid min-h-[78px] grid-cols-[46px_1fr] items-center gap-2.5 rounded-md border border-border/70 bg-card p-3">
+                <span className={`grid h-10 w-10 place-items-center rounded-md ${index % 2 ? "bg-warning-soft text-warning" : "bg-primary-soft text-primary"}`}><Icon className="h-[22px] w-[22px]" /></span>
+                <div><h3 className="text-[10px] font-extrabold leading-[1.25] text-navy md:text-[11px]">{title}</h3><p className="mt-1 text-[8px] leading-[1.4] text-muted-foreground md:text-[8.5px]">{text}</p></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-card py-5">
+      <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Designed for Every B2B Stakeholder" description="A complete ecosystem for manufacturers, distributors, dealers and corporate buyers." />
-          <div className="ecom-scroll mt-3 grid grid-flow-col auto-cols-[165px] gap-2 overflow-x-auto md:grid-cols-6 md:overflow-visible">
-            {stakeholders.map(([title, text], index) => (
+          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[190px] gap-2.5 overflow-x-auto md:grid-cols-6 md:overflow-visible">
+            {stakeholders.map(([image, title, text]) => (
               <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
-                <div className="relative h-[92px] overflow-hidden">
-                  <img src={stakeholdersImage} alt={title} width={1920} height={520} loading="lazy" className="absolute top-0 h-full w-[600%] max-w-none object-cover" style={{ left: `${index * -100}%` }} />
+                <div className="relative h-[112px] overflow-hidden md:h-[122px]">
+                  <img src={image} alt={`${title} using the B2B commerce platform`} width={320} height={520} loading="lazy" className="h-full w-full object-cover object-[center_38%]" />
                 </div>
-                <div className="min-h-[58px] p-2"><h3 className="text-[8px] font-extrabold text-navy">{title}</h3><p className="mt-1 text-[6.5px] leading-[1.3] text-muted-foreground">{text}</p></div>
+                <div className="min-h-[70px] p-2.5"><h3 className="text-[10px] font-extrabold text-navy md:text-[11px]">{title}</h3><p className="mt-1 text-[8px] leading-[1.4] text-muted-foreground md:text-[8.5px]">{text}</p></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-sky-soft py-5">
+      <section className="bg-sky-soft py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Our Development Process" description="A structured approach to build a high-performing B2B ecommerce platform." />
-          <div className="mt-3 grid gap-3 sm:grid-cols-2 md:grid-cols-6">
+          <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-6 md:gap-3">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="relative grid grid-cols-[40px_1fr] gap-2 md:block">
-                {index < process.length - 1 && <ArrowRight className="absolute -right-2 top-4 hidden h-3 w-3 text-primary md:block" />}
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-4 w-4" /></span>
-                <div className="md:mt-1.5"><span className="text-[7px] font-extrabold text-navy">{number}</span><h3 className="text-[8px] font-extrabold text-navy">{title}</h3><p className="mt-0.5 text-[6.5px] leading-[1.3] text-muted-foreground">{text}</p></div>
+              <article key={title} className="relative min-w-0">
+                {index < process.length - 1 && <ArrowRight className="absolute -right-2 top-4 hidden h-3.5 w-3.5 text-primary md:block" />}
+                <div className="flex items-center gap-2 md:block">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-[18px] w-[18px]" /></span>
+                  <span className="text-[9px] font-extrabold text-navy md:mt-2 md:block">{number}</span>
+                </div>
+                <h3 className="mt-2 text-[10px] font-extrabold text-navy md:text-[11px]">{title}</h3>
+                <p className="mt-1 text-[8px] leading-[1.4] text-muted-foreground md:text-[8.5px]">{text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-card py-5">
+      <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Industries We Serve" description="" />
-          <div className="ecom-scroll mt-3 grid grid-flow-col auto-cols-[165px] gap-2 overflow-x-auto md:grid-cols-6 md:overflow-visible">
-            {industries.map(([title, text], index) => (
+          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[190px] gap-2.5 overflow-x-auto md:grid-cols-6 md:overflow-visible">
+            {industries.map(([image, title, text]) => (
               <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
-                <div className="relative h-[64px] overflow-hidden"><img src={industriesImage} alt={title} width={1920} height={512} loading="lazy" className="absolute top-0 h-full w-[600%] max-w-none object-cover" style={{ left: `${index * -100}%` }} /></div>
-                <div className="min-h-[43px] p-2"><h3 className="text-[7.5px] font-extrabold text-navy">{title}</h3><p className="mt-0.5 text-[6px] leading-tight text-muted-foreground">{text}</p></div>
+                <div className="relative h-[78px] overflow-hidden md:h-[84px]"><img src={image} alt={title} width={320} height={512} loading="lazy" className="h-full w-full object-cover object-center" /></div>
+                <div className="min-h-[54px] p-2.5"><h3 className="text-[9px] font-extrabold text-navy md:text-[10px]">{title}</h3><p className="mt-1 text-[7.5px] leading-[1.35] text-muted-foreground md:text-[8px]">{text}</p></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-navy py-7 text-on-dark">
+      <section className="relative min-h-[230px] overflow-hidden bg-navy py-8 text-on-dark">
         <img src={ctaImage} alt="Business partners discussing a B2B ecommerce project" width={1920} height={520} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 bg-cta-overlay" />
-        <div className="ecom-shell relative grid items-center gap-8 md:grid-cols-[.9fr_1.1fr]">
+        <div className="ecom-shell relative grid items-center gap-8 md:min-h-[166px] md:grid-cols-[.9fr_1.1fr]">
           <div>
-            <h2 className="text-[27px] font-extrabold leading-[1.05]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
-            <p className="mt-2 max-w-[390px] text-[9px] leading-[1.45] text-on-dark/85">Discuss your requirements with our experts and get a customized solution for your business.</p>
+            <h2 className="text-[25px] font-bold leading-[1.08] md:text-[27px]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
+            <p className="mt-3 max-w-[420px] text-[11px] leading-[1.55] text-on-dark/85 md:text-[12px]">Discuss your requirements with our experts and get a customized<br className="hidden md:block" /> solution for your business.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
               <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[9px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button>
@@ -253,7 +267,7 @@ export function B2BCommercePage() {
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {ctaBenefits.map(([Icon, title, text]) => (
-              <div key={title} className="text-center"><span className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-on-dark/60"><Icon className="h-4 w-4" /></span><strong className="mt-2 block text-[7px]">{title}</strong><small className="mt-1 block text-[6px] text-on-dark/70">{text}</small></div>
+              <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60"><Icon className="h-[18px] w-[18px]" /></span><strong className="mt-2 block text-[9px]">{title}</strong><small className="mt-1 block text-[7.5px] text-on-dark/70">{text}</small></div>
             ))}
           </div>
         </div>
