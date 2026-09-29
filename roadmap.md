@@ -3,6 +3,7 @@
 ## Done
 
 - Rebuilt `/solutions/ecommerce-development` as the complete responsive nine-section reference page with the supplied hero artwork
+- Refined the ecommerce hero, success-story cards, and technology grid to match the supplied detail reference across desktop, laptop, tablet, and phone
 - Keep computer and tablet layouts visually equal on every current and future page; only phones may switch to compact/stacked layouts
 - Menu restored to approved Sep 29 2:37 PM version (Home, Solutions, Services, Industries, Work, Resources, About Us, Contact Us)
 - Every menu item now opens its own separate page (/solutions/_, /services/_, /industries/_, /work/_, /resources/*)
