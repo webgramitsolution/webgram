@@ -26,11 +26,7 @@ export const Route = createFileRoute("/services/$slug")({
             { property: "og:image", content: "https://ik.imagekit.io/home1/Website%20Development?updatedAt=1790703469216" },
             { name: "twitter:image", content: "https://ik.imagekit.io/home1/Website%20Development?updatedAt=1790703469216" },
           ]
-        : params.slug === "woocommerce"
-          ? [
-              { property: "og:image", content: "https://homepage-replica-magic.lovable.app" },
-            ].filter(() => false)
-          : []),
+        : []),
     ],
   }),
   component: ServicesPage,
