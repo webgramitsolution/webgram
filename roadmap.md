@@ -17,10 +17,9 @@
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
 - Built `/services/website-development` as a dedicated reference-led page using the supplied hero and complete page flow
 
-## Pending (waiting on user)
+- Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
 
-- Review SEO across pages (requested Sep 29, 18:53 UTC)
-- Swap "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (in progress)
+## Pending (waiting on user)
 
 - Add the B2B project contact form and deliver submissions to info@webgramitsolution.com; blocked until the sender domain is configured
 - Build the remaining four Solutions pages after their promised reference screenshots are uploaded
