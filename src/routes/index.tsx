@@ -104,19 +104,26 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-10 bg-card text-[10px] shadow-none placeholder:text-muted-foreground/60";
+const fieldClass = "h-10 bg-card text-[11px] shadow-none placeholder:text-muted-foreground/60";
 
 function ContactForm() {
-  return <form className="grid grid-cols-2 gap-3" onSubmit={(event) => event.preventDefault()}>
+  return <form className="grid grid-cols-2 gap-x-3.5 gap-y-3.5" onSubmit={(event) => event.preventDefault()}>
     <label className="contact-field">Your Name *<Input required placeholder="Enter your name" className={fieldClass} /></label>
     <label className="contact-field">Email Address *<Input required type="email" placeholder="Enter your email" className={fieldClass} /></label>
-    <label className="contact-field">Phone Number *<Input required type="tel" placeholder="Enter your phone number" className={fieldClass} /></label>
+    <label className="contact-field">Phone Number *
+      <div className="flex items-stretch overflow-hidden rounded-md border border-input bg-card">
+        <span className="flex shrink-0 items-center gap-1 border-r border-input px-2.5 text-[11px] font-semibold text-navy" aria-hidden="true">🇮🇳 +91 <ChevronDown className="h-3 w-3 text-muted-foreground" /></span>
+        <Input required type="tel" placeholder="Enter your phone number" className="h-10 min-w-0 rounded-none border-0 bg-card text-[11px] shadow-none focus-visible:ring-0" />
+      </div>
+    </label>
     <label className="contact-field">Project Type<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select project type" /></SelectTrigger><SelectContent><SelectItem value="website">Website</SelectItem><SelectItem value="ecommerce">Ecommerce</SelectItem><SelectItem value="marketing">Digital Marketing</SelectItem></SelectContent></Select></label>
     <label className="contact-field">Business Name<Input placeholder="Enter your business name" className={fieldClass} /></label>
     <label className="contact-field">Project Budget<Select><SelectTrigger className={fieldClass}><SelectValue placeholder="Select budget range" /></SelectTrigger><SelectContent><SelectItem value="small">₹25k – ₹50k</SelectItem><SelectItem value="medium">₹50k – ₹1L</SelectItem><SelectItem value="large">₹1L+</SelectItem></SelectContent></Select></label>
-    <label className="contact-field col-span-2">Your Message *<Textarea required placeholder="Tell us about your project requirements..." className="min-h-[76px] bg-card text-[10px] shadow-none" /></label>
-    <label className="col-span-2 flex items-center justify-center gap-2 text-[10px] text-muted-foreground"><input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />I agree to the <a href="#faq" className="font-bold text-primary underline">Terms &amp; Privacy Policy</a></label>
-    <Button className="col-span-2 mx-auto h-11 min-w-[210px] bg-gold text-[12px] font-bold text-navy hover:bg-gold/90">Send Message <ArrowRight /></Button>
+    <label className="contact-field col-span-2">Your Message *<Textarea required placeholder="Tell us about your project requirements..." className="min-h-[86px] bg-card text-[11px] shadow-none" /></label>
+    <div className="col-span-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-1">
+      <label className="flex min-w-0 items-center gap-2 text-[10.5px] text-navy"><input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" /><span className="min-w-0">I agree to the <a href="#faq" className="font-bold text-primary underline">Terms &amp; Privacy Policy</a></span></label>
+      <Button className="h-11 shrink-0 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">Send Message <ArrowRight /></Button>
+    </div>
   </form>;
 }
 
