@@ -38,6 +38,23 @@ export const clientLogos = [
   { name: "Shiprocket", src: `${lib}/7.png` },
 ];
 
+/**
+ * About-page content shown on the homepage (About banner hero, mission section
+ * and workspace gallery), served from the ImageKit library.
+ */
+export const aboutImages = {
+  /** Wide navy banner: Webgram reception wall photo, plain navy on the left for copy. */
+  banner: `https://ik.imagekit.io/home1/About%20us%20page/About%20us%20-%20banner.png`,
+  /** Office photo with the "Ideas. Technology. Growth." wall, for the mission section. */
+  mission: `https://ik.imagekit.io/home1/ArchFacing.png`,
+  /** Workspace gallery, in display order. */
+  workspace: [
+    { label: "Modern Office Space", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(1).png` },
+    { label: "Team Collaboration", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(3).png` },
+    { label: "Focused Development", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(2).png` },
+  ],
+} as const;
+
 /** Technology grid — transparent square logos, listed in reference order. */
 export const technologyStack = [
   { name: "React.js", src: `${lib}/01_React.js.png` },

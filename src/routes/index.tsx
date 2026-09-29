@@ -8,6 +8,9 @@ import {
   ChevronDown,
   Code2,
   Building2,
+  Eye,
+  Gem,
+  Target,
   Facebook,
   Instagram,
   Mail,
@@ -26,7 +29,7 @@ import {
 import type { ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
-import { IMAGES, clientLogos, technologyStack } from "@/lib/site-images";
+import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import ctaImage from "@/assets/cta-mountain.jpg";
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
@@ -46,9 +49,9 @@ export const Route = createFileRoute("/")({
         content: "Build, sell and scale with a full-service digital commerce technology partner.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: IMAGES.hero },
+      { property: "og:image", content: aboutImages.banner },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: IMAGES.hero },
+      { name: "twitter:image", content: aboutImages.banner },
     ],
   }),
   component: HomePage,
@@ -181,7 +184,7 @@ function Hero() {
   return (
     <section id="top" className="hero-shell">
       <div className="hero-media">
-        <img src={IMAGES.hero} alt="Webgram ecommerce dashboards on a laptop and a mobile phone" width={2170} height={725} />
+        <img src={aboutImages.banner} alt="Webgram IT Solution office reception with the brand logo on a marble wall" width={2170} height={725} />
       </div>
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
