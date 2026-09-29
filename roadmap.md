@@ -16,6 +16,7 @@
 - Swapped the seven "Websites for Every Industry" photos to the supplied ImageKit images, each with its industry name as alt text
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
 - Built `/services/website-development` as a dedicated reference-led page using the supplied hero and complete page flow
+- Built `/services/woocommerce` as a dedicated reference-matched page with WooCommerce solutions, features, integrations, projects, process, and CTA
 
 - Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
 

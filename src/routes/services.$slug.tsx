@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { SubpageTemplate } from "@/components/subpage";
 import { WebsiteDevelopmentPage } from "@/components/website-development-page";
+import { WooCommercePage } from "@/components/woocommerce-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 
 const section = menuSections.services;
@@ -35,5 +36,6 @@ function ServicesPage() {
   const page = Route.useLoaderData();
   const { slug } = Route.useParams();
   if (slug === "website-development") return <WebsiteDevelopmentPage />;
+  if (slug === "woocommerce") return <WooCommercePage />;
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }
