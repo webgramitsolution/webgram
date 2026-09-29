@@ -6,20 +6,23 @@ import {
   Building2,
   Code2,
   FileCode2,
+  FolderOpen,
   Gauge,
   Headphones,
-  Image,
+  Image as ImageIcon,
   LayoutTemplate,
   MonitorSmartphone,
   Palette,
   PenTool,
   Rocket,
+  School,
   Search,
   ShieldCheck,
+  ShoppingCart,
   Target,
   Users,
 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 
 import industryManufacturing from "@/assets/b2b-industry-1.jpg";
 import industryArchitecture from "@/assets/b2b-industry-2.jpg";
@@ -30,8 +33,15 @@ import industryHealthcare from "@/assets/b2b-industry-6.jpg";
 import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
 import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
 import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
+import businessWebsites from "@/assets/business-websites.png.asset.json";
+import corporateWebsites from "@/assets/corporate-websites.png.asset.json";
+import educationalWebsite from "@/assets/educational-website.png.asset.json";
+import laravelLogo from "@/assets/laravel.svg.asset.json";
 import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
+import portfolioWebsites from "@/assets/portfolio-websites.png.asset.json";
+import productServiceWebsites from "@/assets/product-service-websites.png.asset.json";
+import professionalWebsites from "@/assets/professional-websites.png.asset.json";
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
@@ -45,18 +55,19 @@ const heroBenefits = [
 ] as const;
 
 const strengths = [
-  [Target, "Business-Focused Approach", "Websites designed to achieve your business goals."],
-  [PenTool, "Creative & Modern Designs", "Unique, user-friendly designs that reflect your brand."],
-  [ShieldCheck, "Scalable & Secure Development", "Built with clean code, security and future growth in mind."],
-  [Headphones, "Ongoing Support", "Continuous maintenance, updates and technical support."],
+  [Target, "Business-Focused Approach", "Websites designed to achieve your business goals.", "bg-violet-soft text-violet"],
+  [PenTool, "Creative & Modern Designs", "Unique, user-friendly designs that reflect your brand.", "bg-warning-soft text-warning"],
+  [ShieldCheck, "Scalable & Secure Development", "Built with clean code, security and future growth in mind.", "bg-success-soft text-success"],
+  [Headphones, "Ongoing Support", "Continuous maintenance, updates and technical support.", "bg-primary-soft text-primary"],
 ] as const;
 
 const solutions = [
-  [industryRealEstate, Building2, "Corporate Websites", "Build a strong online presence with professional corporate websites."],
-  [industryArchitecture, BriefcaseBusiness, "Business Websites", "Modern websites for growing businesses to showcase products and services."],
-  [projectProfessional, Users, "Professional Websites", "Personal and professional websites for consultants, freelancers and experts."],
-  [projectFurniture, LayoutTemplate, "Product & Service Websites", "Showcase your products and services with high-converting website designs."],
-  [industryRetail, Image, "Portfolio Websites", "Creative portfolios for architects, designers, photographers and artists."],
+  [corporateWebsites.url, Building2, "Corporate Websites", "Professional websites that build your brand and credibility.", "bg-violet-soft text-violet"],
+  [businessWebsites.url, BriefcaseBusiness, "Business Websites", "Modern websites for growing businesses and service providers.", "bg-orange-soft text-orange"],
+  [professionalWebsites.url, Users, "Professional Websites", "Personal websites for consultants, freelancers and experts.", "bg-primary-soft text-primary"],
+  [productServiceWebsites.url, ShoppingCart, "Product & Service Websites", "Showcase products and services with conversion-focused design.", "bg-success-soft text-success"],
+  [portfolioWebsites.url, FolderOpen, "Portfolio Websites", "Creative portfolios for agencies, designers and artists.", "bg-cyan-soft text-cyan"],
+  [educationalWebsite.url, School, "Educational Websites", "Schools, colleges, coaching and online learning platforms.", "bg-primary-soft text-primary"],
 ] as const;
 
 const process = [
@@ -80,17 +91,15 @@ const industries = [
 
 const technologies = [
   technologyStack[3],
-  { name: "PHP", src: phpLogo.url },
-  { name: "Laravel", src: technologyStack[7]?.src ?? phpLogo.url },
+  technologyStack[4],
   technologyStack[0],
   technologyStack[1],
+  { name: "PHP", src: phpLogo.url },
+  { name: "Laravel", src: laravelLogo.url },
   technologyStack[2],
   { name: "MySQL", src: mysqlLogo.url },
   technologyStack[9],
   technologyStack[10],
-  { name: "HTML5", src: technologyStack[11]?.src ?? technologyStack[0]?.src ?? "" },
-  { name: "CSS3", src: technologyStack[11]?.src ?? technologyStack[0]?.src ?? "" },
-  { name: "JavaScript", src: technologyStack[1]?.src ?? "" },
 ].filter((technology): technology is { name: string; src: string } => Boolean(technology));
 
 const projects = [
@@ -101,7 +110,7 @@ const projects = [
   [industryHealthcare, "Healthcare Website", "Hospital & Clinic"],
 ] as const;
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children }: { children: ReactNode }) {
   return (
     <p className="flex items-center gap-2 text-[8px] font-extrabold uppercase tracking-[0.16em] text-primary">
       <span className="h-0.5 w-8 bg-gold" /> {children}
@@ -111,25 +120,25 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function ProjectCarousel() {
   const track = useRef<HTMLDivElement>(null);
-  const move = (direction: number) => track.current?.scrollBy({ left: direction * 290, behavior: "smooth" });
+  const move = (direction: number) => track.current?.scrollBy({ left: direction * 263, behavior: "smooth" });
 
   return (
     <div className="relative mt-3">
-      <div ref={track} className="ecom-scroll grid snap-x grid-flow-col auto-cols-[245px] gap-3 overflow-x-auto md:grid-cols-5 md:overflow-visible">
+      <div ref={track} className="ecom-scroll grid snap-x grid-flow-col auto-cols-[250px] gap-3 overflow-x-auto scroll-smooth md:grid-cols-5 md:overflow-visible">
         {projects.map(([image, title, category]) => (
-          <article key={title} className="snap-start overflow-hidden rounded-md border border-border bg-card">
-            <div className="h-[120px] overflow-hidden bg-muted md:h-[110px]">
+          <article key={title} className="snap-start overflow-hidden rounded-md border border-border bg-card shadow-card">
+            <div className="h-[145px] overflow-hidden bg-muted md:h-[132px]">
               <img src={image} alt={`${title} project`} width={640} height={360} loading="lazy" className="h-full w-full object-cover object-center" />
             </div>
-            <div className="px-3 py-2">
-              <h3 className="text-[10px] font-extrabold text-navy">{title}</h3>
-              <p className="mt-0.5 text-[8px] text-muted-foreground">{category}</p>
+            <div className="px-3 py-3">
+              <h3 className="text-[11px] font-extrabold text-navy">{title}</h3>
+              <p className="mt-1 text-[8.5px] text-muted-foreground">{category}</p>
             </div>
           </article>
         ))}
       </div>
-      <Button type="button" variant="outline" size="icon" aria-label="Previous projects" onClick={() => move(-1)} className="absolute -left-4 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowLeft /></Button>
-      <Button type="button" variant="outline" size="icon" aria-label="Next projects" onClick={() => move(1)} className="absolute -right-4 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowRight /></Button>
+      <Button type="button" variant="outline" size="icon" aria-label="Previous projects" onClick={() => move(-1)} className="absolute -left-2 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowLeft /></Button>
+      <Button type="button" variant="outline" size="icon" aria-label="Next projects" onClick={() => move(1)} className="absolute -right-2 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-card text-navy shadow-card md:hidden"><ArrowRight /></Button>
     </div>
   );
 }
@@ -162,23 +171,23 @@ export function WebsiteDesignDevelopmentPage() {
       <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell grid gap-5 md:grid-cols-[1.1fr_1.9fr] md:items-center">
           <div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your Trusted Website<br />Development Partner</h2><p className="mt-2 max-w-[460px] text-[11px] leading-[1.5] text-muted-foreground md:text-[12px]">We combine strategy, creative design and cutting-edge technology to build websites that not only look great but also deliver measurable business results.</p></div>
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-            {strengths.map(([Icon, title, text]) => <article key={title} className="min-h-[110px] rounded-md border border-border bg-card p-3"><Icon className="h-6 w-6 text-primary" /><h3 className="mt-2 text-[10px] font-extrabold leading-[1.15] text-navy">{title}</h3><p className="mt-1 text-[9px] leading-[1.4] text-muted-foreground">{text}</p></article>)}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {strengths.map(([Icon, title, text, tone]) => <article key={title} className="min-h-[126px] rounded-md border border-border bg-card p-4 shadow-card"><span className={`grid h-9 w-9 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><h3 className="mt-3 text-[11px] font-extrabold leading-[1.2] text-navy">{title}</h3><p className="mt-1.5 text-[9.5px] leading-[1.45] text-muted-foreground">{text}</p></article>)}
           </div>
         </div>
       </section>
 
       <section className="bg-sky-soft py-6 md:py-7">
-        <div className="ecom-shell"><Eyebrow>What We Build</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Website Solutions for Every Need</h2>
-          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[220px] gap-3 overflow-x-auto md:grid-cols-5 md:overflow-visible">
-            {solutions.map(([image, Icon, title, text]) => <article key={title} className="overflow-hidden rounded-md border border-border bg-card"><div className="h-[130px] overflow-hidden md:h-[125px]"><img src={image} alt={title} width={640} height={420} loading="lazy" className="h-full w-full object-cover object-center" /></div><div className="grid grid-cols-[26px_1fr] gap-2 p-3"><Icon className="h-5 w-5 text-primary" /><div><h3 className="text-[10px] font-extrabold text-navy">{title}</h3><p className="mt-1 text-[8.5px] leading-[1.4] text-muted-foreground">{text}</p></div></div></article>)}
+        <div className="ecom-shell"><Eyebrow>Types of Websites We Develop</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">Website Solutions for Every Need</h2>
+          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[235px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
+            {solutions.map(([image, Icon, title, text, tone]) => <article key={title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className="aspect-[1.55/1] overflow-hidden"><img src={image} alt={title} width={640} height={420} loading="lazy" className="h-full w-full object-cover object-center" /></div><div className="grid min-h-[98px] grid-cols-[32px_1fr] gap-2.5 p-3"><span className={`grid h-8 w-8 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><div><h3 className="text-[10.5px] font-extrabold leading-[1.2] text-navy">{title}</h3><p className="mt-1.5 text-[9px] leading-[1.45] text-muted-foreground">{text}</p></div></div></article>)}
           </div>
         </div>
       </section>
 
       <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell"><Eyebrow>Our Development Process</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">From Idea to a Successful Website</h2>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-3">{process.map(([Icon, number, title, text], index) => <article key={title} className="relative grid grid-cols-[48px_1fr] gap-2.5 md:block">{index < process.length - 1 && <ArrowRight className="absolute -right-2 top-5 hidden h-3 w-3 text-primary md:block" />}<span className="grid h-11 w-11 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span><div className="md:mt-2"><strong className="text-[10px] text-navy">{number}</strong><h3 className="text-[10px] font-extrabold text-navy">{title}</h3><p className="mt-1 text-[8.5px] leading-[1.4] text-muted-foreground">{text}</p></div></article>)}</div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-5">{process.map(([Icon, number, title, text], index) => <article key={title} className="relative grid grid-cols-[50px_1fr] gap-3 md:block">{index < process.length - 1 && <span aria-hidden="true" className="absolute left-[50px] right-[-20px] top-[23px] hidden h-px bg-primary/40 md:block"><ArrowRight className="absolute -right-1 -top-[6px] h-3 w-3 text-primary" /></span>}<span className="relative z-10 grid h-12 w-12 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-6 w-6" /></span><div className="md:mt-2.5"><strong className="text-[10px] text-navy">{number}</strong><h3 className="text-[10.5px] font-extrabold text-navy">{title}</h3><p className="mt-1 text-[9px] leading-[1.4] text-muted-foreground">{text}</p></div></article>)}</div>
         </div>
       </section>
 
@@ -189,12 +198,12 @@ export function WebsiteDesignDevelopmentPage() {
       </section>
 
       <section className="bg-card py-5 md:py-6">
-        <div className="ecom-shell grid gap-4 md:grid-cols-[290px_1fr] md:items-center"><div><Eyebrow>Technologies We Use</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Modern Technology Stack</h2></div><div className="grid grid-cols-6 gap-2 md:grid-cols-12">{technologies.map(({ name, src }) => <div key={name} className="text-center"><span className="grid h-11 place-items-center rounded-md border border-border bg-card p-2"><img src={src} alt={`${name} logo`} width={48} height={48} loading="lazy" className="h-full w-full object-contain" /></span><span className="mt-1 block text-[6.5px] text-muted-foreground">{name}</span></div>)}</div></div>
+        <div className="ecom-shell grid gap-5 md:grid-cols-[320px_1fr] md:items-center"><div><Eyebrow>Modern Technology Stack</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.08] text-navy md:text-[27px]">Technology That<br />Works Together</h2></div><div className="grid grid-cols-5 gap-2 lg:grid-cols-10">{technologies.map(({ name, src }) => <div key={name} className="min-w-0 text-center"><span className="grid h-[62px] place-items-center rounded-md border border-border bg-card p-3"><img src={src} alt={`${name} logo`} width={56} height={56} loading="lazy" className="h-full min-h-0 w-full object-contain" /></span><span className="mt-1.5 block text-[7.5px] text-muted-foreground">{name}</span></div>)}</div></div>
       </section>
 
-      <section className="bg-sky-soft py-6 md:py-7"><div className="ecom-shell"><div className="flex items-end justify-between gap-4"><div><Eyebrow>Our Recent Work</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Websites We Have Delivered</h2></div><Button asChild variant="outline" className="hidden h-9 border-navy bg-card px-4 text-[8px] font-bold text-navy md:inline-flex"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View All Projects <ArrowRight /></Link></Button></div><ProjectCarousel /></div></section>
+      <section className="bg-sky-soft py-6 md:py-7"><div className="ecom-shell"><div className="flex items-end justify-between gap-4"><div><Eyebrow>Our Recent Work</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">Websites We Have Delivered</h2><p className="mt-2 max-w-[540px] text-[10px] leading-[1.45] text-muted-foreground">Explore modern, responsive websites created for businesses across industries.</p></div><Button asChild variant="outline" className="hidden h-9 border-navy bg-card px-4 text-[8px] font-bold text-navy md:inline-flex"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View All Projects <ArrowRight /></Link></Button></div><ProjectCarousel /></div></section>
 
-      <section className="ecom-waves relative overflow-hidden bg-navy py-7 text-on-dark"><div className="ecom-shell relative grid items-center gap-8 md:grid-cols-[.9fr_1.1fr]"><div><p className="ecom-eyebrow">Ready to Build Your Website?</p><h2 className="mt-2 text-[26px] font-bold leading-[1.08] md:text-[30px]">Let’s Bring Your Ideas to Life.</h2><p className="mt-2 max-w-[490px] text-[10px] leading-[1.45] text-on-dark/85 md:text-[11px]">Get a free consultation and let our experts design and develop a website that helps you grow your business.</p><div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/60 bg-transparent px-6 text-[9px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button></div></div><div className="grid grid-cols-2 gap-5 sm:grid-cols-4">{[[Image,"200+","Websites Delivered"],[Target,"98%","Client Satisfaction"],[BriefcaseBusiness,"12+","Years of Experience"],[Headphones,"24/7","Support & Maintenance"]].map(([Icon, value, label]) => { const StatIcon = Icon as typeof Image; return <div key={label as string} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/50"><StatIcon className="h-5 w-5" /></span><strong className="mt-2 block text-[17px] leading-none">{value as string}</strong><span className="mt-1 block text-[8px] text-on-dark/75">{label as string}</span></div>; })}</div></div></section>
+      <section className="ecom-waves relative overflow-hidden bg-navy py-7 text-on-dark"><div className="ecom-shell relative grid items-center gap-8 md:grid-cols-[.9fr_1.1fr]"><div><p className="ecom-eyebrow">Ready to Build Your Website?</p><h2 className="mt-2 text-[26px] font-bold leading-[1.08] md:text-[30px]">Let’s Bring Your Ideas to Life.</h2><p className="mt-2 max-w-[490px] text-[10px] leading-[1.45] text-on-dark/85 md:text-[11px]">Get a free consultation and let our experts design and develop a website that helps you grow your business.</p><div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/60 bg-transparent px-6 text-[9px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button></div></div><div className="grid grid-cols-2 gap-5 sm:grid-cols-4">{[[ImageIcon,"200+","Websites Delivered"],[Target,"98%","Client Satisfaction"],[BriefcaseBusiness,"12+","Years of Experience"],[Headphones,"24/7","Support & Maintenance"]].map(([Icon, value, label]) => { const StatIcon = Icon as typeof ImageIcon; return <div key={label as string} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/50"><StatIcon className="h-5 w-5" /></span><strong className="mt-2 block text-[17px] leading-none">{value as string}</strong><span className="mt-1 block text-[8px] text-on-dark/75">{label as string}</span></div>; })}</div></div></section>
     </main>
   );
 }

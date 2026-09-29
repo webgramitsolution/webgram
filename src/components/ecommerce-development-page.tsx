@@ -26,7 +26,7 @@ import {
   TestTubeDiagonal,
   Wrench,
 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 
 import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
 import fashionCaseImage from "@/assets/ecommerce-fashion-case.jpg";
@@ -146,7 +146,7 @@ const projects = [
   },
 ] as const;
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children }: { children: ReactNode }) {
   return <p className="ecom-eyebrow">{children}</p>;
 }
 
