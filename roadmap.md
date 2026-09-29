@@ -31,3 +31,4 @@
 - [x] Remove the header search and project button from the contact page.
 - [x] Match the direct-contact card proportions, image placement, and expert callout to the supplied close-up reference.
 - [x] Increase the FAQ heading, question, and answer text sizes.
+- [x] Add a dedicated About Us page and connect the Company menu link to `/about`.

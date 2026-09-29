@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Clock3, Facebook, FileText, Headphones, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Rocket, Send, Users, Youtube } from "lucide-react";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -72,7 +72,7 @@ function Header() {
               {items.length > 0 && (
                 <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-1 rounded-b-md border border-border bg-card py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   {items.map((item) => (
-                    <li key={item}><a href="#top" className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</a></li>
+                    <li key={item}>{item === "About Us" ? <Link to="/about" className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</Link> : <a href={item === "FAQs" ? "#faq" : "#top"} className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</a>}</li>
                   ))}
                 </ul>
               )}

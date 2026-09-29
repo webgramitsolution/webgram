@@ -11,3 +11,4 @@
 
 - Keep the single-page experience contact-focused, following the supplied contact reference section order and density.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
+- Keep the contact experience at `/` and the dedicated company story at `/about`; use TanStack links between them so both URLs remain directly accessible.
