@@ -608,7 +608,7 @@ function FinalCta() {
 }
 
 const footerColumns: Array<[string, string[]]> = [
-  ["Solutions", ["Ecommerce", "B2B Commerce", "B2C Ecommerce", "Marketplace", "Custom Commerce"]],
+  ["Solutions", ["Ecommerce", "B2B Commerce", "Website Design & Development", "Marketplace", "Custom Commerce"]],
   [
     "Services",
     ["Website Development", "Website Design", "WordPress", "WooCommerce", "Website Maintenance"],

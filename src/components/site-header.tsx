@@ -14,7 +14,11 @@ type Target =
   | { to: "/work/$slug"; params: { slug: string } }
   | { to: "/resources/$slug"; params: { slug: string } };
 
-const slugify = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
+const slugify = (label: string) =>
+  label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
 const subpage = (
   section: "solutions" | "services" | "industries" | "work" | "resources",
@@ -29,7 +33,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
     items: [
       "Ecommerce Development",
       "B2B Commerce",
-      "B2C Ecommerce",
+      "Website Design & Development",
       "Marketplace Development",
       "Custom Commerce",
       "Mobile Commerce",

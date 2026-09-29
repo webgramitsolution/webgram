@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { SubpageTemplate } from "@/components/subpage";
 import { B2BCommercePage } from "@/components/b2b-commerce-page";
 import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-page";
+import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 
 const section = menuSections.solutions;
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/solutions/$slug")({
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      ...(params.slug === "b2b-commerce"
+       ...(params.slug === "b2b-commerce"
         ? [
             {
               property: "og:image",
@@ -48,5 +49,6 @@ function SolutionsPage() {
   const { slug } = Route.useParams();
   if (slug === "ecommerce-development") return <EcommerceDevelopmentPage />;
   if (slug === "b2b-commerce") return <B2BCommercePage />;
+  if (slug === "website-design-development") return <WebsiteDesignDevelopmentPage />;
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }

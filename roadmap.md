@@ -11,11 +11,12 @@
 - Every menu item now opens its own separate page (/solutions/_, /services/_, /industries/_, /work/_, /resources/*)
 - Verified: all dropdown links clickable, logo returns home, no overflow on desktop/phone, build OK, TS2686 resolved
 - Restored the homepage typography to the approved Sep 29 5:42 AM snapshot and locked a shared Manrope scale for standalone menu pages
+- Replaced B2C Ecommerce with the dedicated reference-matched Website Design & Development solution page
 
 ## Pending (waiting on user)
 
 - Add the B2B project contact form and deliver submissions to info@webgramitsolution.com; blocked until the sender domain is configured
-- Build the remaining five Solutions pages after their promised reference screenshots are uploaded
+- Build the remaining four Solutions pages after their promised reference screenshots are uploaded
 - Real office address to replace "A-123, Sector 63, Noida" on /contact
 - Real social media links (LinkedIn, Instagram, Facebook, WhatsApp) for footer
 - Video link for "Watch Video" button on /about
