@@ -115,7 +115,7 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-9 bg-card text-[10.5px] shadow-none placeholder:text-muted-foreground/60";
+const fieldClass = "h-9 bg-card text-[10.5px] shadow-none md:text-[10.5px] placeholder:text-muted-foreground/60";
 
 function ContactForm() {
   const [message, setMessage] = useState("");
@@ -150,7 +150,7 @@ function ContactForm() {
             required
             type="tel"
             placeholder="Enter your phone number"
-            className="h-9 min-w-0 rounded-none border-0 bg-card text-[10.5px] shadow-none focus-visible:ring-0"
+            className="h-9 min-w-0 rounded-none border-0 bg-card text-[10.5px] shadow-none focus-visible:ring-0 md:text-[10.5px]"
           />
         </div>
       </label>
@@ -191,7 +191,7 @@ function ContactForm() {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Tell us about your project requirements..."
-          className="min-h-[60px] bg-card text-[10.5px] shadow-none"
+          className="min-h-[60px] bg-card text-[10.5px] shadow-none md:text-[10.5px]"
         />
       </label>
       <ProjectAdvisor needs={message} projectType={projectType} budget={budget} />
@@ -249,7 +249,7 @@ function DirectContact() {
               </span>
               <div className="min-w-0">
                 <strong className="block text-[11px] font-semibold text-on-dark/85">{title}</strong>
-                <span className="mt-0.5 block break-words text-[14px] font-bold">{value}</span>
+                <span className="mt-0.5 block whitespace-nowrap text-[13px] font-bold lg:text-[14px]">{value}</span>
                 <small className="mt-0.5 block text-[10px] text-on-dark/60">{note}</small>
               </div>
             </div>
@@ -264,14 +264,14 @@ function DirectContact() {
           height={1695}
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
-        <div className="absolute inset-x-3.5 bottom-3.5 rounded-lg bg-card p-4 text-navy shadow-card sm:inset-x-4 sm:bottom-4">
+        <div className="absolute inset-x-3 bottom-3 rounded-lg bg-card p-3.5 text-navy shadow-card sm:inset-x-4 sm:bottom-4">
           <div className="flex items-start gap-3">
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary-soft">
               <Headphones className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <strong className="text-[12.5px] font-extrabold">Talk to Our Experts</strong>
-              <p className="mt-1 text-[10px] leading-4 text-muted-foreground">
+              <strong className="whitespace-nowrap text-[12px] font-extrabold">Talk to Our Experts</strong>
+              <p className="mt-1 text-[9.5px] leading-[1.45] text-muted-foreground">
                 Get free consultation for your project requirements.
               </p>
             </div>
