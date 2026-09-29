@@ -17,6 +17,10 @@
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
 - Built `/services/website-development` as a dedicated reference-led page using the supplied hero and complete page flow
 
+- Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
+
+- SEO review done: fixed homepage social image to the real hero, removed the wrong @Lovable share tag, added Twitter cards to Work/Industries/Resources pages, and published a sitemap.xml for all 29 pages linked from robots.txt
+
 ## Pending (waiting on user)
 
 - Add the B2B project contact form and deliver submissions to info@webgramitsolution.com; blocked until the sender domain is configured

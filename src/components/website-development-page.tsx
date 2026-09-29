@@ -2,15 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, Building2, Code2, FileText, Headphones, LayoutTemplate, MonitorSmartphone, Paintbrush, Puzzle, RefreshCw, Rocket, Search, Settings, ShieldCheck, ShoppingCart, Target, Users } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import cssLogo from "@/assets/css3.svg.asset.json";
-import htmlLogo from "@/assets/html5.svg.asset.json";
-import javascriptLogo from "@/assets/javascript.svg.asset.json";
-import laravelLogo from "@/assets/laravel.svg.asset.json";
-import mysqlLogo from "@/assets/mysql.png.asset.json";
-import phpLogo from "@/assets/php.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { deliveredProjects, technologyStack, websiteDevelopmentImages } from "@/lib/site-images";
+import { deliveredProjects, technologyStack, webDevelopmentTechnologies, websiteDevelopmentImages } from "@/lib/site-images";
 
 const heroBenefits = [[Paintbrush,"Custom","Designs"],[Search,"SEO","Optimized"],[MonitorSmartphone,"Mobile","Responsive"],[Settings,"Easy","Management"],[ShieldCheck,"Secure &","Scalable"],[Headphones,"Ongoing","Support"]] as const;
 const strengths = [
@@ -30,7 +24,7 @@ const services = [
   { icon: RefreshCw, image: undefined, title: "Website Redesign", text: "Modern, refreshed designs to improve performance and UX.", tone: "bg-primary-soft text-primary" },
 ] as const;
 const process = [[Search,"01","Discovery","Understand your goals, requirements and target audience."],[FileText,"02","Strategy","Plan the design, features and technology."],[Paintbrush,"03","Design","Create modern and user-friendly designs."],[Code2,"04","Development","Build with clean code, custom features and SEO best practices."],[Settings,"05","Testing","Ensure quality, performance and security."],[Rocket,"06","Launch","Go live and provide training and support."]] as const;
-const technologies = [technologyStack[0],technologyStack[1],technologyStack[2],technologyStack[3],technologyStack[4],{name:"HTML5",src:htmlLogo.url},{name:"CSS3",src:cssLogo.url},{name:"JavaScript",src:javascriptLogo.url},{name:"PHP",src:phpLogo.url},{name:"Laravel",src:laravelLogo.url},{name:"MySQL",src:mysqlLogo.url}].filter((item): item is { name: string; src: string } => Boolean(item));
+const technologies = webDevelopmentTechnologies;
 const projects = [[deliveredProjects.corporate,"Nexa Interiors","Corporate Website","Interior & Furniture Brand"],[deliveredProjects.business,"The Organic Store","eCommerce Website","Organic Food & Lifestyle"],[deliveredProjects.professional,"EduLearn","Educational Website","Learning Platform"],[deliveredProjects.realEstate,"BuildCraft","Business Website","Construction & Real Estate"],[deliveredProjects.healthcare,"FitLife","Service Website","Health & Fitness"]] as const;
 
 function Eyebrow({ children }: { children: ReactNode }) { return <p className="flex items-center gap-2 text-[8px] font-extrabold uppercase tracking-[0.17em] text-primary"><span className="h-0.5 w-8 bg-gold" />{children}</p>; }
