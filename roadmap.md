@@ -13,6 +13,9 @@
 
 ## Pending (waiting on user)
 
+- Refine the B2B Ecommerce page to match the supplied reference precisely across desktop, tablet, and phone
+- Add the B2B project contact form and deliver submissions to info@webgramitsolution.com; blocked until the sender domain is configured
+- Build the remaining five Solutions pages after their promised reference screenshots are uploaded
 - Real office address to replace "A-123, Sector 63, Noida" on /contact
 - Real social media links (LinkedIn, Instagram, Facebook, WhatsApp) for footer
 - Video link for "Watch Video" button on /about
