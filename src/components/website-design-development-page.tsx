@@ -24,12 +24,6 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import industryManufacturing from "@/assets/b2b-industry-1.jpg";
-import industryArchitecture from "@/assets/b2b-industry-2.jpg";
-import industryRealEstate from "@/assets/b2b-industry-3.jpg";
-import industryRetail from "@/assets/b2b-industry-4.jpg";
-import industryEducation from "@/assets/b2b-industry-5.jpg";
-import industryHealthcare from "@/assets/b2b-industry-6.jpg";
 import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
 import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
 import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
@@ -45,7 +39,7 @@ import professionalWebsites from "@/assets/professional-websites.png.asset.json"
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { technologyStack } from "@/lib/site-images";
+import { industryImages, technologyStack } from "@/lib/site-images";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
@@ -80,13 +74,13 @@ const process = [
 ] as const;
 
 const industries = [
-  [industryManufacturing, "Manufacturing"],
-  [industryArchitecture, "Architecture & Interior"],
-  [industryRealEstate, "Real Estate"],
-  [industryRetail, "Retail & Lifestyle"],
-  [industryEducation, "Education"],
-  [industryHealthcare, "Healthcare"],
-  [projectCorporate, "Finance & Consulting"],
+  [industryImages.manufacturing, "Manufacturing"],
+  [industryImages.architecture, "Architecture & Interior"],
+  [industryImages.realEstate, "Real Estate"],
+  [industryImages.retail, "Retail & Lifestyle"],
+  [industryImages.education, "Education"],
+  [industryImages.healthcare, "Healthcare"],
+  [industryImages.finance, "Finance & Consulting"],
 ] as const;
 
 const technologies = [
@@ -107,7 +101,7 @@ const projects = [
   [projectFurniture, "Business Website", "Interior & Furniture Brand"],
   [projectProfessional, "Professional Website", "Consultant & Coach"],
   [websiteHero, "Real Estate Website", "Property Developer"],
-  [industryHealthcare, "Healthcare Website", "Hospital & Clinic"],
+  [industryImages.healthcare, "Healthcare Website", "Hospital & Clinic"],
 ] as const;
 
 function Eyebrow({ children }: { children: ReactNode }) {
