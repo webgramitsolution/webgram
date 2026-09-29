@@ -230,6 +230,6 @@ export const menuSections: Record<SectionKey, MenuSection> = {
   },
 };
 
-export function getSubpage(section: string, slug: string): Subpage | undefined {
-  return menuSections[section]?.pages[slug];
+export function getSubpage(section: SectionKey, slug: string): Subpage | undefined {
+  return menuSections[section].pages[slug];
 }
