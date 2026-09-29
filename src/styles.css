@@ -204,6 +204,34 @@
   margin-inline: auto;
 }
 
+@utility ecom-shell {
+  width: min(100% - 2rem, 1150px);
+  margin-inline: auto;
+}
+
+@utility ecom-title {
+  color: var(--navy);
+  font-size: 1.5rem;
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+@utility ecom-copy {
+  color: var(--muted-foreground);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+@utility ecom-eyebrow {
+  color: var(--gold);
+  font-size: 0.55rem;
+  line-height: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
 @utility section-title {
   color: var(--navy);
   font-size: 1.35rem;
@@ -281,6 +309,16 @@
   overflow: hidden;
   background: var(--navy);
   color: var(--on-dark);
+}
+
+.ecom-hero { height: 560px; }
+.ecom-hero-shade { background: linear-gradient(90deg, var(--navy) 0%, color-mix(in oklab, var(--navy) 96%, transparent) 38%, color-mix(in oklab, var(--navy) 18%, transparent) 67%, transparent 100%); }
+.ecom-scroll { scrollbar-width: none; }
+.ecom-scroll::-webkit-scrollbar { display: none; }
+.ecom-waves { background: radial-gradient(ellipse at 70% 130%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 54%), linear-gradient(125deg, transparent 35%, color-mix(in oklab, var(--primary) 18%, transparent) 36%, transparent 37%, transparent 51%, color-mix(in oklab, var(--gold) 14%, transparent) 52%, transparent 53%); }
+
+@media (min-width: 768px) {
+  .ecom-hero { height: 440px; }
 }
 
 .hero-media { position: absolute; inset: 0; }
@@ -411,6 +449,8 @@
 
 
 @media (max-width: 767px) {
+  .ecom-hero > img { object-position: 62% center; opacity: 0.42; }
+  .ecom-hero-shade { background: color-mix(in oklab, var(--navy) 86%, transparent); }
   .bg-hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--navy) 99%, transparent), color-mix(in oklab, var(--navy) 95%, transparent) 62%, color-mix(in oklab, var(--navy) 86%, transparent)); }
   .industry-card { min-height: 145px; }
   .logo-scroll,
