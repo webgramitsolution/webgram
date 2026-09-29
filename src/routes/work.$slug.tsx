@@ -18,6 +18,7 @@ export const Route = createFileRoute("/work/$slug")({
       { property: "og:title", content: `${loaderData?.title ?? "Work"} | Webgram IT Solution` },
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: WorkPage,
