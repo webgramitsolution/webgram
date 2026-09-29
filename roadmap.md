@@ -28,3 +28,6 @@
 - [x] Add the "A Creative & Collaborative Environment" workspace section with the three ImageKit photos.
 - [x] Rebuild the single homepage as the supplied contact-page reference with the new banner and advisor image.
 - [x] Add the contact form, direct contact details, embedded map, social row, business hours, FAQs, and final CTA.
+- [x] Remove the header search and project button from the contact page.
+- [x] Match the direct-contact card proportions, image placement, and expert callout to the supplied close-up reference.
+- [x] Increase the FAQ heading, question, and answer text sizes.
