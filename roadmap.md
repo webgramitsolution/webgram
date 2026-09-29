@@ -15,6 +15,7 @@
 - Corrected the Website Design page with six supplied website images, reference-matched colored benefit icons, connected six-step process, complete technology row, and improved delivered-project cards
 - Swapped the seven "Websites for Every Industry" photos to the supplied ImageKit images, each with its industry name as alt text
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
+- Built `/services/website-development` as a dedicated reference-led page using the supplied hero and complete page flow
 
 ## Pending (waiting on user)
 

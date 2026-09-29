@@ -104,3 +104,8 @@ export const deliveredProjects = {
   realEstate: "https://ik.imagekit.io/home1/Real%20Estate%20Website.png",
   healthcare: "https://ik.imagekit.io/home1/Healthcare%20Website.png",
 } as const;
+
+/** Supplied responsive-device banner for the Website Development service page. */
+export const websiteDevelopmentImages = {
+  hero: "https://ik.imagekit.io/home1/Website%20Development?updatedAt=1790703469216",
+} as const;
