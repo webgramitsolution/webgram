@@ -8,9 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { contactImages } from "@/lib/site-images";
 import ctaImage from "@/assets/cta-mountain.jpg";
-import webgramLogo from "@/assets/webgram-logo.png.asset.json";
+import { SiteHeader } from "@/components/site-header";
+import { ProjectAdvisor } from "@/components/project-advisor";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [
     { title: "Contact Webgram IT Solution | Start Your Project" },
     { name: "description", content: "Contact Webgram IT Solution for website, ecommerce and digital growth services in Delhi NCR." },
@@ -24,65 +25,6 @@ export const Route = createFileRoute("/")({
   component: ContactPage,
 });
 
-function Logo() {
-  return (
-    <a href="#top" className="flex shrink-0 items-center" aria-label="Webgram IT Solution home">
-      <img src={webgramLogo.url} alt="Webgram IT Solution" width={720} height={323} className="h-[38px] w-auto object-contain sm:h-[44px]" />
-    </a>
-  );
-}
-
-const menu: Array<[string, string[]]> = [
-  ["Home", []],
-  ["Solutions", ["Ecommerce Development", "B2B Commerce", "Marketplace Development"]],
-  ["Services", ["Website Development", "SEO", "Google Ads", "Social Media Ads"]],
-  ["Industries", ["Manufacturing", "Retail", "Wholesale", "Furniture"]],
-  ["Case Studies", []],
-  ["Resources", ["Blog", "Guides", "FAQs", "Insights"]],
-  ["Company", ["About Us", "Careers", "Contact Us"]],
-];
-
-function Header() {
-
-  return (
-    <header className="relative z-50 border-b border-on-dark/60 bg-navy text-on-dark">
-      <div className="hidden h-[31px] border-b border-on-dark/20 md:block">
-        <div className="header-shell flex h-full items-center justify-between text-[10px] font-medium uppercase">
-          <div className="flex h-full items-center">
-            <span className="border-x border-on-dark/15 px-3">English⌄</span>
-            <span className="border-r border-on-dark/15 px-3">Country⌄</span>
-            <strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong>
-          </div>
-          <div className="flex h-full items-center">
-            <span className="flex items-center gap-3 border-r border-on-dark/15 px-3" aria-label="Social channels">
-              <Facebook className="h-3.5 w-3.5" /><span className="font-bold">X</span><span className="font-bold">p</span><Linkedin className="h-3.5 w-3.5" /><Send className="h-3.5 w-3.5" />
-            </span>
-            {['Newsletter', 'Contact Us', 'FAQs'].map((item) => <span key={item} className="flex h-full items-center border-r border-on-dark/15 px-3">{item}</span>)}
-          </div>
-        </div>
-      </div>
-      <div className="header-shell flex h-[76px] items-center justify-between gap-5">
-        <Logo />
-        <nav className="hidden h-full items-center gap-5 md:flex" aria-label="Primary navigation">
-          {menu.map(([label, items]) => (
-            <div key={label} className="group relative flex h-full items-center">
-              <a href={items.length ? "#top" : "#top"} className="flex items-center gap-1 whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75">
-                {label}{items.length > 0 && <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />}
-              </a>
-              {items.length > 0 && (
-                <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-1 rounded-b-md border border-border bg-card py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                  {items.map((item) => (
-                    <li key={item}>{item === "About Us" ? <Link to="/about" className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</Link> : <a href={item === "FAQs" ? "#faq" : "#top"} className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</a>}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
-}
 
 function ContactHero() {
   const promises = [[MessageCircle, "Discuss", "Your Idea"], [FileText, "Get a", "Free Quote"], [Users, "Expert", "Consultation"], [Rocket, "Start", "Your Project"]] as const;
@@ -171,5 +113,5 @@ function FinalCta() {
 }
 
 function ContactPage() {
-  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><Header /><ContactHero /><ContactMain /><Location /><ConnectHours /><Faq /><FinalCta /></main>;
+  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><SiteHeader /><ContactHero /><ContactMain /><Location /><ConnectHours /><Faq /><FinalCta /></main>;
 }
