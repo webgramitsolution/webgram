@@ -278,7 +278,7 @@ function DirectContact() {
           </div>
           <Button
             asChild
-            className="mt-3.5 h-10 w-full bg-navy text-[11px] font-bold text-on-dark hover:bg-navy/90"
+            className="mt-3 h-10 w-full gap-1 bg-navy px-2 text-[11px] font-bold text-on-dark hover:bg-navy/90"
           >
             <a href="tel:+917551120242">
               Schedule a Call <ArrowRight />
