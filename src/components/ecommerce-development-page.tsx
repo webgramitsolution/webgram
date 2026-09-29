@@ -538,14 +538,15 @@ export function EcommerceDevelopmentPage() {
         <div className="ecom-shell relative grid items-center gap-8 md:grid-cols-[1fr_1.15fr]">
           <div>
             <Eyebrow>Ready to Build Your Ecommerce Store?</Eyebrow>
-            <h2 className="mt-2 text-[29px] font-extrabold leading-[1.02] sm:text-[34px]">
-              Let’s Turn Your Ecommerce
-              <br />
-              Idea into Reality.
+            <h2 className="mt-2 text-[27px] font-bold leading-[1.08] md:text-[25px] lg:text-[30px]">
+              <span className="block whitespace-nowrap">Let’s Turn Your Ecommerce</span>
+              <span className="block">Idea into Reality.</span>
             </h2>
-            <p className="mt-3 max-w-[510px] text-[10px] leading-4 text-on-dark/85">
-              Get a free consultation and let our experts help you build a high-performing ecommerce
-              website for your business.
+            <p className="mt-2.5 max-w-[500px] text-[10px] leading-[1.45] text-on-dark/85">
+              <span className="block sm:whitespace-nowrap">
+                Get a free consultation and let our experts help you build a high-performing
+              </span>
+              <span className="block">ecommerce website for your business.</span>
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
