@@ -24,9 +24,6 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
-import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
-import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
 import businessWebsites from "@/assets/business-websites.png.asset.json";
 import corporateWebsites from "@/assets/corporate-websites.png.asset.json";
 import educationalWebsite from "@/assets/educational-website.png.asset.json";
