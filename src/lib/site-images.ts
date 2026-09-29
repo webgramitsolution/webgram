@@ -109,3 +109,25 @@ export const deliveredProjects = {
 export const websiteDevelopmentImages = {
   hero: "https://ik.imagekit.io/home1/Website%20Development?updatedAt=1790703469216",
 } as const;
+
+/**
+ * "Tools & Technologies We Use" logos on the Website Development service page,
+ * in the supplied order. URLs stay exactly as given (percent-encoded spaces
+ * only); the logo file name doubles as the alt text.
+ */
+export const webDevelopmentTechnologies = [
+  { name: "CloudFlare", src: "https://ik.imagekit.io/home1/CloudFlare" },
+  { name: "JavaScript", src: "https://ik.imagekit.io/home1/JavaScript.png" },
+  { name: "Python", src: "https://ik.imagekit.io/home1/Python.png" },
+  { name: "MongoDB", src: "https://ik.imagekit.io/home1/MongoDB.png" },
+  { name: "Yoast SEO", src: "https://ik.imagekit.io/home1/Yoast%20SEO.png" },
+  { name: "RankMath", src: "https://ik.imagekit.io/home1/RankMath.png" },
+  { name: "WP Bakery", src: "https://ik.imagekit.io/home1/WP%20Bakery.png" },
+  { name: "Elementor", src: "https://ik.imagekit.io/home1/Elementor.png" },
+  { name: "ACF", src: "https://ik.imagekit.io/home1/ACF%202.png" },
+  { name: "WooCommerce", src: "https://ik.imagekit.io/home1/WooCommerce.png" },
+  { name: "Java", src: "https://ik.imagekit.io/home1/Java.png" },
+  { name: "MySQL", src: "https://ik.imagekit.io/home1/MySQL.png" },
+  { name: "PHP", src: "https://ik.imagekit.io/home1/PHP.png" },
+  { name: "WordPress", src: "https://ik.imagekit.io/home1/WordPress.png" },
+] as const;

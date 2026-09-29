@@ -10,7 +10,7 @@ import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { deliveredProjects, technologyStack, websiteDevelopmentImages } from "@/lib/site-images";
+import { deliveredProjects, technologyStack, webDevelopmentTechnologies, websiteDevelopmentImages } from "@/lib/site-images";
 
 const heroBenefits = [[Paintbrush,"Custom","Designs"],[Search,"SEO","Optimized"],[MonitorSmartphone,"Mobile","Responsive"],[Settings,"Easy","Management"],[ShieldCheck,"Secure &","Scalable"],[Headphones,"Ongoing","Support"]] as const;
 const strengths = [
