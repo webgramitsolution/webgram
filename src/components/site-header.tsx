@@ -144,7 +144,9 @@ export function SiteHeader() {
                 </button>
               )}
               {items && (
-                <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-1 rounded-b-md border border-border bg-card py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                <ul
+                  className={`invisible absolute top-full min-w-[210px] translate-y-1 rounded-b-md border border-border bg-card py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${label === "Resources" ? "right-0" : "left-0"}`}
+                >
                   {items.map(([item, itemTarget]) => (
                     <li key={item}>
                       <Link

@@ -16,4 +16,5 @@
 - Subpage content lives in `src/lib/menu-pages.ts` (menuSections); routes render `src/components/subpage.tsx` (SubpageTemplate) and throw notFound() on unknown slugs. Why: one clean template instead of 25 duplicated page files.
 - AI project advisor: `project-advisor.functions.ts` (server fn) → `.server.ts` (Lovable AI Gateway, Responses API, gpt-6-astra). Why: keeps the API key server-side.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
+- Hero sizing: every current and future page uses a 348px hero from tablet through desktop; phone heroes may be taller for stacked copy. Why: all non-phone devices must keep equal visual proportions.
 - Typography: Manrope is global; reusable menu subpages use the shared `page-*`/`content-*` scale, while Home/About/Contact retain their approved reference-specific sizes. Why: future pages stay consistent without changing approved visual replicas.

@@ -74,7 +74,7 @@ function AboutHero() {
     ["5+", "Years of Experience"],
   ];
   return (
-    <section className="relative min-h-[520px] overflow-hidden bg-navy md:aspect-[2170/725] md:min-h-[420px]">
+    <section className="relative min-h-[520px] overflow-hidden bg-navy md:h-[348px] md:min-h-[348px]">
       <img
         src={aboutImages.banner}
         alt="Webgram IT Solution office reception"
