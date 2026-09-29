@@ -14,20 +14,20 @@ import { deliveredProjects, technologyStack, websiteDevelopmentImages } from "@/
 
 const heroBenefits = [[Paintbrush,"Custom","Designs"],[Search,"SEO","Optimized"],[MonitorSmartphone,"Mobile","Responsive"],[Settings,"Easy","Management"],[ShieldCheck,"Secure &","Scalable"],[Headphones,"Ongoing","Support"]] as const;
 const strengths = [
-  { image: technologyStack[3]?.src, title: "Custom & Unique Designs", text: "Tailored to your brand, industry and business goals." },
-  { icon: Rocket, title: "High Performance", text: "Optimized for speed, SEO and better conversions." },
-  { icon: Settings, title: "Easy to Manage", text: "User-friendly admin panel to update content anytime." },
-  { icon: ShieldCheck, title: "Secure & Reliable", text: "Built with security best practices and regular updates." },
+  { icon: undefined, image: technologyStack[3]?.src, title: "Custom & Unique Designs", text: "Tailored to your brand, industry and business goals." },
+  { icon: Rocket, image: undefined, title: "High Performance", text: "Optimized for speed, SEO and better conversions." },
+  { icon: Settings, image: undefined, title: "Easy to Manage", text: "User-friendly admin panel to update content anytime." },
+  { icon: ShieldCheck, image: undefined, title: "Secure & Reliable", text: "Built with security best practices and regular updates." },
 ] as const;
 const services = [
-  { icon: BriefcaseBusiness, title: "Corporate Websites", text: "Professional websites for companies, startups and brands.", tone: "bg-primary-soft text-primary" },
-  { icon: Building2, title: "Business Websites", text: "Modern websites to showcase your business and services.", tone: "bg-primary-soft text-primary" },
-  { icon: ShoppingCart, title: "eCommerce Websites", text: "WooCommerce stores with advanced features.", tone: "bg-warning-soft text-warning" },
-  { icon: Code2, title: "Custom WordPress Development", text: "Tailored functionality, custom plugins and unique solutions.", tone: "bg-primary-soft text-primary" },
-  { image: technologyStack[4]?.src, title: "WooCommerce Development", text: "Online stores with payments, shipping and advanced features.", tone: "bg-violet-soft text-violet" },
-  { icon: Paintbrush, title: "Theme Customization", text: "Customize existing themes or create new ones.", tone: "bg-primary-soft text-primary" },
-  { icon: Puzzle, title: "Plugin Development", text: "Custom plugins to extend functionality.", tone: "bg-primary-soft text-primary" },
-  { icon: RefreshCw, title: "Website Redesign", text: "Modern, refreshed designs to improve performance and UX.", tone: "bg-primary-soft text-primary" },
+  { icon: BriefcaseBusiness, image: undefined, title: "Corporate Websites", text: "Professional websites for companies, startups and brands.", tone: "bg-primary-soft text-primary" },
+  { icon: Building2, image: undefined, title: "Business Websites", text: "Modern websites to showcase your business and services.", tone: "bg-primary-soft text-primary" },
+  { icon: ShoppingCart, image: undefined, title: "eCommerce Websites", text: "WooCommerce stores with advanced features.", tone: "bg-warning-soft text-warning" },
+  { icon: Code2, image: undefined, title: "Custom WordPress Development", text: "Tailored functionality, custom plugins and unique solutions.", tone: "bg-primary-soft text-primary" },
+  { icon: undefined, image: technologyStack[4]?.src, title: "WooCommerce Development", text: "Online stores with payments, shipping and advanced features.", tone: "bg-violet-soft text-violet" },
+  { icon: Paintbrush, image: undefined, title: "Theme Customization", text: "Customize existing themes or create new ones.", tone: "bg-primary-soft text-primary" },
+  { icon: Puzzle, image: undefined, title: "Plugin Development", text: "Custom plugins to extend functionality.", tone: "bg-primary-soft text-primary" },
+  { icon: RefreshCw, image: undefined, title: "Website Redesign", text: "Modern, refreshed designs to improve performance and UX.", tone: "bg-primary-soft text-primary" },
 ] as const;
 const process = [[Search,"01","Discovery","Understand your goals, requirements and target audience."],[FileText,"02","Strategy","Plan the design, features and technology."],[Paintbrush,"03","Design","Create modern and user-friendly designs."],[Code2,"04","Development","Build with clean code, custom features and SEO best practices."],[Settings,"05","Testing","Ensure quality, performance and security."],[Rocket,"06","Launch","Go live and provide training and support."]] as const;
 const technologies = [technologyStack[0],technologyStack[1],technologyStack[2],technologyStack[3],technologyStack[4],{name:"HTML5",src:htmlLogo.url},{name:"CSS3",src:cssLogo.url},{name:"JavaScript",src:javascriptLogo.url},{name:"PHP",src:phpLogo.url},{name:"Laravel",src:laravelLogo.url},{name:"MySQL",src:mysqlLogo.url}].filter((item): item is { name: string; src: string } => Boolean(item));
