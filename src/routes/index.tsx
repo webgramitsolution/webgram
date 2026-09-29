@@ -187,7 +187,7 @@ function Hero() {
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
           <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">Digital Commerce & Technology Partner</p>
-          <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">Digital Commerce,<br />Engineered for <span className="text-gold">Growth.</span></h1>
+          <h1 className="max-w-[500px] text-[31px] font-semibold leading-[1.06] tracking-normal sm:text-[37px] lg:text-[41px]">Digital Commerce,<br />Engineered for <span className="text-gold">Growth.</span></h1>
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">We build high-performance B2B, B2C, marketplace and custom commerce platforms designed around your business.</p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button size="lg" className="h-10 bg-gold px-5 text-[11px] font-semibold text-navy hover:bg-gold/90">Start Your Project <ArrowRight /></Button>
