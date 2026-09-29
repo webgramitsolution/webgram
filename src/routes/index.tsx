@@ -112,7 +112,7 @@ function ContactForm() {
     <label className="contact-field">Email Address *<Input required type="email" placeholder="Enter your email" className={fieldClass} /></label>
     <label className="contact-field">Phone Number *
       <div className="flex items-stretch overflow-hidden rounded-md border border-input bg-card">
-        <span className="flex shrink-0 items-center gap-1 border-r border-input px-2.5 text-[11px] font-semibold text-navy" aria-hidden="true">🇮🇳 +91 <ChevronDown className="h-3 w-3 text-muted-foreground" /></span>
+        <span className="flex shrink-0 items-center gap-1.5 border-r border-input px-2.5 text-[11px] font-semibold text-navy" aria-hidden="true"><span className="h-3.5 w-5 rounded-[2px] shadow-[inset_0_0_0_1px_rgb(0_0_0/8%)]" style={{ background: "linear-gradient(180deg, #FF9933 0 33.4%, #FFFFFF 33.4% 66.7%, #138808 66.7% 100%)" }} />+91 <ChevronDown className="h-3 w-3 text-muted-foreground" /></span>
         <Input required type="tel" placeholder="Enter your phone number" className="h-10 min-w-0 rounded-none border-0 bg-card text-[11px] shadow-none focus-visible:ring-0" />
       </div>
     </label>
@@ -136,7 +136,7 @@ function DirectContact() {
 }
 
 function ContactMain() {
-  return <section id="contact" className="bg-background py-6 md:py-8"><div className="page-shell grid items-stretch gap-5 md:grid-cols-[.94fr_1.06fr]">
+  return <section id="contact" className="bg-background py-6 md:py-8"><div className="page-shell grid items-stretch gap-5 lg:grid-cols-[.94fr_1.06fr]">
     <div className="rounded-lg border border-border/80 bg-card p-5 shadow-card sm:p-6 lg:p-7"><p className="eyebrow flex items-center gap-3 text-muted-foreground"><span className="h-px w-8 bg-gold" />Contact Us</p><h2 className="mt-2.5 text-[27px] font-extrabold leading-tight text-navy sm:text-[29px]">Send Us a Message</h2><p className="mb-5 mt-2 max-w-[430px] text-[12px] leading-5 text-muted-foreground">Tell us about your project, and our team will get back to you within 24 hours.</p><ContactForm /></div>
     <DirectContact />
   </div></section>;
