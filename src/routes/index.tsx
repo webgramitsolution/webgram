@@ -91,7 +91,8 @@ function ContactHero() {
       <img src={contactImages.banner} alt="Webgram IT Solution reception" width={2170} height={725} className="absolute inset-0 h-full w-full object-cover object-right" />
       <div className="page-shell relative z-10 flex h-full items-center">
         <div className="max-w-[570px] py-6 text-on-dark">
-          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-gold">Get in Touch</p>
+          <nav className="text-[9px] text-on-dark/80" aria-label="Breadcrumb"><Link to="/" className="hover:text-gold">Home</Link> <span className="mx-2">›</span> Contact Us</nav>
+          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.24em] text-gold">Get in Touch</p>
           <h1 className="mt-2 text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]">Let’s Build Something<br />Great <span className="text-gold">Together.</span></h1>
           <p className="mt-4 max-w-[540px] text-[13px] leading-5 text-on-dark/90">Have a project in mind? We’re here to help you turn your ideas into a powerful digital commerce experience.</p>
           <div className="mt-6 grid max-w-[520px] grid-cols-4 divide-x divide-on-dark/20">
