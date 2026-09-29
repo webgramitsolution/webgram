@@ -30,7 +30,7 @@ export function ProjectAdvisor({ needs, projectType, budget }: Props) {
   }
 
   return (
-    <div className="col-span-2 rounded-md border border-primary/20 bg-sky-soft p-3.5">
+    <div className="col-span-2 rounded-md border border-primary/20 bg-sky-soft px-3 py-2">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="flex items-center gap-2 text-[11px] font-semibold text-navy">
           <Sparkles className="h-4 w-4 text-primary" />
@@ -40,16 +40,13 @@ export function ProjectAdvisor({ needs, projectType, budget }: Props) {
           type="button"
           onClick={handleClick}
           disabled={loading || tooShort}
-          className="h-9 bg-navy px-4 text-[11px] font-bold text-on-dark hover:bg-navy/90"
+          title={tooShort ? "Write a few lines about your project first" : undefined}
+          className="h-8 bg-navy px-3.5 text-[11px] font-bold text-on-dark hover:bg-navy/90"
         >
           {loading ? <Loader2 className="animate-spin" /> : <Sparkles />}
           {loading ? "Thinking..." : "Get AI Suggestions"}
         </Button>
       </div>
-      {tooShort && !advice && (
-        <p className="mt-2 text-[10px] text-muted-foreground">
-          Write a few lines about your project in the message box first.
-        </p>
       )}
       {error && (
         <p role="alert" className="mt-2 text-[11px] font-medium text-destructive">

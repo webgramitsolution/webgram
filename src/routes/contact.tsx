@@ -122,10 +122,7 @@ function ContactForm() {
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
   return (
-    <form
-      className="grid grid-cols-2 gap-x-3 gap-y-3"
-      onSubmit={(event) => event.preventDefault()}
-    >
+    <form className="grid grid-cols-2 gap-x-3 gap-y-3" onSubmit={(event) => event.preventDefault()}>
       <label className="contact-field">
         Your Name *<Input required placeholder="Enter your name" className={fieldClass} />
       </label>
@@ -219,7 +216,13 @@ function ContactForm() {
 function DirectContact() {
   const details = [
     [Phone, "Call Us", "+91 7551120242", "Mon - Sat, 9:00 AM - 7:00 PM", "text-primary"],
-    [Mail, "Email Us", "info@webgramitsolution.com", "We’ll respond within 24 hours", "text-primary"],
+    [
+      Mail,
+      "Email Us",
+      "info@webgramitsolution.com",
+      "We’ll respond within 24 hours",
+      "text-primary",
+    ],
     [
       MessageCircle,
       "Chat on WhatsApp",
@@ -394,12 +397,16 @@ function ConnectHours() {
                 key={title}
                 className="flex items-center gap-2.5 text-navy hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground ${tone}`}>
+                <span
+                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground ${tone}`}
+                >
                   <Icon className="h-5 w-5" />
                 </span>
                 <span>
                   <strong className="block whitespace-nowrap text-[12px]">{title}</strong>
-                  <small className="block whitespace-nowrap text-[10.5px] text-muted-foreground">{sub}</small>
+                  <small className="block whitespace-nowrap text-[10.5px] text-muted-foreground">
+                    {sub}
+                  </small>
                 </span>
               </a>
             ))}
@@ -451,7 +458,9 @@ function Faq() {
               <span className="h-px w-8 bg-gold" />
               Frequently Asked Questions
             </p>
-            <h2 className="mt-2 text-[27px] font-extrabold text-navy sm:text-[29px]">Quick Answers</h2>
+            <h2 className="mt-2 text-[27px] font-extrabold text-navy sm:text-[29px]">
+              Quick Answers
+            </h2>
             <p className="text-[12px] text-muted-foreground">
               Find answers to common questions about working with Webgram.
             </p>
@@ -471,7 +480,11 @@ function Faq() {
               className="rounded-lg border border-border bg-card px-4 shadow-card"
             >
               {column.map((question) => (
-                <AccordionItem key={question} value={question} className="border-border last:border-b-0">
+                <AccordionItem
+                  key={question}
+                  value={question}
+                  className="border-border last:border-b-0"
+                >
                   <AccordionTrigger className="py-3 text-[12.5px] font-semibold text-navy hover:no-underline">
                     {question}
                   </AccordionTrigger>
