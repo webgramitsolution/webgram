@@ -11,7 +11,9 @@ export type MenuSection = {
   pages: Record<string, Subpage>;
 };
 
-export const menuSections: Record<string, MenuSection> = {
+export type SectionKey = "solutions" | "services" | "industries" | "work" | "resources";
+
+export const menuSections: Record<SectionKey, MenuSection> = {
   solutions: {
     label: "Solutions",
     base: "/solutions",
