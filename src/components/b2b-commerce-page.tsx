@@ -204,16 +204,19 @@ export function B2BCommercePage() {
         </div>
       </section>
 
-      <section className="bg-card py-6 md:py-7">
+      <section className="bg-sky-soft py-7 md:py-9">
         <div className="ecom-shell">
-          <SectionIntro title="Designed for Every B2B Stakeholder" description="A complete ecosystem for manufacturers, distributors, dealers and corporate buyers." />
-          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[200px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
+          <div className="text-center">
+            <h2 className="text-[20px] font-extrabold leading-[1.15] tracking-tight text-navy md:text-[26px]">Designed for Every B2B Stakeholder</h2>
+            <p className="mt-1.5 text-[11px] text-muted-foreground md:text-[12.5px]">A complete ecosystem for manufacturers, distributors, dealers and corporate buyers.</p>
+          </div>
+          <div className="ecom-scroll mt-5 grid grid-flow-col auto-cols-[200px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
             {stakeholders.map(([image, title, text]) => (
-              <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
-                <div className="relative aspect-[4/3] overflow-hidden">
+              <article key={title} className="overflow-hidden rounded-lg bg-card shadow-[0_2px_10px_-2px_color-mix(in_oklab,var(--navy)_12%,transparent)]">
+                <div className="relative aspect-[1/0.92] overflow-hidden">
                   <img src={image} alt={`${title} using the B2B commerce platform`} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-top" />
                 </div>
-                <div className="min-h-[74px] px-3 py-2.5"><h3 className="text-[12px] font-extrabold text-navy">{title}</h3><p className="mt-1 text-[10px] leading-[1.45] text-muted-foreground md:text-[10.5px]">{text}</p></div>
+                <div className="min-h-[78px] px-3 py-2.5"><h3 className="text-[12px] font-bold text-navy md:text-[12.5px]">{title}</h3><p className="mt-1 text-[10px] leading-[1.45] text-muted-foreground md:text-[10.5px]">{text}</p></div>
               </article>
             ))}
           </div>
