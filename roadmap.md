@@ -20,3 +20,7 @@
 - Real social media links (LinkedIn, Instagram, Facebook, WhatsApp) for footer
 - Video link for "Watch Video" button on /about
 - Real journey/timeline data for /about
+
+## Pending (waiting on user) - added Sep 29, 11:45 UTC
+
+- Hostinger SMTP: not possible from the app's edge backend (raw SMTP/TCP unsupported). Contact-form email will send via Lovable's managed email from notify.webgramitsolution.com once DNS TXT + NS records are verified; delivery lands in the Hostinger mailbox for info@webgramitsolution.com as normal.
