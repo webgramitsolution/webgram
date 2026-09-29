@@ -332,7 +332,7 @@ function Footer() {
             <nav key={title} aria-label={`${title} links`} className={columnClass(index)}>
               <h3 className="text-[12px] font-bold uppercase">{title}</h3>
               <ul className="mt-3 space-y-2">
-                {items.map((item) => <li key={item}><a href="#top" className="inline-block text-[11px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:text-on-dark focus-visible:underline">{item}</a></li>)}
+                {items.map((item) => <li key={item}><Link to={item === "About Us" ? "/about" : /contact|career|faq|support/i.test(item) ? "/contact" : "/"} className="inline-block text-[11px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:text-on-dark focus-visible:underline">{item}</Link></li>)}
               </ul>
             </nav>
           ))}

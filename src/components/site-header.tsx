@@ -8,7 +8,7 @@ type Target = { to: "/" | "/about" | "/contact"; hash?: string };
 
 const menu: Array<{ label: string; target?: Target; items?: Array<[string, Target]> }> = [
   { label: "Home", target: { to: "/" } },
-  { label: "Solutions", items: [["Ecommerce Development", { to: "/", hash: "services" }], ["B2B Commerce", { to: "/", hash: "services" }], ["Marketplace Development", { to: "/", hash: "services" }], ["Custom Commerce", { to: "/", hash: "services" }]] },
+  { label: "Solutions", items: [["Ecommerce Development", { to: "/", hash: "solutions" }], ["B2B Commerce", { to: "/", hash: "solutions" }], ["Marketplace Development", { to: "/", hash: "solutions" }], ["Custom Commerce", { to: "/", hash: "solutions" }]] },
   { label: "Services", items: [["Website Development", { to: "/", hash: "services" }], ["SEO", { to: "/contact" }], ["Google Ads", { to: "/contact" }], ["Social Media Ads", { to: "/contact" }]] },
   { label: "Industries", items: [["Manufacturing", { to: "/", hash: "industries" }], ["Retail", { to: "/", hash: "industries" }], ["Wholesale", { to: "/", hash: "industries" }], ["Furniture", { to: "/", hash: "industries" }]] },
   { label: "Case Studies", target: { to: "/", hash: "case-studies" } },
