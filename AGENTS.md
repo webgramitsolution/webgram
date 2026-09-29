@@ -11,4 +11,6 @@
 
 - Keep the single-page experience contact-focused, following the supplied contact reference section order and density.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
-- Keep the contact experience at `/` and the dedicated company story at `/about`; use TanStack links between them so both URLs remain directly accessible.
+
+- Pages: home at `/`, contact at `/contact`, about at `/about`, sharing `src/components/site-header.tsx` with TanStack `Link`s. Why: logo must always return to the real home page.
+- AI project advisor: `project-advisor.functions.ts` (server fn) → `.server.ts` (Lovable AI Gateway, Responses API, gpt-6-astra). Why: keeps the API key server-side.

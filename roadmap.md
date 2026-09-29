@@ -39,3 +39,4 @@
 - [x] Hide "Home › Contact Us" breadcrumb + "Get in Touch" eyebrow visually (sr-only, kept for SEO)
 - [x] Rebuild "Send Us a Message" as white card (border + shadow), tricolor flag +91 phone field, one-row agree-left / Send Message-right, larger fonts
 - [x] Rebuild "Get in Touch Directly": bigger contact values, colored icons (WhatsApp green), Talk to Our Experts overlay card over advisor image; tablet = desktop design, cards stack below lg
+- [x] Restore home page at /, contact at /contact, shared header; AI service suggestions in contact form
