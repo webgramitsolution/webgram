@@ -55,6 +55,12 @@ export const aboutImages = {
   ],
 } as const;
 
+/** Contact-page artwork supplied for the single-page contact experience. */
+export const contactImages = {
+  banner: `https://ik.imagekit.io/home1/About%20us%20page/cotact%20banner.png`,
+  advisor: `https://ik.imagekit.io/home1/About%20us%20page/about%20us%20page%20-%20coantact%20us%20image.png?updatedAt=1790588444335`,
+} as const;
+
 /** Technology grid — transparent square logos, listed in reference order. */
 export const technologyStack = [
   { name: "React.js", src: `${lib}/01_React.js.png` },

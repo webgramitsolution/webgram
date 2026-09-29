@@ -27,3 +27,5 @@
 - [x] Swap the hero banner to the About us banner image (ImageKit).
 - [x] Add the "Driven by Purpose, Focused on Your Growth" mission section with the ArchFacing image.
 - [x] Add the "A Creative & Collaborative Environment" workspace section with the three ImageKit photos.
+- [x] Rebuild the single homepage as the supplied contact-page reference with the new banner and advisor image.
+- [x] Add the contact form, direct contact details, embedded map, social row, business hours, FAQs, and final CTA.
