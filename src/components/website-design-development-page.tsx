@@ -97,11 +97,11 @@ const technologies = [
 ].filter((technology): technology is { name: string; src: string } => Boolean(technology));
 
 const projects = [
-  [projectCorporate, "Corporate Website", "Manufacturing Company"],
-  [projectFurniture, "Business Website", "Interior & Furniture Brand"],
-  [projectProfessional, "Professional Website", "Consultant & Coach"],
-  [websiteHero, "Real Estate Website", "Property Developer"],
-  [industryImages.healthcare, "Healthcare Website", "Hospital & Clinic"],
+  [deliveredProjects.corporate, "Corporate Website", "Manufacturing Company"],
+  [deliveredProjects.business, "Business Website", "Interior & Furniture Brand"],
+  [deliveredProjects.professional, "Professional Website", "Consultant & Coach"],
+  [deliveredProjects.realEstate, "Real Estate Website", "Property Developer"],
+  [deliveredProjects.healthcare, "Healthcare Website", "Hospital & Clinic"],
 ] as const;
 
 function Eyebrow({ children }: { children: ReactNode }) {
