@@ -6,7 +6,11 @@ import {
   BriefcaseBusiness,
   CheckCircle2,
   Code2,
+  Building2,
   Facebook,
+  Instagram,
+  Mail,
+  Phone,
   Headphones,
   Linkedin,
   Layers3,
@@ -333,6 +337,51 @@ function FinalCta() {
   );
 }
 
+const footerColumns: Array<[string, string[]]> = [
+  ["Solutions", ["Ecommerce", "B2B Commerce", "B2C Ecommerce", "Marketplace", "Custom Commerce"]],
+  ["Services", ["Website Development", "Website Design", "WordPress", "WooCommerce", "Website Maintenance"]],
+  ["Industries", ["Manufacturing", "Retail", "Wholesale", "Fashion", "Building Materials"]],
+  ["Work", ["Case Studies", "Portfolio", "Client Stories", "FAQ"]],
+  ["Resources", ["Blog", "Guides", "FAQs", "Insights"]],
+  ["Company", ["About Us", "Our Process", "Careers", "Contact"]],
+];
+
+function Footer() {
+  const socials: Array<[Icon, string]> = [[Linkedin, "LinkedIn"], [Instagram, "Instagram"], [Facebook, "Facebook"], [MessageCircle, "WhatsApp"]];
+  return (
+    <footer className="bg-navy text-on-dark">
+      <div className="page-shell grid gap-8 py-10 md:grid-cols-[1.5fr_repeat(6,1fr)] md:gap-5">
+        <div>
+          <img src={webgramLogo.url} alt="Webgram IT Solution" width={720} height={323} loading="lazy" className="h-[52px] w-auto object-contain" />
+          <p className="mt-4 max-w-[290px] text-[12px] leading-5 text-on-dark/90"><strong className="font-semibold text-on-dark">Webgram IT Solution</strong> excels in eCommerce website design, offering custom, user-friendly solutions to enhance online business success.</p>
+          <ul className="mt-4 space-y-2 text-[11px] text-on-dark/90">
+            <li className="flex gap-2"><Building2 className="h-4 w-4 shrink-0" />F3/780, Block C, Devli, Sangam Vihar, New Delhi, Delhi 110062</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0" /><a href="tel:+917551120242">+91 7551120242</a></li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0" /><a href="mailto:info@webgramitsolution.com">info@webgramitsolution.com</a></li>
+          </ul>
+        </div>
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:contents">
+          {footerColumns.map(([title, items]) => (
+            <div key={title}>
+              <h3 className="text-[12px] font-bold uppercase">{title}</h3>
+              <ul className="mt-3 space-y-2.5">
+                {items.map((item) => <li key={item}><a href="#top" className="text-[11px] text-on-dark/70 transition-colors hover:text-on-dark">{item}</a></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="page-shell flex flex-col items-center justify-between gap-3 pb-6 sm:flex-row">
+        <span className="text-[12px] font-bold uppercase">Connect</span>
+        <div className="flex gap-2">
+          {socials.map(([IconComponent, label]) => <a key={label} href="#top" aria-label={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 transition-colors hover:bg-on-dark/35"><IconComponent className="h-4 w-4" /></a>)}
+        </div>
+      </div>
+      <div className="border-t border-on-dark/15 py-5 text-center text-[12px] text-on-dark/90">© 2024 Webgram It Solution. All rights reserved</div>
+    </footer>
+  );
+}
+
 function HomePage() {
-  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><Header /><Hero /><TrustStrip /><Services /><Ecosystem /><WhyUs /><Industries /><CaseStudies /><Technology /><FinalCta /></main>;
+  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><Header /><Hero /><TrustStrip /><Services /><Ecosystem /><WhyUs /><Industries /><CaseStudies /><Technology /><FinalCta /><Footer /></main>;
 }
