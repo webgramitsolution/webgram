@@ -92,3 +92,15 @@ export const industryImages = {
   healthcare: "https://ik.imagekit.io/home1/Healthcare%20(2).png",
   finance: "https://ik.imagekit.io/home1/Finance%20&%20Consulting.png",
 } as const;
+
+/**
+ * "Websites We Have Delivered" project cards — one delivered-site photo per card.
+ * URLs stay exactly as supplied (percent-encoded spaces only).
+ */
+export const deliveredProjects = {
+  corporate: "https://ik.imagekit.io/home1/Corporate%20Website.png",
+  business: "https://ik.imagekit.io/home1/Business%20Website.png",
+  professional: "https://ik.imagekit.io/home1/Professional%20Website.png",
+  realEstate: "https://ik.imagekit.io/home1/Real%20Estate%20Website.png",
+  healthcare: "https://ik.imagekit.io/home1/Healthcare%20Website.png",
+} as const;

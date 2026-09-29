@@ -24,9 +24,6 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import projectCorporate from "@/assets/ecommerce-electronics-case.jpg";
-import projectFurniture from "@/assets/ecommerce-furniture-case.jpg";
-import projectProfessional from "@/assets/ecommerce-fashion-case.jpg";
 import businessWebsites from "@/assets/business-websites.png.asset.json";
 import corporateWebsites from "@/assets/corporate-websites.png.asset.json";
 import educationalWebsite from "@/assets/educational-website.png.asset.json";
@@ -39,7 +36,7 @@ import professionalWebsites from "@/assets/professional-websites.png.asset.json"
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { industryImages, technologyStack } from "@/lib/site-images";
+import { deliveredProjects, industryImages, technologyStack } from "@/lib/site-images";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
@@ -97,11 +94,11 @@ const technologies = [
 ].filter((technology): technology is { name: string; src: string } => Boolean(technology));
 
 const projects = [
-  [projectCorporate, "Corporate Website", "Manufacturing Company"],
-  [projectFurniture, "Business Website", "Interior & Furniture Brand"],
-  [projectProfessional, "Professional Website", "Consultant & Coach"],
-  [websiteHero, "Real Estate Website", "Property Developer"],
-  [industryImages.healthcare, "Healthcare Website", "Hospital & Clinic"],
+  [deliveredProjects.corporate, "Corporate Website", "Manufacturing Company"],
+  [deliveredProjects.business, "Business Website", "Interior & Furniture Brand"],
+  [deliveredProjects.professional, "Professional Website", "Consultant & Coach"],
+  [deliveredProjects.realEstate, "Real Estate Website", "Property Developer"],
+  [deliveredProjects.healthcare, "Healthcare Website", "Hospital & Clinic"],
 ] as const;
 
 function Eyebrow({ children }: { children: ReactNode }) {
