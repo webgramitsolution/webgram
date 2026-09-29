@@ -64,6 +64,11 @@
   --color-navy: var(--navy);
   --color-on-dark: var(--on-dark);
   --color-gold: var(--gold);
+  --color-linkedin: var(--linkedin);
+  --color-instagram: var(--instagram);
+  --color-facebook: var(--facebook);
+  --color-youtube: var(--youtube);
+  --color-whatsapp: var(--whatsapp);
   --color-sky: var(--sky);
   --color-sky-soft: var(--sky-soft);
   --color-primary-soft: var(--primary-soft);
@@ -118,6 +123,11 @@
   --navy: oklch(0.19 0.083 254);
   --on-dark: oklch(0.985 0.006 250);
   --gold: oklch(0.83 0.143 83);
+  --linkedin: oklch(0.52 0.13 245);
+  --instagram: oklch(0.6 0.22 0);
+  --facebook: oklch(0.55 0.19 260);
+  --youtube: oklch(0.6 0.24 27);
+  --whatsapp: oklch(0.7 0.18 150);
   --sky: oklch(0.77 0.145 235);
   --sky-soft: oklch(0.974 0.024 240);
   --primary-soft: oklch(0.94 0.045 252);
@@ -268,7 +278,7 @@
 
 .contact-direct {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(250px, 0.82fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
 }
 
 .contact-field {

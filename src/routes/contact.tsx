@@ -91,17 +91,17 @@ function ContactHero() {
             <br />
             Great <span className="text-gold">Together.</span>
           </h1>
-          <p className="mt-4 max-w-[540px] text-[13px] leading-5 text-on-dark/90">
-            Have a project in mind? We’re here to help you turn your ideas into a powerful digital
-            commerce experience.
+          <p className="mt-4 text-[13px] leading-[1.55] text-on-dark/90 sm:text-[14px]">
+            Have a project in mind? We’re here to help you turn your ideas
+            <br className="hidden sm:block" /> into a powerful digital commerce experience.
           </p>
           <div className="mt-6 grid max-w-[520px] grid-cols-4 divide-x divide-on-dark/20">
             {promises.map(([Icon, first, second]) => (
               <div key={second} className="px-3 first:pl-0">
-                <span className="grid h-10 w-10 place-items-center rounded-full border border-on-dark/35">
+                <span className="grid h-11 w-11 place-items-center rounded-full border border-on-dark/40">
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="mt-2 block text-[9px] leading-3">
+                <span className="mt-2 block text-[11px] leading-[1.3]">
                   {first}
                   <br />
                   {second}
@@ -115,17 +115,14 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-10 bg-card text-[11px] shadow-none placeholder:text-muted-foreground/60";
+const fieldClass = "h-9 bg-card text-[10.5px] shadow-none md:text-[10.5px] placeholder:text-muted-foreground/60";
 
 function ContactForm() {
   const [message, setMessage] = useState("");
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
   return (
-    <form
-      className="grid grid-cols-2 gap-x-3.5 gap-y-3.5"
-      onSubmit={(event) => event.preventDefault()}
-    >
+    <form className="grid grid-cols-2 gap-x-3 gap-y-3" onSubmit={(event) => event.preventDefault()}>
       <label className="contact-field">
         Your Name *<Input required placeholder="Enter your name" className={fieldClass} />
       </label>
@@ -153,7 +150,7 @@ function ContactForm() {
             required
             type="tel"
             placeholder="Enter your phone number"
-            className="h-10 min-w-0 rounded-none border-0 bg-card text-[11px] shadow-none focus-visible:ring-0"
+            className="h-9 min-w-0 rounded-none border-0 bg-card text-[10.5px] shadow-none focus-visible:ring-0 md:text-[10.5px]"
           />
         </div>
       </label>
@@ -194,7 +191,7 @@ function ContactForm() {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Tell us about your project requirements..."
-          className="min-h-[86px] bg-card text-[11px] shadow-none"
+          className="min-h-[60px] bg-card text-[10.5px] shadow-none md:text-[10.5px]"
         />
       </label>
       <ProjectAdvisor needs={message} projectType={projectType} budget={budget} />
@@ -208,7 +205,7 @@ function ContactForm() {
             </a>
           </span>
         </label>
-        <Button className="h-11 shrink-0 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">
+        <Button className="h-10 shrink-0 bg-gold px-7 text-[12px] font-bold text-navy hover:bg-gold/90">
           Send Message <ArrowRight />
         </Button>
       </div>
@@ -218,12 +215,18 @@ function ContactForm() {
 
 function DirectContact() {
   const details = [
-    [Phone, "Call Us", "+91 98765 43210", "Mon - Sat, 9:00 AM - 7:00 PM", "text-primary"],
-    [Mail, "Email Us", "info@webgram.in", "We’ll respond within 24 hours", "text-primary"],
+    [Phone, "Call Us", "+91 7551120242", "Mon - Sat, 9:00 AM - 7:00 PM", "text-primary"],
+    [
+      Mail,
+      "Email Us",
+      "info@webgramitsolution.com",
+      "We’ll respond within 24 hours",
+      "text-primary",
+    ],
     [
       MessageCircle,
       "Chat on WhatsApp",
-      "+91 98765 43210",
+      "+91 7551120242",
       "Quick support and project discussion",
       "text-success",
     ],
@@ -231,14 +234,14 @@ function DirectContact() {
   ] as const;
   return (
     <div className="contact-direct overflow-hidden rounded-lg bg-navy text-on-dark shadow-card">
-      <div className="p-5 sm:p-6 lg:py-7 lg:pl-7">
-        <h2 className="text-[23px] font-extrabold leading-tight sm:text-[25px]">
+      <div className="min-w-0 p-5 sm:p-6">
+        <h2 className="text-[21px] font-extrabold leading-tight lg:text-[22px]">
           Get in Touch Directly
         </h2>
         <p className="mt-1.5 text-[11px] text-on-dark/75">
           Prefer to speak with our team? Use the details below.
         </p>
-        <div className="mt-6 space-y-5">
+        <div className="mt-6 space-y-6">
           {details.map(([Icon, title, value, note, color]) => (
             <div key={title} className="grid grid-cols-[46px_1fr] items-center gap-3.5">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-card shadow-card">
@@ -246,7 +249,7 @@ function DirectContact() {
               </span>
               <div className="min-w-0">
                 <strong className="block text-[11px] font-semibold text-on-dark/85">{title}</strong>
-                <span className="mt-0.5 block text-[15px] font-bold">{value}</span>
+                <span className="mt-0.5 block break-all text-[13px] font-bold lg:whitespace-nowrap lg:break-normal lg:text-[14px]">{value}</span>
                 <small className="mt-0.5 block text-[10px] text-on-dark/60">{note}</small>
               </div>
             </div>
@@ -261,23 +264,23 @@ function DirectContact() {
           height={1695}
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
-        <div className="absolute inset-x-3.5 bottom-3.5 rounded-lg bg-card p-4 text-navy shadow-card sm:inset-x-4 sm:bottom-4">
+        <div className="absolute inset-x-3 bottom-3 rounded-lg bg-card p-3.5 text-navy shadow-card sm:inset-x-4 sm:bottom-4">
           <div className="flex items-start gap-3">
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary-soft">
               <Headphones className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <strong className="text-[12.5px] font-extrabold">Talk to Our Experts</strong>
-              <p className="mt-1 text-[10px] leading-4 text-muted-foreground">
+              <strong className="text-[12px] font-extrabold lg:whitespace-nowrap">Talk to Our Experts</strong>
+              <p className="mt-1 text-[9.5px] leading-[1.45] text-muted-foreground">
                 Get free consultation for your project requirements.
               </p>
             </div>
           </div>
           <Button
             asChild
-            className="mt-3.5 h-10 w-full bg-navy text-[11px] font-bold text-on-dark hover:bg-navy/90"
+            className="mt-3 h-10 w-full gap-1 bg-navy px-2 text-[11px] font-bold text-on-dark hover:bg-navy/90"
           >
-            <a href="tel:+919876543210">
+            <a href="tel:+917551120242">
               Schedule a Call <ArrowRight />
             </a>
           </Button>
@@ -290,16 +293,16 @@ function DirectContact() {
 function ContactMain() {
   return (
     <section id="contact" className="bg-background py-6 md:py-8">
-      <div className="page-shell grid items-stretch gap-5 lg:grid-cols-[.94fr_1.06fr]">
-        <div className="rounded-lg border border-border/80 bg-card p-5 shadow-card sm:p-6 lg:p-7">
+      <div className="page-shell grid items-stretch gap-4 md:grid-cols-[.94fr_1.06fr]">
+        <div className="rounded-lg border border-border/80 bg-card p-5 shadow-card sm:p-6">
           <p className="eyebrow flex items-center gap-3 text-muted-foreground">
             <span className="h-px w-8 bg-gold" />
             Contact Us
           </p>
-          <h2 className="mt-2.5 text-[27px] font-extrabold leading-tight text-navy sm:text-[29px]">
+          <h2 className="mt-2 text-[24px] font-extrabold leading-tight text-navy sm:text-[26px]">
             Send Us a Message
           </h2>
-          <p className="mb-5 mt-2 max-w-[430px] text-[12px] leading-5 text-muted-foreground">
+          <p className="mb-4 mt-1.5 max-w-[360px] text-[11.5px] leading-5 text-muted-foreground">
             Tell us about your project, and our team will get back to you within 24 hours.
           </p>
           <ContactForm />
@@ -313,7 +316,7 @@ function ContactMain() {
 function Location() {
   return (
     <section className="bg-card py-6 md:py-8">
-      <div className="page-shell grid gap-6 md:grid-cols-[.42fr_.58fr] md:gap-8">
+      <div className="page-shell grid items-center gap-6 md:grid-cols-[.46fr_.54fr] md:gap-8">
         <div className="py-1">
           <p className="eyebrow flex items-center gap-3 text-primary">
             <span className="h-px w-8 bg-gold" />
@@ -342,7 +345,7 @@ function Location() {
             </div>
           </div>
         </div>
-        <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-border/70 lg:min-h-[350px]">
+        <div className="relative min-h-[240px] overflow-hidden rounded-lg border border-border/70">
           <iframe
             title="Webgram IT Solution location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.3773900406163!2d77.2399091!3d28.4982913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1d73c888e6f%3A0x679aac9b7129eb22!2sWebgram%20IT%20Solution%20%7C%20Website%20%26%20eCommerce%20Developer%20Delhi!5e0!3m2!1sen!2sin!4v1790644608245!5m2!1sen!2sin"
@@ -371,11 +374,11 @@ function Location() {
 
 function ConnectHours() {
   const socials = [
-    [Linkedin, "LinkedIn", "Follow Us"],
-    [Instagram, "Instagram", "Follow Us"],
-    [Facebook, "Facebook", "Like Our Page"],
-    [Youtube, "YouTube", "Subscribe"],
-    [Mail, "Newsletter", "Get Updates"],
+    [Linkedin, "LinkedIn", "Follow Us", "bg-linkedin"],
+    [Instagram, "Instagram", "Follow Us", "bg-instagram"],
+    [Facebook, "Facebook", "Like Our Page", "bg-facebook"],
+    [Youtube, "YouTube", "Subscribe", "bg-youtube"],
+    [Mail, "Newsletter", "Get Updates", "bg-primary"],
   ] as const;
   return (
     <section className="bg-background py-5">
@@ -387,19 +390,23 @@ function ConnectHours() {
           <p className="mt-1 text-[12px] text-muted-foreground">
             Follow us on social media for latest updates, insights and project inspiration.
           </p>
-          <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-5">
-            {socials.map(([Icon, title, sub]) => (
+          <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-5">
+            {socials.map(([Icon, title, sub, tone]) => (
               <a
                 href="#top"
                 key={title}
                 className="flex items-center gap-2.5 text-navy hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-primary text-primary-foreground">
+                <span
+                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground ${tone}`}
+                >
                   <Icon className="h-5 w-5" />
                 </span>
                 <span>
-                  <strong className="block text-[11px]">{title}</strong>
-                  <small className="block text-[10px] text-muted-foreground">{sub}</small>
+                  <strong className="block whitespace-nowrap text-[12px]">{title}</strong>
+                  <small className="block whitespace-nowrap text-[10.5px] text-muted-foreground">
+                    {sub}
+                  </small>
                 </span>
               </a>
             ))}
@@ -412,16 +419,18 @@ function ConnectHours() {
           </p>
           <div className="mt-4 flex gap-4">
             <Clock3 className="h-11 w-11 shrink-0 text-primary" />
-            <dl className="grid flex-1 grid-cols-2 gap-y-1.5 text-[11px] text-muted-foreground">
+            <dl className="grid flex-1 grid-cols-2 gap-y-2 text-[12px] text-muted-foreground">
               <dt>Monday - Friday</dt>
               <dd className="text-right">9:00 AM - 7:00 PM</dd>
               <dt>Saturday</dt>
               <dd className="text-right">9:00 AM - 5:00 PM</dd>
               <dt>Sunday</dt>
-              <dd className="text-right">Closed</dd>
+              <dd className="text-right">
+                Closed
+                <small className="block text-[10px]">(Available on appointment)</small>
+              </dd>
             </dl>
           </div>
-          <p className="mt-3 text-[10px] text-muted-foreground">(Available on appointment)</p>
         </div>
       </div>
     </section>
@@ -449,8 +458,10 @@ function Faq() {
               <span className="h-px w-8 bg-gold" />
               Frequently Asked Questions
             </p>
-            <h2 className="mt-2 text-[27px] font-extrabold text-navy">Quick Answers</h2>
-            <p className="text-[11px] text-muted-foreground">
+            <h2 className="mt-2 text-[27px] font-extrabold text-navy sm:text-[29px]">
+              Quick Answers
+            </h2>
+            <p className="text-[12px] text-muted-foreground">
               Find answers to common questions about working with Webgram.
             </p>
           </div>
@@ -461,18 +472,30 @@ function Faq() {
             View All FAQs <ArrowRight />
           </Button>
         </div>
-        <Accordion type="multiple" className="mt-4 grid gap-x-5 md:grid-cols-2">
-          {faqs.map((question) => (
-            <AccordionItem key={question} value={question} className="border-border">
-              <AccordionTrigger className="py-3 text-[11px] font-semibold text-navy hover:no-underline">
-                {question}
-              </AccordionTrigger>
-              <AccordionContent className="text-[10px] leading-4 text-muted-foreground">
-                Contact our team for a detailed answer tailored to your business and project.
-              </AccordionContent>
-            </AccordionItem>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {[faqs.slice(0, 4), faqs.slice(4)].map((column, index) => (
+            <Accordion
+              key={index}
+              type="multiple"
+              className="rounded-lg border border-border bg-card px-4 shadow-card"
+            >
+              {column.map((question) => (
+                <AccordionItem
+                  key={question}
+                  value={question}
+                  className="border-border last:border-b-0"
+                >
+                  <AccordionTrigger className="py-3 text-[12.5px] font-semibold text-navy hover:no-underline">
+                    {question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[11.5px] leading-5 text-muted-foreground">
+                    Contact our team for a detailed answer tailored to your business and project.
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );
