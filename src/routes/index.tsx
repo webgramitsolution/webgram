@@ -8,6 +8,9 @@ import {
   ChevronDown,
   Code2,
   Building2,
+  Eye,
+  Gem,
+  Target,
   Facebook,
   Instagram,
   Mail,
@@ -26,7 +29,7 @@ import {
 import type { ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
-import { IMAGES, clientLogos, technologyStack } from "@/lib/site-images";
+import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import ctaImage from "@/assets/cta-mountain.jpg";
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
@@ -46,9 +49,9 @@ export const Route = createFileRoute("/")({
         content: "Build, sell and scale with a full-service digital commerce technology partner.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: IMAGES.hero },
+      { property: "og:image", content: aboutImages.banner },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: IMAGES.hero },
+      { name: "twitter:image", content: aboutImages.banner },
     ],
   }),
   component: HomePage,
@@ -181,7 +184,7 @@ function Hero() {
   return (
     <section id="top" className="hero-shell">
       <div className="hero-media">
-        <img src={IMAGES.hero} alt="Webgram ecommerce dashboards on a laptop and a mobile phone" width={2170} height={725} />
+        <img src={aboutImages.banner} alt="Webgram IT Solution office reception with the brand logo on a marble wall" width={2170} height={725} />
       </div>
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
@@ -259,6 +262,59 @@ function Ecosystem() {
         </div>
         <div className="min-w-0">
           <img src={IMAGES.platforms} alt="Webgram ecommerce website, B2B portal and mobile app" width={1944} height={809} loading="lazy" className="h-auto w-full object-contain" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Mission() {
+  const pillars: Array<{ icon: Icon; title: string; text: string; tone: string }> = [
+    { icon: Target, title: "Our Mission", text: "To empower businesses with innovative digital commerce solutions that drive growth, efficiency and long-term success.", tone: "text-primary" },
+    { icon: Eye, title: "Our Vision", text: "To be a trusted global technology partner known for building scalable, future-ready digital commerce ecosystems.", tone: "text-primary" },
+    { icon: Gem, title: "Our Values", text: "Innovation, integrity, quality, transparency and a commitment to client success.", tone: "text-warning" },
+  ];
+  return (
+    <section className="bg-card">
+      <div className="grid items-stretch md:grid-cols-[min(38%,560px)_1fr]">
+        <div className="relative min-h-[220px]">
+          <img src={aboutImages.mission} alt="Webgram team at work below an Ideas. Technology. Growth. wall" width={1716} height={917} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        </div>
+        <div className="px-6 py-8 sm:px-8 md:px-10 md:py-10 lg:px-14">
+          <p className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-primary"><span className="h-px w-8 bg-primary" />Our Mission, Vision &amp; Values</p>
+          <h2 className="mt-3 text-[22px] font-extrabold leading-[1.1] text-navy sm:text-[26px]">Driven by Purpose, Focused on Your Growth</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-border">
+            {pillars.map(({ icon: IconComponent, title, text, tone }) => (
+              <article key={title} className="sm:px-5 sm:first:pl-0">
+                <span className={`grid h-11 w-11 place-items-center rounded-full border border-border bg-background ${tone}`}><IconComponent className="h-5 w-5" /></span>
+                <h3 className="mt-3 text-[13px] font-extrabold text-navy">{title}</h3>
+                <p className="mt-2 text-[10px] leading-[1.6] text-muted-foreground">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Workspace() {
+  return (
+    <section className="bg-card pb-9 pt-2 md:pb-12">
+      <div className="page-shell grid items-center gap-6 md:grid-cols-[230px_1fr] lg:grid-cols-[260px_1fr]">
+        <div>
+          <p className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-primary"><span className="h-px w-8 bg-primary" />Our Workspace</p>
+          <h2 className="mt-3 text-[20px] font-extrabold leading-[1.1] text-navy sm:text-[23px]">A Creative &amp; Collaborative Environment</h2>
+          <p className="mt-2 text-[10px] leading-[1.6] text-muted-foreground">Our team works in a modern, collaborative and innovative environment, combining creativity with technology to deliver exceptional results for our clients.</p>
+          <Button size="sm" className="mt-4 h-9 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90">Join Our Team <ArrowRight /></Button>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {aboutImages.workspace.map(({ label, src }) => (
+            <figure key={label} className="group relative overflow-hidden rounded-md shadow-card">
+              <img src={src} alt={label} width={1672} height={941} loading="lazy" className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] lg:h-48" />
+              <figcaption className="absolute bottom-2 left-2 rounded bg-navy/85 px-2.5 py-1.5 text-[8px] font-semibold text-on-dark">{label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
@@ -408,5 +464,5 @@ function Footer() {
 }
 
 function HomePage() {
-  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><Header /><Hero /><TrustStrip /><Services /><Ecosystem /><WhyUs /><Industries /><CaseStudies /><Technology /><FinalCta /><Footer /></main>;
+  return <main className="min-h-screen overflow-x-hidden bg-background font-sans"><Header /><Hero /><TrustStrip /><Services /><Ecosystem /><Mission /><Workspace /><WhyUs /><Industries /><CaseStudies /><Technology /><FinalCta /><Footer /></main>;
 }
