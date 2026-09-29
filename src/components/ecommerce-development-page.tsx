@@ -538,8 +538,8 @@ export function EcommerceDevelopmentPage() {
         <div className="ecom-shell relative grid items-center gap-8 md:grid-cols-[1fr_1.15fr]">
           <div>
             <Eyebrow>Ready to Build Your Ecommerce Store?</Eyebrow>
-            <h2 className="mt-2 text-[27px] font-bold leading-[1.08] sm:text-[30px]">
-              <span className="block">Let’s Turn Your Ecommerce</span>
+            <h2 className="mt-2 text-[27px] font-bold leading-[1.08] md:text-[25px] lg:text-[30px]">
+              <span className="block whitespace-nowrap">Let’s Turn Your Ecommerce</span>
               <span className="block">Idea into Reality.</span>
             </h2>
             <p className="mt-2.5 max-w-[500px] text-[10px] leading-[1.45] text-on-dark/85">
