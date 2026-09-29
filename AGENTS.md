@@ -9,7 +9,6 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the single-page experience contact-focused, following the supplied contact reference section order and density.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
 
 - Pages: home at `/`, contact at `/contact`, about at `/about`, sharing `src/components/site-header.tsx` with TanStack `Link`s. Why: logo must always return to the real home page.
