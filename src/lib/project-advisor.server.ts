@@ -14,7 +14,11 @@ Services offered: Ecommerce Development, B2B Commerce Portals, Marketplace Devel
 Recommend only from this list. Reply with JSON only, no markdown, shaped as:
 {"summary": string (1 sentence), "services": [{"name": string, "reason": string (max 20 words)}] (2-4 items), "nextSteps": [string] (3 short steps)}`;
 
-export async function recommendServices(input: { needs: string; projectType?: string; budget?: string }): Promise<AdvisorResult> {
+export async function recommendServices(input: {
+  needs: string;
+  projectType?: string | undefined;
+  budget?: string | undefined;
+}): Promise<AdvisorResult> {
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) return { ok: false, error: "AI suggestions are not configured yet." };
 
@@ -31,20 +35,32 @@ export async function recommendServices(input: { needs: string; projectType?: st
       prompt: `Project type: ${input.projectType || "not specified"}\nBudget: ${input.budget || "not specified"}\nNeeds: ${input.needs}`,
       maxRetries: 0,
       providerOptions: {
-        openai: { forceReasoning: true, reasoningEffort: "low", reasoningSummary: "auto", store: false, include: ["reasoning.encrypted_content"] },
+        openai: {
+          forceReasoning: true,
+          reasoningEffort: "low",
+          reasoningSummary: "auto",
+          store: false,
+          include: ["reasoning.encrypted_content"],
+        },
       },
     });
     const text = await result.text;
     const json = text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
     const advice = JSON.parse(json) as ProjectAdvice;
-    if (!Array.isArray(advice.services) || !Array.isArray(advice.nextSteps)) throw new Error("Bad shape");
+    if (!Array.isArray(advice.services) || !Array.isArray(advice.nextSteps))
+      throw new Error("Bad shape");
     return { ok: true, advice };
   } catch (error) {
     console.error("Project advisor failed", error);
     if (APICallError.isInstance(error)) {
-      if (error.statusCode === 429) return { ok: false, error: "Too many requests right now. Please try again in a minute." };
-      if (error.statusCode === 402) return { ok: false, error: "AI suggestions are temporarily unavailable." };
+      if (error.statusCode === 429)
+        return { ok: false, error: "Too many requests right now. Please try again in a minute." };
+      if (error.statusCode === 402)
+        return { ok: false, error: "AI suggestions are temporarily unavailable." };
     }
-    return { ok: false, error: "We couldn't generate suggestions. Please send your message and our team will reply." };
+    return {
+      ok: false,
+      error: "We couldn't generate suggestions. Please send your message and our team will reply.",
+    };
   }
 }
