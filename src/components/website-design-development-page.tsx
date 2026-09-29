@@ -36,7 +36,7 @@ import professionalWebsites from "@/assets/professional-websites.png.asset.json"
 import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { industryImages, technologyStack } from "@/lib/site-images";
+import { deliveredProjects, industryImages, technologyStack } from "@/lib/site-images";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
