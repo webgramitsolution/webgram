@@ -5,6 +5,7 @@ import {
   Blocks,
   BriefcaseBusiness,
   CheckCircle2,
+  ChevronDown,
   Code2,
   Building2,
   Facebook,
@@ -122,8 +123,18 @@ function Logo() {
   );
 }
 
+const menu: Array<[string, string[]]> = [
+  ["Home", []],
+  ["Solutions", ["Ecommerce Development", "B2B Commerce", "B2C Ecommerce", "Marketplace Development", "Custom Commerce", "Mobile Commerce"]],
+  ["Services", ["Website Development", "Website Design", "WordPress", "WooCommerce", "Shopify", "API Integration", "Website Maintenance", "Speed Optimization"]],
+  ["Industries", ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics", "Building Materials"]],
+  ["Work", ["Case Studies", "Portfolio", "Client Stories"]],
+  ["Resources", ["Blog", "Guides", "FAQs", "Insights"]],
+  ["About Us", []],
+  ["Contact Us", []],
+];
+
 function Header() {
-  const links = ["Website Development", "Google Ads", "GMB Listing", "SMO", "SEO", "Facebook Ads", "Our Portfolio", "Blog"];
 
   return (
     <header className="relative z-50 border-b border-on-dark/60 bg-navy text-on-dark">
@@ -144,11 +155,20 @@ function Header() {
       </div>
       <div className="header-shell flex h-[76px] items-center justify-between gap-5">
         <Logo />
-        <nav className="hidden items-center gap-5 md:flex" aria-label="Primary navigation">
-          {links.map((link) => (
-            <a key={link} href="#top" className="whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75">
-              {link}
-            </a>
+        <nav className="hidden h-full items-center gap-5 md:flex" aria-label="Primary navigation">
+          {menu.map(([label, items]) => (
+            <div key={label} className="group relative flex h-full items-center">
+              <a href={items.length ? "#top" : "#top"} className="flex items-center gap-1 whitespace-nowrap text-[11px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75">
+                {label}{items.length > 0 && <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />}
+              </a>
+              {items.length > 0 && (
+                <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-1 rounded-b-md border border-border bg-card py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {items.map((item) => (
+                    <li key={item}><a href="#top" className="block px-4 py-2 text-[12px] font-medium text-navy transition-colors hover:bg-sky-soft hover:text-primary focus-visible:bg-sky-soft focus-visible:outline-none">{item}</a></li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
         </nav>
         <div className="md:hidden text-[10px] font-medium uppercase">Webgram IT Solution</div>
