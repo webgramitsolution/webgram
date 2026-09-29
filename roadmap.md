@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Done
+- Keep computer and tablet layouts visually equal on every current and future page; only phones may switch to compact/stacked layouts
 - Menu restored to approved Sep 29 2:37 PM version (Home, Solutions, Services, Industries, Work, Resources, About Us, Contact Us)
 - Every menu item now opens its own separate page (/solutions/*, /services/*, /industries/*, /work/*, /resources/*)
 - Verified: all dropdown links clickable, logo returns home, no overflow on desktop/phone, build OK, TS2686 resolved
