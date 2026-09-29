@@ -28,6 +28,9 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 
+import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
+import fashionCaseImage from "@/assets/ecommerce-fashion-case.jpg";
+import furnitureCaseImage from "@/assets/ecommerce-furniture-case.jpg";
 import industriesStrip from "@/assets/ecommerce-industries.jpg";
 import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
@@ -111,7 +114,7 @@ const projects = [
   {
     title: "Fashion Ecommerce",
     description: "From a local store to a national brand",
-    image: IMAGES.caseLifestyle,
+    image: fashionCaseImage,
     tags: ["Design", "Development", "Marketing"],
     metrics: [
       ["3x", "Sales Growth"],
@@ -122,7 +125,7 @@ const projects = [
   {
     title: "Furniture Store",
     description: "Modern ecommerce experience",
-    image: IMAGES.caseManufacturing,
+    image: furnitureCaseImage,
     tags: ["WooCommerce", "Custom Design"],
     metrics: [
       ["2.5x", "Revenue Growth"],
@@ -133,7 +136,7 @@ const projects = [
   {
     title: "Electronics Store",
     description: "Multi-category ecommerce platform",
-    image: IMAGES.caseDistribution,
+    image: electronicsCaseImage,
     tags: ["Custom Development", "API Integration"],
     metrics: [
       ["70%", "Faster Orders"],
@@ -501,8 +504,8 @@ export function EcommerceDevelopmentPage() {
                     <img
                       src={project.image}
                       alt={`${project.title} project`}
-                      width={1934}
-                      height={813}
+                      width={1024}
+                      height={768}
                       loading="lazy"
                       className="h-full w-full object-cover object-center"
                     />
