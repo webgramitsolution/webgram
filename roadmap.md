@@ -19,6 +19,9 @@
 
 ## Pending (waiting on user)
 
+- Review SEO across pages (requested Sep 29, 18:53 UTC)
+- Swap "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (in progress)
+
 - Add the B2B project contact form and deliver submissions to info@webgramitsolution.com; blocked until the sender domain is configured
 - Build the remaining four Solutions pages after their promised reference screenshots are uploaded
 - Real office address to replace "A-123, Sector 63, Noida" on /contact
