@@ -46,20 +46,6 @@ export const menuSections: Record<SectionKey, MenuSection> = {
           "Launch a multi-vendor marketplace with seller onboarding, commissions, payouts and admin controls built in from day one.",
         points: ["Seller & buyer ecosystems", "Commission management", "Vendor dashboards", "Admin moderation tools"],
       },
-      "custom-commerce": {
-        title: "Custom Commerce",
-        tagline: "Built around your business model",
-        description:
-          "When off-the-shelf platforms fall short, we engineer custom commerce applications around your exact workflows and goals.",
-        points: ["Tailored business logic", "Third-party integrations", "Scalable architecture", "Ongoing support"],
-      },
-      "mobile-commerce": {
-        title: "Mobile Commerce",
-        tagline: "Sell on every screen",
-        description:
-          "Progressive web apps and mobile-first storefronts that load fast and convert on any device your customers use.",
-        points: ["PWA storefronts", "App-like experience", "Push notifications", "Offline-ready browsing"],
-      },
     },
   },
   services: {
