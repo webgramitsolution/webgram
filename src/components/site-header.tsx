@@ -4,60 +4,81 @@ import { ChevronDown, Facebook, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
 
-type Target = { to: "/" | "/about" | "/contact"; hash?: string };
+type Target =
+  | { to: "/" }
+  | { to: "/about" }
+  | { to: "/contact" }
+  | { to: "/solutions/$slug"; params: { slug: string } }
+  | { to: "/services/$slug"; params: { slug: string } }
+  | { to: "/industries/$slug"; params: { slug: string } }
+  | { to: "/work/$slug"; params: { slug: string } }
+  | { to: "/resources/$slug"; params: { slug: string } };
 
+const slugify = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
+
+const subpage = (
+  section: "solutions" | "services" | "industries" | "work" | "resources",
+  label: string,
+): Target => ({ to: `/${section}/$slug`, params: { slug: slugify(label) } }) as Target;
+
+// Exact menu from the approved version (Sep 29, 2:37 PM)
 const menu: Array<{ label: string; target?: Target; items?: Array<[string, Target]> }> = [
   { label: "Home", target: { to: "/" } },
   {
     label: "Solutions",
     items: [
-      ["Ecommerce Development", { to: "/", hash: "solutions" }],
-      ["B2B Commerce", { to: "/", hash: "solutions" }],
-      ["Marketplace Development", { to: "/", hash: "solutions" }],
-      ["Custom Commerce", { to: "/", hash: "solutions" }],
-    ],
+      "Ecommerce Development",
+      "B2B Commerce",
+      "B2C Ecommerce",
+      "Marketplace Development",
+      "Custom Commerce",
+      "Mobile Commerce",
+    ].map((label) => [label, subpage("solutions", label)]),
   },
   {
     label: "Services",
     items: [
-      ["Website Development", { to: "/", hash: "services" }],
-      ["SEO", { to: "/contact" }],
-      ["Google Ads", { to: "/contact" }],
-      ["Social Media Ads", { to: "/contact" }],
-    ],
+      "Website Development",
+      "Website Design",
+      "WordPress",
+      "WooCommerce",
+      "Shopify",
+      "API Integration",
+      "Website Maintenance",
+      "Speed Optimization",
+    ].map((label) => [label, subpage("services", label)]),
   },
   {
     label: "Industries",
     items: [
-      ["Manufacturing", { to: "/", hash: "industries" }],
-      ["Retail", { to: "/", hash: "industries" }],
-      ["Wholesale", { to: "/", hash: "industries" }],
-      ["Furniture", { to: "/", hash: "industries" }],
-    ],
+      "Manufacturing",
+      "Retail",
+      "Wholesale",
+      "Furniture",
+      "Fashion",
+      "Electronics",
+      "Building Materials",
+    ].map((label) => [label, subpage("industries", label)]),
   },
-  { label: "Case Studies", target: { to: "/", hash: "case-studies" } },
+  {
+    label: "Work",
+    items: ["Case Studies", "Portfolio", "Client Stories"].map((label) => [
+      label,
+      subpage("work", label),
+    ]),
+  },
   {
     label: "Resources",
-    items: [
-      ["FAQs", { to: "/contact", hash: "faq" }],
-      ["Blog", { to: "/" }],
-      ["Guides", { to: "/" }],
-    ],
+    items: ["Blog", "Guides", "FAQs", "Insights"].map((label) => [label, subpage("resources", label)]),
   },
-  {
-    label: "Company",
-    items: [
-      ["About Us", { to: "/about" }],
-      ["Careers", { to: "/contact" }],
-      ["Contact Us", { to: "/contact" }],
-    ],
-  },
+  { label: "About Us", target: { to: "/about" } },
+  { label: "Contact Us", target: { to: "/contact" } },
 ];
 
 const topLinks: Array<[string, Target]> = [
   ["Newsletter", { to: "/contact" }],
   ["Contact Us", { to: "/contact" }],
-  ["FAQs", { to: "/contact", hash: "faq" }],
+  ["FAQs", { to: "/resources/$slug", params: { slug: "faqs" } }],
 ];
 
 export function SiteHeader() {
