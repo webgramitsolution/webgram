@@ -28,12 +28,15 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 
+import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
+import fashionCaseImage from "@/assets/ecommerce-fashion-case.jpg";
+import furnitureCaseImage from "@/assets/ecommerce-furniture-case.jpg";
 import industriesStrip from "@/assets/ecommerce-industries.jpg";
 import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { IMAGES, technologyStack } from "@/lib/site-images";
+import { technologyStack } from "@/lib/site-images";
 
 const heroImage = "https://ik.imagekit.io/home1/About%20us%20page/ecommer.png";
 
@@ -111,7 +114,7 @@ const projects = [
   {
     title: "Fashion Ecommerce",
     description: "From a local store to a national brand",
-    image: IMAGES.caseLifestyle,
+    image: fashionCaseImage,
     tags: ["Design", "Development", "Marketing"],
     metrics: [
       ["3x", "Sales Growth"],
@@ -122,7 +125,7 @@ const projects = [
   {
     title: "Furniture Store",
     description: "Modern ecommerce experience",
-    image: IMAGES.caseManufacturing,
+    image: furnitureCaseImage,
     tags: ["WooCommerce", "Custom Design"],
     metrics: [
       ["2.5x", "Revenue Growth"],
@@ -133,7 +136,7 @@ const projects = [
   {
     title: "Electronics Store",
     description: "Multi-category ecommerce platform",
-    image: IMAGES.caseDistribution,
+    image: electronicsCaseImage,
     tags: ["Custom Development", "API Integration"],
     metrics: [
       ["70%", "Faster Orders"],
@@ -217,12 +220,12 @@ export function EcommerceDevelopmentPage() {
         <div className="ecom-hero-shade absolute inset-0" />
         <div className="ecom-shell relative flex h-full items-center py-6">
           <div className="max-w-[520px]">
-            <nav className="mb-4 text-[9px] font-medium text-on-dark/75" aria-label="Breadcrumb">
+            <nav className="sr-only" aria-label="Breadcrumb">
               <Link to="/">Home</Link> <span className="px-1.5">›</span> Solutions{" "}
               <span className="px-1.5">›</span> Ecommerce Development
             </nav>
             <Eyebrow>Ecommerce Development</Eyebrow>
-            <h1 className="mt-2 text-[34px] font-extrabold leading-[1.03] sm:text-[40px] md:text-[42px] lg:text-[46px]">
+            <h1 className="mt-2 text-[30px] font-semibold leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]">
               High-Converting
               <br />
               Ecommerce Websites
@@ -425,19 +428,19 @@ export function EcommerceDevelopmentPage() {
               websites.
             </p>
           </div>
-          <div className="ecom-scroll grid grid-flow-col auto-cols-[82px] gap-2 overflow-x-auto md:grid-cols-10 md:overflow-visible">
+          <div className="grid grid-cols-5 gap-x-2 gap-y-3 lg:grid-cols-10">
             {technologies.map(
               (tech) =>
                 tech && (
-                  <article key={tech.name} className="text-center">
-                    <span className="grid h-[68px] place-items-center rounded-md border border-border bg-card p-3">
+                  <article key={tech.name} className="min-w-0 text-center">
+                    <span className="grid h-[62px] place-items-center rounded-md border border-border bg-card p-2.5 lg:h-[68px] lg:p-3">
                       <img
                         src={tech.src}
                         alt={`${tech.name} logo`}
                         width={80}
                         height={80}
                         loading="lazy"
-                        className="h-full w-full object-contain"
+                        className="h-full min-h-0 w-full min-w-0 object-contain"
                       />
                     </span>
                     <span className="mt-2 block text-[7.5px] text-muted-foreground">
@@ -476,39 +479,51 @@ export function EcommerceDevelopmentPage() {
             {projects.map((project) => (
               <article
                 key={project.title}
-                className="overflow-hidden rounded-md border border-border bg-card"
+                className="overflow-hidden rounded-md border border-border bg-card shadow-card"
               >
-                <div className="grid h-[92px] grid-cols-[1fr_45%]">
-                  <div className="p-3">
-                    <h3 className="text-[10px] font-extrabold text-navy">{project.title}</h3>
-                    <p className="mt-1 text-[7px] text-muted-foreground">{project.description}</p>
-                    <div className="mt-3 flex flex-wrap gap-1">
+                <div className="relative h-[94px] overflow-hidden">
+                  <div className="relative z-10 w-[63%] p-3 pr-0">
+                    <h3 className="text-[10px] font-extrabold leading-tight text-navy">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-[7px] leading-[1.35] text-muted-foreground">
+                      {project.description}
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap gap-1">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded bg-primary-soft px-1.5 py-1 text-[6px] font-semibold text-navy"
+                          className="rounded bg-primary-soft px-1.5 py-1 text-[6px] font-semibold leading-none text-navy"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <img
-                    src={project.image}
-                    alt={`${project.title} project`}
-                    width={1934}
-                    height={813}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
+                  <div className="absolute inset-y-0 right-0 w-[42%] overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} project`}
+                      width={1024}
+                      height={768}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-center"
+                    />
+                    <span className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-card to-transparent" />
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 border-t border-border">
+                <div className="grid h-[48px] grid-cols-3 border-t border-border">
                   {project.metrics.map(([value, label], index) => (
-                    <div key={label} className={`p-2 ${index ? "border-l border-border" : ""}`}>
-                      <strong className="block text-[12px] font-extrabold text-navy">
+                    <div
+                      key={label}
+                      className={`flex min-w-0 flex-col justify-center px-2 ${index ? "border-l border-border" : ""}`}
+                    >
+                      <strong className="block text-[13px] font-extrabold leading-none text-navy">
                         {value}
                       </strong>
-                      <span className="text-[6px] text-muted-foreground">{label}</span>
+                      <span className="mt-1 block text-[6px] leading-none text-muted-foreground">
+                        {label}
+                      </span>
                     </div>
                   ))}
                 </div>
