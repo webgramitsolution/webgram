@@ -1,11 +1,13 @@
 import { FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { KeyRound, Mail } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import { sendGuestLoginCode } from "@/lib/auth-email.functions";
 
 export const Route = createFileRoute("/guest-login")({
   head: () => ({ meta: [
@@ -21,6 +23,7 @@ export const Route = createFileRoute("/guest-login")({
 
 function GuestLogin() {
   const navigate = useNavigate();
+  const requestLoginCode = useServerFn(sendGuestLoginCode);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [sent, setSent] = useState(false);
@@ -30,10 +33,14 @@ function GuestLogin() {
 
   async function sendCode(event: FormEvent) {
     event.preventDefault(); setBusy(true); setError("");
-    const { error: e } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: true, emailRedirectTo: `${window.location.origin}/guest-login` } });
-    setBusy(false);
-    if (e) { setError(e.message); return; }
-    setSent(true);
+    try {
+      await requestLoginCode({ data: { email, redirectTo: `${window.location.origin}/guest-login` } });
+      setSent(true);
+    } catch {
+      setError("Code could not be sent. Please check the email address and try again.");
+    } finally {
+      setBusy(false);
+    }
   }
   async function verify(event: FormEvent) {
     event.preventDefault(); setBusy(true); setError("");

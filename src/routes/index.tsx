@@ -738,7 +738,6 @@ function HomePage() {
       <Technology />
       <HomeEnquiry />
       <FinalCta />
-      <Footer />
     </main>
   );
 }

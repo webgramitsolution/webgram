@@ -2,7 +2,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ExternalLink, FilePenLine, LogOut, Plus, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, FilePenLine, Inbox, LayoutDashboard, LogOut, Plus, Save, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ const date = (value: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric
 export function AdminShell({ children, name = "Administrator" }: { children: React.ReactNode; name?: string | undefined }) {
   const navigate = useNavigate(); const queryClient = useQueryClient();
   async function signOut() { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await navigate({ to: "/auth", replace: true }); }
-  return <div className="min-h-screen bg-sky-soft"><header className="border-b border-on-dark/20 bg-navy text-on-dark"><div className="page-shell flex h-16 items-center justify-between"><div className="flex items-center gap-5"><Link to="/admin/blog" className="font-extrabold">Webgram Publishing</Link><Link to="/admin/blog" activeOptions={{ exact: true }} className="hidden text-xs font-semibold text-on-dark/80 hover:text-on-dark sm:inline">Articles</Link><Link to="/admin/requests" className="text-xs font-semibold text-on-dark/80 hover:text-on-dark">Requests &amp; Enquiries</Link></div><div className="flex items-center gap-3"><span className="hidden text-xs text-on-dark/70 sm:inline">{name}</span><Button variant="outline" size="sm" onClick={signOut} className="border-on-dark/30 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><LogOut />Sign out</Button></div></div></header>{children}</div>;
+  return <div className="min-h-screen bg-sky-soft"><div className="page-shell grid gap-6 py-6 lg:grid-cols-[230px_1fr]"><aside className="h-max rounded-md bg-navy p-4 text-on-dark shadow-card lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)]"><Link to="/admin/blog" className="font-extrabold">Webgram Publishing</Link><p className="mt-1 text-xs text-on-dark/65">{name}</p><nav className="mt-6 space-y-1"><Link to="/admin/blog" activeOptions={{ exact: true }} activeProps={{ className: "bg-on-dark/15" }} className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold hover:bg-on-dark/10"><LayoutDashboard className="h-4 w-4" />Articles</Link><Link to="/admin/requests" activeProps={{ className: "bg-on-dark/15" }} className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold hover:bg-on-dark/10"><Inbox className="h-4 w-4" />Requests</Link></nav><Button variant="outline" size="sm" onClick={signOut} className="mt-6 w-full border-on-dark/30 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><LogOut />Sign out</Button></aside><div className="min-w-0">{children}</div></div></div>;
 }
 
 export function AdminBlogList({ posts, name }: { posts: Post[]; name?: string | undefined }) {

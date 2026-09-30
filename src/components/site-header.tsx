@@ -72,7 +72,7 @@ const topLinks: Array<[string, Target]> = [
 
 export function SiteHeader() {
   return (
-    <header className="relative z-50 border-b border-on-dark/60 bg-navy text-on-dark">
+    <header className="sticky top-0 z-50 border-b border-on-dark/60 bg-navy text-on-dark shadow-card">
       <div className="hidden h-[31px] border-b border-on-dark/20 md:block">
         <div className="header-shell flex h-full items-center justify-between text-[10px] font-medium uppercase">
           <div className="flex h-full items-center">
