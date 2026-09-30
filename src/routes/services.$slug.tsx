@@ -5,6 +5,7 @@ import { WebPortalDevelopmentPage } from "@/components/web-portal-development-pa
 import { WebsiteMaintenancePage } from "@/components/website-maintenance-page";
 import { WooCommercePage } from "@/components/woocommerce-page";
 import { SubpageTemplate } from "@/components/subpage";
+import { LatestBlogPosts } from "@/components/latest-blog-posts";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 
 const section = menuSections.services;
@@ -49,9 +50,11 @@ export const Route = createFileRoute("/services/$slug")({
 function ServicesPage() {
   const page = Route.useLoaderData();
   const { slug } = Route.useParams();
-  if (slug === "web-portal-development") return <WebPortalDevelopmentPage />;
-  if (slug === "woocommerce") return <WooCommercePage />;
-  if (slug === "api-integration") return <ApiIntegrationPage />;
-  if (slug === "website-maintenance") return <WebsiteMaintenancePage />;
-  return <SubpageTemplate sectionLabel={section.label} page={page} />;
+  const body =
+    slug === "web-portal-development" ? <WebPortalDevelopmentPage /> :
+    slug === "woocommerce" ? <WooCommercePage /> :
+    slug === "api-integration" ? <ApiIntegrationPage /> :
+    slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
+    <SubpageTemplate sectionLabel={section.label} page={page} />;
+  return <>{body}<LatestBlogPosts /></>;
 }

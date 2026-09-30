@@ -17,6 +17,8 @@ function publicClient() {
 }
 
 export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () => {
+  const { notifyDueGuestPosts } = await import("./guest-notify.server");
+  await notifyDueGuestPosts();
   const client = publicClient();
   const [{ data: categories, error: categoryError }, { data: posts, error: postError }] =
     await Promise.all([
@@ -30,6 +32,8 @@ export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () 
 export const getPublicBlogPost = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
   .handler(async ({ data }) => {
+    const { notifyDueGuestPosts } = await import("./guest-notify.server");
+    await notifyDueGuestPosts();
     const client = publicClient();
     const { data: post, error } = await client
       .from("blog_posts")
