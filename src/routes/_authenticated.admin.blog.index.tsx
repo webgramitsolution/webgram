@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdminBlogList } from "@/components/admin-blog";
 import { getAdminBlog } from "@/lib/blog.functions";
 
-export const Route = createFileRoute("/_authenticated/admin/blog")({
+export const Route = createFileRoute("/_authenticated/admin/blog/")({
   loader: () => getAdminBlog(),
   head: () => ({ meta: [
     { title: "Blog Manager | Webgram IT Solution" }, { name: "description", content: "Manage Webgram blog articles." },
