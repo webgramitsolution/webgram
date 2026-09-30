@@ -83,6 +83,21 @@
   --color-violet: var(--violet);
   --color-violet-soft: var(--violet-soft);
   --color-danger: var(--danger);
+  --color-brand-razorpay: var(--brand-razorpay);
+  --color-brand-stripe: var(--brand-stripe);
+  --color-brand-paypal: var(--brand-paypal);
+  --color-brand-zoho: var(--brand-zoho);
+  --color-brand-salesforce: var(--brand-salesforce);
+  --color-brand-hubspot: var(--brand-hubspot);
+  --color-brand-whatsapp: var(--brand-whatsapp);
+  --color-brand-twilio: var(--brand-twilio);
+  --color-brand-sendgrid: var(--brand-sendgrid);
+  --color-brand-google: var(--brand-google);
+  --color-brand-analytics: var(--brand-analytics);
+  --color-brand-mailchimp: var(--brand-mailchimp);
+  --color-brand-aws: var(--brand-aws);
+  --color-brand-odoo: var(--brand-odoo);
+  --color-brand-sap: var(--brand-sap);
 }
 
 :root {
@@ -142,6 +157,21 @@
   --violet: oklch(0.59 0.2 310);
   --violet-soft: oklch(0.95 0.045 310);
   --danger: oklch(0.58 0.23 28);
+  --brand-razorpay: oklch(0.26 0.09 257);
+  --brand-stripe: oklch(0.57 0.22 285);
+  --brand-paypal: oklch(0.33 0.13 257);
+  --brand-zoho: oklch(0.58 0.21 27);
+  --brand-salesforce: oklch(0.68 0.14 228);
+  --brand-hubspot: oklch(0.7 0.19 39);
+  --brand-whatsapp: oklch(0.72 0.19 150);
+  --brand-twilio: oklch(0.58 0.23 27);
+  --brand-sendgrid: oklch(0.6 0.18 244);
+  --brand-google: oklch(0.63 0.18 255);
+  --brand-analytics: oklch(0.65 0.18 48);
+  --brand-mailchimp: oklch(0.87 0.16 94);
+  --brand-aws: oklch(0.72 0.16 70);
+  --brand-odoo: oklch(0.46 0.09 328);
+  --brand-sap: oklch(0.68 0.15 228);
 }
 
 .dark {

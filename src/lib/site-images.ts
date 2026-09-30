@@ -64,7 +64,7 @@ export const contactImages = {
 /** Technology grid — transparent square logos, listed in reference order. */
 export const technologyStack = [
   { name: "React.js", src: `${lib}/01_React.js.png` },
-  { name: "Next.js", src: `${lib}/02_Next.js.png` },
+  { name: "Next.js", src: `${lib}/nextjs.svg` },
   { name: "Node.js", src: `${lib}/03_Node.js.png` },
   { name: "WordPress", src: `${lib}/04_WordPress.png` },
   { name: "WooCommerce", src: `${lib}/05_WooCommerce.png` },
