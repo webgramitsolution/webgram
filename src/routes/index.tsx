@@ -176,8 +176,8 @@ function Hero() {
     <section id="top" className="hero-shell">
       <div className="hero-media">
         <img
-          src={aboutImages.banner}
-          alt="Webgram IT Solution office reception with the brand logo on a marble wall"
+          src={IMAGES.hero}
+          alt="Webgram IT Solution digital commerce storefront displayed across laptop and mobile screens"
           width={2170}
           height={725}
         />

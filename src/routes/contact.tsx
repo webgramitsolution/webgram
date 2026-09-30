@@ -42,6 +42,7 @@ import { submitEnquiry } from "@/lib/enquiry.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://www.webgramitsolution.com/contact" }],
     meta: [
       { title: "Contact Webgram IT Solution | Start Your Project" },
       {
@@ -55,6 +56,7 @@ export const Route = createFileRoute("/contact")({
         content: "Let's build something great together. Speak with the Webgram team today.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.webgramitsolution.com/contact" },
       { property: "og:image", content: contactImages.banner },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: contactImages.banner },

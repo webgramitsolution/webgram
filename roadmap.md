@@ -2,6 +2,7 @@
 
 ## Open
 - [ ] Email domain DNS verification (blocked: user must add the supplied TXT + NS records at registrar)
+- [ ] Add the five supplied AdSense slot IDs when the user provides them
 
 ## Done
 - [x] Legal pages, sitemap, metadata, and footer links
@@ -14,3 +15,4 @@
 - [x] Admin dashboard: indexing requests, support tickets, enquiries
 - [x] Guest post live email after 30-min auto publish
 - [x] Blog SEO, author box, service-page links, and guest/admin flows
+- [x] Reference-led mobile homepage, editorial blog grid, sticky article ad rails, and admin enquiry inbox

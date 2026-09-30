@@ -635,6 +635,64 @@
 }
 
 @media (max-width: 767px) {
+  .hero-shell {
+    min-height: 610px;
+  }
+  .hero-media {
+    top: auto;
+    height: 53%;
+  }
+  .hero-media img {
+    object-fit: cover;
+    object-position: 68% center;
+    opacity: 1;
+  }
+  .hero-copy {
+    min-height: 610px;
+    align-items: flex-start;
+    padding-top: 2.1rem;
+  }
+  .hero-copy > div {
+    max-width: 100%;
+  }
+  .hero-copy h1 {
+    font-size: 2.35rem;
+    line-height: 1.02;
+  }
+  .hero-copy p {
+    max-width: 21rem;
+  }
+  .hero-copy > div > div:last-child {
+    display: none;
+  }
+  #solutions .page-shell > div:first-child,
+  #company .page-shell > div:first-child {
+    align-items: start;
+  }
+  #solutions .page-shell > div:last-child {
+    grid-template-columns: 1fr;
+  }
+  #solutions article {
+    min-height: 150px;
+    padding-right: 44%;
+  }
+  #company .page-shell > div:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #industries .page-shell > div:last-child {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 72%;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  #industries .page-shell > div:last-child > * {
+    scroll-snap-align: start;
+  }
+  #case-studies .case-scroll {
+    grid-auto-columns: 82%;
+  }
   .ecom-hero > img {
     object-position: 62% center;
     opacity: 0.42;
