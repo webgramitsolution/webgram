@@ -28,7 +28,7 @@ import reduxLogo from "@/assets/redux.svg.asset.json";
 import tailwindLogo from "@/assets/tailwind-css.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { deliveredProjects, portalImages, technologyStack } from "@/lib/site-images";
+import { deliveredProjects, nextjsLogo, portalImages, technologyStack } from "@/lib/site-images";
 
 const heroBenefits = [
   [Users, "Role-Based", "Access"],
@@ -74,7 +74,7 @@ const pickTech = (name: string) => technologyStack.find((tech) => tech.name === 
 
 const technologies = [
   { name: "React.js", src: pickTech("React.js") },
-  { name: "Next.js", src: pickTech("Next.js") },
+  { name: "Next.js", src: nextjsLogo },
   { name: "Node.js", src: pickTech("Node.js") },
   { name: "Laravel", src: laravelLogo.url },
   { name: "PHP", src: phpLogo.url },

@@ -78,6 +78,12 @@ export const technologyStack = [
 ];
 
 /**
+ * Replacement Next.js mark supplied for the technology rows. The file name ends
+ * in ".svg" but ImageKit serves a 180×180 PNG — an <img> tag renders either.
+ */
+export const nextjsLogo = `${lib}/nextjs.svg`;
+
+/**
  * Industry cards — one photo per sector. The object key and the label used on
  * the card match the ImageKit file name, so the same text doubles as alt text.
  * URLs stay exactly as supplied: ImageKit serves them with a literal "&" and
