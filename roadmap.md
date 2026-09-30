@@ -17,6 +17,7 @@
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
 - Renamed the "Website Development" service to "Web Portal Development": new slug `/services/web-portal-development` (old URL redirects), reference-matched page with the supplied portal banner, four portal-type images, key features, 12-logo tech stack (Redux + Tailwind added), projects carousel and CTA
 - Built `/services/woocommerce` as a dedicated reference-matched page with WooCommerce solutions, features, integrations, projects, process, and CTA
+- Built `/services/api-integration` as a dedicated reference-matched page with the supplied banner, integration categories, process, platform logo grid, projects, and CTA
 
 - Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
 
