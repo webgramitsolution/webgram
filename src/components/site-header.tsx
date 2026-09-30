@@ -42,25 +42,11 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
     items: [
       "Web Portal Development",
       "Website Design",
-      "WordPress",
       "WooCommerce",
       "Shopify",
       "API Integration",
       "Website Maintenance",
-      "Speed Optimization",
     ].map((label) => [label, subpage("services", label)]),
-  },
-  {
-    label: "Industries",
-    items: [
-      "Manufacturing",
-      "Retail",
-      "Wholesale",
-      "Furniture",
-      "Fashion",
-      "Electronics",
-      "Building Materials",
-    ].map((label) => [label, subpage("industries", label)]),
   },
   {
     label: "Work",
@@ -71,7 +57,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   },
   {
     label: "Resources",
-    items: ["Blog", "Guides", "FAQs", "Insights"].map((label) => [label, subpage("resources", label)]),
+    items: ["Blog", "Guides", "FAQs"].map((label) => [label, subpage("resources", label)]),
   },
   { label: "About Us", target: { to: "/about" } },
   { label: "Contact Us", target: { to: "/contact" } },

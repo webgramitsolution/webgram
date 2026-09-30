@@ -14,7 +14,7 @@
 # AGENTS.md
 
 - Pages: home `/`, contact `/contact`, about `/about`, plus data-driven subpages `/solutions/$slug`, `/services/$slug`, `/industries/$slug`, `/work/$slug`, `/resources/$slug`. All share `src/components/site-header.tsx` with TanStack `Link`s. Why: logo must always return to the real home page and every menu item must open its own page.
-- Header menu: Home, Solutions (Ecommerce Development, B2B Commerce, Website Design & Development, Marketplace Development), Services (Web Portal Development + 7), Industries (7), Work (3), Resources (4), About Us, Contact Us. Do not rename or reorder items.
+- Header menu: Home, Solutions (4), Services (Portal, Design, WooCommerce, Shopify, API, Maintenance), Work (3), Resources (Blog, Guides, FAQs), About, Contact. Industries is removed.
 - Subpage content lives in `src/lib/menu-pages.ts` (menuSections); routes render `src/components/subpage.tsx` (SubpageTemplate) and throw notFound() on unknown slugs. Why: one clean template instead of 25 duplicated page files.
 - Approved dedicated pages: three solution pages above, `/services/web-portal-development` (old `/services/website-development` redirects to it), `/services/woocommerce`, `/services/api-integration`, and `/services/website-maintenance`; other slugs use the shared template. Why: these pages have unique full-page layouts.
 - AI project advisor: `project-advisor.functions.ts` (server fn) → `.server.ts` (Lovable AI Gateway, Responses API, gpt-6-astra). Why: keeps the API key server-side.
