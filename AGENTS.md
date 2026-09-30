@@ -16,9 +16,10 @@
 - Pages: home `/`, contact `/contact`, about `/about`, plus data-driven subpages `/solutions/$slug`, `/services/$slug`, `/industries/$slug`, `/work/$slug`, `/resources/$slug`. All share `src/components/site-header.tsx` with TanStack `Link`s. Why: logo must always return to the real home page and every menu item must open its own page.
 - Header menu: Home, Solutions (4), Services (Portal, Design, WooCommerce, Shopify, API, Maintenance), Work (3), Resources (Blog, Guides, FAQs), About, Contact. Industries is removed.
 - Subpage content lives in `src/lib/menu-pages.ts` (menuSections); routes render `src/components/subpage.tsx` (SubpageTemplate) and throw notFound() on unknown slugs. Why: one clean template instead of 25 duplicated page files.
-- Approved dedicated pages: three solution pages above, `/services/web-portal-development` (old `/services/website-development` redirects to it), `/services/woocommerce`, `/services/api-integration`, and `/services/website-maintenance`; other slugs use the shared template. Why: these pages have unique full-page layouts.
+- Dedicated pages use unique layouts; remaining menu slugs use the shared template.
 - AI project advisor: `project-advisor.functions.ts` (server fn) → `.server.ts` (Lovable AI Gateway, Responses API, gpt-6-astra). Why: keeps the API key server-side.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
 - Heroes: use shared hero classes; 348px on tablet/desktop, taller on phone. Desktop images use proportional contain, never stretch/crop. Why: preserve supplied banners on all current/future pages.
 - Typography: Manrope is global; reusable menu subpages use the shared `page-*`/`content-*` scale, while Home/About/Contact retain their approved reference-specific sizes. Why: future pages stay consistent without changing approved visual replicas.
-- ImageKit URLs stay verbatim. Use supplied `nextjs.svg` site-wide; API Integration logos use the supplied `x3cipokny/Logo/*` files.
+- ImageKit URLs stay verbatim; use the supplied Next.js and API Integration logo files.
+- Blog: public `/resources/blog` and `/blog/$slug`; management stays under `/_authenticated/admin/blog*`, with role checks on every write. Why: drafts and publishing remain server-secured.
