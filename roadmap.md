@@ -1,12 +1,18 @@
 # Roadmap
 
 ## Open
-- [ ] Email domain DNS verification (blocked: user must add TXT + NS records at registrar; all emails start automatically after)
+- [ ] Add legal pages and sitemap/footer links
+- [ ] Group blog by category and add blog-only AdSense consent/placements
+- [ ] Make language/country and social header controls functional
+- [ ] Add visitor enquiry acknowledgement email and wire contact form
+- [ ] Remove mountain CTA sections from Home, About, Contact
+- [ ] Verify SEO metadata, responsive layouts, and clean build
+- [ ] Email domain DNS verification (blocked: user must add TXT + NS records at registrar)
 
 ## Done
 - [x] Admin dashboard: indexing requests, support tickets, enquiries
-- [x] Guest post live email after 30-min auto publish (sent on next blog visit after the window)
+- [x] Guest post live email after 30-min auto publish
 - [x] Home contact form + enquiry email to admin
-- [x] Blog SEO (index + detail: canonical, og:url, JSON-LD), author box
+- [x] Blog SEO and author box
 - [x] Blog links on Services pages + Blog in menu
-- [x] E2E test: guest credits, write, comment, share, indexing; admin publish; mobile check
+- [x] Guest/admin E2E flow and mobile check
