@@ -15,7 +15,7 @@ export const IMAGES = {
   /** Hub-and-spoke commerce ecosystem diagram on white. */
   ecosystem: `${lib}/From%20Storefront%20to%20Back%20Office.png`,
   /** Storefront, admin dashboard and mobile app on three devices, transparent. */
-  platforms: `${lib}/website.png`,
+  platforms: `${lib}/wesite%20devolopment.png?updatedAt=1790573582047`,
   /** Solution card artwork — each is a white-background photo. */
   ecommerce: `${lib}/Ecommerce%20Development.png`,
   b2b: `${lib}/B2B%20Commerce.png`,

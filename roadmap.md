@@ -19,6 +19,9 @@
 - Built `/services/woocommerce` as a dedicated reference-matched page with WooCommerce solutions, features, integrations, projects, process, and CTA
 - Built `/services/api-integration` as a dedicated reference-matched page with the supplied banner, integration categories, process, platform logo grid, projects, and CTA
 - Removed WordPress and Speed Optimization from Services, Industries from the header, and Insights from Resources
+- [x] Replaced the homepage storefront/back-office right image with the supplied website development artwork
+- [x] Built the database-backed public blog front page and article detail design from the supplied references
+- [x] Added secure administrator authentication, profile/role storage, and full blog publishing management
 
 - Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
 
