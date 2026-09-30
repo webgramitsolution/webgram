@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube, type LucideIcon } from "lucide-react";
 import { openCookieSettings } from "@/components/blog-ads";
 
@@ -20,7 +19,7 @@ const socials: Array<[LucideIcon, string]> = [
   [Youtube, "YouTube"],
   [Pin, "Pinterest"],
 ];
-const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/webgramitsolution", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://mx.pinterest.com/webgramitsolution/" };
+const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/917551120242", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://www.pinterest.com/webgramitsolution/" };
 
 export function SiteFooter() {
   return (
@@ -51,17 +50,21 @@ export function SiteFooter() {
           ))}
         </div>
       </div>
-      <div className="page-shell flex flex-col items-center justify-between gap-3 border-t border-on-dark/15 py-5 sm:flex-row">
-        <span className="text-[12px] font-bold uppercase">Connect</span>
-        <div className="flex gap-2">
+      <div className="page-shell flex flex-col items-center justify-between gap-4 border-t border-on-dark/15 py-5 sm:flex-row">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[12px] text-on-dark/90 sm:justify-start sm:text-left">
+          <span>© 2026 Webgram IT Solution. All rights reserved.</span>
+          <button type="button" onClick={openCookieSettings} className="underline underline-offset-2 transition-colors hover:text-on-dark">
+            Cookie settings
+          </button>
+        </div>
+        <div className="flex shrink-0 gap-2" aria-label="Webgram IT Solution social media">
           {socials.map(([Icon, label]) => (
-            <a key={label} href={socialUrls[label]} target="_blank" rel="noreferrer" aria-label={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 hover:bg-on-dark/35">
+            <a key={label} href={socialUrls[label]} target="_blank" rel="noopener noreferrer" aria-label={`Follow Webgram IT Solution on ${label}`} title={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 transition-colors hover:bg-on-dark/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-dark">
               <Icon className="h-4 w-4" />
             </a>
           ))}
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-3 py-4 text-center text-[12px] text-on-dark/90"><span>© 2026 Webgram IT Solution. All rights reserved.</span><button type="button" onClick={openCookieSettings} className="underline underline-offset-2">Cookie settings</button></div>
     </footer>
   );
 }
