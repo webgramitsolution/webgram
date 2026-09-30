@@ -36,3 +36,4 @@
 - Hostinger SMTP: not possible from the app's edge backend (raw SMTP/TCP unsupported). Contact-form email will send via Lovable's managed email from notify.webgramitsolution.com once DNS TXT + NS records are verified; delivery lands in the Hostinger mailbox for info@webgramitsolution.com as normal.
 
 - [x] Website Development: technology logos styled like the reference (soft tile, logo inside, name below), all tiles equal size
+- [x] WooCommerce page: "Integrations We Support" replaced with 13 supplied ImageKit logos (Google Ads → Tally) in soft tiles with names below; verified desktop/tablet/phone, no broken images or overflow
