@@ -32,6 +32,7 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
           <div>
             <p className="page-eyebrow text-primary">Webgram Journal</p>
             <h1 className="mt-1 text-3xl font-extrabold text-navy">Ideas for digital growth</h1>
+            <Link to="/guest-login" className="mt-1 inline-block text-xs font-bold text-primary">Write for us — guest posting →</Link>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-1" aria-label="Blog categories">
             <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => setCategory("all")}>All</Button>
