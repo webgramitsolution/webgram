@@ -19,6 +19,6 @@
 - Approved dedicated pages: three solution pages above, `/services/web-portal-development` (old `/services/website-development` redirects to it), `/services/woocommerce`, and `/services/api-integration`; other slugs use the shared template. Why: these pages have unique full-page layouts.
 - AI project advisor: `project-advisor.functions.ts` (server fn) → `.server.ts` (Lovable AI Gateway, Responses API, gpt-6-astra). Why: keeps the API key server-side.
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
-- Hero sizing: every current and future page uses a 348px hero from tablet through desktop; phone heroes may be taller for stacked copy. Why: all non-phone devices must keep equal visual proportions.
+- Heroes: use shared hero classes; 348px on tablet/desktop, taller on phone. Desktop images use proportional contain, never stretch/crop. Why: preserve supplied banners on all current/future pages.
 - Typography: Manrope is global; reusable menu subpages use the shared `page-*`/`content-*` scale, while Home/About/Contact retain their approved reference-specific sizes. Why: future pages stay consistent without changing approved visual replicas.
 - ImageKit URLs stay verbatim. Use supplied `nextjs.svg` site-wide; API platform marks keep brand colors.
