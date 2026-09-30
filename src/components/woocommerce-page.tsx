@@ -29,7 +29,7 @@ import { useRef, type ReactNode } from "react";
 import wooHero from "@/assets/woocommerce-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { deliveredProjects } from "@/lib/site-images";
+import { deliveredProjects, wooIntegrations } from "@/lib/site-images";
 
 const heroBenefits = [
   [ShoppingCart, "Custom", "Store Design"],
@@ -66,7 +66,6 @@ const features = [
   [Smartphone, "Mobile Responsive", "Perfect shopping experience on every device"],
 ] as const;
 
-const integrations = ["Razorpay", "stripe", "PayU", "instamojo", "Shiprocket", "DELHIVERY", "BLUEDART", "Google Analytics", "Mailchimp", "Meta Pixel", "WhatsApp", "Tally"];
 
 const projects = [
   [deliveredProjects.corporate, "Home Decor Store", "Custom WooCommerce Store"],
