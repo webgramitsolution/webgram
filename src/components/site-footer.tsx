@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, MessageCircle, type LucideIcon } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube, type LucideIcon } from "lucide-react";
+import { openCookieSettings } from "@/components/blog-ads";
 
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
 
 const columns = [
-  ["Solutions", ["Ecommerce", "B2B Commerce", "Website Design & Development", "Marketplace"]],
-  ["Services", ["Web Portal Development", "Website Design", "WooCommerce", "Shopify", "API Integration"]],
-  ["Work", ["Case Studies", "Portfolio", "Client Stories"]],
-  ["Resources", ["Blog", "Guides", "FAQs"]],
-  ["Company", ["About Us", "Our Process", "Careers", "Contact"]],
+  ["Solutions", [{ label: "Ecommerce", to: "/solutions/ecommerce-development" }, { label: "B2B Commerce", to: "/solutions/b2b-commerce" }, { label: "Website Design & Development", to: "/solutions/website-design-development" }]],
+  ["Services", [{ label: "Web Portal Development", to: "/services/web-portal-development" }, { label: "Website Design", to: "/services/website-design" }, { label: "WooCommerce", to: "/services/woocommerce" }, { label: "API Integration", to: "/services/api-integration" }]],
+  ["Resources", [{ label: "Blog", to: "/resources/blog" }, { label: "Guides", to: "/resources/guides" }, { label: "FAQs", to: "/resources/faqs" }]],
+  ["Company", [{ label: "About Us", to: "/about" }, { label: "Contact", to: "/contact" }, { label: "Privacy Policy", to: "/privacy-policy" }]],
+  ["Legal", [{ label: "Terms & Conditions", to: "/terms-and-conditions" }, { label: "Cookie Policy", to: "/cookie-policy" }, { label: "Disclaimer", to: "/disclaimer" }]],
 ] as const;
 
 const socials: Array<[LucideIcon, string]> = [
@@ -16,7 +17,10 @@ const socials: Array<[LucideIcon, string]> = [
   [Instagram, "Instagram"],
   [Facebook, "Facebook"],
   [MessageCircle, "WhatsApp"],
+  [Youtube, "YouTube"],
+  [Pin, "Pinterest"],
 ];
+const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/webgramitsolution", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://mx.pinterest.com/webgramitsolution/" };
 
 export function SiteFooter() {
   return (
@@ -34,14 +38,12 @@ export function SiteFooter() {
               <h3 className="text-on-dark">{title}</h3>
               <ul className="mt-3 space-y-2">
                 {items.map((item) => (
-                  <li key={item}>
-                    <Link
-                      to={item === "About Us" ? "/about" : /contact|career/i.test(item) ? "/contact" : item === "Blog" ? "/resources/$slug" : "/"}
-                      {...(item === "Blog" ? { params: { slug: "blog" } } : {})}
+                  <li key={item.label}>
+                    <a href={item.to}
                       className="inline-block text-[11px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:underline"
                     >
-                      {item}
-                    </Link>
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -53,13 +55,13 @@ export function SiteFooter() {
         <span className="text-[12px] font-bold uppercase">Connect</span>
         <div className="flex gap-2">
           {socials.map(([Icon, label]) => (
-            <a key={label} href="#top" aria-label={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 hover:bg-on-dark/35">
+            <a key={label} href={socialUrls[label]} target="_blank" rel="noreferrer" aria-label={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 hover:bg-on-dark/35">
               <Icon className="h-4 w-4" />
             </a>
           ))}
         </div>
       </div>
-      <div className="py-4 text-center text-[12px] text-on-dark/90">© 2026 Webgram IT Solution. All rights reserved.</div>
+      <div className="flex flex-wrap items-center justify-center gap-3 py-4 text-center text-[12px] text-on-dark/90"><span>© 2026 Webgram IT Solution. All rights reserved.</span><button type="button" onClick={openCookieSettings} className="underline underline-offset-2">Cookie settings</button></div>
     </footer>
   );
 }

@@ -30,6 +30,11 @@ export const submitEnquiry = createServerFn({ method: "POST" })
         idempotencyKey: `new-enquiry-${row.id}`,
         replyTo: data.email,
       });
+      await sendTemplateEmail("enquiry-acknowledgement", data.email, {
+        templateData: { name: data.name, service: data.service },
+        idempotencyKey: `enquiry-acknowledgement-${row.id}`,
+        replyTo: "info@webgramitsolution.com",
+      });
     } catch (e) {
       // Enquiry is saved and visible in the admin panel even if email is not yet deliverable.
       console.error("enquiry email failed", e);

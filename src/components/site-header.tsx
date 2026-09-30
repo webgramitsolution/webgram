@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Facebook, Linkedin, Send } from "lucide-react";
+import { ChevronDown, Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
@@ -71,13 +71,28 @@ const topLinks: Array<[string, Target]> = [
 ];
 
 export function SiteHeader() {
+  function changeLanguage(value: string) {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("webgram-language", value);
+    if (value === "hi") {
+      const path = `${window.location.pathname}${window.location.search}`;
+      window.location.href = `https://www-webgramitsolution-com.translate.goog${path}?_x_tr_sl=en&_x_tr_tl=hi&_x_tr_hl=hi`;
+    } else {
+      window.location.href = `https://www.webgramitsolution.com${window.location.pathname}${window.location.search}`;
+    }
+  }
+  function changeCountry(value: string) {
+    if (typeof window !== "undefined") window.localStorage.setItem("webgram-country", value);
+  }
   return (
     <header className="sticky top-0 z-50 border-b border-on-dark/60 bg-navy text-on-dark shadow-card">
       <div className="hidden h-[31px] border-b border-on-dark/20 md:block">
         <div className="header-shell flex h-full items-center justify-between text-[10px] font-medium uppercase">
           <div className="flex h-full items-center">
-            <span className="border-x border-on-dark/15 px-3">English⌄</span>
-            <span className="border-r border-on-dark/15 px-3">Country⌄</span>
+            <label className="sr-only" htmlFor="site-language">Language</label>
+            <select id="site-language" defaultValue="en" onChange={(event) => changeLanguage(event.target.value)} className="h-full border-x border-on-dark/15 bg-navy px-3 text-[10px] uppercase text-on-dark outline-none"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+            <label className="sr-only" htmlFor="site-country">Country</label>
+            <select id="site-country" defaultValue="in" onChange={(event) => changeCountry(event.target.value)} className="h-full border-r border-on-dark/15 bg-navy px-3 text-[10px] uppercase text-on-dark outline-none"><option value="in">India</option><option value="us">USA</option><option value="gb">UK</option><option value="ae">UAE</option></select>
             <strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong>
           </div>
           <div className="flex h-full items-center">
@@ -85,11 +100,12 @@ export function SiteHeader() {
               className="flex items-center gap-3 border-r border-on-dark/15 px-3"
               aria-label="Social channels"
             >
-              <Facebook className="h-3.5 w-3.5" />
-              <span className="font-bold">X</span>
-              <span className="font-bold">p</span>
-              <Linkedin className="h-3.5 w-3.5" />
-              <Send className="h-3.5 w-3.5" />
+              <a href="https://www.facebook.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="h-3.5 w-3.5" /></a>
+              <a href="https://www.instagram.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="h-3.5 w-3.5" /></a>
+              <a href="https://www.youtube.com/@webgramitsolution" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube className="h-3.5 w-3.5" /></a>
+              <a href="https://mx.pinterest.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Pinterest"><Pin className="h-3.5 w-3.5" /></a>
+              <a href="https://www.linkedin.com/company/webgramitsolution" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin className="h-3.5 w-3.5" /></a>
+              <a href="https://wa.me/webgramitsolution" target="_blank" rel="noreferrer" aria-label="WhatsApp"><MessageCircle className="h-3.5 w-3.5" /></a>
             </span>
             {topLinks.map(([label, target]) => (
               <Link
@@ -113,20 +129,20 @@ export function SiteHeader() {
             className="h-[38px] w-auto object-contain md:h-[34px] lg:h-[44px]"
           />
         </Link>
-        <nav className="hidden h-full items-center gap-2.5 lg:gap-5 md:flex" aria-label="Primary navigation">
+        <nav className="hidden h-full items-center gap-3 lg:gap-6 md:flex" aria-label="Primary navigation">
           {menu.map(({ label, target, items }) => (
             <div key={label} className="group relative flex h-full items-center">
               {target ? (
                 <Link
                   {...target}
-                  className="whitespace-nowrap text-[9px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[11px]"
+                  className="whitespace-nowrap text-[10px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[12px]"
                 >
                   {label}
                 </Link>
               ) : (
                 <button
                   type="button"
-                  className="flex items-center gap-1 whitespace-nowrap text-[9px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[11px]"
+                  className="flex items-center gap-1 whitespace-nowrap text-[10px] font-semibold uppercase text-on-dark transition-opacity hover:opacity-75 focus-visible:opacity-75 lg:text-[12px]"
                 >
                   {label}
                   <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
