@@ -115,6 +115,27 @@ export const websiteDevelopmentImages = {
  * in the supplied order. URLs stay exactly as given (percent-encoded spaces
  * only); the logo file name doubles as the alt text.
  */
+/**
+ * "Integrations We Support" logos on the WooCommerce service page, in the
+ * supplied order. URLs stay exactly as given (percent-encoded spaces only);
+ * the display name doubles as the alt text.
+ */
+export const wooIntegrations = [
+  { name: "Google Ads", src: "https://ik.imagekit.io/home1/Google%20Ads.png" },
+  { name: "Meta Pixel", src: "https://ik.imagekit.io/home1/MetaPixel.png" },
+  { name: "WhatsApp Business", src: "https://ik.imagekit.io/home1/WhatsApp%20Business.png" },
+  { name: "Google Analytics", src: "https://ik.imagekit.io/home1/Google%20Analytics.png" },
+  { name: "Delhivery", src: "https://ik.imagekit.io/home1/Delhivery.png" },
+  { name: "BlueDart", src: "https://ik.imagekit.io/home1/BlueDart.png" },
+  { name: "Mailchimp", src: "https://ik.imagekit.io/home1/MailChimp.png" },
+  { name: "Razorpay", src: "https://ik.imagekit.io/home1/Razorpay.png" },
+  { name: "Shiprocket", src: "https://ik.imagekit.io/home1/Shiprocket.png" },
+  { name: "Instamojo", src: "https://ik.imagekit.io/home1/Instamojo.png" },
+  { name: "PayU", src: "https://ik.imagekit.io/home1/payu.png" },
+  { name: "Stripe", src: "https://ik.imagekit.io/home1/stripe.png" },
+  { name: "Tally", src: "https://ik.imagekit.io/home1/Telly.png" },
+] as const;
+
 export const webDevelopmentTechnologies = [
   { name: "CloudFlare", src: "https://ik.imagekit.io/home1/CloudFlare", viewBox: "130 302 993 516" },
   { name: "JavaScript", src: "https://ik.imagekit.io/home1/JavaScript.png", viewBox: "286 205 681 723" },
