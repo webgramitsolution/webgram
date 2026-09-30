@@ -1,14 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { AdminBlogList } from "@/components/admin-blog";
-import { getAdminBlog } from "@/lib/blog.functions";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/admin/blog")({
-  loader: () => getAdminBlog(),
-  head: () => ({ meta: [
-    { title: "Blog Manager | Webgram IT Solution" }, { name: "description", content: "Manage Webgram blog articles." },
-    { property: "og:title", content: "Blog Manager | Webgram IT Solution" }, { property: "og:description", content: "Manage Webgram blog articles." },
-    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" },
-  ] }),
-  component: Page,
+  component: () => <Outlet />,
 });
-function Page() { const data = Route.useLoaderData(); return <AdminBlogList posts={data.posts} name={data.profile?.display_name} />; }
