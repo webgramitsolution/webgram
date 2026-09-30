@@ -21,4 +21,4 @@
 - Keep the desktop/laptop composition unchanged on tablet widths; only phone widths may use a compact header and stacked content.
 - Heroes: use shared hero classes; 348px on tablet/desktop, taller on phone. Desktop images use proportional contain, never stretch/crop. Why: preserve supplied banners on all current/future pages.
 - Typography: Manrope is global; reusable menu subpages use the shared `page-*`/`content-*` scale, while Home/About/Contact retain their approved reference-specific sizes. Why: future pages stay consistent without changing approved visual replicas.
-- ImageKit URLs stay verbatim. Use supplied `nextjs.svg` site-wide; API platform marks keep brand colors.
+- ImageKit URLs stay verbatim. Use supplied `nextjs.svg` site-wide; API Integration logos use the supplied `x3cipokny/Logo/*` files.
