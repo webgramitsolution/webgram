@@ -413,6 +413,15 @@
   object-fit: cover;
 }
 
+@media (min-width: 1180px) {
+  .hero-media img,
+  .ecom-hero > img,
+  .contact-hero > img {
+    object-fit: contain;
+    object-position: right center;
+  }
+}
+
 .hero-copy {
   position: relative;
   display: flex;
