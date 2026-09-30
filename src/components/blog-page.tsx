@@ -85,6 +85,5 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
         </div> : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
     </main>
-    <footer className="bg-navy py-7 text-on-dark"><div className="page-shell flex flex-col justify-between gap-3 text-xs sm:flex-row"><strong>Webgram IT Solution</strong><span className="text-on-dark/65">Digital commerce insights for growing businesses.</span></div></footer>
   </div>;
 }

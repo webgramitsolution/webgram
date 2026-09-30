@@ -38,7 +38,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { contactImages } from "@/lib/site-images";
 import ctaImage from "@/assets/cta-mountain.jpg";
 import { SiteHeader } from "@/components/site-header";
-import { ProjectAdvisor } from "@/components/project-advisor";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -194,7 +193,6 @@ function ContactForm() {
           className="min-h-[60px] bg-card text-[10.5px] shadow-none md:text-[10.5px]"
         />
       </label>
-      <ProjectAdvisor needs={message} projectType={projectType} budget={budget} />
       <div className="col-span-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-1">
         <label className="flex min-w-0 items-center gap-2 text-[10.5px] text-navy">
           <input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />
@@ -336,16 +334,18 @@ function Location() {
             <div>
               <strong className="text-[14px] text-navy">Head Office</strong>
               <p className="mt-1.5 text-[12px] leading-5 text-muted-foreground">
-                Webgram IT Solution
+                F3/780, Block C, Devli, Sangam Vihar
                 <br />
-                A-123, Sector 63, Noida
+                New Delhi, Delhi 110062
                 <br />
-                Uttar Pradesh - 201301, India
+                <a href="tel:+917551120242" className="font-semibold text-navy">+91 7551120242</a>
+                <br />
+                <a href="mailto:info@webgramitsolution.com" className="font-semibold text-navy">info@webgramitsolution.com</a>
               </p>
             </div>
           </div>
         </div>
-        <div className="relative min-h-[240px] overflow-hidden rounded-lg border border-border/70">
+        <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-border/70">
           <iframe
             title="Webgram IT Solution location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.3773900406163!2d77.2399091!3d28.4982913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1d73c888e6f%3A0x679aac9b7129eb22!2sWebgram%20IT%20Solution%20%7C%20Website%20%26%20eCommerce%20Developer%20Delhi!5e0!3m2!1sen!2sin!4v1790644608245!5m2!1sen!2sin"
