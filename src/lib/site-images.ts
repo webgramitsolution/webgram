@@ -127,6 +127,24 @@ export const apiIntegrationImages = {
 } as const;
 
 /**
+ * Website Maintenance & Optimization service page artwork supplied through
+ * ImageKit (x3cipokny library). URLs stay exactly as given — the "icon/*"
+ * files are wide photo illustrations used as the service-card tops.
+ */
+export const maintenanceImages = {
+  /** Wide blue hero banner: maintenance benefit tiles around a laptop mockup. */
+  hero: "https://ik.imagekit.io/x3cipokny/maintence%20banner.png",
+  /** Before/after strip: slow and vulnerable versus fast, secure, high performing. */
+  beforeAfter: "https://ik.imagekit.io/x3cipokny/mantence.png",
+  updates: "https://ik.imagekit.io/x3cipokny/icon/Website%20update.png",
+  security: "https://ik.imagekit.io/x3cipokny/icon/Security%20and%20Malware%20removal.png",
+  speed: "https://ik.imagekit.io/x3cipokny/icon/Speed%20Optimization.png",
+  backups: "https://ik.imagekit.io/x3cipokny/icon/Daily%20Backups.png",
+  uptime: "https://ik.imagekit.io/x3cipokny/icon/Uptime%20Monitoring.png",
+  support: "https://ik.imagekit.io/x3cipokny/icon/Technical%20Support.png",
+} as const;
+
+/**
  * "Tools & Technologies We Use" logos on the Website Development service page,
  * in the supplied order. URLs stay exactly as given (percent-encoded spaces
  * only); the logo file name doubles as the alt text.
