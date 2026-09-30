@@ -121,6 +121,11 @@ export const portalImages = {
   admin: "https://ik.imagekit.io/home1/Admin%20Portal.png",
 } as const;
 
+/** API & Third-Party Integration service page artwork supplied through ImageKit. */
+export const apiIntegrationImages = {
+  hero: "https://ik.imagekit.io/home1/home%20page/Api%20integration%20page.png",
+} as const;
+
 /**
  * "Tools & Technologies We Use" logos on the Website Development service page,
  * in the supplied order. URLs stay exactly as given (percent-encoded spaces
