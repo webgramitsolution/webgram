@@ -39,7 +39,6 @@ import {
   siStripe,
   siWhatsapp,
   siZoho,
-  type SimpleIcon,
 } from "simple-icons";
 
 import { SiteHeader } from "@/components/site-header";
@@ -81,11 +80,18 @@ const process = [
   [Rocket, "06", "Ongoing Support", "Monitor, maintain and update integrations."],
 ] as const;
 
+type BrandMark = { path: string };
+
 type Platform =
-  | { name: string; icon: SimpleIcon; image?: never }
+  | { name: string; icon: BrandMark; image?: never }
   | { name: string; image: string; icon?: never };
 
 const imageFor = (name: string) => wooIntegrations.find((item) => item.name === name)?.src;
+
+const salesforceMark: BrandMark = { path: "M6.1 18.5c-3 0-5.4-2.2-5.4-5 0-2.3 1.6-4.3 3.9-4.8.7-3 3.4-5.2 6.6-5.2 2.5 0 4.8 1.4 5.9 3.5.4-.1.8-.2 1.3-.2 2.7 0 4.9 2.1 4.9 4.7 0 2.6-2.2 4.7-4.9 4.7H6.1z" };
+const twilioMark: BrandMark = { path: "M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5zm-3.3 14A2.2 2.2 0 1 1 8.7 11a2.2 2.2 0 0 1 0 4.5zm0-6.5a2.2 2.2 0 1 1 0-4.5A2.2 2.2 0 0 1 8.7 9zm6.6 6.5a2.2 2.2 0 1 1 0-4.5 2.2 2.2 0 0 1 0 4.5zm0-6.5a2.2 2.2 0 1 1 0-4.5 2.2 2.2 0 0 1 0 4.5z" };
+const sendGridMark: BrandMark = { path: "M2 3h8v8H2V3zm12 0h8v8h-8V3zM8 13h8v8H8v-8z" };
+const awsMark: BrandMark = { path: "M6.5 15.7c2.7 2 6.6 3 9.9 3 2.1 0 4.2-.4 6.1-1.2.3-.1.5.3.2.5-2.7 2-6.5 3-9.8 3-4.6 0-8.7-1.7-11.8-4.6-.3-.3 0-.7.3-.5zm14.3-.7c-.5-.7-3.1-.3-4.3-.2-.4.1-.5-.3-.1-.6 2.4-1.7 6.3-1.2 6.8-.6.5.6-.1 4.5-2.4 6.4-.4.3-.7.1-.6-.3.5-1.2 1.1-4 .6-4.7z" };
 
 const platforms: Platform[] = [
   { name: "Razorpay", icon: siRazorpay },
@@ -96,24 +102,19 @@ const platforms: Platform[] = [
   { name: "Delhivery", image: imageFor("Delhivery") ?? "https://ik.imagekit.io/home1/Delhivery.png" },
   { name: "Tally", image: imageFor("Tally") ?? "https://ik.imagekit.io/home1/Telly.png" },
   { name: "Zoho", icon: siZoho },
-  { name: "Salesforce", icon: siCloudflareFallback },
+  { name: "Salesforce", icon: salesforceMark },
   { name: "HubSpot", icon: siHubspot },
   { name: "Meta WhatsApp", icon: siWhatsapp },
-  { name: "Twilio", icon: siCommunicationFallback },
-  { name: "SendGrid", icon: siEmailFallback },
+  { name: "Twilio", icon: twilioMark },
+  { name: "SendGrid", icon: sendGridMark },
   { name: "Google Maps", icon: siGooglemaps },
   { name: "Google Analytics", icon: siGoogleanalytics },
   { name: "Google Ads", icon: siGoogleads },
   { name: "Mailchimp", icon: siMailchimp },
-  { name: "AWS", icon: siAwsFallback },
+  { name: "AWS", icon: awsMark },
   { name: "Odoo", icon: siOdoo },
   { name: "SAP", icon: siSap },
 ];
-
-const siCloudflareFallback: SimpleIcon = { title: "Salesforce", slug: "salesforce", hex: "0866F5", source: "", svg: "", path: "M6.1 18.5c-3 0-5.4-2.2-5.4-5 0-2.3 1.6-4.3 3.9-4.8.7-3 3.4-5.2 6.6-5.2 2.5 0 4.8 1.4 5.9 3.5.4-.1.8-.2 1.3-.2 2.7 0 4.9 2.1 4.9 4.7 0 2.6-2.2 4.7-4.9 4.7H6.1z", guidelines: undefined, license: undefined };
-const siCommunicationFallback: SimpleIcon = { ...siCloudflareFallback, title: "Twilio", slug: "twilio", path: "M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5zm-3.3 14A2.2 2.2 0 1 1 8.7 11a2.2 2.2 0 0 1 0 4.5zm0-6.5a2.2 2.2 0 1 1 0-4.5A2.2 2.2 0 0 1 8.7 9zm6.6 6.5a2.2 2.2 0 1 1 0-4.5 2.2 2.2 0 0 1 0 4.5zm0-6.5a2.2 2.2 0 1 1 0-4.5 2.2 2.2 0 0 1 0 4.5z" };
-const siEmailFallback: SimpleIcon = { ...siCloudflareFallback, title: "SendGrid", slug: "sendgrid", path: "M2 3h8v8H2V3zm12 0h8v8h-8V3zM8 13h8v8H8v-8z" };
-const siAwsFallback: SimpleIcon = { ...siCloudflareFallback, title: "AWS", slug: "aws", path: "M6.5 15.7c2.7 2 6.6 3 9.9 3 2.1 0 4.2-.4 6.1-1.2.3-.1.5.3.2.5-2.7 2-6.5 3-9.8 3-4.6 0-8.7-1.7-11.8-4.6-.3-.3 0-.7.3-.5zm14.3-.7c-.5-.7-3.1-.3-4.3-.2-.4.1-.5-.3-.1-.6 2.4-1.7 6.3-1.2 6.8-.6.5.6-.1 4.5-2.4 6.4-.4.3-.7.1-.6-.3.5-1.2 1.1-4 .6-4.7z" };
 
 const projects = [
   [deliveredProjects.corporate, "Razorpay Payment Integration", "Ecommerce Store"],
@@ -128,7 +129,7 @@ function Eyebrow({ children }: { children: ReactNode }) {
 }
 
 function BrandIcon({ platform }: { platform: Platform }) {
-  if (platform.image) return <img src={platform.image} alt={`${platform.name} logo`} loading="lazy" className="max-h-[46px] max-w-[90%] object-contain" />;
+  if ("image" in platform) return <img src={platform.image} alt={`${platform.name} logo`} loading="lazy" className="max-h-[46px] max-w-[90%] object-contain" />;
   return <svg role="img" aria-label={`${platform.name} logo`} viewBox="0 0 24 24" className="h-8 w-8 text-primary" fill="currentColor"><path d={platform.icon.path} /></svg>;
 }
 
