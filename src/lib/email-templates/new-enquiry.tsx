@@ -27,7 +27,7 @@ const NewEnquiryEmail = ({ name, email, phone, service, message }: Props) => (
 
 export const template = {
   component: NewEnquiryEmail,
-  subject: (d: Record<string, any>) => `New enquiry from ${d.name ?? 'website visitor'}`,
+  subject: (d: Record<string, any>) => `New enquiry from ${d['name'] ?? 'website visitor'}`,
   displayName: 'New enquiry (admin)',
   to: 'info@webgramitsolution.com',
   previewData: { name: 'Rahul Sharma', email: 'rahul@example.com', phone: '+91 98765 43210', service: 'WooCommerce', message: 'I need an online store for my business.' },

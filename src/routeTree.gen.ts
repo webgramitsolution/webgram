@@ -23,6 +23,7 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
+import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authenticated.admin.requests'
 import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
 import { Route as GuestGuestGameRouteImport } from './routes/_guest.guest.game'
 import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.indexing'
@@ -104,6 +105,12 @@ const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
   path: '/admin/blog',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminRequestsRoute =
+  AuthenticatedAdminRequestsRouteImport.update({
+    id: '/admin/requests',
+    path: '/admin/requests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const GuestGuestIndexRoute = GuestGuestIndexRouteImport.update({
   id: '/guest/',
   path: '/guest/',
@@ -182,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
   '/guest/stories': typeof GuestGuestStoriesRoute
@@ -207,6 +215,7 @@ export interface FileRoutesByTo {
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
   '/guest/stories': typeof GuestGuestStoriesRoute
@@ -236,6 +245,7 @@ export interface FileRoutesById {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/_guest/guest/game': typeof GuestGuestGameRoute
   '/_guest/guest/indexing': typeof GuestGuestIndexingRoute
   '/_guest/guest/stories': typeof GuestGuestStoriesRoute
@@ -264,6 +274,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/admin/blog'
+    | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
     | '/guest/stories'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/services/$slug'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
     | '/guest/stories'
@@ -317,6 +329,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/_authenticated/admin/blog'
+    | '/_authenticated/admin/requests'
     | '/_guest/guest/game'
     | '/_guest/guest/indexing'
     | '/_guest/guest/stories'
@@ -450,6 +463,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/requests': {
+      id: '/_authenticated/admin/requests'
+      path: '/admin/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AuthenticatedAdminRequestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_guest/guest/': {
       id: '/_guest/guest/'
       path: '/guest'
@@ -557,10 +577,12 @@ const AuthenticatedAdminBlogRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
+  AuthenticatedAdminRequestsRoute: typeof AuthenticatedAdminRequestsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
+  AuthenticatedAdminRequestsRoute: AuthenticatedAdminRequestsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

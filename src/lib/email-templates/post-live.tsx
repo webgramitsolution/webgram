@@ -30,7 +30,7 @@ const PostLiveEmail = ({ title = 'Your article', url = 'https://webgramitsolutio
 
 export const template = {
   component: PostLiveEmail,
-  subject: (d: Record<string, any>) => `Your article “${d.title ?? 'article'}” is live`,
+  subject: (d: Record<string, any>) => `Your article “${d['title'] ?? 'article'}” is live`,
   displayName: 'Guest article live',
   previewData: { title: 'How to Grow Your Online Store', url: 'https://homepage-replica-magic.lovable.app/blog/example', name: 'Priya' },
 } satisfies TemplateEntry
