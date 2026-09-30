@@ -29,6 +29,13 @@
       "when": 1790758160766,
       "tag": "0003_restrict_blog_comments_read",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790789110596,
+      "tag": "0004_add_blog_taxonomy_tags_and_faqs",
+      "breakpoints": true
     }
   ]
 }
