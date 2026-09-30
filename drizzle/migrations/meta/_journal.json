@@ -36,6 +36,13 @@
       "when": 1790789110596,
       "tag": "0004_add_blog_taxonomy_tags_and_faqs",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790789180747,
+      "tag": "0005_allow_category_names_across_taxonomy_branches",
+      "breakpoints": true
     }
   ]
 }
