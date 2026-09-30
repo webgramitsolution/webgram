@@ -37,3 +37,4 @@
 
 - [x] Website Development: technology logos styled like the reference (soft tile, logo inside, name below), all tiles equal size
 - [x] WooCommerce page: "Integrations We Support" replaced with 13 supplied ImageKit logos (Google Ads → Tally) in soft tiles with names below; verified desktop/tablet/phone, no broken images or overflow
+- [x] WooCommerce "Integrations We Support": tablet shows 10 tiles then swipe, phone 4 then swipe, desktop all 13 in one row; equal square tiles, no names below; verified 1440/820/390, build OK
