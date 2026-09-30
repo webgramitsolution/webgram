@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import { template as newEnquiry } from './new-enquiry'
 import { template as postLive } from './post-live'
+import { template as enquiryAcknowledgement } from './enquiry-acknowledgement'
 
 export interface TemplateEntry {
   component: ComponentType<any>
@@ -22,6 +23,7 @@ export interface TemplateEntry {
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'new-enquiry': newEnquiry,
   'post-live': postLive,
+  'enquiry-acknowledgement': enquiryAcknowledgement,
   // Add templates here as they are created, e.g.:
   // 'welcome': welcomeTemplate,
 }

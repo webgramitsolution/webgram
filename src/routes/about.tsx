@@ -24,7 +24,6 @@ import {
   Trophy,
   Users,
 } from "lucide-react";
-import ctaImage from "@/assets/cta-mountain.jpg";
 
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
@@ -410,69 +409,6 @@ function WhyChoose() {
   );
 }
 
-function AboutCta() {
-  const steps = [
-    [FileText, "Free Consultation", "Discuss your idea"],
-    [PenTool, "Tailored Solution", "As per your needs"],
-    [Clock, "On-Time Delivery", "With best practices"],
-    [Trophy, "Long-Term Support", "We grow with you"],
-  ] as const;
-  return (
-    <section className="relative overflow-hidden bg-navy text-on-dark">
-      <img
-        src={ctaImage}
-        alt="Person looking over mountains at sunrise"
-        width={1536}
-        height={512}
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover object-[55%_center]"
-      />
-      <div className="absolute inset-0 bg-cta-overlay" />
-      <div className="page-shell relative grid min-h-[200px] items-center gap-6 py-7 md:grid-cols-[1fr_1.1fr]">
-        <div>
-          <h2 className="text-[24px] font-extrabold leading-[1.1]">
-            Let’s Build Something
-            <br />
-            Great Together.
-          </h2>
-          <p className="mt-3 max-w-[330px] text-[10px] leading-[1.6] text-on-dark/85">
-            Have a project in mind? We’re here to help you turn your ideas into a powerful digital
-            commerce experience.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Button
-              asChild
-              className="h-10 rounded-sm bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90"
-            >
-              <Link to="/contact">
-                Start Your Project <ArrowRight />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="h-10 rounded-sm border-on-dark/70 bg-transparent px-6 text-[10px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
-            >
-              <a href="tel:+917551120242">Talk to an Expert</a>
-            </Button>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4 self-end sm:grid-cols-4">
-          {steps.map(([Icon, t, d]) => (
-            <div key={t} className="text-center">
-              <span className="mx-auto grid h-9 w-9 place-items-center rounded-full border border-on-dark/50">
-                <Icon className="h-4 w-4" />
-              </span>
-              <strong className="mt-2 block text-[8.5px]">{t}</strong>
-              <small className="block text-[7.5px] text-on-dark/75">{d}</small>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function AboutPage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-background font-sans">
@@ -483,7 +419,6 @@ function AboutPage() {
       <Journey />
       <Workspace />
       <WhyChoose />
-      <AboutCta />
     </main>
   );
 }

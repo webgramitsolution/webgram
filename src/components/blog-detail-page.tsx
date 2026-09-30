@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock3 } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { BlogEngagement } from "@/components/blog-engagement";
+import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
 
 type Related = { id: string; title: string; slug: string; excerpt: string; featured_image: string | null; featured_image_alt: string; published_at: string | null };
 type Post = { id: string; title: string; slug: string; excerpt: string; content: string; featured_image: string | null; featured_image_alt: string; author_name: string; published_at: string | null; category: { name: string; slug: string } | null; related: Related[] };
@@ -34,10 +35,12 @@ export function BlogDetailPage({ post }: { post: Post }) {
         </div>
       </section>
       {post.featured_image ? <div className="mx-auto mt-8 aspect-[16/7] w-[min(100%-2rem,1100px)] overflow-hidden rounded-md bg-muted"><img src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" /></div> : null}
+      <BlogAdBand label="Advertisement — article" />
       <article className="mx-auto w-[min(100%-2rem,760px)] py-10 md:py-14"><ArticleBody content={post.content} /></article>
       <section className="mx-auto mb-10 w-[min(100%-2rem,760px)] rounded-md border border-border bg-sky-soft p-5"><div className="flex items-center gap-4"><span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-navy text-xl font-extrabold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><div><p className="text-[10px] font-bold uppercase tracking-widest text-primary">Written by</p><p className="text-lg font-extrabold text-navy">{post.author_name}</p><p className="text-xs text-muted-foreground">Published {date(post.published_at)}{post.category ? ` · ${post.category.name}` : ""}</p></div></div></section>
       <BlogEngagement postId={post.id} title={post.title} />
       {post.related.length ? <section className="border-t border-border bg-sky-soft py-10"><div className="page-shell"><p className="page-eyebrow text-primary">Keep reading</p><h2 className="mt-2 text-2xl font-extrabold text-navy">Related insights</h2><div className="mt-6 grid gap-4 md:grid-cols-3">{post.related.map((item) => <Link key={item.id} to="/blog/$slug" params={{ slug: item.slug }} className="group rounded-md border border-border bg-card p-5 shadow-card"><span className="text-[10px] text-muted-foreground">{date(item.published_at)}</span><h3 className="mt-2 text-base font-extrabold leading-snug text-navy group-hover:text-primary">{item.title}</h3><span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary">Read article <ArrowRight className="h-3.5 w-3.5" /></span></Link>)}</div></div></section> : null}
+      <BlogAdsConsent />
     </main>
   </div>;
 }

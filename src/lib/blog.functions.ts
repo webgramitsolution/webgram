@@ -98,6 +98,7 @@ export const saveBlogPost = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => postInput.parse(input))
   .handler(async ({ context, data }) => {
     await requireAdmin(context);
+    if (data.featuredImage && data.featuredImageAlt.length < 5) throw new Error("Add a meaningful image description for search and accessibility.");
     const record = {
       title: data.title,
       slug: data.slug,

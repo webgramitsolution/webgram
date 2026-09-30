@@ -7,9 +7,7 @@ import {
   BriefcaseBusiness,
   CheckCircle2,
   Code2,
-  Headphones,
   Layers3,
-  MessageCircle,
   ShieldCheck,
   ShoppingCart,
   Store,
@@ -21,7 +19,6 @@ import type { ComponentType } from "react";
 import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
-import ctaImage from "@/assets/cta-mountain.jpg";
 import { SiteHeader } from "@/components/site-header";
 
 export const Route = createFileRoute("/")({
@@ -544,63 +541,6 @@ function Technology() {
   );
 }
 
-function FinalCta() {
-  const steps = [
-    [MessageCircle, "Consultation", "Free discussion"],
-    [Layers3, "Solution Design", "Tailored to your goals"],
-    [Code2, "Development", "On-time delivery"],
-    [Headphones, "Support", "Long-term partnership"],
-  ] as const;
-  return (
-    <section className="relative min-h-[255px] overflow-hidden bg-navy text-on-dark">
-      <img
-        src={ctaImage}
-        alt="Entrepreneur looking over mountain landscape at sunrise"
-        loading="lazy"
-        width={1536}
-        height={512}
-        className="absolute inset-0 h-full w-full object-cover object-[60%_center]"
-      />
-      <div className="absolute inset-0 bg-cta-overlay" />
-      <div className="page-shell relative grid min-h-[255px] items-center gap-7 py-8 md:grid-cols-[1fr_1.2fr]">
-        <div>
-          <h2 className="text-[30px] font-extrabold leading-none">
-            Have a Business Idea?
-            <br />
-            Let’s Build It.
-          </h2>
-          <p className="mt-3 max-w-[470px] text-[11px] leading-4 text-on-dark/85">
-            Tell us what you're building. We'll help you turn it into a scalable digital commerce
-            experience.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Button className="h-11 bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90">
-              Start Your Project <ArrowRight />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-11 border-on-dark/60 bg-transparent px-6 text-[10px] font-bold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark"
-            >
-              Talk to an Expert
-            </Button>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-          {steps.map(([IconComponent, title, text]) => (
-            <div key={title} className="text-center">
-              <span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/40">
-                <IconComponent className="h-5 w-5" />
-              </span>
-              <strong className="mt-2 block text-[9px]">{title}</strong>
-              <small className="mt-1 block text-[7px] text-on-dark/70">{text}</small>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-background font-sans">
@@ -614,7 +554,6 @@ function HomePage() {
       <CaseStudies />
       <Technology />
       <HomeEnquiry />
-      <FinalCta />
     </main>
   );
 }

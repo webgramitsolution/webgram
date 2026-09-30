@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
   ChevronDown,
@@ -36,8 +37,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { contactImages } from "@/lib/site-images";
-import ctaImage from "@/assets/cta-mountain.jpg";
 import { SiteHeader } from "@/components/site-header";
+import { submitEnquiry } from "@/lib/enquiry.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -117,17 +118,34 @@ function ContactHero() {
 const fieldClass = "h-9 bg-card text-[10.5px] shadow-none md:text-[10.5px] placeholder:text-muted-foreground/60";
 
 function ContactForm() {
+  const send = useServerFn(submitEnquiry);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [business, setBusiness] = useState("");
   const [message, setMessage] = useState("");
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault(); setBusy(true); setError("");
+    try {
+      await send({ data: { name, email, phone, service: projectType, message: `${message}\nBusiness: ${business || "Not provided"}\nBudget: ${budget || "Not provided"}`, website: "" } });
+      setDone(true);
+    } catch (caught) { setError(caught instanceof Error ? caught.message : "Please check your details and try again."); }
+    finally { setBusy(false); }
+  }
+  if (done) return <div className="rounded-md border border-success/30 bg-success-soft p-6 text-center"><h3 className="text-xl font-extrabold text-navy">Message received</h3><p className="mt-2 text-sm text-muted-foreground">A confirmation has been sent to your email. Our team will contact you soon.</p></div>;
   return (
-    <form className="grid grid-cols-2 gap-x-3 gap-y-3" onSubmit={(event) => event.preventDefault()}>
+    <form className="grid grid-cols-2 gap-x-3 gap-y-3" onSubmit={submit}>
       <label className="contact-field">
-        Your Name *<Input required placeholder="Enter your name" className={fieldClass} />
+        Your Name *<Input required minLength={2} value={name} onChange={(event) => setName(event.target.value)} placeholder="Enter your name" className={fieldClass} />
       </label>
       <label className="contact-field">
         Email Address *
-        <Input required type="email" placeholder="Enter your email" className={fieldClass} />
+        <Input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter your email" className={fieldClass} />
       </label>
       <label className="contact-field">
         Phone Number *
@@ -148,6 +166,8 @@ function ContactForm() {
           <Input
             required
             type="tel"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
             placeholder="Enter your phone number"
             className="h-9 min-w-0 rounded-none border-0 bg-card text-[10.5px] shadow-none focus-visible:ring-0 md:text-[10.5px]"
           />
@@ -168,7 +188,7 @@ function ContactForm() {
       </label>
       <label className="contact-field">
         Business Name
-        <Input placeholder="Enter your business name" className={fieldClass} />
+        <Input value={business} onChange={(event) => setBusiness(event.target.value)} placeholder="Enter your business name" className={fieldClass} />
       </label>
       <label className="contact-field">
         Project Budget
@@ -198,13 +218,14 @@ function ContactForm() {
           <input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />
           <span className="min-w-0">
             I agree to the{" "}
-            <a href="#faq" className="font-bold text-primary underline">
-              Terms &amp; Privacy Policy
-            </a>
+            <Link to="/terms-and-conditions" className="font-bold text-primary underline">Terms</Link>
+            {" & "}
+            <Link to="/privacy-policy" className="font-bold text-primary underline">Privacy Policy</Link>
           </span>
         </label>
-        <Button className="h-10 shrink-0 bg-gold px-7 text-[12px] font-bold text-navy hover:bg-gold/90">
-          Send Message <ArrowRight />
+        {error ? <p role="alert" className="w-full text-xs font-semibold text-destructive">{error}</p> : null}
+        <Button disabled={busy} className="h-10 shrink-0 bg-gold px-7 text-[12px] font-bold text-navy hover:bg-gold/90">
+          {busy ? "Sending…" : "Send Message"} <ArrowRight />
         </Button>
       </div>
     </form>
@@ -501,72 +522,6 @@ function Faq() {
   );
 }
 
-function FinalCta() {
-  const steps = [
-    [MessageCircle, "Free Consultation", "Discuss your idea"],
-    [Users, "Tailored Solution", "As per your needs"],
-    [Rocket, "On-Time Delivery", "With best practices"],
-    [Headphones, "Long-Term Support", "We grow with you"],
-  ] as const;
-  return (
-    <section className="relative min-h-[205px] overflow-hidden bg-navy text-on-dark">
-      <img
-        src={ctaImage}
-        alt="Entrepreneur looking over mountain landscape at sunrise"
-        loading="lazy"
-        width={1536}
-        height={512}
-        className="absolute inset-0 h-full w-full object-cover object-[60%_center]"
-      />
-      <div className="absolute inset-0 bg-cta-overlay" />
-      <div className="page-shell relative grid min-h-[205px] items-center gap-7 py-7 md:grid-cols-[1fr_1.2fr]">
-        <div>
-          <p className="text-[8px] font-bold uppercase tracking-[.2em] text-gold">
-            Let’s Get Started
-          </p>
-          <h2 className="mt-2 text-[26px] font-extrabold leading-none">
-            Ready to Turn Your Idea
-            <br />
-            into Reality?
-          </h2>
-          <p className="mt-3 max-w-[470px] text-[9px] leading-4 text-on-dark/85">
-            Whether it’s a website, ecommerce store, B2B portal or custom application — we’re here
-            to make it happen.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Button
-              asChild
-              className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"
-            >
-              <a href="#contact">
-                Start Your Project <ArrowRight />
-              </a>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="h-10 border-on-dark/60 bg-transparent px-6 text-[9px] font-bold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark"
-            >
-              <a href="tel:+917551120242">Talk to an Expert</a>
-            </Button>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {steps.map(([IconComponent, title, text]) => (
-            <div key={title} className="text-center">
-              <span className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-on-dark/40">
-                <IconComponent className="h-4 w-4" />
-              </span>
-              <strong className="mt-2 block text-[8px]">{title}</strong>
-              <small className="mt-1 block text-[6px] text-on-dark/70">{text}</small>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ContactPage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-background font-sans">
@@ -576,7 +531,6 @@ function ContactPage() {
       <Location />
       <ConnectHours />
       <Faq />
-      <FinalCta />
     </main>
   );
 }
