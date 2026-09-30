@@ -83,7 +83,7 @@ const process = [
 type BrandMark = { path: string };
 
 type Platform =
-  | { name: string; icon: BrandMark; image?: never }
+  | { name: string; icon: BrandMark; color: string; image?: never }
   | { name: string; image: string; icon?: never };
 
 const imageFor = (name: string) => wooIntegrations.find((item) => item.name === name)?.src;
@@ -94,26 +94,26 @@ const sendGridMark: BrandMark = { path: "M2 3h8v8H2V3zm12 0h8v8h-8V3zM8 13h8v8H8
 const awsMark: BrandMark = { path: "M6.5 15.7c2.7 2 6.6 3 9.9 3 2.1 0 4.2-.4 6.1-1.2.3-.1.5.3.2.5-2.7 2-6.5 3-9.8 3-4.6 0-8.7-1.7-11.8-4.6-.3-.3 0-.7.3-.5zm14.3-.7c-.5-.7-3.1-.3-4.3-.2-.4.1-.5-.3-.1-.6 2.4-1.7 6.3-1.2 6.8-.6.5.6-.1 4.5-2.4 6.4-.4.3-.7.1-.6-.3.5-1.2 1.1-4 .6-4.7z" };
 
 const platforms: Platform[] = [
-  { name: "Razorpay", icon: siRazorpay },
-  { name: "Stripe", icon: siStripe },
+  { name: "Razorpay", icon: siRazorpay, color: "text-brand-razorpay" },
+  { name: "Stripe", icon: siStripe, color: "text-brand-stripe" },
   { name: "PayU", image: imageFor("PayU") ?? "https://ik.imagekit.io/home1/payu.png" },
-  { name: "PayPal", icon: siPaypal },
+  { name: "PayPal", icon: siPaypal, color: "text-brand-paypal" },
   { name: "Shiprocket", image: imageFor("Shiprocket") ?? "https://ik.imagekit.io/home1/Shiprocket.png" },
   { name: "Delhivery", image: imageFor("Delhivery") ?? "https://ik.imagekit.io/home1/Delhivery.png" },
   { name: "Tally", image: imageFor("Tally") ?? "https://ik.imagekit.io/home1/Telly.png" },
-  { name: "Zoho", icon: siZoho },
-  { name: "Salesforce", icon: salesforceMark },
-  { name: "HubSpot", icon: siHubspot },
-  { name: "Meta WhatsApp", icon: siWhatsapp },
-  { name: "Twilio", icon: twilioMark },
-  { name: "SendGrid", icon: sendGridMark },
-  { name: "Google Maps", icon: siGooglemaps },
-  { name: "Google Analytics", icon: siGoogleanalytics },
-  { name: "Google Ads", icon: siGoogleads },
-  { name: "Mailchimp", icon: siMailchimp },
-  { name: "AWS", icon: awsMark },
-  { name: "Odoo", icon: siOdoo },
-  { name: "SAP", icon: siSap },
+  { name: "Zoho", icon: siZoho, color: "text-brand-zoho" },
+  { name: "Salesforce", icon: salesforceMark, color: "text-brand-salesforce" },
+  { name: "HubSpot", icon: siHubspot, color: "text-brand-hubspot" },
+  { name: "Meta WhatsApp", icon: siWhatsapp, color: "text-brand-whatsapp" },
+  { name: "Twilio", icon: twilioMark, color: "text-brand-twilio" },
+  { name: "SendGrid", icon: sendGridMark, color: "text-brand-sendgrid" },
+  { name: "Google Maps", icon: siGooglemaps, color: "text-brand-google" },
+  { name: "Google Analytics", icon: siGoogleanalytics, color: "text-brand-analytics" },
+  { name: "Google Ads", icon: siGoogleads, color: "text-brand-google" },
+  { name: "Mailchimp", icon: siMailchimp, color: "text-brand-mailchimp" },
+  { name: "AWS", icon: awsMark, color: "text-brand-aws" },
+  { name: "Odoo", icon: siOdoo, color: "text-brand-odoo" },
+  { name: "SAP", icon: siSap, color: "text-brand-sap" },
 ];
 
 const projects = [
@@ -130,7 +130,7 @@ function Eyebrow({ children }: { children: ReactNode }) {
 
 function BrandIcon({ platform }: { platform: Platform }) {
   if ("image" in platform) return <img src={platform.image} alt={`${platform.name} logo`} loading="lazy" className="max-h-[46px] max-w-[90%] object-contain" />;
-  return <svg role="img" aria-label={`${platform.name} logo`} viewBox="0 0 24 24" className="h-8 w-8 text-primary" fill="currentColor"><path d={platform.icon.path} /></svg>;
+  return <svg role="img" aria-label={`${platform.name} logo`} viewBox="0 0 24 24" className={`h-8 w-8 ${platform.color}`} fill="currentColor"><path d={platform.icon.path} /></svg>;
 }
 
 function Projects() {
