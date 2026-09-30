@@ -23,6 +23,7 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
+import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authenticated.admin.requests'
 import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
 import { Route as GuestGuestGameRouteImport } from './routes/_guest.guest.game'
 import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.indexing'
@@ -34,6 +35,7 @@ import { Route as AuthenticatedAdminBlogIdRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated.admin.blog.new'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -103,6 +105,12 @@ const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
   path: '/admin/blog',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminRequestsRoute =
+  AuthenticatedAdminRequestsRouteImport.update({
+    id: '/admin/requests',
+    path: '/admin/requests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const GuestGuestIndexRoute = GuestGuestIndexRouteImport.update({
   id: '/guest/',
   path: '/guest/',
@@ -161,6 +169,12 @@ const LovableEmailAuthWebhookRoute = LovableEmailAuthWebhookRouteImport.update({
   path: '/lovable/email/auth/webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -175,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
   '/guest/stories': typeof GuestGuestStoriesRoute
@@ -185,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/admin/blog/': typeof AuthenticatedAdminBlogIndexRoute
 }
 export interface FileRoutesByTo {
@@ -199,6 +215,7 @@ export interface FileRoutesByTo {
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
   '/guest/stories': typeof GuestGuestStoriesRoute
@@ -209,6 +226,7 @@ export interface FileRoutesByTo {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/admin/blog': typeof AuthenticatedAdminBlogIndexRoute
 }
 export interface FileRoutesById {
@@ -227,6 +245,7 @@ export interface FileRoutesById {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/_guest/guest/game': typeof GuestGuestGameRoute
   '/_guest/guest/indexing': typeof GuestGuestIndexingRoute
   '/_guest/guest/stories': typeof GuestGuestStoriesRoute
@@ -237,6 +256,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/_authenticated/admin/blog/': typeof AuthenticatedAdminBlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -254,6 +274,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/admin/blog'
+    | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
     | '/guest/stories'
@@ -264,6 +285,7 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
     | '/admin/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -278,6 +300,7 @@ export interface FileRouteTypes {
     | '/services/$slug'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
     | '/guest/stories'
@@ -288,6 +311,7 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
     | '/admin/blog'
   id:
     | '__root__'
@@ -305,6 +329,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/_authenticated/admin/blog'
+    | '/_authenticated/admin/requests'
     | '/_guest/guest/game'
     | '/_guest/guest/indexing'
     | '/_guest/guest/stories'
@@ -315,6 +340,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/blog/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
     | '/_authenticated/admin/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -334,6 +360,7 @@ export interface RootRouteChildren {
   WorkSlugRoute: typeof WorkSlugRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -436,6 +463,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/requests': {
+      id: '/_authenticated/admin/requests'
+      path: '/admin/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AuthenticatedAdminRequestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_guest/guest/': {
       id: '/_guest/guest/'
       path: '/guest'
@@ -513,6 +547,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailAuthWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -536,10 +577,12 @@ const AuthenticatedAdminBlogRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
+  AuthenticatedAdminRequestsRoute: typeof AuthenticatedAdminRequestsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
+  AuthenticatedAdminRequestsRoute: AuthenticatedAdminRequestsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -581,6 +624,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkSlugRoute: WorkSlugRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

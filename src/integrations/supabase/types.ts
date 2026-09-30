@@ -90,6 +90,7 @@ export type Database = {
           featured_image: string | null
           featured_image_alt: string
           id: string
+          live_notified_at: string | null
           published_at: string | null
           seo_description: string | null
           seo_title: string | null
@@ -108,6 +109,7 @@ export type Database = {
           featured_image?: string | null
           featured_image_alt?: string
           id?: string
+          live_notified_at?: string | null
           published_at?: string | null
           seo_description?: string | null
           seo_title?: string | null
@@ -126,6 +128,7 @@ export type Database = {
           featured_image?: string | null
           featured_image_alt?: string
           id?: string
+          live_notified_at?: string | null
           published_at?: string | null
           seo_description?: string | null
           seo_title?: string | null
@@ -165,6 +168,39 @@ export type Database = {
           id?: string
           reason?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      enquiries: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string
+          service: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string
+          service?: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string
+          service?: string
+          status?: string
         }
         Relationships: []
       }

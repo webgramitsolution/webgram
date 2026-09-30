@@ -59,6 +59,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
     label: "Resources",
     items: ["Blog", "Guides", "FAQs"].map((label) => [label, subpage("resources", label)]),
   },
+  { label: "Blog", target: { to: "/resources/$slug", params: { slug: "blog" } } },
   { label: "About Us", target: { to: "/about" } },
   { label: "Contact Us", target: { to: "/contact" } },
 ];

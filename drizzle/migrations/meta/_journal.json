@@ -15,6 +15,13 @@
       "when": 1790749815515,
       "tag": "0001_guest_panel_credits",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790750170435,
+      "tag": "0002_enquiries_and_post_notifications",
+      "breakpoints": true
     }
   ]
 }

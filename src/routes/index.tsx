@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { HomeEnquiry } from "@/components/enquiry-form";
 import {
   ArrowRight,
   BarChart3,
@@ -735,6 +736,7 @@ function HomePage() {
       <Industries />
       <CaseStudies />
       <Technology />
+      <HomeEnquiry />
       <FinalCta />
       <Footer />
     </main>

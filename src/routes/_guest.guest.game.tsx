@@ -18,6 +18,9 @@ function levelConfig(level: number) {
   return { target: targets[level - 1] ?? 60, band: Math.max(3, 12 - level), speed: 18 + level * 5 };
 }
 
+// Survives a remount triggered by background session refreshes.
+let lastWinMessage = "";
+
 function Game() {
   const s = useGuestStatus();
   const level = Math.min(s.levels + 1, 10);
@@ -27,6 +30,7 @@ function Game() {
   const [pouring, setPouring] = useState(false);
   const [result, setResult] = useState<"" | "win" | "lose">("");
   const [msg, setMsg] = useState("");
+  const [banner, setBanner] = useState(lastWinMessage);
   const raf = useRef<number | null>(null);
   const last = useRef(0);
 
@@ -45,11 +49,12 @@ function Game() {
     if (!pouring) return; setPouring(false);
     const ok = Math.abs(fill - cfg.target) <= cfg.band;
     setResult(ok ? "win" : "lose");
-    if (ok) { const { error } = await supabase.rpc("complete_game_level", { _level: level }); setMsg(error ? errorText(error) : "+20 credits added!"); await s.refresh(); }
+    if (ok) { const { error } = await supabase.rpc("complete_game_level", { _level: level }); setMsg(error ? errorText(error) : "+20 credits added!"); if (!error) { lastWinMessage = `Level ${level} complete — +20 credits added!`; setBanner(lastWinMessage); } await s.refresh(); }
   }
-  function reset() { setFill(0); setResult(""); setMsg(""); }
+  function reset() { setFill(0); setResult(""); setMsg(""); lastWinMessage = ""; setBanner(""); }
 
   return <GuestShell title="Play & Earn" balance={s.balance} levels={s.levels}>
+    {banner && !result ? <p className="mb-4 rounded-md bg-success-soft p-3 text-sm font-bold text-success">{banner}</p> : null}
     <Panel>
       {done ? <div className="py-10 text-center"><Trophy className="mx-auto h-12 w-12 text-gold" /><h2 className="mt-3 text-2xl font-extrabold text-navy">All 10 levels complete!</h2><p className="mt-2 text-sm text-muted-foreground">You earned the full 200 game credits.</p></div> : <div className="grid items-center gap-8 md:grid-cols-[1fr_260px]">
         <div><p className="page-eyebrow text-primary">Level {level} of 10</p><h2 className="mt-2 text-2xl font-extrabold text-navy">Fill the glass to the gold line</h2><p className="mt-2 text-sm leading-6 text-muted-foreground">Press and hold <strong>Pour</strong>, release when the water reaches the gold band. Each level is faster with a thinner band. Win = 20 credits.</p>
