@@ -11,7 +11,7 @@ type Post = { id: string; title: string; slug: string; excerpt: string; content:
 const date = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
 
 function ArticleBody({ content }: { content: string }) {
-  const blocks = content.split(/\n\s*\n/).filter(Boolean);
+  const blocks = content.replace(/\\n/g, "\n").split(/\n\s*\n/).filter(Boolean);
   const midpoint = Math.max(2, Math.floor(blocks.length / 2));
   return <div className="blog-prose">{blocks.map((block, index) => <div key={`${index}-${block.slice(0, 12)}`}>{index === midpoint ? <BlogAdBand position="detailContent" label="Advertisement — in article" /> : null}{(() => {
     if (block.startsWith("## ")) return <h2 key={index}>{block.slice(3)}</h2>;

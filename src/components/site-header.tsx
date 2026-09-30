@@ -110,7 +110,7 @@ export function SiteHeader() {
               <a href="https://www.youtube.com/@webgramitsolution" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube className="h-3.5 w-3.5" /></a>
               <a href="https://mx.pinterest.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Pinterest"><Pin className="h-3.5 w-3.5" /></a>
               <a href="https://www.linkedin.com/company/webgramitsolution" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin className="h-3.5 w-3.5" /></a>
-              <a href="https://wa.me/webgramitsolution" target="_blank" rel="noreferrer" aria-label="WhatsApp"><MessageCircle className="h-3.5 w-3.5" /></a>
+              <a href="https://wa.me/917551120242" target="_blank" rel="noreferrer" aria-label="WhatsApp"><MessageCircle className="h-3.5 w-3.5" /></a>
             </span>
             {topLinks.map(([label, target]) => (
               <Link
@@ -131,7 +131,7 @@ export function SiteHeader() {
             alt="Webgram IT Solution"
             width={720}
             height={323}
-            className="h-[38px] w-auto object-contain md:h-[34px] lg:h-[44px]"
+            className="h-[38px] w-auto object-contain brightness-0 md:h-[34px] md:brightness-100 lg:h-[44px]"
           />
         </Link>
         <nav className="hidden h-full items-center gap-3 lg:gap-6 md:flex" aria-label="Primary navigation">
