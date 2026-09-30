@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GuestLoginRouteImport } from './routes/guest-login'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
@@ -21,6 +23,12 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
+import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
+import { Route as GuestGuestGameRouteImport } from './routes/_guest.guest.game'
+import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.indexing'
+import { Route as GuestGuestStoriesRouteImport } from './routes/_guest.guest.stories'
+import { Route as GuestGuestSupportRouteImport } from './routes/_guest.guest.support'
+import { Route as GuestGuestWriteRouteImport } from './routes/_guest.guest.write'
 import { Route as AuthenticatedAdminBlogIndexRouteImport } from './routes/_authenticated.admin.blog.index'
 import { Route as AuthenticatedAdminBlogIdRouteImport } from './routes/_authenticated.admin.blog.$id'
 import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated.admin.blog.new'
@@ -36,6 +44,10 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuestRoute = GuestRouteImport.update({
+  id: '/_guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -49,6 +61,11 @@ const AuthRoute = AuthRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuestLoginRoute = GuestLoginRouteImport.update({
+  id: '/guest-login',
+  path: '/guest-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -86,6 +103,36 @@ const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
   path: '/admin/blog',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const GuestGuestIndexRoute = GuestGuestIndexRouteImport.update({
+  id: '/guest/',
+  path: '/guest/',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestGuestGameRoute = GuestGuestGameRouteImport.update({
+  id: '/guest/game',
+  path: '/guest/game',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestGuestIndexingRoute = GuestGuestIndexingRouteImport.update({
+  id: '/guest/indexing',
+  path: '/guest/indexing',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestGuestStoriesRoute = GuestGuestStoriesRouteImport.update({
+  id: '/guest/stories',
+  path: '/guest/stories',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestGuestSupportRoute = GuestGuestSupportRouteImport.update({
+  id: '/guest/support',
+  path: '/guest/support',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestGuestWriteRoute = GuestGuestWriteRouteImport.update({
+  id: '/guest/write',
+  path: '/guest/write',
+  getParentRoute: () => GuestRoute,
+} as any)
 const AuthenticatedAdminBlogIndexRoute =
   AuthenticatedAdminBlogIndexRouteImport.update({
     id: '/',
@@ -120,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/guest-login': typeof GuestLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -127,6 +175,12 @@ export interface FileRoutesByFullPath {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/guest/game': typeof GuestGuestGameRoute
+  '/guest/indexing': typeof GuestGuestIndexingRoute
+  '/guest/stories': typeof GuestGuestStoriesRoute
+  '/guest/support': typeof GuestGuestSupportRoute
+  '/guest/write': typeof GuestGuestWriteRoute
+  '/guest/': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -138,12 +192,19 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/guest-login': typeof GuestLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/guest/game': typeof GuestGuestGameRoute
+  '/guest/indexing': typeof GuestGuestIndexingRoute
+  '/guest/stories': typeof GuestGuestStoriesRoute
+  '/guest/support': typeof GuestGuestSupportRoute
+  '/guest/write': typeof GuestGuestWriteRoute
+  '/guest': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -154,9 +215,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_guest': typeof GuestRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/guest-login': typeof GuestLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -164,6 +227,12 @@ export interface FileRoutesById {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/_guest/guest/game': typeof GuestGuestGameRoute
+  '/_guest/guest/indexing': typeof GuestGuestIndexingRoute
+  '/_guest/guest/stories': typeof GuestGuestStoriesRoute
+  '/_guest/guest/support': typeof GuestGuestSupportRoute
+  '/_guest/guest/write': typeof GuestGuestWriteRoute
+  '/_guest/guest/': typeof GuestGuestIndexRoute
   '/_authenticated/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -177,6 +246,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/contact'
+    | '/guest-login'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
@@ -184,6 +254,12 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/admin/blog'
+    | '/guest/game'
+    | '/guest/indexing'
+    | '/guest/stories'
+    | '/guest/support'
+    | '/guest/write'
+    | '/guest/'
     | '/admin/blog/$id'
     | '/admin/blog/new'
     | '/lovable/email/auth/preview'
@@ -195,12 +271,19 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/contact'
+    | '/guest-login'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/guest/game'
+    | '/guest/indexing'
+    | '/guest/stories'
+    | '/guest/support'
+    | '/guest/write'
+    | '/guest'
     | '/admin/blog/$id'
     | '/admin/blog/new'
     | '/lovable/email/auth/preview'
@@ -210,9 +293,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/_guest'
     | '/about'
     | '/auth'
     | '/contact'
+    | '/guest-login'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
@@ -220,6 +305,12 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/_authenticated/admin/blog'
+    | '/_guest/guest/game'
+    | '/_guest/guest/indexing'
+    | '/_guest/guest/stories'
+    | '/_guest/guest/support'
+    | '/_guest/guest/write'
+    | '/_guest/guest/'
     | '/_authenticated/admin/blog/$id'
     | '/_authenticated/admin/blog/new'
     | '/lovable/email/auth/preview'
@@ -230,9 +321,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  GuestRoute: typeof GuestRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
+  GuestLoginRoute: typeof GuestLoginRoute
   BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
@@ -259,6 +352,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_guest': {
+      id: '/_guest'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof GuestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -278,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guest-login': {
+      id: '/guest-login'
+      path: '/guest-login'
+      fullPath: '/guest-login'
+      preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -328,6 +435,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/blog'
       preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_guest/guest/': {
+      id: '/_guest/guest/'
+      path: '/guest'
+      fullPath: '/guest/'
+      preLoaderRoute: typeof GuestGuestIndexRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/guest/game': {
+      id: '/_guest/guest/game'
+      path: '/guest/game'
+      fullPath: '/guest/game'
+      preLoaderRoute: typeof GuestGuestGameRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/guest/indexing': {
+      id: '/_guest/guest/indexing'
+      path: '/guest/indexing'
+      fullPath: '/guest/indexing'
+      preLoaderRoute: typeof GuestGuestIndexingRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/guest/stories': {
+      id: '/_guest/guest/stories'
+      path: '/guest/stories'
+      fullPath: '/guest/stories'
+      preLoaderRoute: typeof GuestGuestStoriesRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/guest/support': {
+      id: '/_guest/guest/support'
+      path: '/guest/support'
+      fullPath: '/guest/support'
+      preLoaderRoute: typeof GuestGuestSupportRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/guest/write': {
+      id: '/_guest/guest/write'
+      path: '/guest/write'
+      fullPath: '/guest/write'
+      preLoaderRoute: typeof GuestGuestWriteRouteImport
+      parentRoute: typeof GuestRoute
     }
     '/_authenticated/admin/blog/': {
       id: '/_authenticated/admin/blog/'
@@ -396,12 +545,34 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface GuestRouteChildren {
+  GuestGuestGameRoute: typeof GuestGuestGameRoute
+  GuestGuestIndexingRoute: typeof GuestGuestIndexingRoute
+  GuestGuestStoriesRoute: typeof GuestGuestStoriesRoute
+  GuestGuestSupportRoute: typeof GuestGuestSupportRoute
+  GuestGuestWriteRoute: typeof GuestGuestWriteRoute
+  GuestGuestIndexRoute: typeof GuestGuestIndexRoute
+}
+
+const GuestRouteChildren: GuestRouteChildren = {
+  GuestGuestGameRoute: GuestGuestGameRoute,
+  GuestGuestIndexingRoute: GuestGuestIndexingRoute,
+  GuestGuestStoriesRoute: GuestGuestStoriesRoute,
+  GuestGuestSupportRoute: GuestGuestSupportRoute,
+  GuestGuestWriteRoute: GuestGuestWriteRoute,
+  GuestGuestIndexRoute: GuestGuestIndexRoute,
+}
+
+const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  GuestRoute: GuestRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
+  GuestLoginRoute: GuestLoginRoute,
   BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
