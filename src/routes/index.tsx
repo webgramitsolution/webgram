@@ -324,7 +324,7 @@ function Ecosystem() {
             Learn More <ArrowRight />
           </Button>
         </div>
-        <div className="min-w-0">
+        <div className="hidden min-w-0 md:block">
           <img
             src={IMAGES.ecosystem}
             alt="Webgram commerce ecosystem linking storefront, commerce, operations, payments, analytics and integrations"
@@ -334,7 +334,7 @@ function Ecosystem() {
             className="h-auto w-full object-contain"
           />
         </div>
-        <div className="min-w-0">
+        <div className="hidden min-w-0 md:block">
           <img
             src={IMAGES.platforms}
             alt="Webgram ecommerce website, B2B portal and mobile app"
