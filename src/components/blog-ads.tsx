@@ -10,7 +10,7 @@ function loadAds() {
   script.async = true;
   script.crossOrigin = "anonymous";
   script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5971464853495085";
-  script.dataset.webgramAds = "true";
+  script.dataset["webgramAds"] = "true";
   document.head.appendChild(script);
 }
 
