@@ -40,3 +40,4 @@
 - [x] WooCommerce page: "Integrations We Support" replaced with 13 supplied ImageKit logos (Google Ads → Tally) in soft tiles with names below; verified desktop/tablet/phone, no broken images or overflow
 - [x] WooCommerce "Integrations We Support": tablet shows 10 tiles then swipe, phone 4 then swipe, desktop all 13 in one row; equal square tiles, no names below; verified 1440/820/390, build OK
 - [x] WooCommerce "Integrations We Support": Google Analytics logo replaced with https://ik.imagekit.io/home1/google%20anaylytics.png (note the "anaylytics" spelling in the file name — the correctly spelled URL 404s); verified loaded at tablet/phone, no broken images or overflow
+- [x] /services/website-maintenance — dedicated reference-matched page (hero banner, 5 circular benefits, safe-hands cards, before/after banner, 6 service cards with supplied photo tops, 5-step process, 12 tech logos, projects carousel, navy CTA) — verified 1280/820/390, typecheck + build clean
