@@ -26,24 +26,10 @@ import {
   Workflow,
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
-import {
-  siGoogleads,
-  siGoogleanalytics,
-  siGooglemaps,
-  siHubspot,
-  siMailchimp,
-  siOdoo,
-  siPaypal,
-  siRazorpay,
-  siSap,
-  siStripe,
-  siWhatsapp,
-  siZoho,
-} from "simple-icons";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { apiIntegrationImages, deliveredProjects, wooIntegrations } from "@/lib/site-images";
+import { apiIntegrationImages, apiPlatformLogos, deliveredProjects } from "@/lib/site-images";
 
 const heroBenefits = [
   [Share2, "Seamless", "Integration"],

@@ -127,6 +127,34 @@ export const apiIntegrationImages = {
 } as const;
 
 /**
+ * "Technologies & Platforms We Work With" logos on the API Integration page, in
+ * the supplied order. URLs stay exactly as given (percent-encoded spaces only);
+ * the display name doubles as the alt text.
+ */
+export const apiPlatformLogos = [
+  { name: "Delhivery", src: "https://ik.imagekit.io/x3cipokny/Logo/Delhivery%20Logo.png" },
+  { name: "Tally", src: "https://ik.imagekit.io/x3cipokny/Logo/Tally%20Logo.png" },
+  { name: "Shiprocket", src: "https://ik.imagekit.io/x3cipokny/Logo/Shiprocket%20Logo.png" },
+  { name: "PayPal", src: "https://ik.imagekit.io/x3cipokny/Logo/PayPal%20Logo.png" },
+  { name: "PayU", src: "https://ik.imagekit.io/x3cipokny/Logo/PayU%20Logo.png" },
+  { name: "Stripe", src: "https://ik.imagekit.io/x3cipokny/Logo/Stripe%20Logo.png" },
+  { name: "Razorpay", src: "https://ik.imagekit.io/x3cipokny/Logo/Razorpay%20Logo.png" },
+  { name: "SAP", src: "https://ik.imagekit.io/x3cipokny/Logo/SAP%20Logo.png" },
+  { name: "Google Ads", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Ads%20Logo.png" },
+  { name: "Google Analytics", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Analytics%20Logo.png" },
+  { name: "AWS", src: "https://ik.imagekit.io/x3cipokny/Logo/AWS%20Logo.png" },
+  { name: "SendGrid", src: "https://ik.imagekit.io/x3cipokny/Logo/SendGrid%20Logo.png" },
+  { name: "Google Maps", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Maps%20Logo.png" },
+  { name: "Zoho", src: "https://ik.imagekit.io/x3cipokny/Logo/Zoho%20Logo.png" },
+  { name: "Meta WhatsApp", src: "https://ik.imagekit.io/x3cipokny/Logo/Meta%20WhatsApp%20Logo.png" },
+  { name: "HubSpot", src: "https://ik.imagekit.io/x3cipokny/Logo/HubSpot%20Logo.png" },
+  { name: "Twilio", src: "https://ik.imagekit.io/x3cipokny/Logo/Twilio%20Logo.png" },
+  { name: "Mailchimp", src: "https://ik.imagekit.io/x3cipokny/Logo/Mailchimp%20Logo.png" },
+  { name: "Salesforce", src: "https://ik.imagekit.io/x3cipokny/Logo/Salesforce%20Logo.png" },
+  { name: "Odoo", src: "https://ik.imagekit.io/x3cipokny/Logo/Odoo%20Logo.png" },
+] as const;
+
+/**
  * Website Maintenance & Optimization service page artwork supplied through
  * ImageKit (x3cipokny library). URLs stay exactly as given — the "icon/*"
  * files are wide photo illustrations used as the service-card tops.
