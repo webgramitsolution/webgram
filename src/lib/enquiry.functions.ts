@@ -23,21 +23,25 @@ export const submitEnquiry = createServerFn({ method: "POST" })
       .select("id")
       .single();
     if (error) throw new Error("Enquiry could not be saved.");
+    const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
     try {
-      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
       await sendTemplateEmail("new-enquiry", "info@webgramitsolution.com", {
         templateData: { name: data.name, email: data.email, phone: data.phone, service: data.service, message: data.message },
         idempotencyKey: `new-enquiry-${row.id}`,
         replyTo: data.email,
       });
+    } catch (e) {
+      // The enquiry remains saved even if the team notification cannot be delivered.
+      console.error("enquiry team email failed", e);
+    }
+    try {
       await sendTemplateEmail("enquiry-acknowledgement", data.email, {
         templateData: { name: data.name, service: data.service },
         idempotencyKey: `enquiry-acknowledgement-${row.id}`,
         replyTo: "info@webgramitsolution.com",
       });
     } catch (e) {
-      // Enquiry is saved and visible in the admin panel even if email is not yet deliverable.
-      console.error("enquiry email failed", e);
+      console.error("enquiry acknowledgement email failed", e);
     }
     return { ok: true };
   });

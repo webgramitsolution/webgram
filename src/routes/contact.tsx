@@ -218,9 +218,9 @@ function ContactForm() {
           <input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />
           <span className="min-w-0">
             I agree to the{" "}
-            <Link to="/terms-and-conditions" className="font-bold text-primary underline">
-              Terms &amp; Privacy Policy
-            </Link>
+            <Link to="/terms-and-conditions" className="font-bold text-primary underline">Terms</Link>
+            {" & "}
+            <Link to="/privacy-policy" className="font-bold text-primary underline">Privacy Policy</Link>
           </span>
         </label>
         {error ? <p role="alert" className="w-full text-xs font-semibold text-destructive">{error}</p> : null}

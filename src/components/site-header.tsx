@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ChevronDown, Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -71,6 +72,8 @@ const topLinks: Array<[string, Target]> = [
 ];
 
 export function SiteHeader() {
+  const [country, setCountry] = useState("in");
+  useEffect(() => { setCountry(window.localStorage.getItem("webgram-country") ?? "in"); }, []);
   function changeLanguage(value: string) {
     if (typeof window === "undefined") return;
     window.localStorage.setItem("webgram-language", value);
@@ -82,6 +85,7 @@ export function SiteHeader() {
     }
   }
   function changeCountry(value: string) {
+    setCountry(value);
     if (typeof window !== "undefined") window.localStorage.setItem("webgram-country", value);
   }
   return (
@@ -92,7 +96,7 @@ export function SiteHeader() {
             <label className="sr-only" htmlFor="site-language">Language</label>
             <select id="site-language" defaultValue="en" onChange={(event) => changeLanguage(event.target.value)} className="h-full border-x border-on-dark/15 bg-navy px-3 text-[10px] uppercase text-on-dark outline-none"><option value="en">English</option><option value="hi">हिन्दी</option></select>
             <label className="sr-only" htmlFor="site-country">Country</label>
-            <select id="site-country" defaultValue="in" onChange={(event) => changeCountry(event.target.value)} className="h-full border-r border-on-dark/15 bg-navy px-3 text-[10px] uppercase text-on-dark outline-none"><option value="in">India</option><option value="us">USA</option><option value="gb">UK</option><option value="ae">UAE</option></select>
+            <select id="site-country" value={country} onChange={(event) => changeCountry(event.target.value)} className="h-full border-r border-on-dark/15 bg-navy px-3 text-[10px] uppercase text-on-dark outline-none"><option value="in">India</option><option value="us">USA</option><option value="gb">UK</option><option value="ae">UAE</option></select>
             <strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong>
           </div>
           <div className="flex h-full items-center">

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const CONSENT_KEY = "webgram-ad-consent";
 type Consent = "accepted" | "rejected" | null;
+const CONSENT_REGIONS = new Set(["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH"]);
 
 function loadAds() {
   if (document.querySelector('script[data-webgram-ads="true"]')) return;
@@ -18,11 +19,20 @@ export function BlogAdsConsent() {
   const [consent, setConsent] = useState<Consent>(null);
   useEffect(() => {
     const saved = window.localStorage.getItem(CONSENT_KEY) as Consent;
-    setConsent(saved);
-    if (saved === "accepted") loadAds();
+    if (saved === "accepted") { setConsent(saved); loadAds(); }
+    else if (saved === "rejected") setConsent(saved);
+    else {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 2000);
+      fetch("/cdn-cgi/trace", { signal: controller.signal }).then((response) => response.ok ? response.text() : Promise.reject()).then((text) => {
+        const country = text.match(/^loc=([^\r\n]+)/m)?.[1] ?? "XX";
+        if (country !== "XX" && country !== "T1" && !CONSENT_REGIONS.has(country)) { setConsent("accepted"); loadAds(); }
+        else setConsent(null);
+      }).catch(() => setConsent(null)).finally(() => window.clearTimeout(timeout));
+    }
     const open = () => setConsent(null);
     window.addEventListener("webgram:cookie-settings", open);
-    return () => window.removeEventListener("webgram:cookie-settings", open);
+    return () => { window.removeEventListener("webgram:cookie-settings", open); };
   }, []);
   function choose(value: Exclude<Consent, null>) { window.localStorage.setItem(CONSENT_KEY, value); setConsent(value); if (value === "accepted") loadAds(); }
   if (consent) return null;
