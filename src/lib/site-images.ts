@@ -124,7 +124,7 @@ export const wooIntegrations = [
   { name: "Google Ads", src: "https://ik.imagekit.io/home1/Google%20Ads.png" },
   { name: "Meta Pixel", src: "https://ik.imagekit.io/home1/MetaPixel.png" },
   { name: "WhatsApp Business", src: "https://ik.imagekit.io/home1/WhatsApp%20Business.png" },
-  { name: "Google Analytics", src: "https://ik.imagekit.io/home1/Google%20Analytics.png" },
+  { name: "Google Analytics", src: "https://ik.imagekit.io/home1/google%20anaylytics.png" },
   { name: "Delhivery", src: "https://ik.imagekit.io/home1/Delhivery.png" },
   { name: "BlueDart", src: "https://ik.imagekit.io/home1/BlueDart.png" },
   { name: "Mailchimp", src: "https://ik.imagekit.io/home1/MailChimp.png" },
