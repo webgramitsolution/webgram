@@ -47,7 +47,13 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
-  await sendSmtpMail({ to: recipient, subject, html, text, replyTo: options.replyTo })
+  await sendSmtpMail({
+    to: recipient,
+    subject,
+    html,
+    text,
+    ...(options.replyTo ? { replyTo: options.replyTo } : {}),
+  })
 
   return { sent: true }
 }

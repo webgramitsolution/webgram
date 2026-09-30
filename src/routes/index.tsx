@@ -9,6 +9,7 @@ import {
   Code2,
   Headphones,
   Layers3,
+  MessageCircle,
   ShieldCheck,
   ShoppingCart,
   Store,
