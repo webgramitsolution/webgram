@@ -23,3 +23,5 @@
 - Typography: Manrope is global; reusable menu subpages use the shared `page-*`/`content-*` scale, while Home/About/Contact retain their approved reference-specific sizes. Why: future pages stay consistent without changing approved visual replicas.
 - ImageKit URLs stay verbatim; use the supplied Next.js and API Integration logo files.
 - Blog: public `/resources/blog` and `/blog/$slug`; management stays under `/_authenticated/admin/blog*`, with role checks on every write. Why: drafts and publishing remain server-secured.
+- Guest panel: OTP login `/guest-login`, gated pathless `_guest` layout (`ssr:false`, any signed-in user) for `/guest/*`. All credit spends/awards go through security-definer SQL RPCs (credit_ledger is append-only). Why: browser can't forge balances.
+- Guest posts auto-publish by inserting status=published with published_at = now()+30min; the public RLS policy hides them until then. Why: no cron needed.
