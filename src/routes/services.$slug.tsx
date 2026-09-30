@@ -12,7 +12,7 @@ const portalBanner = "https://ik.imagekit.io/home1/custome%20wesite%20banner.png
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
     // Keep the pre-rename URL working: /services/website-development → Web Portal Development.
-    if (params.slug === "website-development") throw redirect({ to: "/services/web-portal-development", replace: true });
+    if (params.slug === "website-development") throw redirect({ href: "/services/web-portal-development", replace: true });
     const page = getSubpage("services", params.slug);
     if (!page) throw notFound();
     return page;

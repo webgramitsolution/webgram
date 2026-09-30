@@ -70,17 +70,19 @@ const process = [
   [Rocket, "06", "Deployment", "Go live and provide ongoing support."],
 ] as const;
 
+const pickTech = (name: string) => technologyStack.find((tech) => tech.name === name)!.src;
+
 const technologies = [
-  { name: "React.js", src: technologyStack[0].src },
-  { name: "Next.js", src: technologyStack[1].src },
-  { name: "Node.js", src: technologyStack[2].src },
+  { name: "React.js", src: pickTech("React.js") },
+  { name: "Next.js", src: pickTech("Next.js") },
+  { name: "Node.js", src: pickTech("Node.js") },
   { name: "Laravel", src: laravelLogo.url },
   { name: "PHP", src: phpLogo.url },
   { name: "MySQL", src: mysqlLogo.url },
-  { name: "PostgreSQL", src: technologyStack[6].src },
-  { name: "AWS", src: technologyStack[9].src },
-  { name: "Google Cloud", src: technologyStack[10].src },
-  { name: "Supabase", src: technologyStack[5].src },
+  { name: "PostgreSQL", src: pickTech("PostgreSQL") },
+  { name: "AWS", src: pickTech("AWS") },
+  { name: "Google Cloud", src: pickTech("Google Cloud") },
+  { name: "Supabase", src: pickTech("Supabase") },
   { name: "Redux", src: reduxLogo.url },
   { name: "Tailwind CSS", src: tailwindLogo.url },
 ] as const;
