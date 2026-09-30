@@ -22,8 +22,8 @@ export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () 
   const client = publicClient();
   const [{ data: categories, error: categoryError }, { data: posts, error: postError }] =
     await Promise.all([
-      client.from("blog_categories").select("id,name,slug,description,display_order").eq("is_active", true).order("display_order"),
-      client.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,category_id,author_name,published_at").eq("status", "published").order("published_at", { ascending: false }),
+      client.from("blog_categories").select("id,name,slug,description,display_order,parent_id").eq("is_active", true).order("display_order"),
+      client.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,category_id,subcategory_id,tags,author_name,published_at").eq("status", "published").order("published_at", { ascending: false }),
     ]);
   if (categoryError || postError) throw categoryError ?? postError;
   return { categories: categories ?? [], posts: posts ?? [] };
@@ -37,7 +37,7 @@ export const getPublicBlogPost = createServerFn({ method: "GET" })
     const client = publicClient();
     const { data: post, error } = await client
       .from("blog_posts")
-      .select("id,title,slug,excerpt,content,featured_image,featured_image_alt,author_name,published_at,seo_title,seo_description,category_id")
+      .select("id,title,slug,excerpt,content,featured_image,featured_image_alt,author_name,published_at,seo_title,seo_description,category_id,subcategory_id,tags,faqs,noindex")
       .eq("slug", data.slug)
       .eq("status", "published")
       .maybeSingle();
@@ -46,6 +46,9 @@ export const getPublicBlogPost = createServerFn({ method: "GET" })
     const { data: category } = post.category_id
       ? await client.from("blog_categories").select("name,slug").eq("id", post.category_id).maybeSingle()
       : { data: null };
+    const { data: subcategory } = post.subcategory_id
+      ? await client.from("blog_categories").select("name,slug").eq("id", post.subcategory_id).maybeSingle()
+      : { data: null };
     const { data: related } = await client
       .from("blog_posts")
       .select("id,title,slug,excerpt,featured_image,featured_image_alt,published_at")
@@ -53,7 +56,7 @@ export const getPublicBlogPost = createServerFn({ method: "GET" })
       .neq("id", post.id)
       .order("published_at", { ascending: false })
       .limit(3);
-    return { ...post, category, related: related ?? [] };
+    return { ...post, category, subcategory, related: related ?? [] };
   });
 
 async function requireAdmin(context: { supabase: ReturnType<typeof publicClient>; userId: string }) {
@@ -87,6 +90,10 @@ const postInput = z.object({
   featuredImage: z.string().trim().url().max(2000).or(z.literal("")),
   featuredImageAlt: z.string().trim().max(240),
   categoryId: z.string().uuid().nullable(),
+  subcategoryId: z.string().uuid().nullable(),
+  tags: z.array(z.string().trim().min(1).max(50)).max(10),
+  faqs: z.array(z.object({ question: z.string().trim().min(5).max(300), answer: z.string().trim().min(5).max(2000) })).max(20),
+  noindex: z.boolean(),
   authorName: z.string().trim().min(2).max(100),
   status: z.enum(["draft", "published"]),
   seoTitle: z.string().trim().max(180),
@@ -107,6 +114,10 @@ export const saveBlogPost = createServerFn({ method: "POST" })
       featured_image: data.featuredImage || null,
       featured_image_alt: data.featuredImageAlt,
       category_id: data.categoryId,
+      subcategory_id: data.subcategoryId,
+      tags: data.tags,
+      faqs: data.faqs,
+      noindex: data.noindex,
       author_name: data.authorName,
       status: data.status,
       seo_title: data.seoTitle || null,
@@ -134,6 +145,38 @@ export const deleteBlogPost = createServerFn({ method: "POST" })
   .handler(async ({ context, data }) => {
     await requireAdmin(context);
     const { error } = await context.supabase.from("blog_posts").delete().eq("id", data.id);
+    if (error) throw error;
+    return { ok: true };
+  });
+
+const categoryInput = z.object({
+  id: z.string().uuid().optional(),
+  name: z.string().trim().min(2).max(120),
+  slug: slugSchema,
+  description: z.string().trim().max(500),
+  displayOrder: z.number().int().min(0).max(10000),
+  parentId: z.string().uuid().nullable(),
+  isActive: z.boolean(),
+});
+
+export const saveBlogCategory = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => categoryInput.parse(input))
+  .handler(async ({ context, data }) => {
+    await requireAdmin(context);
+    const record = { name: data.name, slug: data.slug, description: data.description, display_order: data.displayOrder, parent_id: data.parentId, is_active: data.isActive };
+    const query = data.id ? context.supabase.from("blog_categories").update(record).eq("id", data.id) : context.supabase.from("blog_categories").insert(record);
+    const { data: saved, error } = await query.select("id").single();
+    if (error) throw error;
+    return saved;
+  });
+
+export const deleteBlogCategory = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
+  .handler(async ({ context, data }) => {
+    await requireAdmin(context);
+    const { error } = await context.supabase.from("blog_categories").delete().eq("id", data.id);
     if (error) throw error;
     return { ok: true };
   });

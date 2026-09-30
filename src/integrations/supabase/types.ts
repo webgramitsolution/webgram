@@ -22,6 +22,7 @@ export type Database = {
           id: string
           is_active: boolean
           name: string
+          parent_id: string | null
           slug: string
         }
         Insert: {
@@ -31,6 +32,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           name: string
+          parent_id?: string | null
           slug: string
         }
         Update: {
@@ -40,9 +42,18 @@ export type Database = {
           id?: string
           is_active?: boolean
           name?: string
+          parent_id?: string | null
           slug?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       blog_comments: {
         Row: {
@@ -87,15 +98,19 @@ export type Database = {
           content: string
           created_at: string
           excerpt: string
+          faqs: Json
           featured_image: string | null
           featured_image_alt: string
           id: string
           live_notified_at: string | null
+          noindex: boolean
           published_at: string | null
           seo_description: string | null
           seo_title: string | null
           slug: string
           status: Database["public"]["Enums"]["blog_status"]
+          subcategory_id: string | null
+          tags: string[]
           title: string
           updated_at: string
         }
@@ -106,15 +121,19 @@ export type Database = {
           content: string
           created_at?: string
           excerpt: string
+          faqs?: Json
           featured_image?: string | null
           featured_image_alt?: string
           id?: string
           live_notified_at?: string | null
+          noindex?: boolean
           published_at?: string | null
           seo_description?: string | null
           seo_title?: string | null
           slug: string
           status?: Database["public"]["Enums"]["blog_status"]
+          subcategory_id?: string | null
+          tags?: string[]
           title: string
           updated_at?: string
         }
@@ -125,15 +144,19 @@ export type Database = {
           content?: string
           created_at?: string
           excerpt?: string
+          faqs?: Json
           featured_image?: string | null
           featured_image_alt?: string
           id?: string
           live_notified_at?: string | null
+          noindex?: boolean
           published_at?: string | null
           seo_description?: string | null
           seo_title?: string | null
           slug?: string
           status?: Database["public"]["Enums"]["blog_status"]
+          subcategory_id?: string | null
+          tags?: string[]
           title?: string
           updated_at?: string
         }
@@ -141,6 +164,13 @@ export type Database = {
           {
             foreignKeyName: "blog_posts_category_id_fkey"
             columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blog_posts_subcategory_id_fkey"
+            columns: ["subcategory_id"]
             isOneToOne: false
             referencedRelation: "blog_categories"
             referencedColumns: ["id"]
@@ -420,6 +450,37 @@ export type Database = {
         }
         Returns: string
       }
+      submit_guest_post_v2:
+        | {
+            Args: {
+              _author_name: string
+              _category_id: string
+              _content: string
+              _excerpt: string
+              _faqs: Json
+              _image: string
+              _subcategory_id: string
+              _tags: string[]
+              _title: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              _author_name: string
+              _category_id: string
+              _content: string
+              _excerpt: string
+              _faqs: Json
+              _image: string
+              _seo_description?: string
+              _seo_title?: string
+              _subcategory_id: string
+              _tags: string[]
+              _title: string
+            }
+            Returns: string
+          }
     }
     Enums: {
       app_role: "admin" | "editor"

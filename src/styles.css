@@ -686,12 +686,18 @@
     grid-template-columns: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  #industries .page-shell > div:last-child::-webkit-scrollbar,
+  #case-studies .case-scroll::-webkit-scrollbar {
+    display: none;
   }
   #industries .page-shell > div:last-child > * {
     scroll-snap-align: start;
   }
   #case-studies .case-scroll {
     grid-auto-columns: 82%;
+    scrollbar-width: none;
   }
   .ecom-hero > img {
     object-position: 62% center;
