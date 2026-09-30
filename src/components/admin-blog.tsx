@@ -16,19 +16,19 @@ type Category = Database["public"]["Tables"]["blog_categories"]["Row"];
 
 const date = (value: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(new Date(value));
 
-export function AdminShell({ children, name = "Administrator" }: { children: React.ReactNode; name?: string }) {
+export function AdminShell({ children, name = "Administrator" }: { children: React.ReactNode; name?: string | undefined }) {
   const navigate = useNavigate(); const queryClient = useQueryClient();
   async function signOut() { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await navigate({ to: "/auth", replace: true }); }
   return <div className="min-h-screen bg-sky-soft"><header className="border-b border-on-dark/20 bg-navy text-on-dark"><div className="page-shell flex h-16 items-center justify-between"><Link to="/admin/blog" className="font-extrabold">Webgram Publishing</Link><div className="flex items-center gap-3"><span className="hidden text-xs text-on-dark/70 sm:inline">{name}</span><Button variant="outline" size="sm" onClick={signOut} className="border-on-dark/30 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><LogOut />Sign out</Button></div></div></header>{children}</div>;
 }
 
-export function AdminBlogList({ posts, name }: { posts: Post[]; name?: string }) {
+export function AdminBlogList({ posts, name }: { posts: Post[]; name?: string | undefined }) {
   return <AdminShell name={name}><main className="page-shell py-8"><div className="flex items-end justify-between gap-4"><div><p className="page-eyebrow text-primary">Content manager</p><h1 className="mt-2 text-3xl font-extrabold text-navy">Blog articles</h1><p className="mt-2 text-sm text-muted-foreground">Create, review, and publish articles.</p></div><Button asChild className="bg-gold font-bold text-navy hover:bg-gold/90"><Link to="/admin/blog/new"><Plus />New article</Link></Button></div><div className="mt-7 overflow-hidden rounded-md border border-border bg-card shadow-card">{posts.length ? posts.map((post) => <div key={post.id} className="grid gap-3 border-b border-border p-4 last:border-0 md:grid-cols-[1fr_auto] md:items-center"><div><div className="flex flex-wrap items-center gap-2"><h2 className="font-bold text-navy">{post.title}</h2><span className={`rounded px-2 py-1 text-[9px] font-extrabold uppercase ${post.status === "published" ? "bg-success-soft text-success" : "bg-warning-soft text-warning"}`}>{post.status}</span></div><p className="mt-1 text-xs text-muted-foreground">Updated {date(post.updated_at)} · /blog/{post.slug}</p></div><div className="flex gap-2"><Button asChild variant="outline" size="sm"><Link to="/blog/$slug" params={{ slug: post.slug }} target="_blank"><ExternalLink />View</Link></Button><Button asChild size="sm"><Link to="/admin/blog/$id" params={{ id: post.id }}><FilePenLine />Edit</Link></Button></div></div>) : <p className="p-8 text-center text-sm text-muted-foreground">No articles yet.</p>}</div></main></AdminShell>;
 }
 
 const blank = { title: "", slug: "", excerpt: "", content: "", featured_image: "", featured_image_alt: "", category_id: "", author_name: "Webgram Team", status: "draft" as const, seo_title: "", seo_description: "" };
 
-export function AdminBlogEditor({ post, categories, name }: { post?: Post; categories: Category[]; name?: string }) {
+export function AdminBlogEditor({ post, categories, name }: { post?: Post; categories: Category[]; name?: string | undefined }) {
   const navigate = useNavigate(); const save = useServerFn(saveBlogPost); const remove = useServerFn(deleteBlogPost);
   const initial = useMemo(() => post ? { ...post, featured_image: post.featured_image ?? "", category_id: post.category_id ?? "", seo_title: post.seo_title ?? "", seo_description: post.seo_description ?? "" } : blank, [post]);
   const [form, setForm] = useState(initial); const [busy, setBusy] = useState(false); const [error, setError] = useState("");
