@@ -1,5 +1,5 @@
 // Server-only: sends "article is live" emails for guest posts whose 30-minute review window has passed.
-const SITE_URL = "https://homepage-replica-magic.lovable.app";
+const SITE_URL = "https://www.webgramitsolution.com";
 
 export async function notifyDueGuestPosts() {
   try {

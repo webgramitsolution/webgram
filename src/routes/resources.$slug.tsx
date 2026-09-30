@@ -15,13 +15,13 @@ export const Route = createFileRoute("/resources/$slug")({
     return { page, blog: null };
   },
   head: ({ loaderData, params }) => params.slug === "blog" ? ({
-    links: [{ rel: "canonical", href: "https://homepage-replica-magic.lovable.app/resources/blog" }],
+    links: [{ rel: "canonical", href: "https://www.webgramitsolution.com/resources/blog" }],
     meta: [
       { title: "Blog — Ecommerce, Web Development & Growth Insights | Webgram" },
       { name: "description", content: "Practical guides on ecommerce, WooCommerce, Shopify, API integration, website maintenance and digital growth from the Webgram IT Solution team." },
       { property: "og:title", content: "Webgram Blog — Ecommerce & Web Development Insights" },
       { property: "og:description", content: "Practical guides on ecommerce, web development, integrations and business growth." },
-      { property: "og:url", content: "https://homepage-replica-magic.lovable.app/resources/blog" },
+      { property: "og:url", content: "https://www.webgramitsolution.com/resources/blog" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       ...(loaderData?.blog?.posts[0]?.featured_image ? [{ property: "og:image", content: loaderData.blog.posts[0].featured_image }, { name: "twitter:image", content: loaderData.blog.posts[0].featured_image }] : []),
