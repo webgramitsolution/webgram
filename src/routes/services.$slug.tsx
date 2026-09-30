@@ -35,10 +35,10 @@ export const Route = createFileRoute("/services/$slug")({
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      ...(params.slug === "web-portal-development" || params.slug === "api-integration"
+      ...(params.slug in dedicatedBanners
         ? [
-            { property: "og:image", content: params.slug === "api-integration" ? apiIntegrationBanner : portalBanner },
-            { name: "twitter:image", content: params.slug === "api-integration" ? apiIntegrationBanner : portalBanner },
+            { property: "og:image", content: dedicatedBanners[params.slug] },
+            { name: "twitter:image", content: dedicatedBanners[params.slug] },
           ]
         : []),
     ],
@@ -52,5 +52,6 @@ function ServicesPage() {
   if (slug === "web-portal-development") return <WebPortalDevelopmentPage />;
   if (slug === "woocommerce") return <WooCommercePage />;
   if (slug === "api-integration") return <ApiIntegrationPage />;
+  if (slug === "website-maintenance") return <WebsiteMaintenancePage />;
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }
