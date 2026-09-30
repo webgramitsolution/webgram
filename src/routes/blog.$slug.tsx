@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { BlogDetailPage } from "@/components/blog-detail-page";
 import { getPublicBlogPost } from "@/lib/blog.functions";
 
-const SITE = "https://homepage-replica-magic.lovable.app";
+const SITE = "https://www.webgramitsolution.com";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => { const post = await getPublicBlogPost({ data: { slug: params.slug } }); if (!post) throw notFound(); return post; },
