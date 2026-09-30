@@ -44,6 +44,41 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_comments: {
+        Row: {
+          author_name: string
+          body: string
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          author_name: string
+          body: string
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          author_name?: string
+          body?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           author_id: string | null
@@ -109,6 +144,72 @@ export type Database = {
           },
         ]
       }
+      credit_ledger: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          reason: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          reason: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          reason?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      game_progress: {
+        Row: {
+          completed_at: string
+          level: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          level: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          level?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      indexing_requests: {
+        Row: {
+          created_at: string
+          id: string
+          status: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          status?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          status?: string
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -136,6 +237,68 @@ export type Database = {
         }
         Relationships: []
       }
+      share_rewards: {
+        Row: {
+          created_at: string
+          id: string
+          platform: string
+          post_id: string
+          share_day: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          platform: string
+          post_id: string
+          share_day?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          platform?: string
+          post_id?: string
+          share_day?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "share_rewards_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      support_tickets: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          status: string
+          subject: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          status?: string
+          subject: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+          subject?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -154,17 +317,72 @@ export type Database = {
         }
         Relationships: []
       }
+      web_stories: {
+        Row: {
+          created_at: string
+          id: string
+          slides: Json
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          slides?: Json
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          slides?: Json
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      _spend: {
+        Args: { _amount: number; _reason: string; _uid: string }
+        Returns: undefined
+      }
+      add_blog_comment: {
+        Args: { _author_name: string; _body: string; _post_id: string }
+        Returns: undefined
+      }
+      claim_share_reward: {
+        Args: { _platform: string; _post_id: string }
+        Returns: boolean
+      }
+      complete_game_level: { Args: { _level: number }; Returns: number }
+      create_web_story: {
+        Args: { _slides: Json; _title: string }
+        Returns: undefined
+      }
+      credit_balance: { Args: { _user_id: string }; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      my_credit_balance: { Args: never; Returns: number }
+      request_instant_indexing: { Args: { _url: string }; Returns: undefined }
+      submit_guest_post: {
+        Args: {
+          _author_name: string
+          _category_id: string
+          _content: string
+          _excerpt: string
+          _image: string
+          _title: string
+        }
+        Returns: string
       }
     }
     Enums: {

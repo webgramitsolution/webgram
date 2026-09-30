@@ -8,6 +8,13 @@
       "when": 1790748456663,
       "tag": "0000_create_secure_blog_system",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790749815515,
+      "tag": "0001_guest_panel_credits",
+      "breakpoints": true
     }
   ]
 }
