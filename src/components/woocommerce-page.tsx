@@ -111,7 +111,7 @@ export function WooCommercePage() {
       <div className="ecom-hero-shade absolute inset-0 min-[1180px]:hidden" />
       <div className="ecom-shell relative flex h-full items-center py-5 min-[1180px]:grid min-[1180px]:grid-cols-[500px_minmax(0,1fr)] min-[1180px]:py-0">
         <div aria-hidden="true" className="relative col-start-2 row-start-1 hidden h-full min-[1180px]:-ml-32 min-[1180px]:block">
-          <img src={wooHero} alt="" width={1536} height={768} className="absolute inset-y-0 left-0 h-full w-full max-w-[900px] object-cover object-[right_center] [mask-image:linear-gradient(90deg,transparent,black_20%)]" />
+          <img src={wooHero} alt="" width={1536} height={768} className="absolute inset-y-0 left-0 h-full w-full max-w-[900px] object-cover object-[right_center] [mask-image:linear-gradient(90deg,transparent,black_20%,black_94%,transparent)]" />
         </div>
         <div className="relative col-start-1 row-start-1 max-w-[520px] min-[1180px]:py-5">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
