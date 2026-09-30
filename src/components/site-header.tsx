@@ -40,7 +40,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   {
     label: "Services",
     items: [
-      "Website Development",
+      "Web Portal Development",
       "Website Design",
       "WordPress",
       "WooCommerce",

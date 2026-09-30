@@ -105,9 +105,14 @@ export const deliveredProjects = {
   healthcare: "https://ik.imagekit.io/home1/Healthcare%20Website.png",
 } as const;
 
-/** Supplied responsive-device banner for the Website Development service page. */
-export const websiteDevelopmentImages = {
-  hero: "https://ik.imagekit.io/home1/Website%20Development?updatedAt=1790703469216",
+/** Web Portal Development service page imagery, served from the ImageKit library. */
+export const portalImages = {
+  /** Wide navy hero banner: dashboard, vendor portal and customer portal mockups, "Multiple Portals One Solution" script on the right. */
+  hero: "https://ik.imagekit.io/home1/custome%20wesite%20banner.png",
+  customer: "https://ik.imagekit.io/home1/Customer%20Portal.png",
+  vendor: "https://ik.imagekit.io/home1/Verndor%20portal.png",
+  employee: "https://ik.imagekit.io/home1/Employee%20portal.png",
+  admin: "https://ik.imagekit.io/home1/Admin%20Portal.png",
 } as const;
 
 /**

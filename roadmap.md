@@ -15,7 +15,7 @@
 - Corrected the Website Design page with six supplied website images, reference-matched colored benefit icons, connected six-step process, complete technology row, and improved delivered-project cards
 - Swapped the seven "Websites for Every Industry" photos to the supplied ImageKit images, each with its industry name as alt text
 - Replaced all five "Websites We Have Delivered" project photos with the supplied Corporate / Business / Professional / Real Estate / Healthcare Website images
-- Built `/services/website-development` as a dedicated reference-led page using the supplied hero and complete page flow
+- Renamed the "Website Development" service to "Web Portal Development": new slug `/services/web-portal-development` (old URL redirects), reference-matched page with the supplied portal banner, four portal-type images, key features, 12-logo tech stack (Redux + Tailwind added), projects carousel and CTA
 - Built `/services/woocommerce` as a dedicated reference-matched page with WooCommerce solutions, features, integrations, projects, process, and CTA
 
 - Swapped the "Tools & Technologies We Use" logos on /services/website-development to the 14 supplied ImageKit images (all verified loading, no overflow)
