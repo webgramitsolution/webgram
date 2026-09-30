@@ -14,11 +14,13 @@ import {
 interface MagicLinkEmailProps {
   siteName: string
   confirmationUrl: string
+  token?: string
 }
 
 export const MagicLinkEmail = ({
   siteName,
   confirmationUrl,
+  token,
 }: MagicLinkEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head>
@@ -27,10 +29,11 @@ export const MagicLinkEmail = ({
     <Preview>Your login link for {siteName}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Your login link</Heading>
+        <Heading style={h1}>Your {siteName} verification code</Heading>
+        {token ? <Text style={code}>{token}</Text> : null}
         <Text style={text}>
-          Click the button below to log in to {siteName}. This link will expire
-          shortly.
+          Enter this code on the sign-in page, or use the button below. It
+          expires shortly.
         </Text>
         <Button className="dm-btn" style={button} href={confirmationUrl}>
           Log In
@@ -50,7 +53,7 @@ const container = { padding: '20px 25px' }
 const h1 = {
   fontSize: '22px',
   fontWeight: 'bold' as const,
-  color: '#000000',
+  color: '#0b1f3a',
   margin: '0 0 20px',
 }
 const text = {
@@ -60,7 +63,7 @@ const text = {
   margin: '0 0 25px',
 }
 const button = {
-  backgroundColor: '#000000',
+  backgroundColor: '#0b1f3a',
   color: '#ffffff',
   fontSize: '14px',
   border: '1px solid #000000',
@@ -68,6 +71,7 @@ const button = {
   padding: '12px 20px',
   textDecoration: 'none',
 }
+const code = { fontSize: '32px', fontWeight: 'bold' as const, letterSpacing: '8px', color: '#0b1f3a', margin: '0 0 20px' }
 const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
 // Rendered as a text child, which React may HTML-escape: keep this CSS free of >, &, and quotes.
 const darkModeCss = `
