@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ChevronDown, Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube } from "lucide-react";
+import { ChevronDown, Facebook, Instagram, Linkedin, Menu, MessageCircle, Phone, Pin, X, Youtube } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import webgramLogo from "@/assets/webgram-logo.png.asset.json";
@@ -73,6 +73,7 @@ const topLinks: Array<[string, Target]> = [
 
 export function SiteHeader() {
   const [country, setCountry] = useState("in");
+  const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => { setCountry(window.localStorage.getItem("webgram-country") ?? "in"); }, []);
   function changeLanguage(value: string) {
     if (typeof window === "undefined") return;
@@ -89,7 +90,7 @@ export function SiteHeader() {
     if (typeof window !== "undefined") window.localStorage.setItem("webgram-country", value);
   }
   return (
-    <header className="sticky top-0 z-50 border-b border-on-dark/60 bg-navy text-on-dark shadow-card">
+    <header className="sticky top-0 z-50 border-b border-border bg-card text-navy shadow-card md:border-on-dark/60 md:bg-navy md:text-on-dark">
       <div className="hidden h-[31px] border-b border-on-dark/20 md:block">
         <div className="header-shell flex h-full items-center justify-between text-[10px] font-medium uppercase">
           <div className="flex h-full items-center">
@@ -171,13 +172,9 @@ export function SiteHeader() {
             </div>
           ))}
         </nav>
-        <Button
-          asChild
-          className="h-9 bg-gold px-4 text-[10px] font-bold text-navy hover:bg-gold/90 md:hidden"
-        >
-          <Link to="/contact">Contact Us</Link>
-        </Button>
+        <div className="flex items-center gap-2 md:hidden"><Button asChild size="icon" className="rounded-full bg-primary text-primary-foreground" aria-label="Call Webgram"><a href="tel:+917551120242"><Phone /></a></Button><Button type="button" size="icon" variant="ghost" onClick={() => setMobileOpen((value) => !value)} aria-label={mobileOpen ? "Close navigation" : "Open navigation"}>{mobileOpen ? <X /> : <Menu />}</Button></div>
       </div>
+      {mobileOpen ? <nav className="border-t border-border bg-card px-4 py-3 md:hidden" aria-label="Mobile navigation"><div className="grid grid-cols-2 gap-1">{menu.filter((item) => item.target).map(({ label, target }) => target ? <Link key={label} {...target} onClick={() => setMobileOpen(false)} className="rounded-md px-3 py-2 text-sm font-bold text-navy hover:bg-sky-soft">{label}</Link> : null)}</div><Button asChild className="mt-3 w-full bg-gold font-bold text-navy"><Link to="/contact" onClick={() => setMobileOpen(false)}>Get Free Quote</Link></Button></nav> : null}
     </header>
   );
 }
