@@ -52,12 +52,12 @@ export const menuSections: Record<SectionKey, MenuSection> = {
     label: "Services",
     base: "/services",
     pages: {
-      "website-development": {
-        title: "Website Development",
-        tagline: "Fast, secure, scalable websites",
+      "web-portal-development": {
+        title: "Web Portal Development",
+        tagline: "Portals that connect and simplify",
         description:
-          "Business websites and web applications built with modern technology, clean code and performance best practices.",
-        points: ["Custom development", "CMS integration", "Performance optimization", "Security hardening"],
+          "Custom customer, vendor, employee and admin portals with role-based access, custom workflows, advanced dashboards and secure integrations.",
+        points: ["Customer & vendor portals", "Role-based dashboards", "Custom workflows", "Secure & scalable builds"],
       },
       "website-design": {
         title: "Website Design",
