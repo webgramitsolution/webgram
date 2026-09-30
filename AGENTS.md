@@ -23,3 +23,5 @@
 - Blog management stays authenticated with server-side role checks; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
+- AdSense is blog-only and consent-gated; never load its script from the root or non-blog routes.
+- Legal content lives on dedicated public routes linked from the shared footer.
