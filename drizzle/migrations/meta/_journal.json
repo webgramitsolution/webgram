@@ -43,6 +43,13 @@
       "when": 1790789180747,
       "tag": "0005_allow_category_names_across_taxonomy_branches",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790789205654,
+      "tag": "0006_add_blog_noindex_and_guest_seo",
+      "breakpoints": true
     }
   ]
 }
