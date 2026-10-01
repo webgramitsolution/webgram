@@ -252,6 +252,48 @@ export type Database = {
         }
         Relationships: []
       }
+      homepage_reviews: {
+        Row: {
+          avatar_url: string | null
+          company_name: string
+          created_at: string
+          customer_name: string
+          customer_role: string
+          display_order: number
+          id: string
+          is_published: boolean
+          rating: number
+          review_text: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          company_name?: string
+          created_at?: string
+          customer_name: string
+          customer_role?: string
+          display_order?: number
+          id?: string
+          is_published?: boolean
+          rating?: number
+          review_text: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          company_name?: string
+          created_at?: string
+          customer_name?: string
+          customer_role?: string
+          display_order?: number
+          id?: string
+          is_published?: boolean
+          rating?: number
+          review_text?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       indexing_requests: {
         Row: {
           created_at: string
