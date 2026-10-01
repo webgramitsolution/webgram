@@ -13,8 +13,7 @@ const date = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", 
 
 function ArticleBody({ content }: { content: string }) {
   const blocks = content.replace(/\\n/g, "\n").split(/\n\s*\n/).filter(Boolean);
-  const midpoint = Math.max(2, Math.floor(blocks.length / 2));
-  return <div className="blog-prose">{blocks.map((block, index) => <div key={`${index}-${block.slice(0, 12)}`}>{index === midpoint ? <BlogAdBand position="detailContent" label="Advertisement — in article" /> : null}{(() => {
+  return <div className="blog-prose">{blocks.map((block, index) => <div key={`${index}-${block.slice(0, 12)}`}>{(() => {
     if (block.startsWith("## ")) return <h2 key={index}>{block.slice(3)}</h2>;
     if (block.startsWith("### ")) return <h3 key={index}>{block.slice(4)}</h3>;
     if (block.split("\n").every((line) => line.startsWith("- "))) return <ul key={index}>{block.split("\n").map((line) => <li key={line}>{line.slice(2)}</li>)}</ul>;
@@ -43,7 +42,6 @@ export function BlogDetailPage({ post }: { post: Post }) {
           {post.tags.length ? <div className="mt-5 flex flex-wrap gap-2">{post.tags.map((tag) => <span key={tag} className="rounded-full bg-card px-3 py-1 text-xs font-semibold text-navy">#{tag}</span>)}</div> : null}
         </div>
       </section>
-      <div className="xl:hidden"><BlogAdBand position="detailContent" label="Advertisement — article" /></div>
       <article className="mx-auto w-[min(100%,760px)] py-10 md:py-14"><ArticleBody content={post.content} /></article>
       {faqs.length ? <section className="mx-auto mb-10 w-[min(100%,760px)]"><h2 className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       <section className="mx-auto mb-10 w-[min(100%,760px)] rounded-md border border-border bg-sky-soft p-5"><div className="flex items-center gap-4"><span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-navy text-xl font-extrabold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><div><p className="text-[10px] font-bold uppercase tracking-widest text-primary">Written by</p><p className="text-lg font-extrabold text-navy">{post.author_name}</p><p className="text-xs text-muted-foreground">Published {date(post.published_at)}{post.category ? ` · ${post.category.name}` : ""}</p></div></div></section>
