@@ -1,6 +1,10 @@
 # Roadmap
 
 ## Open
+- [x] Remove blog band ads and footer-area whitespace/collapse-ad behavior
+- [x] Match the journal header to the shared navy logo/header treatment
+- [x] Restrict ads to article and legal-policy desktop side rails
+- [x] Rebuild guest and administrator access screens from the supplied portal reference
 - [x] Replace shared header/footer logo with the supplied ImageKit logo
 - [x] Rebuild the phone homepage hero and mobile navigation from the supplied references
 - [x] Add the phone-only services banner and admin-managed reviews below Technology

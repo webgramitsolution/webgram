@@ -223,6 +223,15 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Fixed units are placed explicitly in article and policy side rails.
+     Suppress account-level Auto Ads anchors that add a collapse arrow and
+     reserve blank space below the shared footer. */
+  ins.adsbygoogle[data-anchor-status],
+  .google-auto-placed,
+  #google_vignette {
+    display: none !important;
+  }
+
   h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.08; font-weight: 800; }
   h2 { font-size: clamp(1.5rem, 2.6vw, 2.25rem); line-height: 1.15; font-weight: 800; }
   h3 { font-size: 1.125rem; line-height: 1.3; font-weight: 700; }

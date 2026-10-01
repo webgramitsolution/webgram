@@ -32,6 +32,7 @@ export function BlogAdsConsent() {
     const saved = window.localStorage.getItem(CONSENT_KEY) as Consent;
     if (saved === "accepted") { setConsent(saved); loadAds(); }
     else if (saved === "rejected") setConsent(saved);
+    else if (window.location.hostname === "localhost") setConsent(null);
     else {
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 2000);
