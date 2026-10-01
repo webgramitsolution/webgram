@@ -31,12 +31,12 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
     <SiteHeader />
     <main>
       <section className="border-b border-border bg-navy py-5 text-on-dark">
-        <div className="page-shell flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="page-shell grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3">
           <div className="min-w-0"><p className="text-[10px] font-bold uppercase text-sky">Webgram Journal</p><div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" aria-label="Blog categories">
             <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => setCategory("all")}>All</Button>
             {roots.map((item) => <Button key={item.id} size="sm" variant={category === item.id ? "default" : "ghost"} onClick={() => { setCategory(item.id); setSubcategory("all"); }} className={category === item.id ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}>{item.name}</Button>)}
           </div></div>
-          <Button asChild className="shrink-0 bg-gold font-bold text-navy hover:bg-gold/90"><Link to="/guest-login">Write for us <span aria-hidden>→</span></Link></Button>
+          <Button asChild size="sm" className="shrink-0 bg-gold px-3 font-bold text-navy hover:bg-gold/90 sm:h-9 sm:px-4"><Link to="/guest-login"><span className="hidden sm:inline">Write for us</span><span className="sm:hidden">Guest post</span><span aria-hidden>→</span></Link></Button>
         </div>
       </section>
 
