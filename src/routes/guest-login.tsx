@@ -48,6 +48,11 @@ function GuestLogin() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [verify, setVerify] = useState<{ email: string; type: "signup" | "email" } | null>(null);
+  const [needsVerify, setNeedsVerify] = useState(false);
+  const [code, setCode] = useState("");
+  const registerGuest = useServerFn(registerGuestAccount);
+  const sendCode = useServerFn(sendGuestLoginCode);
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => { if (data.user) void navigate({ to: "/guest", replace: true }); }); }, [navigate]);
 
@@ -60,18 +65,34 @@ function GuestLogin() {
     }
     setBusy(true);
     if (mode === "register") {
-      const { data, error: e } = await supabase.auth.signUp({ email: form.email.trim(), password: form.password, options: { emailRedirectTo: `${window.location.origin}/guest`, data: { full_name: form.name.trim(), phone: `+91 ${form.phone.trim()}`, account_type: form.type } } });
+      try {
+        await registerGuest({ data: { email: form.email.trim(), password: form.password, fullName: form.name.trim(), phone: `+91 ${form.phone.trim()}`, accountType: form.type, redirectTo: `${window.location.origin}/guest` } });
+        setVerify({ email: form.email.trim(), type: "signup" });
+        setNotice("A 6-digit verification code has been sent to your email.");
+      } catch (e) { setError(e instanceof Error ? e.message : "Account could not be created."); }
       setBusy(false);
-      if (e) return setError(e.message);
-      if (data.session) return void navigate({ to: "/guest", replace: true });
-      setNotice("Account created. Please confirm your email address, then log in.");
-      setMode("login");
     } else {
       const { error: e } = await supabase.auth.signInWithPassword({ email: form.email.trim(), password: form.password });
       setBusy(false);
-      if (e) return setError("Email or password is incorrect, or email is not confirmed yet.");
+      if (e) {
+        if (/confirm/i.test(e.message)) { setError("Your email is not verified yet."); setNeedsVerify(true); return; }
+        return setError("Email or password is incorrect.");
+      }
       await navigate({ to: "/guest", replace: true });
     }
+  }
+  async function resend() {
+    setError(""); setBusy(true);
+    try { await sendCode({ data: { email: (verify?.email ?? form.email).trim(), redirectTo: `${window.location.origin}/guest` } }); setVerify({ email: (verify?.email ?? form.email).trim(), type: "email" }); setNeedsVerify(false); setNotice("A new verification code has been sent to your email."); }
+    catch { setError("Code could not be sent. Please try again."); }
+    setBusy(false);
+  }
+  async function confirmCode(event: FormEvent) {
+    event.preventDefault(); if (!verify) return; setError(""); setBusy(true);
+    const { error: e } = await supabase.auth.verifyOtp({ email: verify.email, token: code.trim(), type: verify.type });
+    setBusy(false);
+    if (e) return setError("Invalid or expired code. Please resend and try again.");
+    await navigate({ to: "/guest", replace: true });
   }
   async function google() {
     const { error: e } = await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${window.location.origin}/guest-login` } });
@@ -106,7 +127,15 @@ function GuestLogin() {
       <section className="flex flex-col rounded-lg md:h-[920px] md:overflow-y-auto hover-scroll border border-border bg-card p-5 shadow-card">
         <h2 className="text-xl font-extrabold text-navy">{mode === "register" ? "Create Your Account" : "Welcome Back"}</h2><p className="mt-1 text-sm text-muted-foreground">{mode === "register" ? "Join our community and start sharing your knowledge." : "Log in to manage your articles and credits."}</p>
         <div className="mt-4 grid grid-cols-2 rounded-md bg-primary-soft p-0">{(["register", "login"] as const).map((m) => <button key={m} type="button" onClick={() => { setMode(m); setError(""); }} className={`h-10 rounded-md text-sm font-bold ${mode === m ? "bg-primary text-primary-foreground" : "text-navy"}`}>{m === "register" ? "Register" : "Login"}</button>)}</div>
-        <form onSubmit={submit} className="mt-4 space-y-3">
+        {verify ? <form onSubmit={confirmCode} className="mt-4 space-y-3">
+          <h3 className="text-sm font-bold text-navy">Verify your email</h3>
+          <p className="text-xs text-muted-foreground">Enter the 6-digit code sent to <b className="text-navy">{verify.email}</b>. Check your spam folder too.</p>
+          <Input required inputMode="numeric" autoComplete="one-time-code" maxLength={8} value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))} placeholder="Enter verification code" className="h-11 text-center text-lg tracking-[0.4em]" />
+          {error && <p role="alert" className="text-xs font-semibold text-destructive">{error}</p>}
+          {notice && <p className="text-xs font-semibold text-primary">{notice}</p>}
+          <Button disabled={busy || code.length < 6} className="h-11 w-full bg-gold font-extrabold text-navy hover:bg-gold/90">{busy ? "Please wait..." : "Verify & Continue"}<ArrowRight /></Button>
+          <div className="flex justify-between text-xs"><button type="button" onClick={resend} disabled={busy} className="font-bold text-primary">Resend code</button><button type="button" onClick={() => { setVerify(null); setCode(""); setMode("login"); setNotice(""); }} className="font-bold text-muted-foreground">Back to login</button></div>
+        </form> : <form onSubmit={submit} className="mt-4 space-y-3">
           {mode === "register" && <Field label="Full Name" icon={User}><Input required maxLength={80} value={form.name} onChange={set("name")} placeholder="Enter your full name" className="h-11 pl-10" /></Field>}
           <Field label="Email Address" icon={Mail}><Input type="email" required autoComplete="email" value={form.email} onChange={set("email")} placeholder="you@example.com" className="h-11 pl-10" /></Field>
           {mode === "register" && <label className="block text-xs font-semibold text-navy">Phone Number <span className="text-destructive">*</span><div className="mt-1.5 flex h-11 items-center rounded-md border border-input bg-background"><span className="flex items-center gap-1 border-r border-border px-3 text-sm text-navy"><Phone className="h-4 w-4 text-muted-foreground" />+91</span><input required inputMode="numeric" pattern="[0-9]{10}" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))} placeholder="98765 43210" className="h-full flex-1 bg-transparent px-3 text-sm outline-none" /></div></label>}
@@ -116,8 +145,9 @@ function GuestLogin() {
             <label className="flex items-start gap-2 text-xs text-muted-foreground"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-primary" /><span>I agree to the Guest Post Guidelines, <Link to="/terms-and-conditions" className="text-primary underline">Terms & Conditions</Link> and <Link to="/privacy-policy" className="text-primary underline">Privacy Policy</Link>.</span></label></>}
           {error && <p role="alert" className="text-xs font-semibold text-destructive">{error}</p>}
           {notice && <p className="text-xs font-semibold text-primary">{notice}</p>}
+          {needsVerify && mode === "login" && <button type="button" onClick={resend} disabled={busy} className="w-full rounded-md border border-primary p-2 text-xs font-bold text-primary">Send verification code to my email</button>}
           <Button disabled={busy} className="h-11 w-full bg-gold font-extrabold text-navy hover:bg-gold/90">{busy ? "Please wait..." : mode === "register" ? "Create Account" : "Login"}<ArrowRight /></Button>
-        </form>
+        </form>}
         <div className="my-4 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />or continue with<span className="h-px flex-1 bg-border" /></div>
         <Button type="button" variant="outline" onClick={google} className="h-11 w-full font-semibold text-navy"><span className="font-extrabold text-primary">G</span>Continue with Google</Button>
         <p className="mt-4 text-center text-xs text-muted-foreground">{mode === "register" ? "Already have an account? " : "New here? "}<button type="button" onClick={() => setMode(mode === "register" ? "login" : "register")} className="font-bold text-primary">{mode === "register" ? "Login here" : "Create an account"}</button></p>
