@@ -775,3 +775,9 @@
     grid-column: span 2;
   }
 }
+
+.hover-scroll { scrollbar-width: none; }
+.hover-scroll::-webkit-scrollbar { width: 0; }
+.hover-scroll:hover { scrollbar-width: thin; }
+.hover-scroll:hover::-webkit-scrollbar { width: 6px; }
+.hover-scroll:hover::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }

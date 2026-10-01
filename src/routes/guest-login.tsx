@@ -1,76 +1,129 @@
 import { FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, BarChart3, CalendarDays, Coins, Eye, FileText, Heart, KeyRound, Layers3, Link2, Mail, Share2, Users } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, ChevronDown, Coins, Database, Eye, EyeOff, FileText, Gift, Info, List, Lock, Mail, PenSquare, Phone, Send, ShieldCheck, User, UserSquare, Users } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { sendGuestLoginCode } from "@/lib/auth-email.functions";
+
+const HERO = "https://ik.imagekit.io/x3cipokny/icon/guest%20post%20banner.png";
 
 export const Route = createFileRoute("/guest-login")({
   head: () => ({ meta: [
-    { title: "Guest Author Login | Webgram IT Solution" },
-    { name: "description", content: "Register or sign in with an email code to write guest articles, play and earn credits." },
-    { property: "og:title", content: "Guest Author Login | Webgram IT Solution" },
-    { property: "og:description", content: "Join the Webgram guest posting panel with a one-time email code." },
+    { title: "Guest Author Panel – Write, Publish & Earn | Webgram IT Solution" },
+    { name: "description", content: "Register as a Webgram guest author to write articles, publish on our blog and earn credits. Read the guest posting guidelines and create your account." },
+    { property: "og:title", content: "Guest Author Panel – Write, Publish & Earn Credits" },
+    { property: "og:description", content: "Share your expertise with business owners and technology enthusiasts on the Webgram blog." },
     { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary" },
+    { property: "og:image", content: HERO },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: HERO },
   ] }),
   component: GuestLogin,
 });
 
+const guidelines = [
+  { icon: User, title: "Account & Eligibility", bullets: ["Anyone with genuine knowledge and interest can create an account.", "You must be at least 18 years old.", "Provide accurate and complete information during registration."] },
+  { icon: FileText, title: "Content Quality & Originality", bullets: ["Submit original, unpublished content only.", "Well-researched, informative and practical articles.", "Clear structure with proper headings, short paragraphs and relevant images."] },
+  { icon: List, title: "Allowed Content", bullets: ["We accept articles related to: Business, Technology, AI, Digital Marketing, eCommerce, Finance, Education, Health & Wellness, Travel, Lifestyle, Career, Productivity, Industry Insights, How-to Guides, Case Studies and other relevant topics.", "We do not accept illegal drugs, gambling, adult or sexually explicit content, hate speech, violence, or misleading information."] },
+  { icon: Send, title: "Submission & Review", bullets: ["Each submission is reviewed by our editorial team.", "We may suggest edits or changes for better clarity and alignment.", "Final approval and publishing are at the sole discretion of Webgram."] },
+  { icon: CalendarDays, title: "Publishing Limits", bullets: ["Each user is allowed to publish 1 blog post per day.", "Minimum 800 words per article.", "External links are not allowed in guest articles."] },
+  { icon: Database, title: "Credit-Based System", bullets: ["Our platform works on a credit-based system.", "You can earn credits through certain actions and use credits for publishing, editing and sharing.", "Exact credit charges may vary by action and are visible in your account dashboard."] },
+];
+const creditRows = [["Publish a post", "400 credits"], ["Comment on a post", "100 credits"], ["Share post through platform", "Earn 10 credits"], ["Complete a game level", "Earn 20 credits"]];
+const heroFeatures = [{ icon: PenSquare, a: "Share", b: "Your Expertise" }, { icon: Users, a: "Reach a", b: "Wider Audience" }, { icon: Coins, a: "Earn", b: "Credits" }, { icon: BarChart3, a: "Build", b: "Your Profile" }];
+
+function Field({ label, icon: Icon, children }: { label: string; icon: typeof User; children: React.ReactNode }) {
+  return <label className="block text-xs font-semibold text-navy">{label} <span className="text-destructive">*</span><div className="relative mt-1.5"><Icon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />{children}</div></label>;
+}
+
 function GuestLogin() {
   const navigate = useNavigate();
-  const requestLoginCode = useServerFn(sendGuestLoginCode);
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [sent, setSent] = useState(false);
+  const [mode, setMode] = useState<"register" | "login">("register");
+  const [open, setOpen] = useState(0);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", confirm: "", type: "" });
+  const [agree, setAgree] = useState(false);
+  const [show, setShow] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [mode, setMode] = useState<"create" | "signin">("create");
+  const [notice, setNotice] = useState("");
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => { if (data.user) void navigate({ to: "/guest", replace: true }); }); }, [navigate]);
 
-  async function sendCode(event: FormEvent) {
-    event.preventDefault(); setBusy(true); setError("");
-    try {
-      await requestLoginCode({ data: { email, redirectTo: `${window.location.origin}/guest-login` } });
-      setSent(true);
-    } catch {
-      setError("Code could not be sent. Please check the email address and try again.");
-    } finally {
+  async function submit(event: FormEvent) {
+    event.preventDefault(); setError(""); setNotice("");
+    if (mode === "register") {
+      if (form.password.length < 8) return setError("Password must be at least 8 characters.");
+      if (form.password !== form.confirm) return setError("Passwords do not match.");
+      if (!agree) return setError("Please accept the guidelines and policies.");
+    }
+    setBusy(true);
+    if (mode === "register") {
+      const { data, error: e } = await supabase.auth.signUp({ email: form.email.trim(), password: form.password, options: { emailRedirectTo: `${window.location.origin}/guest`, data: { full_name: form.name.trim(), phone: `+91 ${form.phone.trim()}`, account_type: form.type } } });
       setBusy(false);
+      if (e) return setError(e.message);
+      if (data.session) return void navigate({ to: "/guest", replace: true });
+      setNotice("Account created. Please confirm your email address, then log in.");
+      setMode("login");
+    } else {
+      const { error: e } = await supabase.auth.signInWithPassword({ email: form.email.trim(), password: form.password });
+      setBusy(false);
+      if (e) return setError("Email or password is incorrect, or email is not confirmed yet.");
+      await navigate({ to: "/guest", replace: true });
     }
   }
-  async function verify(event: FormEvent) {
-    event.preventDefault(); setBusy(true); setError("");
-    let { error: e } = await supabase.auth.verifyOtp({ email, token: code.trim(), type: "email" });
-    if (e) ({ error: e } = await supabase.auth.verifyOtp({ email, token: code.trim(), type: "signup" }));
-    setBusy(false);
-    if (e) { setError("Code is invalid or expired."); return; }
-    await navigate({ to: "/guest", replace: true });
+  async function google() {
+    const { error: e } = await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${window.location.origin}/guest-login` } });
+    if (e) setError("Google sign-in is not available right now.");
   }
 
-  const guidelines = [
-    { icon: FileText, title: "Content Guidelines", bullets: ["Original, unpublished content only.", "Well-researched, informative and practical articles.", "Clear structure with headings and relevant images.", "Minimum 800 words in clear, easy-to-read language."] },
-    { icon: Layers3, title: "Topics We Accept", bullets: ["Technology & Web Development", "Website Design & UI/UX", "eCommerce & B2B", "Digital Marketing & SEO", "AI, automation and business growth"] },
-    { icon: Link2, title: "Link Policy", bullets: ["No promotional or unrelated external links.", "Links must be natural, useful and relevant.", "Additional links remain subject to editorial review."] },
-    { icon: CalendarDays, title: "Posting Rules", bullets: ["Each author may submit one article per day.", "Every post is reviewed for quality and originality.", "Spam or low-value content will be rejected."] },
-    { icon: Coins, title: "Credit System", bullets: ["Credits are required for publishing actions.", "Earn credits through approved activities.", "Credit charges vary by action and article type."] },
-  ];
-  const benefits = [{ icon: BarChart3, title: "Build Your Brand", text: "Reach a relevant audience." }, { icon: Users, title: "Get Quality Traffic", text: "Increase visibility." }, { icon: Coins, title: "Earn More Credits", text: "Read, write and share." }, { icon: Heart, title: "Join the Community", text: "Connect with experts." }];
-  return <div className="min-h-screen bg-sky-soft"><SiteHeader /><main className="relative overflow-hidden px-4 py-4 md:px-6"><div className="mx-auto grid w-full max-w-[1424px] gap-5 lg:grid-cols-[1.08fr_.92fr]">
-    <section className="max-h-[690px] overflow-y-auto rounded-md border border-border bg-card p-5 shadow-card md:p-6" aria-labelledby="guest-guidelines-title">
-      <p className="page-eyebrow text-primary">Guest author guidelines</p><h1 id="guest-guidelines-title" className="mt-2 text-3xl font-extrabold text-navy">Contribute to Webgram Blog</h1><p className="mt-1 max-w-2xl text-sm text-muted-foreground">Share your knowledge, insights and real experiences with our growing community of business owners, developers, marketers and technology enthusiasts.</p>
-      <div className="mt-3 divide-y divide-border border-t border-border">{guidelines.map(({ icon: Icon, title, bullets }) => <article key={title} className="grid grid-cols-[44px_minmax(0,1fr)] gap-4 py-3"><span className="grid h-11 w-11 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="h-6 w-6" /></span><div><h2 className="text-base font-extrabold text-navy">{title}</h2><ul className="mt-1 list-disc space-y-0.5 pl-4 text-xs leading-5 text-muted-foreground">{bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}</div>
-      <div className="mt-2 rounded-md border border-border bg-sky-soft p-3"><div className="flex items-center justify-between"><strong className="text-xs text-navy">Credit Usage & Actions</strong><Link to="/guest-login" className="text-[10px] font-bold text-primary">View credit plans →</Link></div><div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">{[[FileText,"Publish Post","-10 Credits"],[KeyRound,"Edit Post","After Publish"],[Share2,"Share Post","Through Platform"],[Eye,"Read Blog Post","+1 Credits"]].map(([Icon,title,value]) => { const CreditIcon = Icon as typeof FileText; return <div key={String(title)} className="rounded-md border border-border bg-card p-2"><CreditIcon className="h-4 w-4 text-primary" /><strong className="mt-1 block text-[10px] text-navy">{String(title)}</strong><span className="text-[9px] text-muted-foreground">{String(value)}</span></div>; })}</div></div>
+  const pw = (k: "password" | "confirm", ph: string) => <><Input type={show ? "text" : "password"} required minLength={mode === "register" ? 8 : undefined} autoComplete={mode === "register" ? "new-password" : "current-password"} value={form[k]} onChange={set(k)} placeholder={ph} className="h-11 pl-10 pr-10" /><button type="button" onClick={() => setShow((s) => !s)} aria-label={show ? "Hide password" : "Show password"} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">{show ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}</button></>;
+
+  return <div className="min-h-screen bg-sky-soft"><SiteHeader /><main>
+    <section className="overflow-hidden bg-gradient-to-r from-sky-soft to-primary-soft">
+      <div className="page-shell grid items-center gap-6 py-8 md:grid-cols-[1.2fr_.8fr]">
+        <div><p className="text-sm font-extrabold uppercase tracking-wide text-primary">Guest Author Panel</p><h1 className="mt-2 text-4xl font-extrabold leading-tight text-navy lg:text-5xl">Write, Publish & <span className="text-primary">Earn Credits</span></h1><p className="mt-3 max-w-xl text-base text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">{heroFeatures.map(({ icon: Icon, a, b }) => <div key={b} className="flex items-center gap-2"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-card text-primary shadow-card"><Icon className="h-5 w-5" /></span><span className="text-xs font-semibold leading-tight text-navy">{a}<br />{b}</span></div>)}</div></div>
+        <img src={HERO} alt="Guest author writing a blog article on a laptop" className="mx-auto h-auto max-h-[260px] w-full object-contain" />
+      </div>
     </section>
-    <div className="space-y-3"><section className="rounded-md border border-border bg-card p-5 shadow-card md:p-6"><p className="page-eyebrow text-primary">Guest author panel</p><h2 className="mt-2 text-3xl font-extrabold text-navy">{sent ? "Enter Your Verification Code" : "Create an Account or Sign In"}</h2><p className="mt-1 text-sm text-muted-foreground">Join Webgram Blog to submit, manage and grow your articles.</p>
-      {!sent ? <><div className="mt-5 grid grid-cols-2 rounded-md border border-border bg-sky-soft p-1"><Button type="button" variant={mode === "create" ? "default" : "ghost"} className="h-10" onClick={() => setMode("create")}><Users />Create Account</Button><Button type="button" variant={mode === "signin" ? "default" : "ghost"} className="h-10" onClick={() => setMode("signin")}><KeyRound />Sign In</Button></div><form onSubmit={sendCode} className="mt-5 space-y-4"><label className="block text-xs font-bold text-navy">Email Address <span className="text-destructive">*</span><div className="relative mt-2"><Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" className="h-11 pl-10" /></div></label><p className="text-xs leading-5 text-muted-foreground">We use a secure one-time email code. No password is required.</p>{error ? <p role="alert" className="text-xs font-semibold text-destructive">{error}</p> : null}<Button disabled={busy} className="h-11 w-full bg-gold font-extrabold text-navy hover:bg-gold/90">{busy ? "Sending..." : mode === "create" ? "Create Account" : "Sign In"}<ArrowRight /></Button></form></>
-      : <form onSubmit={verify} className="mt-6 space-y-4"><label className="block text-xs font-bold text-navy">Verification code<div className="relative mt-2"><KeyRound className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input inputMode="numeric" required value={code} onChange={(event) => setCode(event.target.value.replace(/\D/g, "").slice(0, 8))} className="h-11 pl-10 tracking-[0.4em]" /></div></label><p className="text-xs text-muted-foreground">We sent a verification code to {email}.</p>{error ? <p role="alert" className="text-xs font-semibold text-destructive">{error}</p> : null}<Button disabled={busy} className="h-11 w-full bg-gold font-bold text-navy hover:bg-gold/90">{busy ? "Verifying..." : "Verify & continue"}</Button><Button type="button" variant="ghost" onClick={() => { setSent(false); setCode(""); }} className="w-full text-xs font-bold text-primary">Use a different email</Button></form>}
-      <p className="mt-5 text-center text-xs text-muted-foreground">By continuing, you agree to our <Link to="/terms-and-conditions" className="font-bold text-primary">Terms</Link> and <Link to="/privacy-policy" className="font-bold text-primary">Privacy Policy</Link>.</p></section>
-      <section className="rounded-md border border-border bg-card p-4"><h2 className="text-xl font-extrabold text-navy">Why Write for Webgram?</h2><div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">{benefits.map(({ icon: Icon, title, text }) => <div key={title} className="rounded-md border border-border p-3"><Icon className="h-5 w-5 text-primary" /><strong className="mt-2 block text-[10px] text-navy">{title}</strong><span className="mt-1 block text-[9px] leading-4 text-muted-foreground">{text}</span></div>)}</div></section>
+    <div className="page-shell grid gap-5 py-6 md:grid-cols-[1.45fr_1fr]">
+      <section className="hover-scroll max-h-[860px] overflow-y-auto rounded-lg border border-border bg-card p-5 shadow-card" aria-labelledby="gl-terms">
+        <h2 id="gl-terms" className="text-2xl font-extrabold text-navy">Guest Author Terms & Guidelines</h2><p className="mt-1 text-sm text-muted-foreground">Please read the following terms and guidelines carefully before creating an account and submitting your articles.</p>
+        <div className="mt-4 space-y-3">{guidelines.map(({ icon: Icon, title, bullets }, i) => <article key={title} className="relative rounded-md border border-border bg-card p-3 pl-4">
+          <span className="absolute -left-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{i + 1}</span>
+          <button type="button" onClick={() => setOpen(open === i ? -1 : i)} className="grid w-full grid-cols-[48px_minmax(0,1fr)_20px] items-start gap-4 text-left" aria-expanded={open === i}>
+            <span className="grid h-12 w-12 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="h-6 w-6" /></span>
+            <span><h3 className="text-base font-bold text-navy">{title}</h3><ul className={`mt-1 list-disc space-y-0.5 pl-4 text-xs leading-5 text-muted-foreground ${open === i ? "" : "line-clamp-3"}`}>{bullets.map((b) => <li key={b}>{b}</li>)}</ul></span>
+            <ChevronDown className={`mt-4 h-4 w-4 text-primary transition-transform ${open === i ? "rotate-180" : ""}`} />
+          </button></article>)}
+          <article className="relative rounded-md border border-border p-3 pl-4"><span className="absolute -left-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">7</span>
+            <div className="grid grid-cols-[48px_minmax(0,1fr)] gap-4"><span className="grid h-12 w-12 place-items-center rounded-md bg-primary-soft text-primary"><Gift className="h-6 w-6" /></span><div><h3 className="text-base font-bold text-navy">Credit Usage & Actions</h3>
+              <table className="mt-2 w-full overflow-hidden rounded-md border border-border text-xs"><thead className="bg-primary-soft text-navy"><tr><th className="p-2 text-left">Action</th><th className="p-2 text-left">Credit Details</th></tr></thead><tbody>{creditRows.map(([a, c]) => <tr key={a} className="border-t border-border"><td className="p-2 text-muted-foreground">{a}</td><td className="p-2 font-semibold text-navy">{c}</td></tr>)}</tbody></table>
+              <p className="mt-2 flex gap-2 rounded-md bg-primary-soft p-2 text-[11px] text-primary"><Info className="h-4 w-4 shrink-0" />Credit charges may vary by article type, category and platform policies. Please check your account dashboard for the latest credit details.</p></div></div></article>
+        </div>
+      </section>
+      <section className="self-start rounded-lg border border-border bg-card p-5 shadow-card">
+        <h2 className="text-2xl font-extrabold text-navy">{mode === "register" ? "Create Your Account" : "Welcome Back"}</h2><p className="mt-1 text-sm text-muted-foreground">{mode === "register" ? "Join our community and start sharing your knowledge." : "Log in to manage your articles and credits."}</p>
+        <div className="mt-4 grid grid-cols-2 rounded-md bg-primary-soft p-0">{(["register", "login"] as const).map((m) => <button key={m} type="button" onClick={() => { setMode(m); setError(""); }} className={`h-10 rounded-md text-sm font-bold ${mode === m ? "bg-primary text-primary-foreground" : "text-navy"}`}>{m === "register" ? "Register" : "Login"}</button>)}</div>
+        <form onSubmit={submit} className="mt-4 space-y-3">
+          {mode === "register" && <Field label="Full Name" icon={User}><Input required maxLength={80} value={form.name} onChange={set("name")} placeholder="Enter your full name" className="h-11 pl-10" /></Field>}
+          <Field label="Email Address" icon={Mail}><Input type="email" required autoComplete="email" value={form.email} onChange={set("email")} placeholder="you@example.com" className="h-11 pl-10" /></Field>
+          {mode === "register" && <label className="block text-xs font-semibold text-navy">Phone Number <span className="text-destructive">*</span><div className="mt-1.5 flex h-11 items-center rounded-md border border-input bg-background"><span className="flex items-center gap-1 border-r border-border px-3 text-sm text-navy"><Phone className="h-4 w-4 text-muted-foreground" />+91</span><input required inputMode="numeric" pattern="[0-9]{10}" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))} placeholder="98765 43210" className="h-full flex-1 bg-transparent px-3 text-sm outline-none" /></div></label>}
+          <Field label="Password" icon={Lock}>{pw("password", mode === "register" ? "Create a strong password" : "Enter your password")}</Field>
+          {mode === "register" && <><Field label="Confirm Password" icon={Lock}>{pw("confirm", "Confirm your password")}</Field>
+            <Field label="Account Type" icon={UserSquare}><select required value={form.type} onChange={set("type")} className="h-11 w-full appearance-none rounded-md border border-input bg-background pl-10 pr-8 text-sm text-navy"><option value="">Select account type</option><option value="individual">Individual Author</option><option value="business">Business / Brand</option><option value="agency">Agency</option><option value="student">Student</option></select></Field>
+            <label className="flex items-start gap-2 text-xs text-muted-foreground"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-0.5 h-4 w-4 accent-primary" />I agree to the Guest Post Guidelines, <Link to="/terms-and-conditions" className="text-primary underline">Terms & Conditions</Link> and <Link to="/privacy-policy" className="text-primary underline">Privacy Policy</Link>.</label></>}
+          {error && <p role="alert" className="text-xs font-semibold text-destructive">{error}</p>}
+          {notice && <p className="text-xs font-semibold text-primary">{notice}</p>}
+          <Button disabled={busy} className="h-11 w-full bg-gold font-extrabold text-navy hover:bg-gold/90">{busy ? "Please wait..." : mode === "register" ? "Create Account" : "Login"}<ArrowRight /></Button>
+        </form>
+        <div className="my-4 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />or continue with<span className="h-px flex-1 bg-border" /></div>
+        <Button type="button" variant="outline" onClick={google} className="h-11 w-full font-semibold text-navy"><span className="font-extrabold text-primary">G</span>Continue with Google</Button>
+        <p className="mt-4 text-center text-xs text-muted-foreground">{mode === "register" ? "Already have an account? " : "New here? "}<button type="button" onClick={() => setMode(mode === "register" ? "login" : "register")} className="font-bold text-primary">{mode === "register" ? "Login here" : "Create an account"}</button></p>
+        <p className="mt-3 flex items-center gap-2 rounded-md bg-sky-soft p-2 text-[11px] text-muted-foreground"><ShieldCheck className="h-4 w-4 text-primary" />Your information is secure and will never be shared with third parties.</p>
+      </section>
     </div>
-  </div></main></div>;
+  </main></div>;
 }
