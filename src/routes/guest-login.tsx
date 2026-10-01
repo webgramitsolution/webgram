@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { registerGuestAccount, sendGuestLoginCode } from "@/lib/auth-email.functions";
 
 const HERO = "https://ik.imagekit.io/x3cipokny/icon/guest%20post%20banner.png";
 
