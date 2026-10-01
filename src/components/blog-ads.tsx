@@ -7,10 +7,10 @@ const CONSENT_REGIONS = new Set(["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE",
 const PUBLISHER_ID = "ca-pub-5971464853495085";
 
 export const BLOG_AD_SLOTS = {
-  top: "",
-  category: "",
-  detailLeft: "",
-  detailRight: "",
+  top: "9892982015",
+  category: "9892982015",
+  detailLeft: "6145308694",
+  detailRight: "6145308694",
   detailContent: "",
 } as const;
 
@@ -45,7 +45,7 @@ export function BlogAdsConsent() {
     window.addEventListener("webgram:cookie-settings", open);
     return () => { window.removeEventListener("webgram:cookie-settings", open); };
   }, []);
-  function choose(value: Exclude<Consent, null>) { window.localStorage.setItem(CONSENT_KEY, value); setConsent(value); if (value === "accepted") loadAds(); }
+  function choose(value: Exclude<Consent, null>) { window.localStorage.setItem(CONSENT_KEY, value); setConsent(value); window.dispatchEvent(new CustomEvent("webgram:ad-consent", { detail: value })); if (value === "accepted") loadAds(); }
   if (consent) return null;
   return <aside className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-md border border-border bg-card p-4 shadow-xl" aria-label="Advertising cookie choices"><div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center"><div><h2 className="text-base font-extrabold text-navy">Your advertising choice</h2><p className="mt-1 text-xs text-muted-foreground">Blog ads help support our journal. Allow advertising cookies for personalised delivery and measurement, or reject them and continue reading.</p></div><div className="flex gap-2"><Button variant="outline" onClick={() => choose("rejected")}>Reject</Button><Button onClick={() => choose("accepted")}>Accept</Button></div></div></aside>;
 }
@@ -53,12 +53,19 @@ export function BlogAdsConsent() {
 export function BlogAdBand({ label = "Advertisement", position = "category", rail = false }: { label?: string; position?: BlogAdPosition; rail?: boolean }) {
   const slot = BLOG_AD_SLOTS[position];
   const adRef = useRef<HTMLModElement>(null);
+  const [accepted, setAccepted] = useState(false);
   useEffect(() => {
-    if (!slot || window.localStorage.getItem(CONSENT_KEY) !== "accepted" || !adRef.current) return;
+    const syncConsent = () => setAccepted(window.localStorage.getItem(CONSENT_KEY) === "accepted");
+    syncConsent();
+    window.addEventListener("webgram:ad-consent", syncConsent);
+    return () => window.removeEventListener("webgram:ad-consent", syncConsent);
+  }, []);
+  useEffect(() => {
+    if (!slot || !accepted || !adRef.current || adRef.current.dataset["adStatus"]) return;
     loadAds();
     try { (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle = (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle ?? []; (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle?.push({}); } catch { /* AdSense retries after its script is ready. */ }
-  }, [slot]);
-  return <aside className={rail ? "w-full" : "w-full py-4"} aria-label={label}><div className={`grid place-items-center overflow-hidden border border-border bg-muted/35 ${rail ? "min-h-[420px] rounded-md" : "min-h-[110px]"}`}>{slot ? <ins ref={adRef} className="adsbygoogle block h-full w-full" data-ad-client={PUBLISHER_ID} data-ad-slot={slot} data-ad-format="auto" data-full-width-responsive="true" /> : <span className="px-3 text-center text-[10px] font-semibold uppercase text-muted-foreground">{label}<small className="mt-1 block normal-case">Reserved ad position</small></span>}</div></aside>;
+  }, [accepted, slot]);
+  return <aside className={rail ? "w-full" : "w-full py-4"} aria-label={label}><div className={`grid place-items-center overflow-hidden border border-border bg-muted/35 ${rail ? "min-h-[420px] rounded-md" : "min-h-[110px]"}`}>{slot && accepted ? <ins ref={adRef} className="adsbygoogle block h-full w-full" data-ad-client={PUBLISHER_ID} data-ad-slot={slot} data-ad-format="auto" data-full-width-responsive="true" /> : <span className="px-3 text-center text-[10px] font-semibold uppercase text-muted-foreground">{label}<small className="mt-1 block normal-case">{slot ? "Accept advertising cookies to load this ad" : "Reserved ad position"}</small></span>}</div></aside>;
 }
 
 export function openCookieSettings() { if (typeof window !== "undefined") window.dispatchEvent(new Event("webgram:cookie-settings")); }

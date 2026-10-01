@@ -24,6 +24,6 @@
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
 - AdSense is blog-only and consent-gated; never load its script from the root or non-blog routes.
-- Fixed AdSense uses five named blog positions; leave reserved placeholders until real slot IDs are supplied.
+- AdSense is consent-gated and blog-only: slot 9892982015 serves blog bands and slot 6145308694 serves both sticky article rails.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.

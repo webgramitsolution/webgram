@@ -1,15 +1,14 @@
 # Roadmap
 
 ## Open
-- [ ] Replace shared header/footer logo with the supplied ImageKit logo
-- [ ] Rebuild the phone homepage hero and mobile navigation from the supplied references
-- [ ] Add the phone-only services banner and admin-managed reviews below Technology
-- [ ] Remove homepage enquiry form from desktop and replace it with reviews on phones
-- [ ] Give the blog its own database-driven category header and remove the All Tags filter
-- [ ] Update the footer WhatsApp icon/link and verify SMTP configuration safely
-- [ ] Diagnose blog AdSense delivery and preserve reserved positions until slot IDs are supplied
+- [x] Replace shared header/footer logo with the supplied ImageKit logo
+- [x] Rebuild the phone homepage hero and mobile navigation from the supplied references
+- [x] Add the phone-only services banner and admin-managed reviews below Technology
+- [x] Remove homepage enquiry form from desktop and replace it with reviews on phones
+- [x] Give the blog its own database-driven category header and remove the All Tags filter
+- [x] Update the footer WhatsApp icon/link and verify SMTP configuration safely
+- [x] Configure the supplied blog and article AdSense slots
 - [ ] Email domain DNS verification (blocked: user must add the supplied TXT + NS records at registrar)
-- [ ] Add the five supplied AdSense slot IDs when the user provides them
 
 ## Done
 - [x] Legal pages, sitemap, metadata, and footer links
