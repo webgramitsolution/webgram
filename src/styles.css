@@ -409,6 +409,35 @@
   object-position: center;
 }
 
+.hero-media picture {
+  display: contents;
+}
+
+@media (max-width: 767px) {
+  .hero-shell {
+    min-height: 720px;
+  }
+  .hero-media img {
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  .hero-copy {
+    min-height: 720px;
+    align-items: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 16rem;
+  }
+  .bg-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--navy) 98%, transparent) 0%,
+      color-mix(in oklab, var(--navy) 88%, transparent) 39%,
+      color-mix(in oklab, var(--navy) 25%, transparent) 68%,
+      transparent 100%
+    );
+  }
+}
+
 /* Keep every supplied hero artwork proportional inside the shared 348px
    desktop frame. The image is cropped at its edges instead of distorted. */
 .ecom-hero > img,

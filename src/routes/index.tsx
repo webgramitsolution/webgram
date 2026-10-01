@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { HomeEnquiry } from "@/components/enquiry-form";
 import {
   ArrowRight,
   BarChart3,
@@ -13,6 +12,7 @@ import {
   Store,
   Users,
   Zap,
+  Star,
 } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -20,8 +20,12 @@ import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import { SiteHeader } from "@/components/site-header";
+import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
+
+const PHONE_HERO = "https://ik.imagekit.io/x3cipokny/phone%20device%20banner.png";
 
 export const Route = createFileRoute("/")({
+  loader: () => getPublishedHomepageReviews(),
   head: () => ({
     meta: [
       { title: "Webgram IT Solution | Digital Commerce Engineered for Growth" },
@@ -175,12 +179,15 @@ function Hero() {
   return (
     <section id="top" className="hero-shell">
       <div className="hero-media">
-        <img
+        <picture>
+          <source media="(max-width: 767px)" srcSet={PHONE_HERO} />
+          <img
           src={IMAGES.hero}
           alt="Webgram IT Solution digital commerce storefront displayed across laptop and mobile screens"
           width={2170}
           height={725}
-        />
+          />
+        </picture>
       </div>
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
@@ -541,7 +548,42 @@ function Technology() {
   );
 }
 
+function MobileServices() {
+  return <section className="bg-sky-soft px-4 py-6 md:hidden">
+    <div className="mx-auto max-w-md">
+      <p className="page-eyebrow text-primary">Our Services</p>
+      <h2 className="mt-2 text-[22px] font-extrabold text-navy">Everything your digital business needs.</h2>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        {services.map(({ icon: IconComponent, title }, index) => <Link key={title} to="/solutions/$slug" params={{ slug: ["ecommerce-development", "b2b-commerce", "marketplace-development", "website-design-development"][index] ?? "ecommerce-development" }} className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card">
+          <IconComponent className="h-6 w-6 text-primary" />
+          <strong className="mt-3 text-[12px] leading-4 text-navy">{title}</strong>
+        </Link>)}
+      </div>
+    </div>
+  </section>;
+}
+
+type Review = Awaited<ReturnType<typeof getPublishedHomepageReviews>>[number];
+
+function MobileReviews({ reviews }: { reviews: Review[] }) {
+  if (!reviews.length) return null;
+  return <section className="bg-background py-7 md:hidden" aria-labelledby="home-reviews-title">
+    <div className="page-shell">
+      <p className="page-eyebrow text-primary">Client reviews</p>
+      <h2 id="home-reviews-title" className="mt-2 text-[23px] font-extrabold text-navy">Trusted by growing businesses.</h2>
+      <div className="case-scroll -mx-4 mt-4 grid snap-x snap-mandatory grid-flow-col auto-cols-[88%] gap-3 overflow-x-auto px-4 pb-2">
+        {reviews.map((review) => <article key={review.id} className="snap-start rounded-md border border-border bg-card p-5 shadow-card">
+          <div className="flex gap-1 text-gold" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div>
+          <p className="mt-4 text-[13px] leading-6 text-foreground">“{review.review_text}”</p>
+          <div className="mt-5 border-t border-border pt-4"><strong className="block text-sm text-navy">{review.customer_name}</strong><span className="text-[11px] text-muted-foreground">{[review.customer_role, review.company_name].filter(Boolean).join(" · ")}</span></div>
+        </article>)}
+      </div>
+    </div>
+  </section>;
+}
+
 function HomePage() {
+  const reviews = Route.useLoaderData();
   return (
     <main className="min-h-screen overflow-x-hidden bg-background font-sans">
       <SiteHeader />
@@ -553,7 +595,8 @@ function HomePage() {
       <Industries />
       <CaseStudies />
       <Technology />
-      <HomeEnquiry />
+      <MobileServices />
+      <MobileReviews reviews={reviews} />
     </main>
   );
 }

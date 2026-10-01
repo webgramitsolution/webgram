@@ -1,7 +1,7 @@
 import { Facebook, Instagram, Linkedin, MessageCircle, Pin, Youtube, type LucideIcon } from "lucide-react";
 import { openCookieSettings } from "@/components/blog-ads";
 
-import webgramLogo from "@/assets/webgram-logo.png.asset.json";
+const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792";
 
 const columns = [
   ["Solutions", [{ label: "Ecommerce", to: "/solutions/ecommerce-development" }, { label: "B2B Commerce", to: "/solutions/b2b-commerce" }, { label: "Website Design & Development", to: "/solutions/website-design-development" }]],
@@ -19,14 +19,14 @@ const socials: Array<[LucideIcon, string]> = [
   [Youtube, "YouTube"],
   [Pin, "Pinterest"],
 ];
-const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/917551120242", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://www.pinterest.com/webgramitsolution/" };
+const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/webgramitsolution", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://www.pinterest.com/webgramitsolution/" };
 
 export function SiteFooter() {
   return (
     <footer className="bg-navy text-on-dark">
       <div className="page-shell grid gap-y-7 py-9 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
         <div className="md:pr-6 lg:pr-10">
-          <img src={webgramLogo.url} alt="Webgram IT Solution" width={720} height={323} loading="lazy" className="h-[52px] w-auto object-contain" />
+          <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-[44px] w-auto object-contain brightness-0 invert" />
           <p className="mt-4 max-w-[290px] text-on-dark/85">
             Custom websites and ecommerce solutions built for measurable business growth.
           </p>
@@ -60,7 +60,7 @@ export function SiteFooter() {
         <div className="flex shrink-0 gap-2" aria-label="Webgram IT Solution social media">
           {socials.map(([Icon, label]) => (
             <a key={label} href={socialUrls[label]} target="_blank" rel="noopener noreferrer" aria-label={`Follow Webgram IT Solution on ${label}`} title={label} className="grid h-8 w-8 place-items-center rounded bg-on-dark/20 transition-colors hover:bg-on-dark/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-dark">
-              <Icon className="h-4 w-4" />
+              <Icon className={`h-4 w-4 ${label === "WhatsApp" ? "text-whatsapp" : ""}`} />
             </a>
           ))}
         </div>

@@ -57,6 +57,13 @@
       "when": 1790789378568,
       "tag": "0007_lock_down_guest_post_rpcs",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1790822389254,
+      "tag": "0008_create_homepage_reviews",
+      "breakpoints": true
     }
   ]
 }
