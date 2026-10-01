@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Coins, Gamepad2, LifeBuoy, LogOut, PenLine, Search, Sparkles, LayoutDashboard, Lock } from "lucide-react";
+import { Coins, Gamepad2, LifeBuoy, LogOut, PenLine, Search, Sparkles, LayoutDashboard, Lock, Home } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { UNLOCK_LEVELS } from "@/lib/guest";
 
 const nav = [
+  { to: "/", label: "Home Page", icon: Home },
   { to: "/guest", label: "Dashboard", icon: LayoutDashboard },
   { to: "/guest/game", label: "Play & Earn", icon: Gamepad2 },
   { to: "/guest/write", label: "Write Article", icon: PenLine },
