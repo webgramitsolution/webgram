@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Facebook, Linkedin, MessageCircle, Share2 } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
@@ -24,6 +26,12 @@ function ArticleBody({ content }: { content: string }) {
 export function BlogDetailPage({ post }: { post: Post }) {
   const minutes = Math.max(2, Math.ceil(post.content.split(/\s+/).length / 200));
   const faqs = (Array.isArray(post.faqs) ? post.faqs : []).filter((faq): faq is Faq => Boolean(faq && typeof faq === "object" && "question" in faq && "answer" in faq));
+  useEffect(() => {
+    const key = `viewed:${post.slug}`;
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+    void supabase.rpc("increment_post_view", { _slug: post.slug });
+  }, [post.slug]);
   return <div className="min-h-screen bg-background text-foreground">
     <SiteHeader />
     <main>
