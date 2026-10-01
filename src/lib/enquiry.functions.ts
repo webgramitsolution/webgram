@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 const enquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -43,5 +44,27 @@ export const submitEnquiry = createServerFn({ method: "POST" })
     } catch (e) {
       console.error("enquiry acknowledgement email failed", e);
     }
+    return { ok: true };
+  });
+
+export const replyToEnquiry = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), message: z.string().trim().min(5).max(5000) }).parse(input))
+  .handler(async ({ data, context }) => {
+    const { data: isAdmin } = await context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    if (!isAdmin) throw new Error("Administrator access required.");
+    const { data: enquiry, error } = await context.supabase.from("enquiries").select("id,name,email,service").eq("id", data.id).single();
+    if (error || !enquiry) throw new Error("Enquiry not found.");
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+    const { sendSmtpMail } = await import("./smtp.server");
+    await sendSmtpMail({
+      to: enquiry.email,
+      subject: `Re: Your Webgram enquiry — ${enquiry.service || "Project"}`,
+      text: `Hi ${enquiry.name},\n\n${data.message}\n\nWebgram IT Solution\ninfo@webgramitsolution.com`,
+      html: `<p>Hi ${esc(enquiry.name)},</p><p style="white-space:pre-line">${esc(data.message)}</p><p>Webgram IT Solution<br/>info@webgramitsolution.com</p>`,
+      replyTo: "info@webgramitsolution.com",
+    });
+    const { error: upErr } = await context.supabase.from("enquiries").update({ reply_message: data.message, replied_at: new Date().toISOString(), status: "contacted" }).eq("id", data.id);
+    if (upErr) throw new Error("Reply sent, but could not be saved.");
     return { ok: true };
   });
