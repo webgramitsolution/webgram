@@ -67,7 +67,7 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
           {group.posts.map((post) => <Link key={post.id} to="/blog/$slug" params={{ slug: post.slug }} className="group min-w-0 overflow-hidden rounded-md border border-border bg-card shadow-card">
             <div className="aspect-[16/9] overflow-hidden"><PostImage post={post} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>
-            <div className="p-3"><h3 className="line-clamp-3 text-[12px] font-bold leading-[1.35] text-navy group-hover:text-primary">{post.title}</h3><span className="mt-2 flex items-center gap-1.5 text-[9px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span></div>
+            <div className="p-3"><h3 className="line-clamp-3 text-[12px] font-bold leading-[1.35] text-navy group-hover:text-primary">{post.title}</h3><span className="mt-2 block truncate text-[10px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[9px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span></div>
           </Link>)}
            </div><div className="h-12" /></div>) : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
