@@ -113,6 +113,7 @@ export type Database = {
           tags: string[]
           title: string
           updated_at: string
+          view_count: number
         }
         Insert: {
           author_id?: string | null
@@ -136,6 +137,7 @@ export type Database = {
           tags?: string[]
           title: string
           updated_at?: string
+          view_count?: number
         }
         Update: {
           author_id?: string | null
@@ -159,6 +161,7 @@ export type Database = {
           tags?: string[]
           title?: string
           updated_at?: string
+          view_count?: number
         }
         Relationships: [
           {
@@ -209,6 +212,8 @@ export type Database = {
           message: string
           name: string
           phone: string
+          replied_at: string | null
+          reply_message: string | null
           service: string
           status: string
         }
@@ -219,6 +224,8 @@ export type Database = {
           message: string
           name: string
           phone?: string
+          replied_at?: string | null
+          reply_message?: string | null
           service?: string
           status?: string
         }
@@ -229,6 +236,8 @@ export type Database = {
           message?: string
           name?: string
           phone?: string
+          replied_at?: string | null
+          reply_message?: string | null
           service?: string
           status?: string
         }
@@ -479,6 +488,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_post_view: { Args: { _slug: string }; Returns: undefined }
       my_credit_balance: { Args: never; Returns: number }
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       submit_guest_post: {
