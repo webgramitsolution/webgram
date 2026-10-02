@@ -27,7 +27,7 @@ export function GuestShell({ title, balance, levels, children }: { title: string
         <nav className="mt-3 flex max-w-full gap-1 overflow-x-auto lg:flex-col">{nav.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: true }} activeProps={{ className: "bg-sky-soft text-primary" }} className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-navy hover:bg-sky-soft"><item.icon className="h-4 w-4" />{item.label}</Link>)}</nav>
         <Button variant="ghost" size="sm" onClick={signOut} className="mt-2 w-full justify-start text-muted-foreground"><LogOut />Sign out</Button>
       </aside>
-      <main className="min-w-0"><h1 className="text-3xl font-extrabold text-navy">{title}</h1><div className="mt-5">{children}</div></main>
+      <main className="min-w-0 rounded-md border border-border bg-background p-4 shadow-card sm:p-6"><h1 className="text-3xl font-extrabold text-navy">{title}</h1><div className="mt-5">{children}</div></main>
     </div>
   </div>;
 }

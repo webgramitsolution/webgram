@@ -61,7 +61,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-[1600px] gap-6 px-3 xl:grid-cols-[160px_minmax(0,1fr)_160px]">
+      <div className="mx-auto grid max-w-[1600px] gap-5 px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
       <section className="min-w-0 py-9">
         {grouped.length ? grouped.map((group, index) => <div key={group.category.id}>

@@ -689,7 +689,7 @@
   }
   .hero-media img {
     object-fit: cover;
-    object-position: 68% center;
+    object-position: center bottom;
     opacity: 1;
   }
   .hero-copy {
@@ -753,10 +753,11 @@
   }
   .bg-hero-overlay {
     background: linear-gradient(
-      90deg,
-      color-mix(in oklab, var(--navy) 99%, transparent),
-      color-mix(in oklab, var(--navy) 95%, transparent) 62%,
-      color-mix(in oklab, var(--navy) 86%, transparent)
+      180deg,
+      color-mix(in oklab, var(--navy) 99%, transparent) 0%,
+      color-mix(in oklab, var(--navy) 96%, transparent) 46%,
+      color-mix(in oklab, var(--navy) 35%, transparent) 66%,
+      transparent 100%
     );
   }
   .industry-card {
