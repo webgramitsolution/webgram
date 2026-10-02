@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Replace Play & Earn with the supplied exact 20-level WaterSortGame, including responsive bottles, undo/restart, and secure credits
+- [x] Replace Play & Earn with the supplied exact 20-level WaterSortGame, including responsive bottles, undo/restart, and secure credits
 - [x] Rebuild the full phone homepage to follow the supplied two-screen commerce reference without its final CTA
 - [x] Match the phone “Built Around Your Industry” section to the supplied 3×2 reference grid
 - [x] Remove the homepage “Have a Business Idea? Let’s Build It Together.” section

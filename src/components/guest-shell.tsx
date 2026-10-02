@@ -23,7 +23,7 @@ export function GuestShell({ title, balance, levels, children }: { title: string
   return <div className="min-h-screen bg-sky-soft"><SiteHeader />
     <div className="page-shell grid min-w-0 gap-6 py-8 lg:grid-cols-[230px_minmax(0,1fr)]">
       <aside className="h-max min-w-0 max-w-full rounded-md border border-border bg-card p-3 shadow-card lg:sticky lg:top-[124px] lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto">
-        <div className="rounded-md bg-navy p-4 text-on-dark"><p className="text-[10px] font-bold uppercase tracking-widest text-on-dark/70">Your credits</p><p className="mt-1 flex items-center gap-2 text-3xl font-extrabold"><Coins className="h-6 w-6 text-gold" />{balance}</p><p className="mt-2 text-[11px] text-on-dark/70">{levels}/10 levels complete</p></div>
+        <div className="rounded-md bg-navy p-4 text-on-dark"><p className="text-[10px] font-bold uppercase tracking-widest text-on-dark/70">Your credits</p><p className="mt-1 flex items-center gap-2 text-3xl font-extrabold"><Coins className="h-6 w-6 text-gold" />{balance}</p><p className="mt-2 text-[11px] text-on-dark/70">{levels}/20 levels complete</p></div>
         <nav className="mt-3 flex max-w-full gap-1 overflow-x-auto lg:flex-col">{nav.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: true }} activeProps={{ className: "bg-sky-soft text-primary" }} className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-navy hover:bg-sky-soft"><item.icon className="h-4 w-4" />{item.label}</Link>)}</nav>
         <Button variant="ghost" size="sm" onClick={signOut} className="mt-2 w-full justify-start text-muted-foreground"><LogOut />Sign out</Button>
       </aside>
