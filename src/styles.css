@@ -734,19 +734,16 @@
   }
   #industries .page-shell > div:last-child {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 72%;
-    grid-template-columns: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    overflow: visible;
   }
   #industries .page-shell > div:last-child::-webkit-scrollbar,
   #case-studies .case-scroll::-webkit-scrollbar {
     display: none;
   }
   #industries .page-shell > div:last-child > * {
-    scroll-snap-align: start;
+    min-width: 0;
   }
   #case-studies .case-scroll {
     grid-auto-columns: 82%;
@@ -769,7 +766,7 @@
     );
   }
   .industry-card {
-    min-height: 145px;
+    min-height: 118px;
   }
   .logo-scroll,
   .case-scroll {
