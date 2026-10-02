@@ -85,7 +85,7 @@ export function RichArticleEditor({ value, onChange }: RichArticleEditorProps) {
     { label: "Three-item grid", icon: Grid2X2, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond item\n---\nThird item\n:::\n\n", "First item") },
   ];
 
-  return <div className="mt-2 overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
+  return <div className="mt-2 min-w-0 max-w-full overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
     <div className="flex flex-wrap gap-1 border-b border-border bg-muted p-2" role="toolbar" aria-label="Article formatting">
       {tools.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="ghost" size="icon" title={label} aria-label={label} onClick={action} className="h-8 w-8"><Icon /></Button>)}
     </div>

@@ -42,7 +42,7 @@ function Write() {
   const field = "mt-2 h-11";
   return <GuestShell title="Write a guest article" balance={s.balance} levels={s.levels}>
     {!s.unlocked ? <div className="mb-4"><LockedNotice levels={s.levels} /></div> : null}
-    <form onSubmit={submit} className="grid gap-5 lg:grid-cols-[1fr_300px]">
+      <form onSubmit={submit} className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
       <Panel className="space-y-4">
         <label className="block text-xs font-bold text-navy">Title<Input required minLength={3} maxLength={180} value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} className={field} /></label>
         <label className="block text-xs font-bold text-navy">Short summary<Textarea required minLength={10} maxLength={500} value={f.excerpt} onChange={(e) => setF({ ...f, excerpt: e.target.value })} className="mt-2 min-h-20" /></label>
