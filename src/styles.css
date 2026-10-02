@@ -1065,3 +1065,6 @@
 .hover-scroll:hover { scrollbar-width: thin; }
 .hover-scroll:hover::-webkit-scrollbar { width: 6px; }
 .hover-scroll:hover::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
+
+/* Site-wide heading weight requested by owner */
+h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
