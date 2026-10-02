@@ -31,3 +31,4 @@
 - Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
+- `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.

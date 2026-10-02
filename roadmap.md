@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Open
+- [x] Fix the direct Website Design service page and verify it no longer renders blank
+- [x] Reposition the homepage phone banner to show the supplied artwork from top to bottom
 - [x] Match the homepage and Website Design page to the supplied desktop and phone commerce references
 - [x] Keep admin and guest post creation layouts consistent on tablets
 - [x] Add a real live article preview and complete formatting controls to both post creation screens

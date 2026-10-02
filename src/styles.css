@@ -692,12 +692,12 @@
     min-height: 610px;
   }
   .hero-media {
-    top: auto;
-    height: 53%;
+    inset: 0;
+    height: 100%;
   }
   .hero-media img {
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center center;
     opacity: 1;
   }
   .hero-copy {
@@ -763,8 +763,8 @@
     background: linear-gradient(
       180deg,
       color-mix(in oklab, var(--navy) 99%, transparent) 0%,
-      color-mix(in oklab, var(--navy) 96%, transparent) 46%,
-      color-mix(in oklab, var(--navy) 35%, transparent) 66%,
+      color-mix(in oklab, var(--navy) 94%, transparent) 42%,
+      color-mix(in oklab, var(--navy) 32%, transparent) 64%,
       transparent 100%
     );
   }
