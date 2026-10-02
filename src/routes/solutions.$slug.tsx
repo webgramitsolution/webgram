@@ -20,6 +20,7 @@ export const Route = createFileRoute("/solutions/$slug")({
     meta: [
       { title: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
+      ...(params.slug === "marketplace-development" ? [{ name: "robots", content: "noindex" }] : []),
       {
         property: "og:title",
         content: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution`,
