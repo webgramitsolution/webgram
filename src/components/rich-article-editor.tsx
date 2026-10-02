@@ -1,7 +1,9 @@
 import { useRef, useState, type ClipboardEvent, type DragEvent } from "react";
-import { AlignCenter, AlignLeft, AlignRight, Bold, Code2, Grid3X3, Image, Images, Italic, Link2, List, ListOrdered, Maximize2, Minimize2, Minus, MoreHorizontal, PlaySquare, Quote, Redo2, Strikethrough, Table2, Underline, Undo2, UploadCloud } from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, Bold, Code2, Eye, Grid3X3, Image, Images, Italic, Link2, List, ListOrdered, Maximize2, Minimize2, Minus, MoreHorizontal, Pencil, PlaySquare, Quote, Redo2, Strikethrough, Table2, Underline, Undo2, UploadCloud } from "lucide-react";
 
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { ArticleBody } from "@/components/blog-detail-page";
 
 type RichArticleEditorProps = {
   value: string;
@@ -46,6 +48,7 @@ const countWords = (value: string) => {
 export function RichArticleEditor({ value, onChange, minHeight = "min-h-[55vh] sm:min-h-[260px]" }: RichArticleEditorProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
   const [full, setFull] = useState(false);
+  const [mode, setMode] = useState<"write" | "preview">("write");
 
   function replaceSelection(before: string, after = "", placeholder = "text") {
     const input = ref.current;
@@ -81,62 +84,75 @@ export function RichArticleEditor({ value, onChange, minHeight = "min-h-[55vh] s
   function history(command: "undo" | "redo") { ref.current?.focus(); document.execCommand(command); }
 
   function block(kind: string) {
-    if (kind === "h1" || kind === "h2") replaceSelection("\n## ", "", "Section heading");
-    else if (kind === "h3" || kind === "h4") replaceSelection("\n### ", "", "Subheading");
+    if (kind === "h1") replaceSelection("\n# ", "", "Main section heading");
+    else if (kind === "h2") replaceSelection("\n## ", "", "Section heading");
+    else if (kind === "h3") replaceSelection("\n### ", "", "Subheading");
+    else if (kind === "h4") replaceSelection("\n#### ", "", "Small heading");
     else replaceSelection("", "", "Start writing");
   }
 
-  const iconBtn = "grid h-8 w-8 shrink-0 place-items-center rounded text-navy hover:bg-sky-soft";
   const sep = <span className="mx-1 h-6 w-px shrink-0 bg-border" aria-hidden />;
-  const Tool = ({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) => <button type="button" title={label} aria-label={label} onClick={onClick} className={iconBtn}>{children}</button>;
+  const Tool = ({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) => <Button type="button" variant="ghost" size="icon" title={label} aria-label={label} onClick={onClick} className="h-8 w-8 shrink-0 text-navy hover:bg-sky-soft">{children}</Button>;
+
+  const align = (direction: "left" | "center" | "right") => replaceSelection(`\n:::align-${direction}\n`, "\n:::\n", "Aligned text");
+  const link = () => { const url = window.prompt("Paste an HTTPS or internal URL", "/"); if (url && (/^https:\/\//i.test(url) || url.startsWith("/"))) replaceSelection("[", `](${url})`, "link text"); };
+  const video = () => { const url = window.prompt("Paste an HTTPS video URL"); if (url && /^https:\/\//i.test(url)) replaceSelection(`\n\nVideo: ${url}\n\n`, "", ""); };
+  const table = () => replaceSelection("\n\n:::grid\n", "\n---\nSecond cell\n---\nThird cell\n:::\n\n", "First cell");
+  const embed = () => replaceSelection("\n\n> ", "\n\n", "Highlighted note or embed caption");
 
   const media = [
     { label: "Image", icon: Image, action: () => insertImages(false) },
-    { label: "Video", icon: PlaySquare, action: () => replaceSelection("\n\nVideo: ", "\n\n", "describe the video") },
+    { label: "Video", icon: PlaySquare, action: video },
     { label: "Gallery", icon: Images, action: () => insertImages(true) },
-    { label: "Table", icon: Grid3X3, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond cell\n:::\n\n", "First cell") },
-    { label: "Embed", icon: Code2, action: () => replaceSelection("\n\n> ", "\n\n", "Embedded note") },
+    { label: "Table", icon: Grid3X3, action: table },
+    { label: "Embed", icon: Code2, action: embed },
     { label: "Divider", icon: Minus, action: () => replaceSelection("\n\n---\n\n", "", "") },
   ];
 
   return <div className={full ? "fixed inset-0 z-[60] overflow-auto bg-background p-4" : "mt-2 -mx-2 min-w-0 max-w-none sm:mx-0 sm:max-w-full"}>
     <div className="overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
+      <div className="grid grid-cols-2 border-b border-border bg-sky-soft p-1 sm:ml-auto sm:w-56" role="tablist" aria-label="Editor mode">
+        <Button type="button" variant={mode === "write" ? "default" : "ghost"} size="sm" onClick={() => setMode("write")}><Pencil className="h-3.5 w-3.5" />Write</Button>
+        <Button type="button" variant={mode === "preview" ? "default" : "ghost"} size="sm" onClick={() => setMode("preview")}><Eye className="h-3.5 w-3.5" />Live Preview</Button>
+      </div>
+      {mode === "write" ? <>
       <div className="flex min-h-12 max-w-full items-center gap-0.5 overflow-x-auto border-b border-border bg-card px-2 py-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="toolbar" aria-label="Article formatting">
         <select aria-label="Text style" defaultValue="p" onChange={(event) => { block(event.target.value); event.target.value = "p"; }} className="h-8 shrink-0 rounded border border-input bg-card px-2 text-xs font-medium text-navy">
           <option value="p">Paragraph</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option>
         </select>
         {sep}
-        {(["H1", "H2", "H3", "H4"] as const).map((h) => <button key={h} type="button" title={`Heading ${h.slice(1)}`} onClick={() => block(h.toLowerCase())} className="h-8 shrink-0 rounded px-2 text-sm font-semibold text-navy hover:bg-sky-soft">{h}</button>)}
+        {(["H1", "H2", "H3", "H4"] as const).map((h) => <Button key={h} type="button" variant="ghost" size="sm" title={`Heading ${h.slice(1)}`} onClick={() => block(h.toLowerCase())} className="h-8 shrink-0 px-2 text-sm font-semibold text-navy hover:bg-sky-soft">{h}</Button>)}
         {sep}
         <Tool label="Bold" onClick={() => replaceSelection("**", "**", "bold text")}><Bold className="h-4 w-4" /></Tool>
         <Tool label="Italic" onClick={() => replaceSelection("*", "*", "italic text")}><Italic className="h-4 w-4" /></Tool>
         <Tool label="Underline" onClick={() => replaceSelection("__", "__", "underlined text")}><Underline className="h-4 w-4" /></Tool>
         <Tool label="Strikethrough" onClick={() => replaceSelection("~~", "~~", "struck text")}><Strikethrough className="h-4 w-4" /></Tool>
         {sep}
-        <Tool label="Align left" onClick={() => ref.current?.focus()}><AlignLeft className="h-4 w-4" /></Tool>
-        <Tool label="Align center" onClick={() => ref.current?.focus()}><AlignCenter className="h-4 w-4" /></Tool>
-        <Tool label="Align right" onClick={() => ref.current?.focus()}><AlignRight className="h-4 w-4" /></Tool>
+        <Tool label="Align left" onClick={() => align("left")}><AlignLeft className="h-4 w-4" /></Tool>
+        <Tool label="Align center" onClick={() => align("center")}><AlignCenter className="h-4 w-4" /></Tool>
+        <Tool label="Align right" onClick={() => align("right")}><AlignRight className="h-4 w-4" /></Tool>
         {sep}
         <Tool label="Bullet list" onClick={() => replaceSelection("\n- ", "", "List item")}><List className="h-4 w-4" /></Tool>
         <Tool label="Numbered list" onClick={() => replaceSelection("\n1. ", "", "List item")}><ListOrdered className="h-4 w-4" /></Tool>
         <Tool label="Quote" onClick={() => replaceSelection("\n> ", "", "Quote")}><Quote className="h-4 w-4" /></Tool>
         {sep}
-        <Tool label="Link (internal text only)" onClick={() => replaceSelection("**", "**", "linked text")}><Link2 className="h-4 w-4" /></Tool>
+        <Tool label="Link" onClick={link}><Link2 className="h-4 w-4" /></Tool>
         <Tool label="Image" onClick={() => insertImages(false)}><Image className="h-4 w-4" /></Tool>
-        <Tool label="Video" onClick={media[1]!.action}><PlaySquare className="h-4 w-4" /></Tool>
-        <Tool label="Table" onClick={media[3]!.action}><Table2 className="h-4 w-4" /></Tool>
-        <Tool label="Code" onClick={media[4]!.action}><Code2 className="h-4 w-4" /></Tool>
+        <Tool label="Video" onClick={video}><PlaySquare className="h-4 w-4" /></Tool>
+        <Tool label="Table" onClick={table}><Table2 className="h-4 w-4" /></Tool>
+        <Tool label="Inline code" onClick={() => replaceSelection("`", "`", "code")}><Code2 className="h-4 w-4" /></Tool>
         {sep}
         <Tool label="Undo" onClick={() => history("undo")}><Undo2 className="h-4 w-4 text-muted-foreground" /></Tool>
         <Tool label="Redo" onClick={() => history("redo")}><Redo2 className="h-4 w-4 text-muted-foreground" /></Tool>
         {sep}
-        <Tool label="Divider" onClick={media[5]!.action}><MoreHorizontal className="h-4 w-4" /></Tool>
-        <button type="button" title={full ? "Exit full screen" : "Full screen"} aria-label={full ? "Exit full screen" : "Full screen"} onClick={() => setFull(!full)} className={`${iconBtn} ml-auto`}>{full ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
+        <Tool label="Divider" onClick={() => replaceSelection("\n\n---\n\n", "", "")}><MoreHorizontal className="h-4 w-4" /></Tool>
+        <Button type="button" variant="ghost" size="icon" title={full ? "Exit full screen" : "Full screen"} aria-label={full ? "Exit full screen" : "Full screen"} onClick={() => setFull(!full)} className="ml-auto h-8 w-8 shrink-0 text-navy hover:bg-sky-soft">{full ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</Button>
       </div>
       <div className="relative">
         <Textarea ref={ref} required value={value} onChange={(event) => onChange(event.target.value)} onPaste={handlePaste} placeholder="Start writing your article here..." className={`${full ? "min-h-[75vh]" : minHeight} w-full resize-y rounded-none border-0 bg-card px-5 py-4 pb-9 text-sm leading-6 text-foreground shadow-none focus-visible:ring-0`} aria-label="Article content" />
         <span className="pointer-events-none absolute bottom-3 right-4 text-xs text-muted-foreground">Word count: {countWords(value)}</span>
       </div>
+      </> : <div className={`${full ? "min-h-[75vh]" : minHeight} overflow-y-auto bg-card px-5 py-6`} role="tabpanel" aria-label="Article live preview"><ArticleBody content={value} preview /></div>}
     </div>
     <p className="mt-2 text-[11px] text-muted-foreground">Tip: Use headings, paragraphs, images, lists and quotes to make your article more engaging. Formatting pasted from ChatGPT, Claude, Google Docs or Word is kept.</p>
     <p className="mt-5 text-xs font-bold text-navy">Insert Media</p>

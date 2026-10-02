@@ -14,8 +14,11 @@ type Post = { id: string; title: string; slug: string; excerpt: string; content:
 const date = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
 
 function InlineText({ value }: { value: string }) {
-  const parts = value.split(/(\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\*[^*]+\*)/g).filter(Boolean);
+  const parts = value.split(/(\[[^\]]+\]\((?:https:\/\/|\/)[^)]+\)|`[^`]+`|\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\*[^*]+\*)/g).filter(Boolean);
   return <>{parts.map((part, index) => {
+    const link = part.match(/^\[([^\]]+)\]\(((?:https:\/\/|\/)[^)]+)\)$/);
+    if (link) return <a key={index} href={link[2]} target={link[2]?.startsWith("https://") ? "_blank" : undefined} rel={link[2]?.startsWith("https://") ? "noreferrer" : undefined}>{link[1]}</a>;
+    if (part.startsWith("`") && part.endsWith("`")) return <code key={index}>{part.slice(1, -1)}</code>;
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={index}>{part.slice(2, -2)}</strong>;
     if (part.startsWith("__") && part.endsWith("__")) return <u key={index}>{part.slice(2, -2)}</u>;
     if (part.startsWith("~~") && part.endsWith("~~")) return <s key={index}>{part.slice(2, -2)}</s>;
@@ -26,13 +29,19 @@ function InlineText({ value }: { value: string }) {
 
 const imagePattern = /^!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)$/i;
 
-function ArticleBody({ content }: { content: string }) {
+export function ArticleBody({ content, preview = false }: { content: string; preview?: boolean }) {
   const lines = content.replace(/\\n/g, "\n").split("\n");
   const blocks: React.ReactNode[] = [];
   let index = 0;
   while (index < lines.length) {
     const line = lines[index]?.trim() ?? "";
     if (!line) { index += 1; continue; }
+    if (line.startsWith(":::align-")) {
+      const alignment = line.slice(9); const aligned: string[] = []; index += 1;
+      while (index < lines.length && lines[index]?.trim() !== ":::") { aligned.push(lines[index] ?? ""); index += 1; }
+      blocks.push(<div key={`align-${index}`} className={alignment === "center" ? "text-center" : alignment === "right" ? "text-right" : "text-left"}><InlineText value={aligned.join(" ").trim()} /></div>);
+      index += 1; continue;
+    }
     if (line === ":::gallery" || line === ":::grid") {
       const mode = line.slice(3); const items: string[] = []; let current: string[] = [];
       index += 1;
@@ -47,8 +56,18 @@ function ArticleBody({ content }: { content: string }) {
     }
     const image = line.match(imagePattern);
     if (image) { blocks.push(<figure key={`image-${index}`}><img src={image[2]} alt={image[1] || "Article image"} loading="lazy" /></figure>); index += 1; continue; }
+    if (/^Video:\s*https:\/\//i.test(line)) { const url = line.replace(/^Video:\s*/i, ""); blocks.push(<div key={`video-${index}`} className="article-embed"><a href={url} target="_blank" rel="noreferrer">Open embedded video</a></div>); index += 1; continue; }
+    if (line === "---") { blocks.push(<hr key={`hr-${index}`} />); index += 1; continue; }
+    if (line.startsWith("#### ")) { blocks.push(<h4 key={`h4-${index}`}><InlineText value={line.slice(5)} /></h4>); index += 1; continue; }
     if (line.startsWith("### ")) { blocks.push(<h3 key={`h3-${index}`}><InlineText value={line.slice(4)} /></h3>); index += 1; continue; }
     if (line.startsWith("## ")) { blocks.push(<h2 key={`h2-${index}`}><InlineText value={line.slice(3)} /></h2>); index += 1; continue; }
+    if (line.startsWith("# ")) { blocks.push(<h2 key={`h1-${index}`} className="article-h1"><InlineText value={line.slice(2)} /></h2>); index += 1; continue; }
+    if (line.startsWith("> ")) { blocks.push(<blockquote key={`quote-${index}`}><InlineText value={line.slice(2)} /></blockquote>); index += 1; continue; }
+    if (/^\d+\.\s/.test(line)) {
+      const items: string[] = [];
+      while (index < lines.length && /^\d+\.\s/.test(lines[index]?.trim() ?? "")) { items.push((lines[index]?.trim() ?? "").replace(/^\d+\.\s/, "")); index += 1; }
+      blocks.push(<ol key={`ordered-${index}`}>{items.map((item, itemIndex) => <li key={itemIndex}><InlineText value={item} /></li>)}</ol>); continue;
+    }
     if (line.startsWith("- ")) {
       const items: string[] = [];
       while (index < lines.length && lines[index]?.trim().startsWith("- ")) { items.push((lines[index]?.trim() ?? "").slice(2)); index += 1; }
@@ -58,7 +77,7 @@ function ArticleBody({ content }: { content: string }) {
     while (index < lines.length && lines[index]?.trim() && !/^(## |### |- |:::|!\[)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
     blocks.push(<p key={`p-${index}`}><InlineText value={paragraph.join(" ")} /></p>);
   }
-  return <div className="blog-prose">{blocks}</div>;
+  return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
 }
 
 export function BlogDetailPage({ post }: { post: Post }) {
