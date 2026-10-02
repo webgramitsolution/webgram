@@ -27,3 +27,4 @@
 - AdSense slot 6145308694 serves both sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
+- Guest article formatting is stored as restricted Markdown-style text and rendered without raw HTML so pasted rich content cannot execute scripts.

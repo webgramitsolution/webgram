@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [x] Match the blog detail reference and add safe rich formatting to guest article posting
 - [x] Remove blog band ads and footer-area whitespace/collapse-ad behavior
 - [x] Match the journal header to the shared navy logo/header treatment
 - [x] Restrict ads to article and legal-policy desktop side rails
