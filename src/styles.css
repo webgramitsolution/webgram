@@ -199,7 +199,82 @@
 }
 
 .game-board {
-  background: linear-gradient(to bottom, var(--muted), var(--background));
+  --scene-sky: var(--sky-soft);
+  --scene-water: var(--primary-soft);
+  --scene-land: var(--success-soft);
+  isolation: isolate;
+  position: relative;
+  background: linear-gradient(to bottom, var(--scene-sky) 0 58%, var(--scene-water) 58% 82%, var(--scene-land) 82%);
+}
+
+.game-board::before,
+.game-board::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.game-board::before {
+  inset: 12% -8% auto;
+  height: 48%;
+  opacity: 0.7;
+  background: radial-gradient(ellipse at 20% 100%, var(--scene-land) 0 24%, transparent 25%), radial-gradient(ellipse at 78% 100%, var(--scene-land) 0 30%, transparent 31%);
+  animation: game-drift 9s ease-in-out infinite alternate;
+}
+
+.game-board::after {
+  inset: auto 2% 5%;
+  height: 18%;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--gold) 58%, var(--orange-soft));
+  box-shadow: inset 0 -10px 0 color-mix(in oklab, var(--orange) 28%, transparent), 0 16px 28px color-mix(in oklab, var(--navy) 18%, transparent);
+}
+
+.game-scene-1,.game-scene-7,.game-scene-13,.game-scene-19 { --scene-sky: var(--sky-soft); --scene-water: var(--cyan-soft); --scene-land: var(--success-soft); }
+.game-scene-2,.game-scene-8,.game-scene-14,.game-scene-20 { --scene-sky: var(--primary-soft); --scene-water: var(--sky-soft); --scene-land: var(--warning-soft); }
+.game-scene-3,.game-scene-9,.game-scene-15 { --scene-sky: var(--warning-soft); --scene-water: var(--cyan-soft); --scene-land: var(--orange-soft); }
+.game-scene-4,.game-scene-10,.game-scene-16 { --scene-sky: var(--violet-soft); --scene-water: var(--primary-soft); --scene-land: var(--sky-soft); }
+.game-scene-5,.game-scene-11,.game-scene-17 { --scene-sky: var(--cyan-soft); --scene-water: var(--primary-soft); --scene-land: var(--success-soft); }
+.game-scene-6,.game-scene-12,.game-scene-18 { --scene-sky: var(--orange-soft); --scene-water: var(--warning-soft); --scene-land: var(--violet-soft); }
+
+.game-scene-2::before,.game-scene-8::before,.game-scene-14::before,.game-scene-20::before { transform: scaleX(-1); animation-duration: 11s; }
+.game-scene-3::before,.game-scene-9::before,.game-scene-15::before { opacity: 0.5; animation-duration: 7s; }
+.game-scene-4::after,.game-scene-10::after,.game-scene-16::after { border-radius: 18% 50% 25% 45%; }
+.game-scene-5::before,.game-scene-11::before,.game-scene-17::before { animation-direction: alternate-reverse; }
+.game-scene-6::after,.game-scene-12::after,.game-scene-18::after { transform: skewX(-4deg); }
+
+.game-stage {
+  position: relative;
+  z-index: 1;
+}
+
+.game-tube {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--background) 38%, transparent), color-mix(in oklab, var(--background) 78%, transparent) 45%, color-mix(in oklab, var(--sky) 20%, transparent));
+  border-color: color-mix(in oklab, var(--navy) 62%, var(--background));
+  box-shadow: inset 7px 0 8px color-mix(in oklab, var(--background) 70%, transparent), inset -4px 0 7px color-mix(in oklab, var(--primary) 16%, transparent), 0 7px 12px color-mix(in oklab, var(--navy) 16%, transparent);
+}
+
+.game-tube::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: -5px;
+  right: -5px;
+  top: -5px;
+  height: 10px;
+  border: 3px solid color-mix(in oklab, var(--navy) 55%, var(--background));
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--background) 72%, transparent);
+}
+
+.game-liquid-segment {
+  box-shadow: inset 8px 0 8px color-mix(in oklab, var(--background) 14%, transparent), inset -5px 0 7px color-mix(in oklab, var(--navy) 12%, transparent);
+}
+
+@keyframes game-drift {
+  from { translate: -1.5% 0; }
+  to { translate: 1.5% -2%; }
 }
 
 .game-tube-button,
@@ -210,6 +285,12 @@
 @media (prefers-reduced-motion: reduce) {
   .game-tube-button,
   .game-tube { transition: none; }
+  .game-board::before { animation: none; }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
 }
 
 .dark {

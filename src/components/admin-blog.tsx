@@ -27,8 +27,8 @@ export function AdminShell({ children, name = "Administrator", counts, view, onV
   async function signOut() { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await navigate({ to: "/auth", replace: true }); }
   const item = "flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold hover:bg-on-dark/10";
   const views: [View, string, typeof FileText][] = [["guest", "Guest posts", FileText], ["mine", "My posts (Admin)", User], ["pending", "Pending reviews", Clock], ["published", "Published posts", Send], ["draft", "Drafts", FilePenLine]];
-  return <div className="min-h-screen bg-sky-soft lg:grid lg:grid-cols-[240px_1fr]">
-    <aside className="bg-navy p-4 text-on-dark lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
+  return <div className="min-h-screen bg-sky-soft md:grid md:grid-cols-[240px_minmax(0,1fr)]">
+    <aside className="bg-navy p-4 text-on-dark md:sticky md:top-0 md:h-screen md:overflow-hidden">
       <Link to="/admin/blog" className="block text-lg font-extrabold">Webgram Admin</Link><p className="text-xs text-on-dark/65">{name}</p>
       <nav className="mt-6 space-y-1">
         <Link to="/" className={item}><Home className="h-4 w-4" />Home page</Link>
@@ -39,7 +39,7 @@ export function AdminShell({ children, name = "Administrator", counts, view, onV
       </nav>
       <Button variant="outline" size="sm" onClick={signOut} className="mt-6 w-full border-on-dark/30 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><LogOut />Sign out</Button>
     </aside>
-    <div className="min-w-0">{children}</div></div>;
+    <div className="min-w-0 bg-background">{children}</div></div>;
 }
 
 export function AdminBlogList({ posts, categories, name, guestPostCost }: { posts: Post[]; categories: Category[]; name?: string | undefined; guestPostCost: number }) {
