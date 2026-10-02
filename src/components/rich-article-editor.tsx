@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, type ClipboardEvent } from "react";
 import { Bold, Columns3, Grid2X2, Heading2, Image, Images, List, Type, Underline } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -64,7 +64,7 @@ export function RichArticleEditor({ value, onChange }: RichArticleEditorProps) {
     replaceSelection(gallery ? `\n\n:::gallery\n${images.join("\n")}\n:::\n\n` : `\n\n${images[0]}\n\n`, "", "");
   }
 
-  function handlePaste(event: React.ClipboardEvent<HTMLTextAreaElement>) {
+  function handlePaste(event: ClipboardEvent<HTMLTextAreaElement>) {
     const html = event.clipboardData.getData("text/html");
     if (!html) return;
     event.preventDefault();
