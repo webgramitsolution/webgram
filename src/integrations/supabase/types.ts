@@ -492,6 +492,7 @@ export type Database = {
         Args: { _author_name: string; _body: string; _post_id: string }
         Returns: undefined
       }
+      buy_game_glass: { Args: never; Returns: number }
       claim_share_reward: {
         Args: { _platform: string; _post_id: string }
         Returns: boolean
