@@ -23,20 +23,23 @@ export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; he
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
-    <article className="overflow-hidden rounded-2xl border border-border bg-card shadow-card">
-      <div className="p-3 md:p-5"><ScrollingFrame item={item} height={460} /></div>
-      <div className="grid gap-5 border-t border-border p-5 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] md:p-7">
-        <div>
-          <p className="text-[13px] font-semibold uppercase tracking-wide text-primary">{item.category}</p>
-          <h2 className="mt-1 text-[26px] text-navy">{item.name}</h2>
-          <p className="mt-1 flex items-center gap-1 text-[14px] text-muted-foreground"><MapPin className="h-4 w-4" />{item.location}</p>
-          <a href={item.url} target="_blank" rel="noopener" className="mt-4 inline-flex items-center gap-1.5 rounded-md bg-navy px-4 py-2.5 text-[14px] font-semibold text-on-dark hover:opacity-90">Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>
+    <article className="grid gap-6 rounded-2xl border border-border bg-card p-4 shadow-card md:p-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
+      <ScrollingFrame item={item} height={520} />
+      <div className="flex flex-col">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="text-[14px] font-semibold text-primary">{item.category}</p>
+          <p className="flex items-center gap-1 text-[14px] text-muted-foreground"><MapPin className="h-4 w-4" />{item.location}</p>
         </div>
-        <div>
-          <p className="text-[16px] leading-7 text-muted-foreground">{item.summary}</p>
-          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-            {item.delivered.map((point) => <li key={point} className="flex items-center gap-2 text-[15px] text-navy"><CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />{point}</li>)}
-          </ul>
+        <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">{item.name}</h2>
+        <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{item.summary}</p>
+        <h3 className="mt-6 text-[19px] text-navy">Key Features</h3>
+        <span className="mt-2 block h-0.5 w-8 bg-navy" />
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {item.delivered.map((point) => <li key={point} className="flex items-center gap-2 text-[15px] text-navy"><CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />{point}</li>)}
+        </ul>
+        <div className="mt-6 lg:mt-auto lg:pt-6">
+          <a href={item.url} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 rounded-md bg-navy px-5 py-3 text-[15px] font-semibold text-on-dark hover:opacity-90">Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>
+          <p className="mt-2 text-[13px] text-muted-foreground">{item.domain}</p>
         </div>
       </div>
     </article>
