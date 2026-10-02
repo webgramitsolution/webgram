@@ -24,7 +24,7 @@ export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; he
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
     <article className="grid gap-6 rounded-2xl border border-border bg-card p-4 shadow-card md:p-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
-      <ScrollingFrame item={item} height={520} />
+      <ScrollingFrame item={item} height={460} />
       <div className="flex flex-col">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-[14px] font-semibold text-primary">{item.category}</p>
