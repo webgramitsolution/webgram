@@ -46,9 +46,9 @@ export const Route = createFileRoute("/")({
         content: "Build, sell and scale with a full-service digital commerce technology partner.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: IMAGES.hero },
+      { property: "og:image", content: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: IMAGES.hero },
+      { name: "twitter:image", content: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif" },
     ],
     scripts: [
       {
@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "Webgram IT Solution",
           url: "https://webgramitsolution.com/",
-          image: IMAGES.hero,
+          image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
           telephone: "+91 7551120242",
           email: "info@webgramitsolution.com",
           priceRange: "₹15,000 - ₹5,00,000",
@@ -677,7 +677,7 @@ function MobileReviews({ reviews }: { reviews: Review[] }) {
 function HomePage() {
   const reviews = Route.useLoaderData();
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background font-sans">
+    <main className="min-h-screen bg-background font-sans">
       <SiteHeader />
       <Hero />
       <TrustStrip />

@@ -104,7 +104,7 @@ function Projects() {
 }
 
 export function WooCommercePage() {
-  return <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
+  return <main className="min-h-screen bg-background text-foreground">
     <SiteHeader />
     <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
       <img src={wooHero} alt="WooCommerce furniture store displayed on laptop and phone" width={1536} height={768} className="absolute inset-0 h-full w-full object-cover object-center min-[1180px]:!hidden" />

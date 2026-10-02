@@ -118,7 +118,7 @@ function SectionIntro({ title, description }: { title: string; description: stri
 
 export function B2BCommercePage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
       <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
