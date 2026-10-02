@@ -25,7 +25,8 @@ function Write() {
   const postCost = useGuestPostCost();
   const [cats, setCats] = useState<{ id: string; name: string; parent_id: string | null }[]>([]);
   const [f, setF] = useState({ title: "", excerpt: "", content: "", category: "", subcategory: "", tags: "", image: "", author: "", seoTitle: "", seoDescription: "", faqs: Array.from({ length: 5 }, () => ({ question: "", answer: "" })) });
-  const [busy, setBusy] = useState(false); const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false); const [error, setError] = useState(""); const [saved, setSaved] = useState<Date | null>(null);
+  useEffect(() => { try { const d = localStorage.getItem("guest-draft"); if (d) setF((cur) => ({ ...cur, ...JSON.parse(d) })); } catch { /* ignore bad draft */ } }, []);
   useEffect(() => { void supabase.from("blog_categories").select("id,name,parent_id").eq("is_active", true).order("display_order").then(({ data }) => setCats(data ?? [])); }, []);
   const readableContent = f.content.replace(IMAGE, " ").replace(/[:*_[\]#>-]/g, " ");
   const words = readableContent.trim() ? readableContent.trim().split(/\s+/).length : 0;
@@ -40,6 +41,7 @@ function Write() {
     const { error: err } = await supabase.rpc("submit_guest_post_v2", { _title: f.title, _excerpt: f.excerpt, _content: f.content, _category_id: f.category, _subcategory_id: f.subcategory, _tags: tags, _faqs: f.faqs, _image: f.image, _author_name: f.author || displayName(s.email), _seo_title: f.seoTitle, _seo_description: f.seoDescription });
     setBusy(false);
     if (err) { setError(errorText(err)); return; }
+    localStorage.removeItem("guest-draft");
     await navigate({ to: "/guest" });
   }
   const field = "mt-2 h-10 bg-card";
