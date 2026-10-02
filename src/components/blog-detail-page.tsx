@@ -93,7 +93,7 @@ export function BlogDetailPage({ post }: { post: Post }) {
     <SiteHeader />
     <main className="bg-card">
       <div className="border-b border-border bg-background"><nav className="page-shell flex h-11 items-center gap-2 overflow-hidden text-[11px] text-muted-foreground" aria-label="Breadcrumb"><Home className="h-3.5 w-3.5 shrink-0" /><Link to="/" className="hover:text-primary">Home</Link><span>›</span><Link to="/resources/$slug" params={{ slug: "blog" }} className="hover:text-primary">Blog</Link><span>›</span>{post.category ? <><span className="text-navy">{post.category.name}</span><span>›</span></> : null}<span className="truncate">{post.title}</span></nav></div>
-      <div className="mx-auto grid w-full max-w-[1160px] py-5 xl:grid-cols-[180px_minmax(0,800px)_180px] xl:justify-center">
+      <div className="mx-auto grid w-full max-w-[1160px] py-5 xl:grid-cols-[160px_minmax(0,820px)_160px] xl:justify-center xl:gap-3">
         <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
         <div className="min-w-0 bg-card px-3 md:px-5">
       {post.featured_image ? <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card"><img src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" /></figure> : null}
