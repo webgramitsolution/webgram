@@ -10,6 +10,7 @@ const ALLOWED_REDIRECT_HOSTS = new Set([
   "webgramitsolution.com",
   "www.webgramitsolution.com",
   "webgram.lovable.app",
+  "id-preview--934c1417-6bed-4e8f-a661-6f87b3f5baa4.lovable.app",
   "localhost",
 ]);
 
@@ -23,7 +24,7 @@ const safeRedirect = z
       const url = new URL(value);
       const host = url.hostname.toLowerCase();
       const okProtocol = url.protocol === "https:" || (host === "localhost" && url.protocol === "http:");
-      const okHost = ALLOWED_REDIRECT_HOSTS.has(host) || host.endsWith(".lovable.app");
+      const okHost = ALLOWED_REDIRECT_HOSTS.has(host);
       return okProtocol && okHost;
     } catch {
       return false;
