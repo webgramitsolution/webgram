@@ -253,6 +253,12 @@ function Hero() {
           </div>
         </div>
       </div>
+      <div className="mobile-hero-services" aria-label="Commerce capabilities">
+        {[[ShoppingCart, "Ecommerce"], [Users, "B2B & B2C"], [Store, "Marketplace"], [Code2, "Custom Development"]].map(([ItemIcon, label]) => {
+          const CapabilityIcon = ItemIcon as Icon;
+          return <div key={label as string}><span><CapabilityIcon /></span><strong>{label as string}</strong></div>;
+        })}
+      </div>
     </section>
   );
 }
@@ -462,6 +468,27 @@ function B2BFeatures() {
   </section>;
 }
 
+function MobileCommerceExperience() {
+  return <section className="bg-sky-soft py-7 md:hidden">
+    <div className="page-shell">
+      <h2 className="section-title">Ecommerce Experiences That Convert</h2>
+      <p className="section-subtitle">We create high-converting commerce experiences for every business model.</p>
+      <div className="mt-4 flex gap-2" aria-label="Commerce experience types">
+        <Button size="sm" className="h-8 flex-1 text-[9px]">B2C Ecommerce</Button>
+        <Button size="sm" variant="outline" className="h-8 flex-1 text-[9px]">B2B Ecommerce</Button>
+        <Button size="sm" variant="outline" className="h-8 flex-1 text-[9px]">Marketplace</Button>
+      </div>
+      <article className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card">
+        <img src={IMAGES.caseLifestyle} alt="Modern ecommerce experience for furniture and lifestyle products" width={1934} height={813} loading="lazy" className="h-full min-h-36 w-full rounded object-cover" />
+        <div className="flex flex-col justify-center">
+          {['Fashion', 'Beauty', 'Electronics', 'Furniture', 'D2C', 'Lifestyle'].map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[10px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
+          <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }} className="mt-2 text-[9px] font-extrabold text-primary">Explore B2C Solutions →</Link>
+        </div>
+      </article>
+    </div>
+  </section>;
+}
+
 function CaseStudies() {
   return (
     <section id="case-studies" className="bg-sky-soft py-4">
@@ -632,10 +659,10 @@ function HomePage() {
       <WhyUs />
       <Industries />
       <B2BFeatures />
+      <MobileCommerceExperience />
       <CaseStudies />
       <Technology />
-      <MobileServices />
-      <MobileReviews reviews={reviews} />
+      <div className="hidden md:block"><MobileReviews reviews={reviews} /></div>
     </main>
   );
 }
