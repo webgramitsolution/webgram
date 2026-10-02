@@ -224,11 +224,8 @@ export function EcommerceDevelopmentPage() {
               <Link to="/">Home</Link> <span className="px-1.5">›</span> Solutions{" "}
               <span className="px-1.5">›</span> Ecommerce Development
             </nav>
-            <Eyebrow>Ecommerce Development</Eyebrow>
-            <h1 className="mt-2 text-[30px] font-semibold leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]">
-              High-Converting
-              <br />
-              Ecommerce Websites
+            <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]">
+              High-Converting Ecommerce Websites
               <br />
               for <span className="text-gold">Growing Businesses.</span>
             </h1>

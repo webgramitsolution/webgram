@@ -136,8 +136,7 @@ export function B2BCommercePage() {
               <Link to="/">Home</Link> <span>›</span> Solutions <span>›</span> B2B Ecommerce
               Development
             </nav>
-            <p className="ecom-eyebrow">B2B Ecommerce Development</p>
-            <h1 className="mt-2 text-[29px] font-semibold leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
+            <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
               Powerful B2B Ecommerce Solutions
               <br />
               for <span className="text-gold">Wholesale Growth.</span>
