@@ -35,6 +35,7 @@ import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.in
 import { Route as GuestGuestStoriesRouteImport } from './routes/_guest.guest.stories'
 import { Route as GuestGuestSupportRouteImport } from './routes/_guest.guest.support'
 import { Route as GuestGuestWriteRouteImport } from './routes/_guest.guest.write'
+import { Route as BlogCategorySlugRouteImport } from './routes/blog.category.$slug'
 import { Route as AuthenticatedAdminBlogIndexRouteImport } from './routes/_authenticated.admin.blog.index'
 import { Route as AuthenticatedAdminBlogIdRouteImport } from './routes/_authenticated.admin.blog.$id'
 import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated.admin.blog.new'
@@ -168,6 +169,11 @@ const GuestGuestWriteRoute = GuestGuestWriteRouteImport.update({
   path: '/guest/write',
   getParentRoute: () => GuestRoute,
 } as any)
+const BlogCategorySlugRoute = BlogCategorySlugRouteImport.update({
+  id: '/blog/category/$slug',
+  path: '/blog/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminBlogIndexRoute =
   AuthenticatedAdminBlogIndexRouteImport.update({
     id: '/',
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/guest/stories': typeof GuestGuestStoriesRoute
   '/guest/support': typeof GuestGuestSupportRoute
   '/guest/write': typeof GuestGuestWriteRoute
+  '/blog/category/$slug': typeof BlogCategorySlugRoute
   '/guest/': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/guest/stories': typeof GuestGuestStoriesRoute
   '/guest/support': typeof GuestGuestSupportRoute
   '/guest/write': typeof GuestGuestWriteRoute
+  '/blog/category/$slug': typeof BlogCategorySlugRoute
   '/guest': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/_guest/guest/stories': typeof GuestGuestStoriesRoute
   '/_guest/guest/support': typeof GuestGuestSupportRoute
   '/_guest/guest/write': typeof GuestGuestWriteRoute
+  '/blog/category/$slug': typeof BlogCategorySlugRoute
   '/_guest/guest/': typeof GuestGuestIndexRoute
   '/_authenticated/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
@@ -302,6 +311,7 @@ export interface FileRouteTypes {
     | '/guest/stories'
     | '/guest/support'
     | '/guest/write'
+    | '/blog/category/$slug'
     | '/guest/'
     | '/admin/blog/$id'
     | '/admin/blog/new'
@@ -330,6 +340,7 @@ export interface FileRouteTypes {
     | '/guest/stories'
     | '/guest/support'
     | '/guest/write'
+    | '/blog/category/$slug'
     | '/guest'
     | '/admin/blog/$id'
     | '/admin/blog/new'
@@ -361,6 +372,7 @@ export interface FileRouteTypes {
     | '/_guest/guest/stories'
     | '/_guest/guest/support'
     | '/_guest/guest/write'
+    | '/blog/category/$slug'
     | '/_guest/guest/'
     | '/_authenticated/admin/blog/$id'
     | '/_authenticated/admin/blog/new'
@@ -386,6 +398,7 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
+  BlogCategorySlugRoute: typeof BlogCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -572,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestGuestWriteRouteImport
       parentRoute: typeof GuestRoute
     }
+    '/blog/category/$slug': {
+      id: '/blog/category/$slug'
+      path: '/blog/category/$slug'
+      fullPath: '/blog/category/$slug'
+      preLoaderRoute: typeof BlogCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/blog/': {
       id: '/_authenticated/admin/blog/'
       path: '/'
@@ -666,6 +686,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
+  BlogCategorySlugRoute: BlogCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
