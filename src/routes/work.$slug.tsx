@@ -11,7 +11,7 @@ export const Route = createFileRoute("/work/$slug")({
     if (!page) throw notFound();
     return page;
   },
-  head: ({ loaderData }) => ({
+  head: ({ loaderData, params }) => ({
     meta: [
       { title: `${loaderData?.title ?? "Work"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
@@ -19,6 +19,7 @@ export const Route = createFileRoute("/work/$slug")({
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ...(params.slug === "case-studies" ? [{ name: "robots", content: "noindex, nofollow" }] : []),
     ],
   }),
   component: WorkPage,

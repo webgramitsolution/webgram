@@ -20,6 +20,7 @@ export const Route = createFileRoute("/guest-login")({
     { property: "og:type", content: "website" },
     { property: "og:image", content: HERO },
     { name: "twitter:card", content: "summary_large_image" },
+    { name: "robots", content: "noindex" },
     { name: "twitter:image", content: HERO },
   ] }),
   component: GuestLogin,
