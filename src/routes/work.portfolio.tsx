@@ -77,14 +77,13 @@ function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="relative overflow-hidden bg-navy py-12 text-on-dark md:py-16">
-        <img src={heroImage} alt="Webgram IT Solution website portfolio" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-center opacity-35" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/35" />
-        <div className="header-shell relative">
+      <section className="contact-hero text-on-dark">
+        <img src={heroImage} alt="Webgram IT Solution website portfolio" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-right" />
+        <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[620px]">
           <h1 className="page-title max-w-[720px]">Websites Designed for Growth<br /><span className="text-gold">Built to Perform.</span></h1>
           <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">
             Real, live projects for businesses in India and Canada — ecommerce stores, B2B wholesale platforms and lead-generating business websites. Each preview scrolls through the actual homepage.
-          </p>
+          </p></div>
         </div>
       </section>
       <section className="py-10 md:py-14">
