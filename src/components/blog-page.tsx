@@ -42,10 +42,10 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
   return <div className="min-h-screen bg-background text-foreground">
     <main>
       <header className="sticky top-0 z-50 border-b border-on-dark/20 bg-navy text-on-dark shadow-card">
-        <div className="page-shell grid min-h-[76px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-          <div className="flex min-w-0 items-center gap-5"><Link to="/" className="shrink-0" aria-label="Webgram IT Solution home"><img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} className="h-[30px] w-auto object-contain brightness-0 invert sm:h-[36px]" /></Link><nav className="flex min-w-0 gap-1 overflow-x-auto py-1 [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden" aria-label="Blog categories">
-            <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => setCategory("all")} className={`text-[11px] font-semibold uppercase lg:text-[13px] ${category === "all" ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>All</Button>
-            {journalCategories.map(({ label, category: item }) => <Button key={item.id} size="sm" variant={category === item.id ? "default" : "ghost"} onClick={() => { setCategory(item.id); setSubcategory("all"); }} className={`whitespace-nowrap text-[11px] font-semibold uppercase lg:text-[13px] ${category === item.id ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>{label}</Button>)}
+        <div className="header-shell grid min-h-[80px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+          <div className="flex min-w-0 items-center gap-5 lg:gap-7"><Link to="/" className="shrink-0" aria-label="Webgram IT Solution home"><img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} className="h-[30px] w-auto object-contain brightness-0 invert lg:h-[36px]" /></Link><nav className="flex min-w-0 items-center gap-1 overflow-x-auto py-1 [scrollbar-width:none] sm:gap-2 lg:gap-4 [&::-webkit-scrollbar]:hidden" aria-label="Blog categories">
+             <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => { setCategory("all"); setSubcategory("all"); }} className={`text-[11px] font-semibold uppercase lg:text-[13px] ${category === "all" ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>All</Button>
+             {journalCategories.map(({ label, category: item }) => <Button key={item.id} size="sm" variant={category === item.id ? "default" : "ghost"} onClick={() => { setCategory(item.id); setSubcategory("all"); }} className={`whitespace-nowrap text-[11px] font-semibold uppercase lg:text-[13px] ${category === item.id ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>{label}</Button>)}
           </nav></div>
           <Button asChild size="sm" className="shrink-0 bg-gold px-3 font-bold text-navy hover:bg-gold/90 sm:h-9 sm:px-4"><Link to="/guest-login"><span className="hidden sm:inline">Write for us</span><span className="sm:hidden">Guest post</span><span aria-hidden>→</span></Link></Button>
         </div>
@@ -64,7 +64,8 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
       <div className="mx-auto grid max-w-[1600px] gap-6 px-3 xl:grid-cols-[160px_minmax(0,1fr)_160px]">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
       <section className="min-w-0 py-9">
-        {grouped.length ? grouped.map((group) => <div key={group.category.id} id={`category-${group.category.slug}`}>
+        {grouped.length ? grouped.map((group, index) => <div key={group.category.id}>
+          <div id={`category-${group.category.slug}`}>
           <div className="mb-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"><span className="hidden h-px bg-border sm:block" /><h2 className="truncate text-center text-2xl font-extrabold text-navy">{group.category.name}</h2><div className="flex items-center justify-end gap-4"><span className="h-px min-w-5 flex-1 bg-border" /><Button type="button" variant="ghost" size="sm" onClick={() => setCategory(group.category.id)} className="shrink-0 text-primary">View more</Button></div></div>
           <div className="mb-5 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">{group.children.map((child) => <button key={child.id} onClick={() => { setCategory(group.category.id); setSubcategory(child.id); }} className="shrink-0 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-navy hover:text-primary">{child.name}</button>)}</div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
@@ -72,7 +73,9 @@ export function BlogPage({ categories, posts }: { categories: Category[]; posts:
             <div className="aspect-[16/9] overflow-hidden"><PostImage post={post} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>
             <div className="p-3"><h3 className="line-clamp-3 text-[12px] font-bold leading-[1.35] text-navy group-hover:text-primary">{post.title}</h3><span className="mt-2 block truncate text-[10px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[9px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span></div>
           </Link>)}
-           </div><div className="h-12" /></div>) : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
+           </div><div className="h-12" /></div>
+          {(index + 1) % 2 === 0 ? <BlogAdBand position="category" label={`Advertisement after ${group.category.name}`} /> : null}
+        </div>) : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>
