@@ -243,7 +243,7 @@ function Hero() {
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
+          <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-sky">
             Digital Commerce & Technology Partner
           </p>
           <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">
@@ -258,19 +258,19 @@ function Hero() {
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button
               size="lg"
-              className="h-10 bg-gold px-5 text-[11px] font-semibold text-navy hover:bg-gold/90"
+              className="h-10 bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90"
             >
               Start Your Project <ArrowRight />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="h-10 border-on-dark/60 bg-transparent px-5 text-[11px] font-semibold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark"
+              className="h-10 border-on-dark/60 bg-transparent px-5 text-[14px] font-semibold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark"
             >
               Explore Our Solutions
             </Button>
           </div>
-          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-medium text-on-dark/90">
+          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] font-medium text-on-dark/90">
             {["Ecommerce", "B2B & B2C", "Marketplace", "Custom Development"].map((item) => (
               <span key={item} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-sky" />
@@ -318,7 +318,7 @@ function TrustStrip() {
           ))}
         </div>
         <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-4">
-          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[9px] text-muted-foreground">{label}</small></span></div>)}
+          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[13px] text-muted-foreground">{label}</small></span></div>)}
         </div>
       </div>
     </section>
@@ -338,7 +338,7 @@ function Services() {
           </div>
           <a
             href="#services"
-            className="hidden text-[10px] font-bold text-primary underline sm:block"
+            className="hidden text-[13px] font-bold text-primary underline sm:block"
           >
             View All Solutions →
           </a>
@@ -353,10 +353,10 @@ function Services() {
                 <IconComponent className="h-6 w-6" />
               </span>
               <h3 className="mt-3 text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
-              <p className="mt-2 text-[10px] font-medium leading-4 text-muted-foreground">{text}</p>
+              <p className="mt-2 text-[13px] font-medium leading-4 text-muted-foreground">{text}</p>
               <a
                 href="#services"
-                className="mt-3 inline-block text-[10px] font-extrabold text-primary"
+                className="mt-3 inline-block text-[13px] font-extrabold text-primary"
               >
                 {link} →
               </a>
@@ -380,13 +380,13 @@ function Ecosystem() {
             From Storefront to Back Office —<br className="hidden lg:block" /> One Technology
             Partner.
           </h2>
-          <p className="mt-2 max-w-[390px] text-[10px] font-normal leading-[1.55] text-muted-foreground md:text-[8px] lg:text-[10px]">
+          <p className="mt-2 max-w-[390px] text-[13px] font-normal leading-[1.55] text-muted-foreground md:text-[12px] lg:text-[13px]">
             We connect your entire commerce ecosystem — website, mobile app, inventory, payments,
             CRM and analytics.
           </p>
           <Button
             size="sm"
-            className="mt-3 h-9 bg-primary px-5 text-[10px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[9px] lg:h-9 lg:px-5 lg:text-[10px]"
+            className="mt-3 h-9 bg-primary px-5 text-[13px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[13px] lg:h-9 lg:px-5 lg:text-[13px]"
           >
             Learn More <ArrowRight />
           </Button>
@@ -431,8 +431,8 @@ function WhyUs() {
                 <IconComponent className="h-5 w-5" />
               </span>
               <span>
-                <h3 className="text-[10px] font-extrabold leading-tight text-navy">{title}</h3>
-                <p className="mt-1 text-[8px] leading-3 text-muted-foreground">{text}</p>
+                <h3 className="text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
+                <p className="mt-1 text-[12px] leading-3 text-muted-foreground">{text}</p>
               </span>
             </article>
           ))}
@@ -453,10 +453,10 @@ function Industries() {
             <br />
             Your Industry
           </h2>
-          <p className="mt-3 text-[10px] leading-4 text-on-dark/75">
+          <p className="mt-3 text-[13px] leading-4 text-on-dark/75">
             We develop customized commerce solutions for diverse industries.
           </p>
-          <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[10px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
+          <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[13px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
             <Link to="/industries/$slug" params={{ slug: "manufacturing" }}>View All Industries <ArrowRight /></Link>
           </Button>
         </div>
@@ -488,7 +488,7 @@ function B2BFeatures() {
       <h2 className="section-title mt-2">Powering Modern B2B Commerce</h2>
       <p className="section-subtitle max-w-xl">Advanced B2B features that digitize wholesale and distribution businesses.</p>
       <div className="b2b-feature-grid mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
-        {b2bFeatures.map(([IconComponent, label]) => <div key={label} className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"><span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><strong className="text-[9px] leading-tight text-navy">{label}</strong></div>)}
+        {b2bFeatures.map(([IconComponent, label]) => <div key={label} className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"><span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><strong className="text-[13px] leading-tight text-navy">{label}</strong></div>)}
       </div>
       <Button asChild className="mt-4 h-10 w-full font-bold"><Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Build Your B2B Platform <ArrowRight /></Link></Button>
     </div>
@@ -501,15 +501,15 @@ function MobileCommerceExperience() {
       <h2 className="section-title">Ecommerce Experiences That Convert</h2>
       <p className="section-subtitle">We create high-converting commerce experiences for every business model.</p>
       <div className="mt-4 flex gap-2" aria-label="Commerce experience types">
-        <Button size="sm" className="h-8 flex-1 text-[9px]">B2C Ecommerce</Button>
-        <Button size="sm" variant="outline" className="h-8 flex-1 text-[9px]">B2B Ecommerce</Button>
-        <Button size="sm" variant="outline" className="h-8 flex-1 text-[9px]">Marketplace</Button>
+        <Button size="sm" className="h-8 flex-1 text-[13px]">B2C Ecommerce</Button>
+        <Button size="sm" variant="outline" className="h-8 flex-1 text-[13px]">B2B Ecommerce</Button>
+        <Button size="sm" variant="outline" className="h-8 flex-1 text-[13px]">Marketplace</Button>
       </div>
       <article className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card">
         <img src={IMAGES.caseLifestyle} alt="Modern ecommerce experience for furniture and lifestyle products" width={1934} height={813} loading="lazy" className="h-full min-h-36 w-full rounded object-cover" />
         <div className="flex flex-col justify-center">
-          {['Fashion', 'Beauty', 'Electronics', 'Furniture', 'D2C', 'Lifestyle'].map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[10px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
-          <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }} className="mt-2 text-[9px] font-extrabold text-primary">Explore B2C Solutions →</Link>
+          {['Fashion', 'Beauty', 'Electronics', 'Furniture', 'D2C', 'Lifestyle'].map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[13px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
+          <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }} className="mt-2 text-[13px] font-extrabold text-primary">Explore B2C Solutions →</Link>
         </div>
       </article>
     </div>
@@ -533,7 +533,7 @@ function CaseStudies() {
           <Button
             asChild
             size="sm"
-            className="mt-3 h-9 bg-gold px-4 text-[9px] font-bold text-navy shadow-card transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="mt-3 h-9 bg-gold px-4 text-[13px] font-bold text-navy shadow-card transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             <a href="#case-studies">
               View All Case Studies <ArrowRight />
@@ -557,18 +557,18 @@ function CaseStudies() {
                   <img src={item.image} alt={item.alt} width={1934} height={813} loading="lazy" />
                 </div>
                 <div className="relative z-10 min-h-0 flex-1 p-3 pr-[45%]">
-                  <span className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-warning/20 bg-warning-soft px-2 py-1 text-[7px] font-extrabold text-navy">
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-warning/20 bg-warning-soft px-2 py-1 text-[12px] font-extrabold text-navy">
                     <TagIcon className="h-2.5 w-2.5 shrink-0 text-warning" />
                     {item.tag}
                   </span>
-                  <h3 className="mt-2 text-[9px] font-extrabold leading-[1.3] text-navy">
+                  <h3 className="mt-2 text-[13px] font-extrabold leading-[1.3] text-navy">
                     {item.title}
                   </h3>
                   <div className="mt-2 flex flex-nowrap gap-1">
                     {item.chips.map((chip) => (
                       <span
                         key={chip}
-                        className="whitespace-nowrap rounded bg-sky-soft px-2 py-1 text-[7px] font-semibold leading-none text-navy"
+                        className="whitespace-nowrap rounded bg-sky-soft px-2 py-1 text-[12px] font-semibold leading-none text-navy"
                       >
                         {chip}
                       </span>
@@ -584,7 +584,7 @@ function CaseStudies() {
                       <strong className="block truncate text-[13px] font-extrabold leading-none text-navy">
                         {number}
                       </strong>
-                      <span className="mt-1 block truncate text-[6px] leading-none text-muted-foreground">
+                      <span className="mt-1 block truncate text-[12px] leading-none text-muted-foreground">
                         {label}
                       </span>
                     </div>
@@ -609,7 +609,7 @@ function Technology() {
             <br />
             Works Together
           </h2>
-          <p className="mt-2 max-w-[178px] text-[10px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[205px] lg:text-[11px]">
+          <p className="mt-2 max-w-[178px] text-[13px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[205px] lg:text-[14px]">
             We use modern, reliable and scalable technologies to build high-performance commerce
             solutions.
           </p>
@@ -628,7 +628,7 @@ function Technology() {
                     className="h-full w-full object-contain"
                   />
                 </span>
-                <span className="mt-2 block text-center text-[9px] leading-none text-muted-foreground lg:text-[10px]">
+                <span className="mt-2 block text-center text-[13px] leading-none text-muted-foreground lg:text-[13px]">
                   {name}
                 </span>
               </div>
@@ -648,7 +648,7 @@ function MobileServices() {
       <div className="mt-4 grid grid-cols-2 gap-3">
         {services.map(({ icon: IconComponent, title }, index) => <Link key={title} to="/solutions/$slug" params={{ slug: ["ecommerce-development", "b2b-commerce", "marketplace-development", "website-design-development"][index] ?? "ecommerce-development" }} className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card">
           <IconComponent className="h-6 w-6 text-primary" />
-          <strong className="mt-3 text-[12px] leading-4 text-navy">{title}</strong>
+          <strong className="mt-3 text-[14px] leading-4 text-navy">{title}</strong>
         </Link>)}
       </div>
     </div>
@@ -667,7 +667,7 @@ function MobileReviews({ reviews }: { reviews: Review[] }) {
         {reviews.map((review) => <article key={review.id} className="snap-start rounded-md border border-border bg-card p-5 shadow-card">
           <div className="flex gap-1 text-gold" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div>
           <p className="mt-4 text-[13px] leading-6 text-foreground">“{review.review_text}”</p>
-          <div className="mt-5 border-t border-border pt-4"><strong className="block text-sm text-navy">{review.customer_name}</strong><span className="text-[11px] text-muted-foreground">{[review.customer_role, review.company_name].filter(Boolean).join(" · ")}</span></div>
+          <div className="mt-5 border-t border-border pt-4"><strong className="block text-sm text-navy">{review.customer_name}</strong><span className="text-[14px] text-muted-foreground">{[review.customer_role, review.company_name].filter(Boolean).join(" · ")}</span></div>
         </article>)}
       </div>
     </div>

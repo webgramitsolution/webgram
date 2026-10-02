@@ -107,7 +107,7 @@ function GuestLogin() {
     <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label="Guest author panel">
       <div className="page-shell relative py-7 md:py-9">
         <div className="max-w-[58%] lg:max-w-[620px]"><p className="text-xs font-extrabold uppercase tracking-wide text-primary">Guest Author Panel</p><h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">Write, Publish & <span className="text-primary">Earn Credits</span></h1><p className="mt-2 max-w-lg text-sm text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
-          <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">{heroFeatures.map(({ icon: Icon, a, b }) => <div key={b} className="flex items-center gap-2"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-card text-primary shadow-card"><Icon className="h-5 w-5" /></span><span className="text-[11px] font-semibold leading-tight text-navy">{a}<br />{b}</span></div>)}</div></div>
+          <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">{heroFeatures.map(({ icon: Icon, a, b }) => <div key={b} className="flex items-center gap-2"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-card text-primary shadow-card"><Icon className="h-5 w-5" /></span><span className="text-[14px] font-semibold leading-tight text-navy">{a}<br />{b}</span></div>)}</div></div>
       </div>
     </section>
     <div className="page-shell grid items-stretch gap-5 py-6 md:grid-cols-[1.45fr_1fr]">
@@ -123,7 +123,7 @@ function GuestLogin() {
           <article className="relative rounded-md border border-border p-3 pl-4"><span className="absolute -left-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">7</span>
             <div className="grid grid-cols-[48px_minmax(0,1fr)] gap-4"><span className="grid h-12 w-12 place-items-center rounded-md bg-primary-soft text-primary"><Gift className="h-6 w-6" /></span><div><h3 className="text-sm font-bold text-navy">Credit Usage & Actions</h3>
               <table className="mt-2 w-full overflow-hidden rounded-md border border-border text-xs"><thead className="bg-primary-soft text-navy"><tr><th className="p-2 text-left">Action</th><th className="p-2 text-left">Credit Details</th></tr></thead><tbody>{creditRows.map(([a, c]) => <tr key={a} className="border-t border-border"><td className="p-2 text-muted-foreground">{a}</td><td className="p-2 font-semibold text-navy">{c}</td></tr>)}</tbody></table>
-              <p className="mt-2 flex gap-2 rounded-md bg-primary-soft p-2 text-[11px] text-primary"><Info className="h-4 w-4 shrink-0" />Credit charges may vary by article type, category and platform policies. Please check your account dashboard for the latest credit details.</p></div></div></article>
+              <p className="mt-2 flex gap-2 rounded-md bg-primary-soft p-2 text-[14px] text-primary"><Info className="h-4 w-4 shrink-0" />Credit charges may vary by article type, category and platform policies. Please check your account dashboard for the latest credit details.</p></div></div></article>
         </div>
       </section>
       <section className="flex flex-col rounded-lg md:h-[920px] md:overflow-y-auto hover-scroll border border-border bg-card p-5 shadow-card">
@@ -153,7 +153,7 @@ function GuestLogin() {
         <div className="my-4 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />or continue with<span className="h-px flex-1 bg-border" /></div>
         <Button type="button" variant="outline" onClick={google} className="h-11 w-full font-semibold text-navy"><span className="font-extrabold text-primary">G</span>Continue with Google</Button>
         <p className="mt-4 text-center text-xs text-muted-foreground">{mode === "register" ? "Already have an account? " : "New here? "}<button type="button" onClick={() => setMode(mode === "register" ? "login" : "register")} className="font-bold text-primary">{mode === "register" ? "Login here" : "Create an account"}</button></p>
-        <p className="mt-3 flex items-center gap-2 rounded-md bg-sky-soft p-2 text-[11px] text-muted-foreground"><ShieldCheck className="h-4 w-4 text-primary" />Your information is secure and will never be shared with third parties.</p>
+        <p className="mt-3 flex items-center gap-2 rounded-md bg-sky-soft p-2 text-[14px] text-muted-foreground"><ShieldCheck className="h-4 w-4 text-primary" />Your information is secure and will never be shared with third parties.</p>
       </section>
     </div>
   </main></div>;

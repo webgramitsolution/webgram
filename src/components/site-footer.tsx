@@ -60,7 +60,7 @@ export function SiteFooter() {
                 {items.map((item) => (
                   <li key={item.label}>
                     <a href={item.to}
-                      className="inline-block text-[11px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:underline"
+                      className="inline-block text-[14px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:underline"
                     >
                       {item.label}
                     </a>
@@ -72,7 +72,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="page-shell flex flex-col items-center justify-between gap-4 border-t border-on-dark/15 py-5 sm:flex-row">
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[12px] text-on-dark/90 sm:justify-start sm:text-left">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[14px] text-on-dark/90 sm:justify-start sm:text-left">
           <span>© 2026 Webgram IT Solution. All rights reserved.</span>
           <button type="button" onClick={openCookieSettings} className="underline underline-offset-2 transition-colors hover:text-on-dark">
             Cookie settings

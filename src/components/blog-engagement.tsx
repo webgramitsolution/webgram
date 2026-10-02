@@ -50,9 +50,9 @@ export function BlogShareButtons({ postId, title }: { postId: string; title: str
   }
   const icons: Record<string, typeof Facebook> = { facebook: Facebook, instagram: Instagram, linkedin: Linkedin, pinterest: Pin, tumblr: Share2, x: Twitter };
   return <div className="flex flex-wrap items-center justify-end gap-2" aria-label="Share article">
-    <span className="mr-1 text-[10px] font-semibold text-muted-foreground">Share:</span>
+    <span className="mr-1 text-[13px] font-semibold text-muted-foreground">Share:</span>
     {platforms.map((platform) => { const Icon = icons[platform.id] ?? Share2; const done = clicked.has(platform.id); return <Button key={platform.id} type="button" variant="ghost" size="icon" onClick={() => void share(platform)} title={`Share on ${platform.label}`} aria-label={`Share on ${platform.label}`} className={`h-7 w-7 rounded-full text-primary-foreground hover:text-primary-foreground ${done ? "bg-success hover:bg-success/90" : "bg-primary hover:bg-primary/90"}`}><Icon className="h-3.5 w-3.5" /></Button>; })}
-    {signedIn ? <span className="w-full text-right text-[10px] font-semibold text-success">{left !== null ? `Credits in ${left}s…` : message || `Share on all 6 (${clicked.size}/6) to earn ${CREDIT_COSTS.share} credits`}</span> : null}
+    {signedIn ? <span className="w-full text-right text-[13px] font-semibold text-success">{left !== null ? `Credits in ${left}s…` : message || `Share on all 6 (${clicked.size}/6) to earn ${CREDIT_COSTS.share} credits`}</span> : null}
   </div>;
 }
 

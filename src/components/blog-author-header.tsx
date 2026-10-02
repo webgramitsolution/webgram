@@ -43,8 +43,8 @@ export function BlogAuthorHeader({ admin = false }: { admin?: boolean }) {
     <div className="mx-auto grid min-h-16 w-[min(100%-1rem,1540px)] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-2">
       <Link to={base} className="shrink-0" aria-label="Webgram author dashboard"><img src={LOGO_URL} alt="Webgram IT Solution" className="h-7 w-auto brightness-0 invert" /></Link>
       <nav className="flex min-w-0 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" aria-label="Author workspace">
-        {items.map(({ to, label, icon: Icon }, index) => <Button key={`${label}-${index}`} asChild variant="ghost" size="sm" className={`shrink-0 text-[11px] text-on-dark hover:bg-on-dark/10 hover:text-on-dark ${label === "Create New Post" ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}`}><Link to={to} aria-label={label} title={label}><Icon className="h-3.5 w-3.5" /><span className="hidden lg:inline">{label}</span></Link></Button>)}
-        {admin ? <Button asChild variant="ghost" size="sm" className="shrink-0 text-[11px] text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="/admin/blog#categories"><FolderOpen className="h-3.5 w-3.5" /><span className="hidden lg:inline">Categories</span></a></Button> : null}
+        {items.map(({ to, label, icon: Icon }, index) => <Button key={`${label}-${index}`} asChild variant="ghost" size="sm" className={`shrink-0 text-[14px] text-on-dark hover:bg-on-dark/10 hover:text-on-dark ${label === "Create New Post" ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}`}><Link to={to} aria-label={label} title={label}><Icon className="h-3.5 w-3.5" /><span className="hidden lg:inline">{label}</span></Link></Button>)}
+        {admin ? <Button asChild variant="ghost" size="sm" className="shrink-0 text-[14px] text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="/admin/blog#categories"><FolderOpen className="h-3.5 w-3.5" /><span className="hidden lg:inline">Categories</span></a></Button> : null}
       </nav>
       <div className="flex shrink-0 items-center gap-2">
         <Bell className="hidden h-5 w-5 sm:block" aria-hidden />

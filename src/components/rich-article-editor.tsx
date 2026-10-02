@@ -154,14 +154,14 @@ export function RichArticleEditor({ value, onChange, minHeight = "min-h-[55vh] s
       </div>
       </> : <div className={`${full ? "min-h-[75vh]" : minHeight} overflow-y-auto bg-card px-5 py-6`} role="tabpanel" aria-label="Article live preview"><ArticleBody content={value} preview /></div>}
     </div>
-    <p className="mt-2 text-[11px] text-muted-foreground">Tip: Use headings, paragraphs, images, lists and quotes to make your article more engaging. Formatting pasted from ChatGPT, Claude, Google Docs or Word is kept.</p>
+    <p className="mt-2 text-[14px] text-muted-foreground">Tip: Use headings, paragraphs, images, lists and quotes to make your article more engaging. Formatting pasted from ChatGPT, Claude, Google Docs or Word is kept.</p>
     <p className="mt-5 text-xs font-bold text-navy">Insert Media</p>
     <div className="mt-2 grid grid-cols-3 gap-2 lg:grid-cols-[minmax(0,2.4fr)_repeat(6,minmax(0,1fr))]">
       <Button type="button" variant="outline" onClick={() => insertImages(false)} onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} className="col-span-3 h-auto justify-center gap-3 border-dashed bg-card p-4 text-left hover:border-primary lg:col-span-1">
         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><UploadCloud className="h-6 w-6" /></span>
-        <span><span className="block text-xs font-medium text-navy">Drag & drop images here, or click to upload</span><span className="block text-[10px] text-muted-foreground">HTTPS image links — JPG, PNG, WebP</span></span>
+        <span><span className="block text-xs font-medium text-navy">Drag & drop images here, or click to upload</span><span className="block text-[13px] text-muted-foreground">HTTPS image links — JPG, PNG, WebP</span></span>
       </Button>
-      {media.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="outline" onClick={action} className="h-auto flex-col gap-1.5 bg-card p-3 text-[11px] text-muted-foreground hover:border-primary hover:text-primary"><Icon className="h-4 w-4 text-navy" />{label}</Button>)}
+      {media.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="outline" onClick={action} className="h-auto flex-col gap-1.5 bg-card p-3 text-[14px] text-muted-foreground hover:border-primary hover:text-primary"><Icon className="h-4 w-4 text-navy" />{label}</Button>)}
     </div>
   </div>;
 }

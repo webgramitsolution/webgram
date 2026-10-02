@@ -176,7 +176,7 @@ function IndustryCarousel() {
               className="absolute top-0 h-full w-[500%] max-w-none object-cover"
               style={{ left: `${index * -100}%` }}
             />
-            <div className="absolute inset-x-0 bottom-0 bg-navy/90 px-3 py-2 text-[9px] font-bold text-on-dark">
+            <div className="absolute inset-x-0 bottom-0 bg-navy/90 px-3 py-2 text-[13px] font-bold text-on-dark">
               {industry} <ArrowRight className="ml-1 inline h-3 w-3" />
             </div>
           </article>
@@ -232,14 +232,14 @@ export function EcommerceDevelopmentPage() {
               <br />
               for <span className="text-gold">Growing Businesses.</span>
             </h1>
-            <p className="mt-3 max-w-[500px] text-[11px] leading-[1.5] text-on-dark/90 sm:text-[12px]">
+            <p className="mt-3 max-w-[500px] text-[14px] leading-[1.5] text-on-dark/90 sm:text-[14px]">
               We design and develop powerful, scalable and conversion-focused ecommerce websites
               that help you attract customers, increase sales and build a strong online brand.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
                 asChild
-                className="h-10 bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90"
+                className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"
               >
                 <Link to="/contact">
                   Get a Free Consultation <ArrowRight />
@@ -248,7 +248,7 @@ export function EcommerceDevelopmentPage() {
               <Button
                 asChild
                 variant="outline"
-                className="h-10 border-on-dark/70 bg-transparent px-6 text-[10px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
+                className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
               >
                 <Link to="/work/$slug" params={{ slug: "case-studies" }}>
                   View Our Work <ArrowRight />
@@ -266,7 +266,7 @@ export function EcommerceDevelopmentPage() {
                 return (
                   <div
                     key={title as string}
-                    className="flex items-center gap-2 text-[8px] font-semibold leading-3"
+                    className="flex items-center gap-2 text-[12px] font-semibold leading-3"
                   >
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-on-dark/60">
                       <FeatureIcon className="h-4 w-4" />
@@ -303,7 +303,7 @@ export function EcommerceDevelopmentPage() {
                 <Icon className="h-7 w-7 text-primary" />
                 <div>
                   <strong className="block text-[13px] text-navy">{stat}</strong>
-                  <span className="text-[9px] text-muted-foreground">{label}</span>
+                  <span className="text-[13px] text-muted-foreground">{label}</span>
                 </div>
               </article>
             ))}
@@ -325,7 +325,7 @@ export function EcommerceDevelopmentPage() {
               From product showcase to secure checkout, we build ecommerce websites with all the
               essential features to help you sell smarter and scale faster.
             </p>
-            <a href="#features" className="text-[9px] font-bold text-primary underline">
+            <a href="#features" className="text-[13px] font-bold text-primary underline">
               View All Features <ArrowRight className="inline h-3 w-3" />
             </a>
           </div>
@@ -339,8 +339,8 @@ export function EcommerceDevelopmentPage() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-[9px] font-extrabold leading-tight text-navy">{title}</h3>
-                  <p className="mt-1 text-[7.5px] leading-[1.25] text-muted-foreground">{text}</p>
+                  <h3 className="text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
+                  <p className="mt-1 text-[12px] leading-[1.25] text-muted-foreground">{text}</p>
                 </div>
               </article>
             ))}
@@ -363,7 +363,7 @@ export function EcommerceDevelopmentPage() {
             </p>
             <Button
               asChild
-              className="mt-4 h-9 bg-gold px-5 text-[9px] font-bold text-navy hover:bg-gold/90"
+              className="mt-4 h-9 bg-gold px-5 text-[13px] font-bold text-navy hover:bg-gold/90"
             >
               <Link to="/contact">
                 Discuss Your Industry <ArrowRight />
@@ -388,7 +388,7 @@ export function EcommerceDevelopmentPage() {
               We follow a structured development process to ensure your ecommerce website is
               delivered on time, with the right features and the best performance.
             </p>
-            <span className="text-[9px] font-bold text-primary">
+            <span className="text-[13px] font-bold text-primary">
               Learn More <ArrowRight className="inline h-3 w-3" />
             </span>
           </div>
@@ -404,9 +404,9 @@ export function EcommerceDevelopmentPage() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <div className="md:mt-2">
-                  <span className="text-[8px] font-bold text-navy">{number}</span>
-                  <h3 className="text-[9px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-1 text-[7.5px] leading-[1.25] text-muted-foreground">{text}</p>
+                  <span className="text-[12px] font-bold text-navy">{number}</span>
+                  <h3 className="text-[13px] font-extrabold text-navy">{title}</h3>
+                  <p className="mt-1 text-[12px] leading-[1.25] text-muted-foreground">{text}</p>
                 </div>
               </article>
             ))}
@@ -443,7 +443,7 @@ export function EcommerceDevelopmentPage() {
                         className="h-full min-h-0 w-full min-w-0 object-contain"
                       />
                     </span>
-                    <span className="mt-2 block text-[7.5px] text-muted-foreground">
+                    <span className="mt-2 block text-[12px] text-muted-foreground">
                       {tech.name}
                     </span>
                   </article>
@@ -468,7 +468,7 @@ export function EcommerceDevelopmentPage() {
             </p>
             <Button
               asChild
-              className="mt-4 h-9 bg-gold px-5 text-[9px] font-bold text-navy hover:bg-gold/90"
+              className="mt-4 h-9 bg-gold px-5 text-[13px] font-bold text-navy hover:bg-gold/90"
             >
               <Link to="/work/$slug" params={{ slug: "case-studies" }}>
                 View All Case Studies <ArrowRight />
@@ -483,17 +483,17 @@ export function EcommerceDevelopmentPage() {
               >
                 <div className="relative h-[94px] overflow-hidden">
                   <div className="relative z-10 w-[63%] p-3 pr-0">
-                    <h3 className="text-[10px] font-extrabold leading-tight text-navy">
+                    <h3 className="text-[13px] font-extrabold leading-tight text-navy">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-[7px] leading-[1.35] text-muted-foreground">
+                    <p className="mt-1 text-[12px] leading-[1.35] text-muted-foreground">
                       {project.description}
                     </p>
                     <div className="mt-2.5 flex flex-wrap gap-1">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded bg-primary-soft px-1.5 py-1 text-[6px] font-semibold leading-none text-navy"
+                          className="rounded bg-primary-soft px-1.5 py-1 text-[12px] font-semibold leading-none text-navy"
                         >
                           {tag}
                         </span>
@@ -521,7 +521,7 @@ export function EcommerceDevelopmentPage() {
                       <strong className="block text-[13px] font-extrabold leading-none text-navy">
                         {value}
                       </strong>
-                      <span className="mt-1 block text-[6px] leading-none text-muted-foreground">
+                      <span className="mt-1 block text-[12px] leading-none text-muted-foreground">
                         {label}
                       </span>
                     </div>
@@ -542,7 +542,7 @@ export function EcommerceDevelopmentPage() {
               <span className="block whitespace-nowrap">Let’s Turn Your Ecommerce</span>
               <span className="block">Idea into Reality.</span>
             </h2>
-            <p className="mt-2.5 max-w-[500px] text-[10px] leading-[1.45] text-on-dark/85">
+            <p className="mt-2.5 max-w-[500px] text-[13px] leading-[1.45] text-on-dark/85">
               <span className="block sm:whitespace-nowrap">
                 Get a free consultation and let our experts help you build a high-performing
               </span>
@@ -551,7 +551,7 @@ export function EcommerceDevelopmentPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
                 asChild
-                className="h-10 bg-gold px-6 text-[10px] font-bold text-navy hover:bg-gold/90"
+                className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"
               >
                 <Link to="/contact">
                   Start Your Project <ArrowRight />
@@ -560,7 +560,7 @@ export function EcommerceDevelopmentPage() {
               <Button
                 asChild
                 variant="outline"
-                className="h-10 border-on-dark/60 bg-transparent px-6 text-[10px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
+                className="h-10 border-on-dark/60 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
               >
                 <a href="tel:+917551120242">Talk to an Expert</a>
               </Button>
@@ -579,8 +579,8 @@ export function EcommerceDevelopmentPage() {
                   <span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60">
                     <ItemIcon className="h-5 w-5" />
                   </span>
-                  <strong className="mt-2 block text-[8px]">{title as string}</strong>
-                  <small className="mt-1 block text-[7px] text-on-dark/70">{text as string}</small>
+                  <strong className="mt-2 block text-[12px]">{title as string}</strong>
+                  <small className="mt-1 block text-[12px] text-on-dark/70">{text as string}</small>
                 </div>
               );
             })}

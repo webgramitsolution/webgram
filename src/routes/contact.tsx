@@ -103,7 +103,7 @@ function ContactHero() {
                 <span className="grid h-11 w-11 place-items-center rounded-full border border-on-dark/40">
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="mt-2 block text-[11px] leading-[1.3]">
+                <span className="mt-2 block text-[14px] leading-[1.3]">
                   {first}
                   <br />
                   {second}
@@ -117,7 +117,7 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-9 bg-card text-[10.5px] shadow-none md:text-[10.5px] placeholder:text-muted-foreground/60";
+const fieldClass = "h-9 bg-card text-[14px] shadow-none md:text-[14px] placeholder:text-muted-foreground/60";
 
 function ContactForm() {
   const send = useServerFn(submitEnquiry);
@@ -153,7 +153,7 @@ function ContactForm() {
         Phone Number *
         <div className="flex items-stretch overflow-hidden rounded-md border border-input bg-card">
           <span
-            className="flex shrink-0 items-center gap-1.5 border-r border-input px-2.5 text-[11px] font-semibold text-navy"
+            className="flex shrink-0 items-center gap-1.5 border-r border-input px-2.5 text-[14px] font-semibold text-navy"
             aria-hidden="true"
           >
             <span
@@ -171,7 +171,7 @@ function ContactForm() {
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
             placeholder="Enter your phone number"
-            className="h-9 min-w-0 rounded-none border-0 bg-card text-[10.5px] shadow-none focus-visible:ring-0 md:text-[10.5px]"
+            className="h-9 min-w-0 rounded-none border-0 bg-card text-[14px] shadow-none focus-visible:ring-0 md:text-[14px]"
           />
         </div>
       </label>
@@ -212,11 +212,11 @@ function ContactForm() {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Tell us about your project requirements..."
-          className="min-h-[60px] bg-card text-[10.5px] shadow-none md:text-[10.5px]"
+          className="min-h-[60px] bg-card text-[14px] shadow-none md:text-[14px]"
         />
       </label>
       <div className="col-span-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-1">
-        <label className="flex min-w-0 items-center gap-2 text-[10.5px] text-navy">
+        <label className="flex min-w-0 items-center gap-2 text-[14px] text-navy">
           <input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />
           <span className="min-w-0">
             I agree to the{" "}
@@ -226,7 +226,7 @@ function ContactForm() {
           </span>
         </label>
         {error ? <p role="alert" className="w-full text-xs font-semibold text-destructive">{error}</p> : null}
-        <Button disabled={busy} className="h-10 shrink-0 bg-gold px-7 text-[12px] font-bold text-navy hover:bg-gold/90">
+        <Button disabled={busy} className="h-10 shrink-0 bg-gold px-7 text-[14px] font-bold text-navy hover:bg-gold/90">
           {busy ? "Sending…" : "Send Message"} <ArrowRight />
         </Button>
       </div>
@@ -259,7 +259,7 @@ function DirectContact() {
         <h2 className="text-[21px] font-extrabold leading-tight lg:text-[22px]">
           Get in Touch Directly
         </h2>
-        <p className="mt-1.5 text-[11px] text-on-dark/75">
+        <p className="mt-1.5 text-[14px] text-on-dark/75">
           Prefer to speak with our team? Use the details below.
         </p>
         <div className="mt-6 space-y-6">
@@ -269,9 +269,9 @@ function DirectContact() {
                 <Icon className={`h-5 w-5 ${color}`} />
               </span>
               <div className="min-w-0">
-                <strong className="block text-[11px] font-semibold text-on-dark/85">{title}</strong>
+                <strong className="block text-[14px] font-semibold text-on-dark/85">{title}</strong>
                 <span className="mt-0.5 block break-all text-[13px] font-bold lg:whitespace-nowrap lg:break-normal lg:text-[14px]">{value}</span>
-                <small className="mt-0.5 block text-[10px] text-on-dark/60">{note}</small>
+                <small className="mt-0.5 block text-[13px] text-on-dark/60">{note}</small>
               </div>
             </div>
           ))}
@@ -291,15 +291,15 @@ function DirectContact() {
               <Headphones className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <strong className="text-[12px] font-extrabold lg:whitespace-nowrap">Talk to Our Experts</strong>
-              <p className="mt-1 text-[9.5px] leading-[1.45] text-muted-foreground">
+              <strong className="text-[14px] font-extrabold lg:whitespace-nowrap">Talk to Our Experts</strong>
+              <p className="mt-1 text-[13px] leading-[1.45] text-muted-foreground">
                 Get free consultation for your project requirements.
               </p>
             </div>
           </div>
           <Button
             asChild
-            className="mt-3 h-10 w-full gap-1 bg-navy px-2 text-[11px] font-bold text-on-dark hover:bg-navy/90"
+            className="mt-3 h-10 w-full gap-1 bg-navy px-2 text-[14px] font-bold text-on-dark hover:bg-navy/90"
           >
             <a href="tel:+917551120242">
               Schedule a Call <ArrowRight />
@@ -323,7 +323,7 @@ function ContactMain() {
           <h2 className="mt-2 text-[24px] font-extrabold leading-tight text-navy sm:text-[26px]">
             Send Us a Message
           </h2>
-          <p className="mb-4 mt-1.5 max-w-[360px] text-[11.5px] leading-5 text-muted-foreground">
+          <p className="mb-4 mt-1.5 max-w-[360px] text-[14px] leading-5 text-muted-foreground">
             Tell us about your project, and our team will get back to you within 24 hours.
           </p>
           <ContactForm />
@@ -346,7 +346,7 @@ function Location() {
           <h2 className="mt-2 text-[27px] font-extrabold leading-tight text-navy sm:text-[31px]">
             Delhi NCR, India
           </h2>
-          <p className="mt-2 max-w-[460px] text-[12px] leading-5 text-muted-foreground">
+          <p className="mt-2 max-w-[460px] text-[14px] leading-5 text-muted-foreground">
             We’re located in the heart of Delhi NCR, easily accessible for in-person meetings and
             project discussions.
           </p>
@@ -356,7 +356,7 @@ function Location() {
             </span>
             <div>
               <strong className="text-[14px] text-navy">Head Office</strong>
-              <p className="mt-1.5 text-[12px] leading-5 text-muted-foreground">
+              <p className="mt-1.5 text-[14px] leading-5 text-muted-foreground">
                 F3/780, Block C, Devli, Sangam Vihar
                 <br />
                 New Delhi, Delhi 110062
@@ -379,7 +379,7 @@ function Location() {
           />
           <Button
             asChild
-            className="absolute bottom-4 left-4 z-10 h-10 bg-navy text-[11px] text-on-dark hover:bg-navy/90"
+            className="absolute bottom-4 left-4 z-10 h-10 bg-navy text-[14px] text-on-dark hover:bg-navy/90"
           >
             <a
               href="https://www.google.com/maps/search/?api=1&query=Webgram+IT+Solution+Delhi"
@@ -410,7 +410,7 @@ function ConnectHours() {
           <h2 className="text-[23px] font-extrabold text-navy sm:text-[26px]">
             Other Ways to Connect
           </h2>
-          <p className="mt-1 text-[12px] text-muted-foreground">
+          <p className="mt-1 text-[14px] text-muted-foreground">
             Follow us on social media for latest updates, insights and project inspiration.
           </p>
           <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-5">
@@ -426,8 +426,8 @@ function ConnectHours() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <span>
-                  <strong className="block whitespace-nowrap text-[12px]">{title}</strong>
-                  <small className="block whitespace-nowrap text-[10.5px] text-muted-foreground">
+                  <strong className="block whitespace-nowrap text-[14px]">{title}</strong>
+                  <small className="block whitespace-nowrap text-[14px] text-muted-foreground">
                     {sub}
                   </small>
                 </span>
@@ -437,12 +437,12 @@ function ConnectHours() {
         </div>
         <div className="md:pl-8">
           <h2 className="text-[23px] font-extrabold text-navy sm:text-[26px]">Business Hours</h2>
-          <p className="mt-1 text-[12px] text-muted-foreground">
+          <p className="mt-1 text-[14px] text-muted-foreground">
             We’re available to support your business.
           </p>
           <div className="mt-4 flex gap-4">
             <Clock3 className="h-11 w-11 shrink-0 text-primary" />
-            <dl className="grid flex-1 grid-cols-2 gap-y-2 text-[12px] text-muted-foreground">
+            <dl className="grid flex-1 grid-cols-2 gap-y-2 text-[14px] text-muted-foreground">
               <dt>Monday - Friday</dt>
               <dd className="text-right">9:00 AM - 7:00 PM</dd>
               <dt>Saturday</dt>
@@ -450,7 +450,7 @@ function ConnectHours() {
               <dt>Sunday</dt>
               <dd className="text-right">
                 Closed
-                <small className="block text-[10px]">(Available on appointment)</small>
+                <small className="block text-[13px]">(Available on appointment)</small>
               </dd>
             </dl>
           </div>
@@ -484,13 +484,13 @@ function Faq() {
             <h2 className="mt-2 text-[27px] font-extrabold text-navy sm:text-[29px]">
               Quick Answers
             </h2>
-            <p className="text-[12px] text-muted-foreground">
+            <p className="text-[14px] text-muted-foreground">
               Find answers to common questions about working with Webgram.
             </p>
           </div>
           <Button
             variant="outline"
-            className="hidden h-9 border-navy text-[10px] text-navy sm:flex"
+            className="hidden h-9 border-navy text-[13px] text-navy sm:flex"
           >
             View All FAQs <ArrowRight />
           </Button>
@@ -508,10 +508,10 @@ function Faq() {
                   value={question}
                   className="border-border last:border-b-0"
                 >
-                  <AccordionTrigger className="py-3 text-[12.5px] font-semibold text-navy hover:no-underline">
+                  <AccordionTrigger className="py-3 text-[15px] font-semibold text-navy hover:no-underline">
                     {question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[11.5px] leading-5 text-muted-foreground">
+                  <AccordionContent className="text-[14px] leading-5 text-muted-foreground">
                     Contact our team for a detailed answer tailored to your business and project.
                   </AccordionContent>
                 </AccordionItem>
