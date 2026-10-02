@@ -13,7 +13,11 @@
   },
   "overrides": {
     "rolldown": "1.2.1",
-    "js-yaml": "4.3.2"
+    "js-yaml": "4.3.2",
+    "@esbuild-kit/core-utils": {
+      "esbuild": "0.25.12"
+    },
+    "esbuild": "0.25.12"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.78",
