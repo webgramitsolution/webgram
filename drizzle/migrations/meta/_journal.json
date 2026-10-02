@@ -120,6 +120,13 @@
       "when": 1790932657314,
       "tag": "0016_tier_guest_game_rewards",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1790933749055,
+      "tag": "0017_credit_rules_v2",
+      "breakpoints": true
     }
   ]
 }
