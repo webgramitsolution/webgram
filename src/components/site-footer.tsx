@@ -1,5 +1,4 @@
 import { Facebook, Instagram, Linkedin, Youtube, type LucideIcon } from "lucide-react";
-import { openCookieSettings } from "@/components/blog-ads";
 
 const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792";
 
@@ -72,11 +71,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="page-shell flex flex-col items-center justify-between gap-4 border-t border-on-dark/15 py-5 sm:flex-row">
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[14px] text-on-dark/90 sm:justify-start sm:text-left">
+        <div className="text-center text-[14px] text-on-dark/90 sm:text-left">
           <span>© 2026 Webgram IT Solution. All rights reserved.</span>
-          <button type="button" onClick={openCookieSettings} className="underline underline-offset-2 transition-colors hover:text-on-dark">
-            Cookie settings
-          </button>
         </div>
         <div className="flex shrink-0 gap-2" aria-label="Webgram IT Solution social media">
           {socials.map(([Icon, label]) => (
