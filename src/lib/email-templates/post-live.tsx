@@ -32,7 +32,7 @@ export const template = {
   component: PostLiveEmail,
   subject: (d: Record<string, any>) => `Your article “${d['title'] ?? 'article'}” is live`,
   displayName: 'Guest article live',
-  previewData: { title: 'How to Grow Your Online Store', url: 'https://www.webgramitsolution.com/blog/example', name: 'Priya' },
+  previewData: { title: 'How to Grow Your Online Store', url: 'https://webgramitsolution.com/blog/example', name: 'Priya' },
 } satisfies TemplateEntry
 
 const main = { backgroundColor: '#ffffff', fontFamily: 'Manrope, Arial, sans-serif' }

@@ -64,7 +64,7 @@ export function SiteHeader() {
     if (value === "hi") {
       const path = `${window.location.pathname}${window.location.search}`;
       window.location.href = `https://www-webgramitsolution-com.translate.goog${path}?_x_tr_sl=en&_x_tr_tl=hi&_x_tr_hl=hi`;
-    } else window.location.href = `https://www.webgramitsolution.com${window.location.pathname}${window.location.search}`;
+    } else window.location.href = `https://webgramitsolution.com${window.location.pathname}${window.location.search}`;
   }
   function changeCountry(value: string) { setCountry(value); window.localStorage.setItem("webgram-country", value); }
   const closeMenu = () => setMobileOpen(false);

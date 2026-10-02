@@ -92,6 +92,13 @@
       "when": 1790921112721,
       "tag": "0012_allow_safe_guest_article_images_with_dynamic_cost",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1790921300716,
+      "tag": "0013_restrict_blog_settings_table_to_admins",
+      "breakpoints": true
     }
   ]
 }
