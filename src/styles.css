@@ -472,6 +472,26 @@
   box-shadow: 0 8px 24px color-mix(in oklab, var(--navy) 7%, transparent);
 }
 
+@keyframes testimonial-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+.testimonial-marquee {
+  animation: testimonial-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+.testimonial-strip:hover .testimonial-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee {
+    animation: none;
+  }
+}
+
 /* Hero: phone keeps enough room for its stacked copy. Tablet and wider screens
    use a shallower frame, removing 40px from both the top and bottom. */
 .hero-shell {
@@ -1071,9 +1091,9 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
 
 /* Portfolio auto-scrolling website frames */
 @keyframes portfolio-scroll {
-  0%, 8% { transform: translateY(0); }
-  92%, 100% { transform: translateY(calc(-100% + var(--frame-h, 340px))); }
+  0%, 10% { transform: translateY(0); }
+  90%, 100% { transform: translateY(calc(-100% + var(--frame-h, 400px))); }
 }
-.portfolio-scroll { animation: portfolio-scroll 18s ease-in-out infinite alternate; will-change: transform; }
+.portfolio-scroll { animation: portfolio-scroll 30s ease-in-out infinite alternate; will-change: transform; }
 .portfolio-frame:hover .portfolio-scroll { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .portfolio-scroll { animation: none; } }

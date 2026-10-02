@@ -29,7 +29,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   { label: "Home", target: { to: "/" } },
   { label: "Solutions", items: ["Ecommerce Development", "B2B Commerce", "Website Design & Development", "Marketplace Development"].map((label) => [label, subpage("solutions", label)]) },
   { label: "Services", items: ["Web Portal Development", "Website Design", "WooCommerce", "Shopify", "API Integration", "Website Maintenance"].map((label) => [label, subpage("services", label)]) },
-  { label: "Work", items: ["Portfolio", "Client Stories"].map((label) => [label, subpage("work", label)]) },
+  { label: "Work", items: ["Portfolio", "Case Studies", "Client Stories"].map((label) => [label, subpage("work", label)]) },
   { label: "Resources", items: ["Blog", "Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },
   { label: "Blog", target: { to: "/resources/$slug", params: { slug: "blog" } } },
   { label: "About Us", target: { to: "/about" } },

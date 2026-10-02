@@ -115,8 +115,7 @@ export function WooCommercePage() {
         </div>
         <div className="relative col-start-1 row-start-1 max-w-[520px] min-[1180px]:py-5">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
-          <p className="ecom-eyebrow">WooCommerce Development</p>
-          <h1 className="mt-2 text-[29px] font-bold leading-[1.02] sm:text-[33px] md:text-[36px] lg:text-[39px]">Powerful WooCommerce<br />Stores for Your<br /><span className="text-gold">Growing Business.</span></h1>
+          <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]">Powerful WooCommerce Stores<br />for Your <span className="text-gold">Growing Business.</span></h1>
           <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">We build scalable WooCommerce stores with custom features, secure payment integrations and seamless user experiences to help you sell more online.</p>
           <div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button></div>
           <div className="mt-4 grid max-w-[410px] grid-cols-4 gap-3">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>

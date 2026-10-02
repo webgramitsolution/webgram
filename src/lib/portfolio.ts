@@ -1,11 +1,22 @@
-import kingsports from "@/assets/portfolio-kingsportsmgt.jpg";
-import houskase from "@/assets/portfolio-houskase.jpg";
-import regal from "@/assets/portfolio-regalconsultinggroup.jpg";
-import freshandbright from "@/assets/portfolio-freshandbright.jpg";
-import naval from "@/assets/portfolio-navalmedical.jpg";
-import party from "@/assets/portfolio-mypartysuppliers.jpg";
-import chaatewala from "@/assets/portfolio-chaatewala.jpg";
-import mukesh from "@/assets/portfolio-mukeshmurtikar.jpg";
+import kingsportsAsset from "@/assets/kingsportsmgt.jpg.asset.json";
+import houskaseAsset from "@/assets/houskase.jpg.asset.json";
+import regalAsset from "@/assets/regalconsultinggroup.jpg.asset.json";
+import freshAsset from "@/assets/freshandbright.jpg.asset.json";
+import navalAsset from "@/assets/navalmedical.jpg.asset.json";
+import partyAsset from "@/assets/mypartysuppliers.jpg.asset.json";
+import chaatewalaAsset from "@/assets/chaatewala.jpg.asset.json";
+import mukeshAsset from "@/assets/mukeshmurtikar.jpg.asset.json";
+import adliteAsset from "@/assets/adliteelectricals.jpg.asset.json";
+
+const kingsports = kingsportsAsset.url;
+const houskase = houskaseAsset.url;
+const regal = regalAsset.url;
+const freshandbright = freshAsset.url;
+const naval = navalAsset.url;
+const party = partyAsset.url;
+const chaatewala = chaatewalaAsset.url;
+const mukesh = mukeshAsset.url;
+const adlite = adliteAsset.url;
 
 export type PortfolioItem = {
   name: string;
@@ -38,7 +49,7 @@ export const portfolio: PortfolioItem[] = [
     location: "India",
     image: houskase,
     summary:
-      "A full ecommerce store for everyday household, cleaning, office and stationery products with trending and combo collections, product reels, offers and marketplace badges.",
+      "A high-utility ecommerce experience for household essentials, office supplies, mobile accessories and stationery. Clear collections, combo offers and frictionless product discovery support Houskase’s growing customer base across Delhi and beyond.",
     delivered: ["WooCommerce storefront", "Combo & offer collections", "Mobile-first shopping", "Payment & shipping setup"],
   },
   {
@@ -71,7 +82,7 @@ export const portfolio: PortfolioItem[] = [
     location: "Lucknow, India",
     image: naval,
     summary:
-      "A trustworthy website for a Lucknow-based pharmaceutical distributor serving government and private hospitals, covering pharma distribution, surgical equipment and GeM services.",
+      "An institutional healthcare website for a Lucknow supplier established in 2005, presenting pharmaceuticals, surgical instruments, hospital furniture and GeM procurement support to government and private organisations.",
     delivered: ["Product & service pages", "Institutional sales focus", "Trust-building content", "Contact & enquiry flow"],
   },
   {
@@ -106,5 +117,16 @@ export const portfolio: PortfolioItem[] = [
     summary:
       "An elegant online store for sculptures, statues, idols and wall décor with rich category navigation, offers and a heritage-inspired visual identity.",
     delivered: ["Ecommerce store design", "Category navigation", "Offers & coupons", "Customer accounts"],
+  },
+  {
+    name: "Adlite Electricals",
+    url: "https://www.adliteelectricals.com/",
+    domain: "adliteelectricals.com",
+    category: "Electrical Engineering & Energy",
+    location: "Faridabad, India",
+    image: adlite,
+    summary:
+      "A focused industrial website for an electrical engineering company established in 2008, showcasing LT and HT VCB panels, breakers, transformers, EV chargers, renewable-energy EPC and consulting capabilities.",
+    delivered: ["Industrial product catalogue", "Energy solution positioning", "Enquiry-focused journeys", "Responsive company profile"],
   },
 ];

@@ -165,10 +165,10 @@ export const menuSections: Record<SectionKey, MenuSection> = {
     pages: {
       "case-studies": {
         title: "Case Studies",
-        tagline: "Work that speaks for itself",
+        tagline: "Real projects across industries",
         description:
-          "Real projects, real results — see how we helped businesses grow sales, reduce manual work and scale online.",
-        points: ["3X sales growth stories", "B2B marketplace launches", "Custom platform builds", "Measurable outcomes"],
+          "Explore live ecommerce, healthcare, staffing, sports, hospitality and industrial websites built to turn complex offers into clear customer journeys.",
+        points: ["Nine published client websites", "India and Canada delivery", "Ecommerce and lead-generation builds", "Direct links to every live project"],
       },
       portfolio: {
         title: "Portfolio",
