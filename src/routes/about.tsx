@@ -411,7 +411,7 @@ function WhyChoose() {
 
 function AboutPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background font-sans">
+    <main className="min-h-screen bg-background font-sans">
       <SiteHeader />
       <AboutHero />
       <WhoWeAre />

@@ -115,7 +115,7 @@ function Projects() {
 }
 
 export function WebPortalDevelopmentPage() {
-  return <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
+  return <main className="min-h-screen bg-background text-foreground">
     <SiteHeader />
 
     <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
