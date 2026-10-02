@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Open
+- [ ] Match the phone “Built Around Your Industry” section to the supplied 3×2 reference grid
+- [ ] Remove the homepage “Have a Business Idea? Let’s Build It Together.” section
 - [x] Fix the direct Website Design service page and verify it no longer renders blank
 - [x] Reposition the homepage phone banner to show the supplied artwork from top to bottom
 - [x] Match the homepage and Website Design page to the supplied desktop and phone commerce references
