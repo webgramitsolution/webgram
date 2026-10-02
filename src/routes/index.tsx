@@ -109,14 +109,7 @@ const services: Array<{
     image: IMAGES.b2b,
     alt: "Stacked cardboard shipping boxes for wholesale orders",
   },
-  {
-    icon: Store,
-    title: "Marketplace Development",
-    text: "Multi-vendor marketplaces with seller, buyer and admin ecosystems.",
-    link: "Explore Marketplace",
-    image: IMAGES.marketplace,
-    alt: "Laptop and phone showing a furniture marketplace beside shipping boxes",
-  },
+
   {
     icon: Code2,
     title: "Custom Commerce Platforms",
@@ -645,7 +638,7 @@ function MobileServices() {
       <p className="page-eyebrow text-primary">Our Services</p>
       <h2 className="mt-2 text-[22px] font-extrabold text-navy">Everything your digital business needs.</h2>
       <div className="mt-4 grid grid-cols-2 gap-3">
-        {services.map(({ icon: IconComponent, title }, index) => <Link key={title} to="/solutions/$slug" params={{ slug: ["ecommerce-development", "b2b-commerce", "marketplace-development", "website-design-development"][index] ?? "ecommerce-development" }} className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card">
+        {services.map(({ icon: IconComponent, title }, index) => <Link key={title} to="/solutions/$slug" params={{ slug: ["ecommerce-development", "b2b-commerce", "website-design-development"][index] ?? "ecommerce-development" }} className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card">
           <IconComponent className="h-6 w-6 text-primary" />
           <strong className="mt-3 text-[14px] leading-4 text-navy">{title}</strong>
         </Link>)}
