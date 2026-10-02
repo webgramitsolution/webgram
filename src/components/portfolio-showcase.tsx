@@ -3,7 +3,7 @@ import { ArrowUpRight, CheckCircle2, ExternalLink, MapPin } from "lucide-react";
 import type { PortfolioItem } from "@/lib/portfolio";
 import { technologyStack } from "@/lib/site-images";
 
-export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; height?: number }) {
+export function ScrollingFrame({ item, height = 400, eager = false }: { item: PortfolioItem; height?: number; eager?: boolean }) {
   return (
     <a href={item.url} target="_blank" rel="noopener" aria-label={`Open ${item.name} live website`} className="group block overflow-hidden rounded-xl border border-border bg-card shadow-card transition-shadow hover:shadow-lg">
       <div className="flex items-center gap-1.5 border-b border-border bg-muted px-3 py-2.5">
@@ -15,7 +15,7 @@ export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; he
         </span>
       </div>
       <div className="portfolio-frame relative overflow-hidden bg-white" style={{ height, ["--frame-h" as string]: `${height}px` }}>
-        <img src={item.image} alt={`${item.name} full live website preview, designed by Webgram IT Solution`} loading="lazy" decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
+        <img src={item.image} alt={`${item.name} full live website preview, designed by Webgram IT Solution`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
         <span className="absolute bottom-3 right-3 rounded-full bg-navy/90 px-3 py-1.5 text-[12px] font-semibold text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">Open live website</span>
       </div>
     </a>

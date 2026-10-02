@@ -614,7 +614,7 @@ function Technology() {
           </p>
         </div>
         <div className="md:border-l md:border-border md:pl-5 lg:pl-7">
-          <div className="grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-6 md:grid-cols-12">
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-6 xl:grid-cols-12">
             {technologyStack.map(({ name, src }) => (
               <div key={name} className="flex flex-col items-center">
                 <span className="grid h-14 w-14 place-items-center rounded-xl border border-border/80 bg-card p-3 shadow-card lg:h-16 lg:w-16">
@@ -711,7 +711,7 @@ function HomePortfolio() {
         <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
-              <ScrollingFrame item={item} height={300} />
+              <ScrollingFrame item={item} height={300} eager />
               <h3 className="mt-3 text-[17px] text-navy">{item.name}</h3>
               <p className="text-[14px] text-muted-foreground">{item.category}</p>
             </div>
