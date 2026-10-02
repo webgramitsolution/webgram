@@ -25,7 +25,7 @@ export function useGuestStatus() {
 }
 
 export function useGuestPostCost() {
-  const [cost, setCost] = useState(CREDIT_COSTS.post);
+  const [cost, setCost] = useState<number>(CREDIT_COSTS.post);
   const [loading, setLoading] = useState(true);
   const refresh = useCallback(async () => {
     const { data, error } = await supabase.rpc("get_guest_post_cost");
