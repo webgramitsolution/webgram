@@ -5,6 +5,7 @@ import { B2BCommercePage } from "@/components/b2b-commerce-page";
 import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-page";
 import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
+import { servicePageSchema } from "@/lib/schema";
 
 const section = menuSections.solutions;
 const websiteDesignBanner = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/solutions/$slug")({
           ]
         : []),
     ],
+    scripts: servicePageSchema("solutions", "Solutions", params.slug, loaderData),
   }),
   component: SolutionsPage,
 });

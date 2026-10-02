@@ -114,6 +114,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "32", bestRating: "5" },
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Webgram IT Solution",
+          url: "https://webgramitsolution.com/",
+          publisher: { "@id": "https://webgramitsolution.com/#business" },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Main pages",
+          itemListElement: [
+            ["Website Design & Development", "/solutions/website-design-development"],
+            ["Ecommerce Development", "/solutions/ecommerce-development"],
+            ["B2B Commerce", "/solutions/b2b-commerce"],
+            ["Website Design", "/services/website-design"],
+            ["Blog", "/resources/blog"],
+            ["About Us", "/about"],
+            ["Contact", "/contact"],
+          ].map(([name, path], i) => ({ "@type": "SiteNavigationElement", position: i + 1, name, url: `https://webgramitsolution.com${path}` })),
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

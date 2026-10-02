@@ -8,6 +8,7 @@ import { WooCommercePage } from "@/components/woocommerce-page";
 import { SubpageTemplate } from "@/components/subpage";
 import { LatestBlogPosts } from "@/components/latest-blog-posts";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
+import { servicePageSchema } from "@/lib/schema";
 
 const section = menuSections.services;
 
@@ -46,6 +47,7 @@ export const Route = createFileRoute("/services/$slug")({
           ]
         : []),
     ],
+    scripts: servicePageSchema("services", "Services", params.slug, loaderData),
   }),
   component: ServicesPage,
 });
