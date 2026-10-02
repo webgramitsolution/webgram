@@ -27,14 +27,14 @@ export const Route = createFileRoute("/resources/$slug")({
       ...(loaderData?.blog?.posts[0]?.featured_image ? [{ property: "og:image", content: loaderData.blog.posts[0].featured_image }, { name: "twitter:image", content: loaderData.blog.posts[0].featured_image }] : []),
     ],
   }) : ({
-    links: [{ rel: "canonical", href: `https://www.webgramitsolution.com/resources/${params.slug}` }],
+    links: [{ rel: "canonical", href: `https://webgramitsolution.com/resources/${params.slug}` }],
     meta: [
       { title: `${loaderData?.page.title ?? "Resources"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.page.description ?? "" },
       { property: "og:title", content: `${loaderData?.page.title ?? "Resources"} | Webgram IT Solution` },
       { property: "og:description", content: loaderData?.page.description ?? "" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: `https://www.webgramitsolution.com/resources/${params.slug}` },
+      { property: "og:url", content: `https://webgramitsolution.com/resources/${params.slug}` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

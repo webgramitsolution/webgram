@@ -4,7 +4,7 @@ import { LegalPage } from "@/components/legal-page";
 const description = "Learn how Webgram IT Solution collects, uses, protects and manages personal information submitted through its website and services.";
 
 export const Route = createFileRoute("/privacy-policy")({
-  head: () => ({ links: [{ rel: "canonical", href: "https://www.webgramitsolution.com/privacy-policy" }], meta: [{ title: "Privacy Policy | Webgram IT Solution" }, { name: "description", content: description }, { property: "og:title", content: "Privacy Policy | Webgram IT Solution" }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { property: "og:url", content: "https://www.webgramitsolution.com/privacy-policy" }, { name: "twitter:card", content: "summary" }] }),
+  head: () => ({ links: [{ rel: "canonical", href: "https://webgramitsolution.com/privacy-policy" }], meta: [{ title: "Privacy Policy | Webgram IT Solution" }, { name: "description", content: description }, { property: "og:title", content: "Privacy Policy | Webgram IT Solution" }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { property: "og:url", content: "https://webgramitsolution.com/privacy-policy" }, { name: "twitter:card", content: "summary" }] }),
   component: PrivacyPolicyPage,
 });
 
