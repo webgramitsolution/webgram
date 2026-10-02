@@ -17,6 +17,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as DpdpPolicyRouteImport } from './routes/dpdp-policy'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
 import { Route as GuestLoginRouteImport } from './routes/guest-login'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
@@ -81,6 +82,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DpdpPolicyRoute = DpdpPolicyRouteImport.update({
+  id: '/dpdp-policy',
+  path: '/dpdp-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
@@ -230,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -265,6 +272,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -302,6 +310,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -339,6 +348,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
     | '/privacy-policy'
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
     | '/privacy-policy'
@@ -410,6 +421,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
     | '/privacy-policy'
@@ -448,6 +460,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  DpdpPolicyRoute: typeof DpdpPolicyRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
   GuestLoginRoute: typeof GuestLoginRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -522,6 +535,13 @@ declare module '@tanstack/react-router' {
       path: '/disclaimer'
       fullPath: '/disclaimer'
       preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dpdp-policy': {
+      id: '/dpdp-policy'
+      path: '/dpdp-policy'
+      fullPath: '/dpdp-policy'
+      preLoaderRoute: typeof DpdpPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feed.xml': {
@@ -776,6 +796,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
+  DpdpPolicyRoute: DpdpPolicyRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
   GuestLoginRoute: GuestLoginRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,

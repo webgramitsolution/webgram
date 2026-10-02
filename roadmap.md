@@ -2,6 +2,7 @@
 
 ## Open
 - [x] Rebuild every legal page as a polished 1,200–2,000-word document, including India DPDP coverage and protective business/advertising terms
+- [x] Add a dedicated 1,200–2,000-word India DPDP Policy page and footer link
 - [x] Hide and noindex Marketplace Development; align FAQ wrapping, WhatsApp icon, footer cookie control, and ad click-bombing safeguards
 - [x] Clean Services and Solutions heroes and add the supplied testimonial slider above the footer
 - [x] Rebuild Portfolio previews at full clarity, improve project copy, correct Houskase/Naval Medical, and add Adlite Electricals

@@ -24,6 +24,101 @@ const commonSections: LegalSection[] = [
   },
 ];
 
+export const dpdpSections: LegalSection[] = [
+  {
+    title: "Purpose, legal context and scope",
+    paragraphs: [
+      "This Digital Personal Data Protection Policy explains how Webgram IT Solution handles digital personal data in connection with webgramitsolution.com, business enquiries, client communications, guest-author accounts, article submissions, comments, support requests and related digital services. It is intended to support compliance with the Digital Personal Data Protection Act, 2023 of India, together with rules, notifications and directions that are applicable and in force when a processing activity takes place. The Act and its commencement provisions may be brought into force in stages; this page should therefore be read with the law actually effective on the relevant date.",
+      "For activities where Webgram IT Solution determines the purpose and means of processing, we act as the Data Fiduciary. A person to whom the personal data relates is the Data Principal. A hosting, email, analytics, advertising, database or other supplier processing data for an instructed purpose may act as a Data Processor. When we process personal data solely on a client’s documented instructions, the client may be the relevant Data Fiduciary and the project agreement may assign additional responsibilities.",
+    ],
+  },
+  {
+    title: "Personal data and collection channels",
+    paragraphs: [
+      "Personal data may include your name, business or professional details, email address, telephone number, country, project requirements, enquiry history, support messages and communications. Guest authors may also provide login information, a display name, biography, profile details, article drafts, publication instructions, comments and credit-related activity. Client delivery records may include authorised system contacts, approvals, invoices, service requests and materials supplied for a project. Please do not place passwords, complete payment-card details, government identity documents or unrelated sensitive information in ordinary forms or articles.",
+      "Technical records may include an IP address, date and time, requested page, browser and device details, referring page, language or country selection, consent choice, session and security events. We collect information directly from you, automatically from your browser where permitted, from an organisation that authorises you to communicate for it, and from service providers used to deliver a requested feature. We do not collect personal data merely because it is technically possible, and we do not sell contact lists or personal data.",
+    ],
+    bullets: ["Contact and business-enquiry details", "Account, content and moderation records", "Project communications and approvals", "Consent, technical and security records"],
+  },
+  {
+    title: "Notice, consent and specified purpose",
+    paragraphs: [
+      "Where processing is based on consent, the notice should describe the personal data and the specified purpose for which it is proposed to be processed, explain how rights may be exercised and identify a grievance route. Consent must be free, specific, informed, unconditional and unambiguous, and should involve clear affirmative action. We aim to request only the data reasonably necessary for the stated purpose and to present optional advertising or promotional choices separately from essential website, account, security and service communications.",
+      "You may withdraw consent for future consent-based processing through the relevant choice or by contacting us. Withdrawal should be as easy as giving consent. It does not make earlier lawful processing invalid and may prevent us from continuing a feature that cannot reasonably operate without the relevant information. We may retain limited records where required for legal compliance, fraud prevention, contractual evidence, claims or another purpose permitted by law. If another person provides information for you, that person must be lawfully authorised to do so.",
+    ],
+  },
+  {
+    title: "Permitted and legitimate uses",
+    paragraphs: [
+      "We use personal data to respond to an enquiry, prepare a proposal, take requested pre-contract steps, deliver and support agreed services, authenticate users, manage guest content, moderate and publish approved articles, operate programme credits, send transactional notices, maintain records, prevent fraud, secure systems, comply with law and establish or defend legal claims. We may also handle data for certain legitimate uses recognised by applicable DPDP law, including specified voluntary provision, compliance with judgments or legal duties, responding to medical or safety emergencies where relevant, and protecting systems or people from unlawful activity.",
+      "A legitimate use is not a blanket permission for unrelated marketing or unrestricted reuse. We consider the context in which information was supplied, the purpose communicated, reasonable expectations and applicable restrictions. Optional analytics or advertising technologies are subject to the consent controls described on the website and in our Cookie Policy. We do not use consent language to conceal a materially different purpose, and we do not make decisions producing significant effects solely through undisclosed automated profiling.",
+    ],
+  },
+  {
+    title: "Data-principal rights and request process",
+    paragraphs: [
+      "Subject to the DPDP Act and rules in force, a Data Principal may seek a summary of personal data being processed and processing activities, available information about persons or organisations with whom data has been shared, correction of inaccurate or misleading data, completion of incomplete data, updating of outdated data, and erasure when the purpose is complete and retention is not otherwise necessary. You may also use our grievance process and nominate another individual to exercise applicable rights in the event of death or incapacity where the law permits.",
+      "Send a clear request to info@webgramitsolution.com with the subject ‘DPDP Request’. State the relevant email address, account, enquiry, article or project and the right you wish to exercise. Do not send passwords or unnecessary identity documents. We may ask for proportionate verification to protect another person’s information and may request clarification when a request is too broad to identify the records. We will respond within the period required by applicable law. A lawful restriction, competing right, security need or mandatory retention duty may limit a request, in which case we may explain the basis to the extent permitted.",
+    ],
+  },
+  {
+    title: "Duties of Data Principals",
+    paragraphs: [
+      "The DPDP framework also places duties on Data Principals. You should comply with applicable law while exercising rights, provide authentic information, avoid impersonating another person, avoid suppressing material information when seeking correction or erasure, and not register a false or frivolous grievance. Contact details and account information should be kept reasonably current so notices and security messages reach the correct person.",
+      "You are responsible for protecting access codes, using forms and guest features lawfully, and notifying us promptly if an account or communication channel appears compromised. Rights requests must not be used to obtain another person’s data, disrupt legitimate records, conceal fraud or interfere with legal obligations. These duties do not remove genuine rights or prevent a good-faith complaint. We assess requests on their circumstances rather than rejecting them merely because they require effort.",
+    ],
+  },
+  {
+    title: "Children and persons with lawful guardians",
+    paragraphs: [
+      "Our commercial, client and guest-author services are intended for adults and organisations. A person under eighteen should not independently create a guest account, submit an enquiry containing personal data, publish content, participate in credits or provide project information. Where the DPDP Act requires verifiable consent from a parent or lawful guardian before processing a child’s personal data or the data of a person with a lawful guardian, the required authorisation must be established before the relevant processing begins.",
+      "We do not knowingly undertake tracking or behavioural monitoring of children, or targeted advertising directed at children. If we learn that personal data of a child was submitted without valid authority, we may restrict access and take reasonable steps to erase it, subject to security, legal preservation and verification needs. A parent or lawful guardian may contact us with sufficient details to identify the material while avoiding unnecessary disclosure of the child’s information.",
+    ],
+  },
+  {
+    title: "Processors, sharing and accountability",
+    paragraphs: [
+      "We may engage providers for hosting, data storage, email delivery, authentication, security, analytics, advertising and tools needed to operate the website or deliver an agreed project. They receive data reasonably necessary for their function and are expected to follow appropriate confidentiality, contractual and security requirements. A processor does not receive permission from us to independently sell enquiry details or use unpublished content for unrelated promotion. Client-selected providers may apply separate terms and responsibilities identified in the project arrangement.",
+      "Personal data may be disclosed to professional advisers, competent authorities or other parties where required by applicable law, a valid judicial or regulatory direction, fraud or incident investigation, protection of rights and safety, restructuring of the business with appropriate safeguards, or establishment or defence of legal claims. We remain accountable for processing carried out on our behalf to the extent required by law and review access according to operational need.",
+    ],
+  },
+  {
+    title: "Security safeguards and personal-data breaches",
+    paragraphs: [
+      "We use reasonable technical and organisational safeguards appropriate to the nature of the processing. These may include encrypted transport, access controls, role-restricted administration, input validation, protected authentication, monitoring, backups, supplier controls and procedures for responding to suspected misuse. Personnel and service providers should access personal data only where their work reasonably requires it. No internet service can be guaranteed completely secure, and this policy does not promise that every attempted attack or accidental failure can be prevented.",
+      "A suspected personal-data breach is assessed to understand the information involved, affected people, likely consequences and containment measures. We may secure accounts, restrict access, preserve evidence, work with providers and notify affected Data Principals and the Data Protection Board of India in the form and manner required by applicable rules. A notice may describe the nature and extent of the breach, likely consequences, mitigation steps, safety measures available to the individual and a contact point. Please report suspected compromise promptly without publicly posting credentials or private evidence.",
+    ],
+  },
+  {
+    title: "Accuracy, retention and erasure",
+    paragraphs: [
+      "Where personal data is used to make a decision affecting a person or is likely to be disclosed to another Data Fiduciary, we take reasonable steps to keep it complete, accurate and consistent. You can help by correcting changed contact or project information. Published author details, approved articles and comments may remain public until corrected, withdrawn or removed under editorial and legal rules. Search engines and third-party archives may retain copies outside our direct control after source content changes.",
+      "We keep personal data only while reasonably necessary for the specified purpose or another lawful requirement. Retention considers account operation, project delivery, tax and accounting duties, dispute limitation periods, fraud prevention, security evidence, publication integrity and legal holds. When consent is withdrawn or the purpose is no longer served, data is erased or anonymised unless retention is necessary under law. Backups may expire through controlled rotation rather than immediate deletion, with use restricted during that period.",
+    ],
+  },
+  {
+    title: "Cross-border processing",
+    paragraphs: [
+      "Some technology providers may store or access information outside India. Cross-border processing is undertaken subject to restrictions that the Central Government may notify under the DPDP Act and any stricter requirement applying to particular data or regulated sectors. Provider location, contractual protection, security measures and the purpose of access may be considered when selecting a service. Where a country or territory becomes restricted for the relevant processing, we may change the provider, configuration or transfer arrangement.",
+      "A cross-border service does not reduce the rights available under applicable Indian law. Independent providers may also have direct obligations under their own terms and privacy notices. If a client directs use of a particular overseas platform, the allocation of responsibility may be addressed in the project agreement. No international transmission is risk-free, but we do not intentionally transfer personal data simply to avoid Indian legal requirements.",
+    ],
+  },
+  {
+    title: "Grievance redressal and escalation",
+    paragraphs: [
+      "Questions, complaints or unresolved rights requests may be sent to the Webgram IT Solution grievance contact at info@webgramitsolution.com with the subject ‘Privacy Grievance’. Include your name, contact email, relevant relationship with us, a concise description of the issue and the outcome requested. Do not include passwords, payment credentials or unrelated identity records. We may acknowledge the complaint, verify identity proportionately, investigate relevant systems and providers, ask for clarification, and communicate a reasoned outcome within the period prescribed by applicable law.",
+      "We encourage use of this grievance channel first so the issue can be identified and addressed. If the grievance is not resolved, a Data Principal may use escalation or complaint mechanisms available under the DPDP Act and applicable rules, including approaching the Data Protection Board of India where legally available. Nothing in this policy removes rights before a competent consumer forum, regulator, tribunal or court. Fraud, threats, emergencies and criminal matters should also be reported to the appropriate public authority.",
+    ],
+  },
+  {
+    title: "Updates and relationship with other documents",
+    paragraphs: [
+      "We may update this policy when the DPDP Act or its rules commence or change, regulatory guidance develops, our services or providers change, or operational safeguards are improved. The date at the top identifies the current version. Material changes may be highlighted on this page or through an appropriate notice. Updates govern future processing and do not retrospectively remove a right or override a signed obligation that remains legally binding.",
+      "This DPDP Policy supplements our Privacy Policy, Cookie Policy, Terms and Conditions and project-specific agreements. If a project agreement contains stricter data-processing requirements, those requirements apply to that project. If documents conflict, mandatory law prevails, followed by the applicable written project terms for the particular service. This policy provides transparent operational information and is not a substitute for individual legal advice.",
+    ],
+  },
+];
+
 export const privacySections: LegalSection[] = [
   {
     title: "Who controls information and the scope of this policy",
