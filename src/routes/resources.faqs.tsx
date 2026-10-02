@@ -21,7 +21,8 @@ export const Route = createFileRoute("/resources/faqs")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: URL },
       { property: "og:image", content: heroImage },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroImage },
     ],
     scripts: [{
       type: "application/ld+json",
