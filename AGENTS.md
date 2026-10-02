@@ -23,8 +23,8 @@
 - Blog management stays authenticated with server-side role checks; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
-- AdSense is consent-gated and restricted to fixed desktop side rails on article and legal policy pages; never render top, bottom, footer, blog-list, or content-band ads.
-- AdSense slot 6145308694 serves both sticky side rails; auto/anchor ads are not part of the site layout.
+- AdSense is consent-gated: blog listing shows one responsive band after every two category sections, while article and legal pages use fixed desktop side rails; never render top, bottom, or footer ads.
+- AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
 - Guest article formatting is stored as restricted Markdown-style text and rendered without raw HTML so pasted rich content cannot execute scripts.

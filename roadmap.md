@@ -2,7 +2,7 @@
 
 ## Open
 - [x] Match the blog detail reference and add safe rich formatting to guest article posting
-- [x] Remove blog band ads and footer-area whitespace/collapse-ad behavior
+- [x] Restore one responsive ad band after every two blog category sections while keeping footer anchor ads suppressed
 - [x] Match the journal header to the shared navy logo/header treatment
 - [x] Restrict ads to article and legal-policy desktop side rails
 - [x] Rebuild guest and administrator access screens from the supplied portal reference
