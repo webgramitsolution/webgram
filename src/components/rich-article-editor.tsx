@@ -157,11 +157,11 @@ export function RichArticleEditor({ value, onChange, minHeight = "min-h-[55vh] s
     <p className="mt-2 text-[11px] text-muted-foreground">Tip: Use headings, paragraphs, images, lists and quotes to make your article more engaging. Formatting pasted from ChatGPT, Claude, Google Docs or Word is kept.</p>
     <p className="mt-5 text-xs font-bold text-navy">Insert Media</p>
     <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-[minmax(0,2.4fr)_repeat(6,minmax(0,1fr))]">
-      <button type="button" onClick={() => insertImages(false)} onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} className="col-span-3 flex items-center justify-center gap-3 rounded-md border border-dashed border-input bg-card p-4 text-left hover:border-primary sm:col-span-1">
+      <Button type="button" variant="outline" onClick={() => insertImages(false)} onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} className="col-span-3 h-auto justify-center gap-3 border-dashed bg-card p-4 text-left hover:border-primary sm:col-span-1">
         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><UploadCloud className="h-6 w-6" /></span>
         <span><span className="block text-xs font-medium text-navy">Drag & drop images here, or click to upload</span><span className="block text-[10px] text-muted-foreground">HTTPS image links — JPG, PNG, WebP</span></span>
-      </button>
-      {media.map(({ label, icon: Icon, action }) => <button key={label} type="button" onClick={action} className="flex flex-col items-center justify-center gap-1.5 rounded-md border border-border bg-card p-3 text-[11px] text-muted-foreground hover:border-primary hover:text-primary"><Icon className="h-4 w-4 text-navy" />{label}</button>)}
+      </Button>
+      {media.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="outline" onClick={action} className="h-auto flex-col gap-1.5 bg-card p-3 text-[11px] text-muted-foreground hover:border-primary hover:text-primary"><Icon className="h-4 w-4 text-navy" />{label}</Button>)}
     </div>
   </div>;
 }
