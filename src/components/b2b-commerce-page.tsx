@@ -109,7 +109,7 @@ function SectionIntro({ title, description }: { title: string; description: stri
     <div>
       <span className="mb-2 block h-0.5 w-8 bg-gold" />
       <h2 className="text-[23px] font-bold leading-tight text-navy md:text-[25px]">{title}</h2>
-      <p className="mt-1 text-[12px] font-medium leading-[1.5] text-muted-foreground md:text-[13px]">
+      <p className="mt-1 text-[15px] font-medium leading-[1.5] text-muted-foreground md:text-[16px]">
         {description}
       </p>
     </div>
@@ -144,22 +144,22 @@ export function B2BCommercePage() {
               <br />
               for <span className="text-gold">Wholesale Growth.</span>
             </h1>
-            <p className="mt-3 max-w-[505px] text-[11px] font-medium leading-[1.5] text-on-dark/90 md:text-[12px]">
+            <p className="mt-3 max-w-[505px] text-[14px] font-medium leading-[1.5] text-on-dark/90 md:text-[15px]">
               We build secure B2B commerce platforms for manufacturers, wholesalers and
               distributors, combining contract pricing, bulk ordering, RFQ workflows, dealer
               portals, GST invoicing and ERP-ready integrations in one system.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90">
+              <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90">
                 <Link to="/contact">Get a Free Consultation <ArrowRight /></Link>
               </Button>
-              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[9px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark">
+              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark">
                 <Link to="/work/$slug" params={{ slug: "case-studies" }}>View Demo <ArrowRight /></Link>
               </Button>
             </div>
             <div className="mt-5 grid max-w-[510px] grid-cols-3 gap-x-3 gap-y-2 sm:grid-cols-6">
               {heroCapabilities.map(([Icon, lineOne, lineTwo]) => (
-                <div key={lineOne} className="text-center text-[6.5px] font-semibold leading-[1.2]">
+                <div key={lineOne} className="text-center text-[11px] font-semibold leading-[1.25]">
                   <span className="mx-auto mb-1.5 grid h-8 w-8 place-items-center rounded-full border border-on-dark/55">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -179,7 +179,7 @@ export function B2BCommercePage() {
             {reasons.map(([Icon, title, text], index) => (
               <article key={title} className={`grid grid-cols-[38px_1fr] gap-2 px-1.5 py-1 ${index ? "md:border-l md:border-border" : ""}`}>
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-[18px] w-[18px]" /></span>
-                <div><h3 className="text-[9px] font-extrabold leading-tight text-navy md:text-[10px]">{title}</h3><p className="mt-1 text-[9.5px] leading-[1.4] text-muted-foreground md:text-[10px]">{text}</p></div>
+                <div><h3 className="text-[13px] font-extrabold leading-tight text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -190,14 +190,14 @@ export function B2BCommercePage() {
         <div className="ecom-shell">
           <div className="grid items-end gap-3 md:grid-cols-[1fr_1.1fr_auto]">
             <SectionIntro title="Key B2B Features" description="" />
-            <p className="text-[11px] leading-[1.5] text-muted-foreground md:text-[12px]">Everything needed to manage wholesale sales, dealers, distributors and bulk buyers — from pricing and approvals to orders and invoicing.</p>
-            <span className="text-[9px] font-bold text-primary md:text-[10px]">View All Features <ArrowRight className="inline h-3 w-3" /></span>
+            <p className="text-[14px] leading-[1.5] text-muted-foreground md:text-[15px]">Everything needed to manage wholesale sales, dealers, distributors and bulk buyers — from pricing and approvals to orders and invoicing.</p>
+            <span className="text-[15px] font-bold text-primary md:text-[16px]">View All Features <ArrowRight className="inline h-3 w-3" /></span>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-4">
             {features.map(([Icon, title, text], index) => (
               <article key={title} className="grid min-h-[78px] grid-cols-[46px_1fr] items-center gap-2.5 rounded-md border border-border/70 bg-card p-3">
                 <span className={`grid h-10 w-10 place-items-center rounded-md ${index % 2 ? "bg-warning-soft text-warning" : "bg-primary-soft text-primary"}`}><Icon className="h-[22px] w-[22px]" /></span>
-                <div><h3 className="text-[10px] font-extrabold leading-[1.25] text-navy md:text-[11px]">{title}</h3><p className="mt-1 text-[10px] leading-[1.4] text-muted-foreground md:text-[10.5px]">{text}</p></div>
+                <div><h3 className="text-[14px] font-extrabold leading-[1.25] text-navy md:text-[15px]">{title}</h3><p className="mt-1 text-[13px] leading-[1.5] text-muted-foreground md:text-[13.5px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -208,7 +208,7 @@ export function B2BCommercePage() {
         <div className="ecom-shell">
           <div className="text-center">
             <h2 className="text-[20px] font-extrabold leading-[1.15] tracking-tight text-navy md:text-[26px]">Designed for Every B2B Stakeholder</h2>
-            <p className="mt-1.5 text-[11px] text-muted-foreground md:text-[12.5px]">A complete ecosystem for manufacturers, distributors, dealers and corporate buyers.</p>
+            <p className="mt-1.5 text-[14px] text-muted-foreground md:text-[16px]">A complete ecosystem for manufacturers, distributors, dealers and corporate buyers.</p>
           </div>
           <div className="ecom-scroll mt-5 grid grid-flow-col auto-cols-[200px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
             {stakeholders.map(([image, title, text]) => (
@@ -216,7 +216,7 @@ export function B2BCommercePage() {
                 <div className="relative aspect-[1/0.92] overflow-hidden">
                   <img src={image} alt={`${title} using the B2B commerce platform`} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-top" />
                 </div>
-                <div className="min-h-[78px] px-3 py-2.5"><h3 className="text-[12px] font-bold text-navy md:text-[12.5px]">{title}</h3><p className="mt-1 text-[10px] leading-[1.45] text-muted-foreground md:text-[10.5px]">{text}</p></div>
+                <div className="min-h-[78px] px-3 py-2.5"><h3 className="text-[14px] font-bold text-navy md:text-[14.5px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -232,13 +232,13 @@ export function B2BCommercePage() {
                 <span className="grid h-[46px] w-[46px] place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[11px] font-extrabold text-navy">{number}</span>
+                    <span className="text-[14px] font-extrabold text-navy">{number}</span>
                     {index < process.length - 1 && (
                       <span className="relative hidden h-px flex-1 bg-primary md:block"><span className="absolute -right-0.5 -top-[3px] h-0 w-0 border-y-[3.5px] border-l-[6px] border-y-transparent border-l-primary" /></span>
                     )}
                   </div>
-                  <h3 className="mt-1.5 text-[12px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-0.5 text-[10px] leading-[1.45] text-muted-foreground md:text-[10.5px]">{text}</p>
+<h3 className="mt-1.5 text-[14px] font-extrabold text-navy">{title}</h3>
+                  <p className="mt-0.5 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p>
                 </div>
               </article>
             ))}
@@ -253,7 +253,7 @@ export function B2BCommercePage() {
             {industries.map(([image, title, text]) => (
               <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
                 <div className="relative h-[96px] overflow-hidden md:h-[104px]"><img src={image} alt={title} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-center" /></div>
-                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[11px] font-extrabold text-navy md:text-[12px]">{title}</h3><p className="mt-1 text-[10px] leading-[1.4] text-muted-foreground md:text-[10.5px]">{text}</p></div>
+                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[13.5px] font-extrabold text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -266,15 +266,15 @@ export function B2BCommercePage() {
         <div className="ecom-shell relative grid items-center gap-8 md:min-h-[166px] md:grid-cols-[.9fr_1.1fr]">
           <div>
             <h2 className="text-[25px] font-bold leading-[1.08] md:text-[27px]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
-            <p className="mt-3 max-w-[420px] text-[11px] leading-[1.55] text-on-dark/85 md:text-[12px]">Discuss your requirements with our experts and get a customized<br className="hidden md:block" /> solution for your business.</p>
+            <p className="mt-3 max-w-[420px] text-[14px] leading-[1.55] text-on-dark/85 md:text-[15px]">Discuss your requirements with our experts and get a customized<br className="hidden md:block" /> solution for your business.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild className="h-10 bg-gold px-6 text-[9px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
-              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[9px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button>
+              <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
+              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {ctaBenefits.map(([Icon, title, text]) => (
-              <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60"><Icon className="h-[18px] w-[18px]" /></span><strong className="mt-2 block text-[9px]">{title}</strong><small className="mt-1 block text-[9.5px] text-on-dark/70">{text}</small></div>
+              <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60"><Icon className="h-[18px] w-[18px]" /></span><strong className="mt-2 block text-[13px]">{title}</strong><small className="mt-1 block text-[12px] text-on-dark/70">{text}</small></div>
             ))}
           </div>
         </div>
