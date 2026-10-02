@@ -5,6 +5,7 @@
 - [ ] Add an administrator-controlled guest post credit price with server-side enforcement
 - [ ] Remove gaps between blog content and fixed desktop ad rails
 - [ ] Verify apex blog metadata, sitemap, live deployment, and Search Console resubmission
+- [ ] Keep webgram.lovable.app noindex while webgramitsolution.com remains the only canonical ranking domain
 - [x] Make blog category ad rails use the same full-size fixed format as article rails
 - [x] Match the blog article center column to the supplied reference
 - [x] Restore the guest writing page surface and verify the rich editor
