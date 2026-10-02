@@ -3,7 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { BlogPage } from "@/components/blog-page";
 import { getPublicBlog, getPublicBlogCategory } from "@/lib/blog.functions";
 
-const SITE = "https://www.webgramitsolution.com";
+const SITE = "https://webgramitsolution.com";
 
 export const Route = createFileRoute("/blog/category/$slug")({
   loader: async ({ params }) => {

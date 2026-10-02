@@ -29,3 +29,4 @@
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
 - Guest article formatting is stored as restricted Markdown-style text and rendered without raw HTML so pasted rich content cannot execute scripts.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
+- Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
