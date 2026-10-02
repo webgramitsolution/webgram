@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.webgramitsolution.com/sitemap.xml
+Sitemap: https://webgramitsolution.com/sitemap.xml
