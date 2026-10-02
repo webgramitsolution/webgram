@@ -225,6 +225,38 @@ export type Database = {
         }
         Relationships: []
       }
+      engagement_rewards: {
+        Row: {
+          kind: string
+          post_id: string
+          rewarded_at: string | null
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          kind: string
+          post_id: string
+          rewarded_at?: string | null
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          kind?: string
+          post_id?: string
+          rewarded_at?: string | null
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "engagement_rewards_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enquiries: {
         Row: {
           created_at: string
@@ -375,6 +407,35 @@ export type Database = {
         }
         Relationships: []
       }
+      share_clicks: {
+        Row: {
+          clicked_at: string
+          platform: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          clicked_at?: string
+          platform: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          clicked_at?: string
+          platform?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "share_clicks_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       share_rewards: {
         Row: {
           created_at: string
@@ -493,6 +554,8 @@ export type Database = {
         Returns: undefined
       }
       buy_game_glass: { Args: never; Returns: number }
+      claim_read_reward: { Args: { _post_id: string }; Returns: boolean }
+      claim_share_bonus: { Args: { _post_id: string }; Returns: boolean }
       claim_share_reward: {
         Args: { _platform: string; _post_id: string }
         Returns: boolean
@@ -503,6 +566,7 @@ export type Database = {
         Returns: undefined
       }
       credit_balance: { Args: { _user_id: string }; Returns: number }
+      game_level_reward: { Args: { _level: number }; Returns: number }
       get_guest_post_cost: { Args: never; Returns: number }
       has_role: {
         Args: {
@@ -513,8 +577,13 @@ export type Database = {
       }
       increment_post_view: { Args: { _slug: string }; Returns: undefined }
       my_credit_balance: { Args: never; Returns: number }
+      record_share_click: {
+        Args: { _platform: string; _post_id: string }
+        Returns: number
+      }
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       set_guest_post_cost: { Args: { _cost: number }; Returns: number }
+      start_blog_read: { Args: { _post_id: string }; Returns: undefined }
       submit_guest_post: {
         Args: {
           _author_name: string
