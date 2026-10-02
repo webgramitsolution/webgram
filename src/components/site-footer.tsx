@@ -37,9 +37,24 @@ export function SiteFooter() {
             Custom websites and ecommerce solutions built for measurable business growth.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 md:contents">
-          {columns.map(([title, items], index) => (
-            <nav key={title} aria-label={`${title} links`} className={`${index % 2 === 1 ? "border-l" : "border-l-0"} border-on-dark/15 pl-4 sm:border-l sm:pl-5`}>
+        <div className="divide-y divide-on-dark/15 border-y border-on-dark/15 sm:hidden">
+          {columns.map(([title, items]) => (
+            <details key={title} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-on-dark [&::-webkit-details-marker]:hidden">
+                <span className="font-semibold">{title}</span>
+                <span aria-hidden className="text-lg transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <ul className="space-y-2 pb-4">
+                {items.map((item) => (
+                  <li key={item.label}><a href={item.to} className="text-[13px] text-on-dark/75 hover:text-on-dark">{item.label}</a></li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+        <div className="hidden grid-cols-3 gap-x-4 gap-y-7 sm:grid md:contents">
+          {columns.map(([title, items]) => (
+            <nav key={title} aria-label={`${title} links`} className="border-l border-on-dark/15 pl-5">
               <h3 className="text-on-dark">{title}</h3>
               <ul className="mt-3 space-y-2">
                 {items.map((item) => (

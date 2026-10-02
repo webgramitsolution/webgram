@@ -47,17 +47,19 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
              <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => { setCategory("all"); setSubcategory("all"); }} className={`text-[11px] font-semibold uppercase lg:text-[13px] ${category === "all" ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>All</Button>
              {journalCategories.map(({ label, category: item }) => <Button key={item.id} size="sm" variant={category === item.id ? "default" : "ghost"} onClick={() => { setCategory(item.id); setSubcategory("all"); }} className={`whitespace-nowrap text-[11px] font-semibold uppercase lg:text-[13px] ${category === item.id ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>{label}</Button>)}
           </nav></div>
-          <Button asChild size="sm" className="shrink-0 bg-gold px-3 font-bold text-navy hover:bg-gold/90 sm:h-9 sm:px-4"><Link to="/guest-login"><span className="hidden sm:inline">Write for us</span><span className="sm:hidden">Guest post</span><span aria-hidden>→</span></Link></Button>
+          <Button asChild size="sm" className="h-9 shrink-0 bg-gold px-4 font-bold text-navy hover:bg-gold/90"><Link to="/guest-login"><span>Write for us</span><span aria-hidden>→</span></Link></Button>
         </div>
       </header>
 
       <section className="border-y border-border bg-sky-soft py-5">
         <div className="page-shell flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1"><Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search articles..." className="h-11 bg-card pl-11" /></div>
-          <select value={category} onChange={(event) => setCategory(event.target.value)} className="h-11 rounded-md border border-input bg-card px-4 text-sm text-navy">
+          <div className="flex justify-end gap-2 sm:gap-3">
+          <select value={category} onChange={(event) => setCategory(event.target.value)} className="h-11 max-w-[48%] rounded-md border border-input bg-card px-3 text-sm text-navy sm:max-w-none sm:px-4">
             <option value="all">All categories</option>{roots.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
           </select>
-          <select value={subcategory} onChange={(event) => setSubcategory(event.target.value)} disabled={category === "all"} className="h-11 rounded-md border border-input bg-card px-4 text-sm text-navy"><option value="all">All subcategories</option>{children.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+          <select value={subcategory} onChange={(event) => setSubcategory(event.target.value)} disabled={category === "all"} className="h-11 max-w-[48%] rounded-md border border-input bg-card px-3 text-sm text-navy sm:max-w-none sm:px-4"><option value="all">All subcategories</option>{children.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+          </div>
         </div>
       </section>
 
