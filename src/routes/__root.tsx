@@ -99,6 +99,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "@id": "https://webgramitsolution.com/#business",
+          name: "Webgram IT Solution",
+          url: "https://webgramitsolution.com/",
+          telephone: "+91 7551120242",
+          priceRange: "₹15,000 - ₹5,00,000",
+          address: { "@type": "PostalAddress", streetAddress: "F3/780, Block C, Devli, Sangam Vihar", addressLocality: "New Delhi", postalCode: "110062", addressCountry: "IN" },
+          aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "32", bestRating: "5" },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
