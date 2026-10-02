@@ -68,7 +68,13 @@ export function BlogAdBand({ label = "Advertisement", position = "category", rai
   function registerAdInteraction() {
     const now = Date.now();
     const raw = window.sessionStorage.getItem(AD_GUARD_KEY);
-    const parsed = raw && raw !== "blocked" ? JSON.parse(raw) as { startedAt: number; count: number } : { startedAt: now, count: 0 };
+    let parsed = { startedAt: now, count: 0 };
+    if (raw && raw !== "blocked") {
+      try {
+        const stored = JSON.parse(raw) as { startedAt?: unknown; count?: unknown };
+        if (typeof stored.startedAt === "number" && typeof stored.count === "number") parsed = { startedAt: stored.startedAt, count: stored.count };
+      } catch { window.sessionStorage.removeItem(AD_GUARD_KEY); }
+    }
     const state = now - parsed.startedAt > AD_CLICK_WINDOW_MS ? { startedAt: now, count: 1 } : { startedAt: parsed.startedAt, count: parsed.count + 1 };
     if (state.count >= AD_CLICK_LIMIT) { window.sessionStorage.setItem(AD_GUARD_KEY, "blocked"); setGuarded(true); }
     else window.sessionStorage.setItem(AD_GUARD_KEY, JSON.stringify(state));

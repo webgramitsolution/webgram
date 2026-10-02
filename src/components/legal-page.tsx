@@ -11,6 +11,7 @@ export function LegalPage({ eyebrow, title, summary, updated, sections }: { eyeb
     <SiteHeader />
     <main>
       <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label={title}>
+        <span className="absolute inset-y-0 left-0 w-[72%] bg-sky-soft/90 md:hidden" aria-hidden="true" />
         <div className="page-shell relative py-9 md:py-12">
           <div className="max-w-[58%] lg:max-w-[620px]">
             <p className="text-xs font-extrabold uppercase tracking-wide text-primary">{eyebrow}</p>
