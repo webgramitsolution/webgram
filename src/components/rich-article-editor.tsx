@@ -43,7 +43,7 @@ const countWords = (value: string) => {
   return readable ? readable.split(/\s+/).length : 0;
 };
 
-export function RichArticleEditor({ value, onChange, minHeight = "min-h-[240px] sm:min-h-[260px]" }: RichArticleEditorProps) {
+export function RichArticleEditor({ value, onChange, minHeight = "min-h-[55vh] sm:min-h-[260px]" }: RichArticleEditorProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
   const [full, setFull] = useState(false);
 
@@ -99,7 +99,7 @@ export function RichArticleEditor({ value, onChange, minHeight = "min-h-[240px] 
     { label: "Divider", icon: Minus, action: () => replaceSelection("\n\n---\n\n", "", "") },
   ];
 
-  return <div className={full ? "fixed inset-0 z-[60] overflow-auto bg-background p-4" : "mt-2 min-w-0 max-w-full"}>
+  return <div className={full ? "fixed inset-0 z-[60] overflow-auto bg-background p-4" : "mt-2 -mx-2 min-w-0 max-w-none sm:mx-0 sm:max-w-full"}>
     <div className="overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
       <div className="flex min-h-12 max-w-full items-center gap-0.5 overflow-x-auto border-b border-border bg-card px-2 py-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="toolbar" aria-label="Article formatting">
         <select aria-label="Text style" defaultValue="p" onChange={(event) => { block(event.target.value); event.target.value = "p"; }} className="h-8 shrink-0 rounded border border-input bg-card px-2 text-xs font-medium text-navy">
