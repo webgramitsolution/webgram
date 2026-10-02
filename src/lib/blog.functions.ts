@@ -17,8 +17,6 @@ function publicClient() {
 }
 
 export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () => {
-  const { notifyDueGuestPosts } = await import("./guest-notify.server");
-  await notifyDueGuestPosts();
   const client = publicClient();
   const [{ data: categories, error: categoryError }, { data: posts, error: postError }] =
     await Promise.all([
@@ -32,8 +30,6 @@ export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () 
 export const getPublicBlogPost = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
   .handler(async ({ data }) => {
-    const { notifyDueGuestPosts } = await import("./guest-notify.server");
-    await notifyDueGuestPosts();
     const client = publicClient();
     const { data: post, error } = await client
       .from("blog_posts")
@@ -210,5 +206,14 @@ export const deleteBlogCategory = createServerFn({ method: "POST" })
     await requireAdmin(context);
     const { error } = await context.supabase.from("blog_categories").delete().eq("id", data.id);
     if (error) throw error;
+    return { ok: true };
+  });
+
+// Due-post notifications only run for signed-in callers, never from public reads.
+export const runDueGuestNotifications = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async () => {
+    const { notifyDueGuestPosts } = await import("./guest-notify.server");
+    await notifyDueGuestPosts();
     return { ok: true };
   });
