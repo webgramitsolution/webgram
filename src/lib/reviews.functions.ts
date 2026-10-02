@@ -18,5 +18,9 @@ export const getPublishedHomepageReviews = createServerFn({ method: "GET" }).han
     .order("display_order")
     .order("created_at", { ascending: false });
   if (error) throw error;
-  return data ?? [];
+  // Only show detailed, genuine-looking reviews (no one- or two-line reviews).
+  return (data ?? []).filter((review) => {
+    const text = (review.review_text ?? "").trim();
+    return text.length >= 140 && text.split(/\s+/).length >= 25;
+  });
 });
