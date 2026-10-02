@@ -6,9 +6,33 @@ import { z } from "zod";
 import { MagicLinkEmail } from "@/lib/email-templates/magic-link";
 import { sendSmtpMail } from "@/lib/smtp.server";
 
+const ALLOWED_REDIRECT_HOSTS = new Set([
+  "webgramitsolution.com",
+  "www.webgramitsolution.com",
+  "webgram.lovable.app",
+  "localhost",
+]);
+
+/** Only same-site redirect URLs are accepted so login emails can never send users to another site. */
+const safeRedirect = z
+  .string()
+  .url()
+  .max(500)
+  .refine((value) => {
+    try {
+      const url = new URL(value);
+      const host = url.hostname.toLowerCase();
+      const okProtocol = url.protocol === "https:" || (host === "localhost" && url.protocol === "http:");
+      const okHost = ALLOWED_REDIRECT_HOSTS.has(host) || host.endsWith(".lovable.app");
+      return okProtocol && okHost;
+    } catch {
+      return false;
+    }
+  }, "Redirect URL is not allowed");
+
 const inputSchema = z.object({
   email: z.string().trim().email().max(255),
-  redirectTo: z.string().url().max(500),
+  redirectTo: safeRedirect,
 });
 
 export const sendGuestLoginCode = createServerFn({ method: "POST" })
@@ -43,7 +67,7 @@ const registerSchema = z.object({
   fullName: z.string().trim().min(1).max(80),
   phone: z.string().trim().max(20),
   accountType: z.string().trim().max(30),
-  redirectTo: z.string().url().max(500),
+  redirectTo: safeRedirect,
 });
 
 /** Creates an unconfirmed guest account and emails a 6-digit verification code via SMTP. */
