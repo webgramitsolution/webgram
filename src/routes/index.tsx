@@ -309,7 +309,7 @@ function TrustStrip() {
             </div>
           ))}
         </div>
-        <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-4">
+        <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-3">
           {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[13px] text-muted-foreground">{label}</small></span></div>)}
         </div>
       </div>
@@ -335,7 +335,7 @@ function Services() {
             View All Solutions →
           </a>
         </div>
-        <div className="mt-5 grid gap-3 md:grid-cols-4">
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
           {services.map(({ icon: IconComponent, title, text, link, image, alt }) => (
             <article
               key={title}
@@ -701,7 +701,7 @@ function HomePortfolio() {
             <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
           </Button>
         </div>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
               <ScrollingFrame item={item} height={300} eager />
