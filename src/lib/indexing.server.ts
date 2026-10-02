@@ -32,7 +32,7 @@ async function googleToken() {
 
 export async function submitGoogle(urls: string[]) {
   const token = await googleToken();
-  const results: { url: string; ok: boolean; status: number; message?: string }[] = [];
+  const results: { url: string; ok: boolean; status: number; message: string }[] = [];
   for (const url of urls) {
     const res = await fetch("https://indexing.googleapis.com/v3/urlNotifications:publish", {
       method: "POST",
@@ -40,7 +40,7 @@ export async function submitGoogle(urls: string[]) {
       body: JSON.stringify({ url, type: "URL_UPDATED" }),
     });
     const body = (await res.json().catch(() => ({}))) as { error?: { message?: string } };
-    results.push({ url, ok: res.ok, status: res.status, message: body.error?.message });
+    results.push({ url, ok: res.ok, status: res.status, message: body.error?.message ?? "" });
   }
   return results;
 }

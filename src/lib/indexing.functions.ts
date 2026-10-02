@@ -10,7 +10,7 @@ export const pingSearchEngines = createServerFn({ method: "POST" })
     if (!isAdmin) throw new Error("Forbidden");
     const { submitGoogle, submitIndexNow, isOwnUrl } = await import("./indexing.server");
     const own = data.urls.filter(isOwnUrl);
-    let google: { url: string; ok: boolean; status: number; message?: string }[] = [];
+    let google: { url: string; ok: boolean; status: number; message: string }[] = [];
     let googleError = "";
     try { if (own.length) google = await submitGoogle(own); } catch (e) { googleError = e instanceof Error ? e.message : "Google failed"; }
     const bing = await submitIndexNow(data.urls).catch(() => ({ ok: false, status: 0 }));
