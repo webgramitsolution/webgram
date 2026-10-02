@@ -25,10 +25,13 @@ import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-condi
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
+import { Route as ResourcesGuidesRouteImport } from './routes/resources.guides'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ServicesWebsiteDesignRouteImport } from './routes/services.website-design'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as WorkPortfolioRouteImport } from './routes/work.portfolio'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
 import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authenticated.admin.requests'
 import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
@@ -120,6 +123,16 @@ const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   path: '/resources/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesFaqsRoute = ResourcesFaqsRouteImport.update({
+  id: '/resources/faqs',
+  path: '/resources/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesGuidesRoute = ResourcesGuidesRouteImport.update({
+  id: '/resources/guides',
+  path: '/resources/guides',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -138,6 +151,11 @@ const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
 const WorkSlugRoute = WorkSlugRouteImport.update({
   id: '/work/$slug',
   path: '/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkPortfolioRoute = WorkPortfolioRouteImport.update({
+  id: '/work/portfolio',
+  path: '/work/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
@@ -220,10 +238,13 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/faqs': typeof ResourcesFaqsRoute
+  '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/work/portfolio': typeof WorkPortfolioRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
@@ -252,10 +273,13 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/faqs': typeof ResourcesFaqsRoute
+  '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/work/portfolio': typeof WorkPortfolioRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
@@ -286,10 +310,13 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/faqs': typeof ResourcesFaqsRoute
+  '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/work/portfolio': typeof WorkPortfolioRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/_guest/guest/game': typeof GuestGuestGameRoute
@@ -320,10 +347,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
+    | '/resources/faqs'
+    | '/resources/guides'
     | '/services/$slug'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/work/portfolio'
     | '/admin/blog'
     | '/admin/requests'
     | '/guest/game'
@@ -352,10 +382,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
+    | '/resources/faqs'
+    | '/resources/guides'
     | '/services/$slug'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/work/portfolio'
     | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
@@ -385,10 +418,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/resources/$slug'
+    | '/resources/faqs'
+    | '/resources/guides'
     | '/services/$slug'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
+    | '/work/portfolio'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/requests'
     | '/_guest/guest/game'
@@ -420,10 +456,13 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
+  ResourcesFaqsRoute: typeof ResourcesFaqsRoute
+  ResourcesGuidesRoute: typeof ResourcesGuidesRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesWebsiteDesignRoute: typeof ServicesWebsiteDesignRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
+  WorkPortfolioRoute: typeof WorkPortfolioRoute
   BlogCategorySlugRoute: typeof BlogCategorySlugRoute
 }
 
@@ -541,6 +580,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/faqs': {
+      id: '/resources/faqs'
+      path: '/resources/faqs'
+      fullPath: '/resources/faqs'
+      preLoaderRoute: typeof ResourcesFaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/guides': {
+      id: '/resources/guides'
+      path: '/resources/guides'
+      fullPath: '/resources/guides'
+      preLoaderRoute: typeof ResourcesGuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -567,6 +620,13 @@ declare module '@tanstack/react-router' {
       path: '/work/$slug'
       fullPath: '/work/$slug'
       preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/portfolio': {
+      id: '/work/portfolio'
+      path: '/work/portfolio'
+      fullPath: '/work/portfolio'
+      preLoaderRoute: typeof WorkPortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/blog': {
@@ -724,10 +784,13 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
+  ResourcesFaqsRoute: ResourcesFaqsRoute,
+  ResourcesGuidesRoute: ResourcesGuidesRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesWebsiteDesignRoute: ServicesWebsiteDesignRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
+  WorkPortfolioRoute: WorkPortfolioRoute,
   BlogCategorySlugRoute: BlogCategorySlugRoute,
 }
 export const routeTree = rootRouteImport

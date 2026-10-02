@@ -26,6 +26,8 @@ import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import industriesImage from "@/assets/industries-strip.jpg";
 import { SiteHeader } from "@/components/site-header";
+import { ScrollingFrame } from "@/components/portfolio-showcase";
+import { portfolio } from "@/lib/portfolio";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 
 const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
@@ -457,7 +459,7 @@ function Industries() {
             We develop customized commerce solutions for diverse industries.
           </p>
           <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[13px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
-            <Link to="/industries/$slug" params={{ slug: "manufacturing" }}>View All Industries <ArrowRight /></Link>
+            <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link>
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
@@ -535,9 +537,9 @@ function CaseStudies() {
             size="sm"
             className="mt-3 h-9 bg-gold px-4 text-[13px] font-bold text-navy shadow-card transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            <a href="#case-studies">
-              View All Case Studies <ArrowRight />
-            </a>
+            <Link to="/work/$slug" params={{ slug: "portfolio" }}>
+              View Our Portfolio <ArrowRight />
+            </Link>
           </Button>
         </div>
         <div
@@ -684,12 +686,41 @@ function HomePage() {
       <Services />
       <Ecosystem />
       <WhyUs />
-      <Industries />
+      <div className="hidden md:block"><Industries /></div>
       <B2BFeatures />
       <MobileCommerceExperience />
-      <CaseStudies />
+      <div className="hidden md:block"><CaseStudies /></div>
+      <HomePortfolio />
       <Technology />
       <div className="hidden md:block"><MobileReviews reviews={reviews} /></div>
     </main>
+  );
+}
+
+function HomePortfolio() {
+  return (
+    <section id="portfolio" className="bg-background py-10">
+      <div className="page-shell">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="eyebrow text-primary">Portfolio</p>
+            <h2 className="section-title mt-2 text-[26px]">Websites We Have Built</h2>
+            <p className="mt-2 max-w-[560px] text-[16px] text-muted-foreground">Live projects for brands in India and Canada — every preview scrolls through the real website.</p>
+          </div>
+          <Button asChild className="h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90">
+            <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
+          </Button>
+        </div>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {portfolio.slice(0, 4).map((item) => (
+            <div key={item.domain}>
+              <ScrollingFrame item={item} height={300} />
+              <h3 className="mt-3 text-[17px] text-navy">{item.name}</h3>
+              <p className="text-[14px] text-muted-foreground">{item.category}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
