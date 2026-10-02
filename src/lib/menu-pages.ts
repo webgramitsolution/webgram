@@ -39,13 +39,6 @@ export const menuSections: Record<SectionKey, MenuSection> = {
           "We design and develop modern, high-performing websites that build your brand, attract customers and support measurable business growth.",
         points: ["Business-focused strategy", "Creative modern design", "Responsive development", "Ongoing support"],
       },
-      "marketplace-development": {
-        title: "Marketplace Development",
-        tagline: "Multi-vendor platforms",
-        description:
-          "Launch a multi-vendor marketplace with seller onboarding, commissions, payouts and admin controls built in from day one.",
-        points: ["Seller & buyer ecosystems", "Commission management", "Vendor dashboards", "Admin moderation tools"],
-      },
     },
   },
   services: {

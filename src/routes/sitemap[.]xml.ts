@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
 const BASE = "https://webgramitsolution.com";
-const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/solutions/marketplace-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs"];
+const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs"];
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export const Route = createFileRoute("/sitemap.xml")({
