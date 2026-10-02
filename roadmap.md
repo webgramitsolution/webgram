@@ -1,6 +1,13 @@
 # Roadmap
 
 ## Open
+- [x] Read all 32 Google Business Profile reviews and reply to the three that had no reply
+- [ ] Update Google profile name, phone and address to match the Contact page (blocked: profile-field editing is not reachable through the connected Google access; must be done in business.google.com)
+- [x] Verify article page ad columns render 160px with a 16px gap and full-width content in the preview
+- [ ] Deploy the latest code on Hostinger (blocked: user must run Pull/Deploy, npm install, npm run build, then Restart in hPanel)
+- [ ] Submit a live contact-form enquiry and confirm the reply email (blocked: needs the Hostinger deploy above)
+- [ ] Confirm SMTP credentials are set on Hostinger (blocked: user must enter them in hPanel; not available in this workspace)
+- [x] Show the ImageKit link hint under Feature Image on both writing screens
 - [x] Rebuild guest/admin desktop-tablet shells and Water Sort game; keep the right ad rail exclusive to the game page
 - [x] Replace Play & Earn with the supplied exact 20-level WaterSortGame, including responsive bottles, undo/restart, and secure credits
 - [x] Rebuild the full phone homepage to follow the supplied two-screen commerce reference without its final CTA
