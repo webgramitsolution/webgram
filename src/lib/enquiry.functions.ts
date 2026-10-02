@@ -14,16 +14,14 @@ const enquirySchema = z.object({
 export const submitEnquiry = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => enquirySchema.parse(input))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
-    const { count } = await supabaseAdmin.from("enquiries").select("id", { count: "exact", head: true }).eq("email", data.email).gte("created_at", since);
-    if ((count ?? 0) >= 3) throw new Error("Too many enquiries. Please try again in a few minutes.");
-    const { data: row, error } = await supabaseAdmin
-      .from("enquiries")
-      .insert({ name: data.name, email: data.email, phone: data.phone, service: data.service, message: data.message })
-      .select("id")
-      .single();
-    if (error) throw new Error("Enquiry could not be saved.");
+    // Public client + validated security-definer RPC: works on any host without the private key.
+    const { createClient } = await import("@supabase/supabase-js");
+    const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"] ?? import.meta.env.VITE_SUPABASE_URL;
+    const key = process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    const client = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
+    const { data: id, error } = await client.rpc("submit_enquiry", { _name: data.name, _email: data.email, _phone: data.phone, _service: data.service, _message: data.message });
+    if (error || !id) throw new Error(error?.message?.length && error.message.length < 120 ? error.message : "Enquiry could not be saved.");
+    const row = { id: id as string };
     const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
     try {
       await sendTemplateEmail("new-enquiry", "info@webgramitsolution.com", {
