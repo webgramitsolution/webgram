@@ -2,6 +2,9 @@
 const SITE_URL = "https://webgramitsolution.com";
 
 export async function notifyDueGuestPosts() {
+  // Public blog reads must keep working on deployments that do not provide
+  // privileged credentials. Notification delivery is skipped in that case.
+  if (!process.env["SUPABASE_URL"] || !process.env["SUPABASE_SERVICE_ROLE_KEY"]) return;
   try {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
