@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ChevronDown, FileText, Folder, FolderOpen, ImagePlus, Search, Send } from "lucide-react";
+import { ChevronDown, FileText, FolderOpen, ImagePlus, Search, Send } from "lucide-react";
 
 import { BlogAuthorHeader } from "@/components/blog-author-header";
 import { CardTitle, FormPageTitle, MetaRow, cardClass } from "@/components/blog-form-ui";
