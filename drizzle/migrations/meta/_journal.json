@@ -99,6 +99,13 @@
       "when": 1790921300716,
       "tag": "0013_restrict_blog_settings_table_to_admins",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1790929924351,
+      "tag": "0014_extend_guest_game_to_20_levels",
+      "breakpoints": true
     }
   ]
 }
