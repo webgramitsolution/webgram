@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start": "node .output/server/index.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",
@@ -106,5 +107,8 @@
     "overrides": {
       "entities": "4.5.0"
     }
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
