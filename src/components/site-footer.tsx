@@ -7,7 +7,7 @@ const columns = [
   ["Services", [{ label: "Web Portal Development", to: "/services/web-portal-development" }, { label: "Website Design", to: "/services/website-design" }, { label: "WooCommerce", to: "/services/woocommerce" }, { label: "API Integration", to: "/services/api-integration" }]],
   ["Resources", [{ label: "Blog", to: "/resources/blog" }, { label: "Guides", to: "/resources/guides" }, { label: "FAQs", to: "/resources/faqs" }]],
   ["Company", [{ label: "About Us", to: "/about" }, { label: "Contact", to: "/contact" }, { label: "Privacy Policy", to: "/privacy-policy" }]],
-  ["Legal", [{ label: "Terms & Conditions", to: "/terms-and-conditions" }, { label: "Cookie Policy", to: "/cookie-policy" }, { label: "Disclaimer", to: "/disclaimer" }]],
+  ["Legal", [{ label: "DPDP Policy", to: "/dpdp-policy" }, { label: "Terms & Conditions", to: "/terms-and-conditions" }, { label: "Cookie Policy", to: "/cookie-policy" }, { label: "Disclaimer", to: "/disclaimer" }]],
 ] as const;
 
 const WHATSAPP_ICON_URL = "https://ik.imagekit.io/x3cipokny/icon/whatsapp.png";
