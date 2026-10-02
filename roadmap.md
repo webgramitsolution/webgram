@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Open
-- [ ] Rebuild every legal page as a polished 1,200–2,000-word document, including India DPDP coverage and protective business/advertising terms
-- [ ] Hide and noindex Marketplace Development; align FAQ wrapping, WhatsApp icon, footer cookie control, and ad click-bombing safeguards
+- [x] Rebuild every legal page as a polished 1,200–2,000-word document, including India DPDP coverage and protective business/advertising terms
+- [x] Hide and noindex Marketplace Development; align FAQ wrapping, WhatsApp icon, footer cookie control, and ad click-bombing safeguards
 - [x] Clean Services and Solutions heroes and add the supplied testimonial slider above the footer
 - [x] Rebuild Portfolio previews at full clarity, improve project copy, correct Houskase/Naval Medical, and add Adlite Electricals
 - [x] Add portfolio/FAQ hero imagery, remove the supplied trust-logo strip, and align portfolio structured data with business NAP
