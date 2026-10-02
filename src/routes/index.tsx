@@ -13,6 +13,12 @@ import {
   Users,
   Zap,
   Star,
+  ClipboardCheck,
+  Headphones,
+  MapPin,
+  PackageCheck,
+  ReceiptText,
+  Warehouse,
 } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -22,7 +28,7 @@ import industriesImage from "@/assets/industries-strip.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 
-const PHONE_HERO = "https://ik.imagekit.io/x3cipokny/phone%20device%20banner.png";
+const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
 
 export const Route = createFileRoute("/")({
   loader: () => getPublishedHomepageReviews(),
@@ -132,6 +138,24 @@ const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }
 ];
 
 const industries = ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics"];
+
+const proof = [
+  [ClipboardCheck, "100+", "Web Projects"],
+  [ShoppingCart, "50+", "Ecommerce Solutions"],
+  [Users, "20+", "Industries Served"],
+  [Headphones, "24/7", "Technical Support"],
+] as const;
+
+const b2bFeatures = [
+  [ReceiptText, "Customer-specific pricing"], [BriefcaseBusiness, "Wholesale pricing"],
+  [ShieldCheck, "MOQ controls"], [BarChart3, "RFQ / Request for Quotation"],
+  [PackageCheck, "Bulk ordering"], [Layers3, "Tier pricing"],
+  [Users, "Dealer / Distributor login"], [Zap, "Credit purchase"],
+  [ClipboardCheck, "GST invoice"], [Users, "Customer groups"],
+  [BriefcaseBusiness, "Sales representative"], [ShieldCheck, "Approval workflows"],
+  [MapPin, "Location-based pricing"], [Warehouse, "Multi-warehouse"],
+  [Store, "Inventory management"],
+] as const;
 
 const cases = [
   {
@@ -259,6 +283,9 @@ function TrustStrip() {
               />
             </div>
           ))}
+        </div>
+        <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-4">
+          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[9px] text-muted-foreground">{label}</small></span></div>)}
         </div>
       </div>
     </section>
@@ -422,6 +449,24 @@ function Industries() {
       </div>
     </section>
   );
+}
+
+function B2BFeatures() {
+  return <section className="bg-background py-7 md:py-8">
+    <div className="page-shell">
+      <p className="eyebrow text-primary">B2B Commerce</p>
+      <h2 className="section-title mt-2">Powering Modern B2B Commerce</h2>
+      <p className="section-subtitle max-w-xl">Advanced B2B features that digitize wholesale and distribution businesses.</p>
+      <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
+        {b2bFeatures.map(([IconComponent, label]) => <div key={label} className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"><span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><strong className="text-[9px] leading-tight text-navy">{label}</strong></div>)}
+      </div>
+      <Button asChild className="mt-4 h-10 w-full font-bold"><Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Build Your B2B Platform <ArrowRight /></Link></Button>
+    </div>
+  </section>;
+}
+
+function FinalCta() {
+  return <section className="relative overflow-hidden bg-navy py-8 text-on-dark"><div className="ecom-waves absolute inset-0" aria-hidden="true" /><div className="page-shell relative grid items-center gap-6 md:grid-cols-[1fr_auto]"><div><h2 className="text-[28px] font-extrabold leading-[1.05]">Have a Business Idea?<br />Let’s Build It Together.</h2><p className="mt-3 max-w-xl text-[11px] leading-5 text-on-dark/80">Tell us what you’re building. We’ll help turn it into a scalable digital commerce success story.</p><div className="mt-4 flex flex-wrap gap-3"><Button asChild className="bg-gold font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button><Button asChild variant="outline" className="border-on-dark/60 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button></div></div><div className="grid grid-cols-2 gap-3 text-center sm:grid-cols-4">{[[Users,"Free","Consultation"],[Code2,"Tailored","Solution"],[Zap,"On-Time","Delivery"],[Headphones,"Long-Term","Support"]].map(([Icon,value,label]) => { const CtaIcon = Icon as Icon; return <div key={label as string}><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/30"><CtaIcon className="h-5 w-5" /></span><strong className="mt-2 block text-[9px]">{value as string}</strong><span className="block text-[8px] text-on-dark/65">{label as string}</span></div>; })}</div></div></section>;
 }
 
 function CaseStudies() {
@@ -593,10 +638,12 @@ function HomePage() {
       <Ecosystem />
       <WhyUs />
       <Industries />
+      <B2BFeatures />
       <CaseStudies />
       <Technology />
       <MobileServices />
       <MobileReviews reviews={reviews} />
+      <FinalCta />
     </main>
   );
 }

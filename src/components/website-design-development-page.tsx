@@ -33,10 +33,12 @@ import phpLogo from "@/assets/php.svg.asset.json";
 import portfolioWebsites from "@/assets/portfolio-websites.png.asset.json";
 import productServiceWebsites from "@/assets/product-service-websites.png.asset.json";
 import professionalWebsites from "@/assets/professional-websites.png.asset.json";
-import websiteHero from "@/assets/website-design-hero.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { deliveredProjects, industryImages, technologyStack } from "@/lib/site-images";
+
+const WEBSITE_DESIGN_HERO = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
+const WEBSITE_DESIGN_PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/Modern%20Ecommerce%20Analytics%20Showcase.png";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
@@ -140,7 +142,10 @@ export function WebsiteDesignDevelopmentPage() {
       <SiteHeader />
 
       <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
-        <img src={websiteHero} alt="Architecture website displayed on a laptop and phone" width={1920} height={760} className="absolute inset-0 h-full w-full object-cover object-center" />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={WEBSITE_DESIGN_PHONE_HERO} />
+          <img src={WEBSITE_DESIGN_HERO} alt="High-converting ecommerce website displayed across desktop and mobile devices" width={1920} height={760} className="absolute inset-0 h-full w-full object-cover object-center" />
+        </picture>
         <div className="ecom-hero-shade absolute inset-0" />
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[525px]">

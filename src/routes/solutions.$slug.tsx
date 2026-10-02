@@ -7,6 +7,7 @@ import { WebsiteDesignDevelopmentPage } from "@/components/website-design-develo
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 
 const section = menuSections.solutions;
+const websiteDesignBanner = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
 
 export const Route = createFileRoute("/solutions/$slug")({
   loader: ({ params }) => {
@@ -25,16 +26,16 @@ export const Route = createFileRoute("/solutions/$slug")({
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-       ...(params.slug === "b2b-commerce"
+       ...(params.slug === "b2b-commerce" || params.slug === "website-design-development"
         ? [
             {
               property: "og:image",
-              content:
+              content: params.slug === "website-design-development" ? websiteDesignBanner :
                 "https://ik.imagekit.io/home1/About%20us%20page/B2B%20Ecommerce%20Development.png",
             },
             {
               name: "twitter:image",
-              content:
+              content: params.slug === "website-design-development" ? websiteDesignBanner :
                 "https://ik.imagekit.io/home1/About%20us%20page/B2B%20Ecommerce%20Development.png",
             },
           ]
