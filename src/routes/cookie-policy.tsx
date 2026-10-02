@@ -1,11 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/legal-page";
+import { cookieSections } from "@/lib/legal-content";
 
 const description = "Understand how Webgram IT Solution uses essential, analytics and advertising cookies, including Google AdSense on blog pages.";
 export const Route = createFileRoute("/cookie-policy")({ head: () => ({ meta: [{ name: "robots", content: "noindex, follow" }, { title: "Cookie Policy | Webgram IT Solution" }, { name: "description", content: description }, { property: "og:title", content: "Cookie Policy | Webgram IT Solution" }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { property: "og:url", content: "https://webgramitsolution.com/cookie-policy" }, { name: "twitter:card", content: "summary" }] }), component: CookiePolicyPage });
-function CookiePolicyPage() { return <LegalPage eyebrow="Privacy choices" title="Cookie Policy" summary={description} updated="30 September 2026" sections={[
-  { title: "What cookies do", paragraphs: ["Cookies and similar storage help a website remember choices, protect accounts, understand visits and, with permission where required, show and measure advertising."] },
-  { title: "Cookies we use", paragraphs: ["Essential storage supports security, sign-in and saved preferences. Advertising storage is used only on blog pages and only after the required choice."], bullets: ["Essential: account security, sessions and saved language or country", "Advertising: Google AdSense delivery, frequency controls and measurement on blog pages", "Analytics: aggregate performance measurement when enabled"] },
-  { title: "Google AdSense", paragraphs: ["Our article and legal policy pages may use Google AdSense in fixed side positions. Google and its partners may use cookies or similar technologies to deliver and measure ads according to your consent and Google’s policies. Ads are not loaded on our home, service, solution, contact or blog listing pages."] },
-  { title: "Manage your choice", paragraphs: ["You may accept or reject advertising cookies when prompted. You can change the choice later through Cookie settings in the footer. Rejecting advertising cookies does not prevent you from reading the blog."] },
-]} />; }
+function CookiePolicyPage() { return <LegalPage eyebrow="Privacy choices" title="Cookie Policy" summary={description} updated="2 October 2026" sections={cookieSections} />; }
