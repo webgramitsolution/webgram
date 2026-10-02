@@ -19,9 +19,9 @@ export function TestimonialStrip() {
       <div className="page-shell mb-4">
         <h2 className="text-[24px] text-navy md:text-[28px]">What our clients say</h2>
       </div>
-      <div className="testimonial-marquee flex w-max gap-4 px-4">
+      <div className="testimonial-marquee flex w-max gap-2 px-2 md:gap-3 md:px-3">
         {slides.map((src, index) => (
-          <figure key={`${src}-${index}`} className="w-[min(86vw,560px)] shrink-0 overflow-hidden rounded-md border border-border bg-card shadow-card md:w-[586px]">
+          <figure key={`${src}-${index}`} className="w-[calc((100vw-32px)/3)] shrink-0 overflow-hidden rounded-md border border-border bg-card shadow-card md:w-[calc((100vw-72px)/5)] lg:w-[calc((100vw-96px)/6)]">
             <img
               src={src}
               alt={index < testimonialImages.length ? `Webgram IT Solution client testimonial ${index + 1}` : ""}

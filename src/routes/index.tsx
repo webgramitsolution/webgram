@@ -245,9 +245,6 @@ function Hero() {
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-sky">
-            Digital Commerce & Technology Partner
-          </p>
           <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">
             Digital Commerce,
             <br />
@@ -524,12 +521,12 @@ function CaseStudies() {
       <div className="page-shell grid gap-4 md:grid-cols-[188px_minmax(0,1fr)] lg:grid-cols-[205px_minmax(0,1fr)]">
         <div className="self-center">
           <p className="eyebrow text-primary">Case Studies</p>
-          <h2 className="section-title mt-2 text-[25px] leading-[1.02]">
+          <h2 className="section-title mt-1 text-[25px] leading-[1.08]">
             Work That
             <br />
             Speaks for Itself
           </h2>
-          <p className="section-subtitle mt-2 max-w-[190px]">
+          <p className="section-subtitle mt-1.5 max-w-[190px]">
             Real businesses. Real results. Explore how we help companies grow with digital commerce.
           </p>
           <Button
@@ -603,7 +600,7 @@ function CaseStudies() {
 
 function Technology() {
   return (
-    <section id="resources" className="bg-background py-6">
+    <section id="resources" className="bg-card py-6">
       <div className="page-shell grid gap-4 md:grid-cols-[178px_1fr] md:items-center lg:grid-cols-[205px_1fr]">
         <div>
           <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">
@@ -701,17 +698,17 @@ function HomePortfolio() {
   return (
     <section id="portfolio" className="bg-background py-10">
       <div className="page-shell">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div>
             <p className="eyebrow text-primary">Portfolio</p>
-            <h2 className="section-title mt-2 text-[26px]">Websites We Have Built</h2>
-            <p className="mt-2 max-w-[560px] text-[16px] text-muted-foreground">Live projects for brands in India and Canada — every preview scrolls through the real website.</p>
+            <h2 className="section-title mt-1 text-[26px] leading-[1.08]">Websites We Have<br />Built</h2>
+            <p className="mt-1.5 max-w-[560px] text-[16px] leading-6 text-muted-foreground">Live projects for brands in India and Canada — every preview scrolls through the real website.</p>
           </div>
-          <Button asChild className="h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90">
+          <Button asChild className="hidden h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90 sm:inline-flex">
             <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
           </Button>
         </div>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
               <ScrollingFrame item={item} height={300} />
