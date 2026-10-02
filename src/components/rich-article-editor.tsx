@@ -1,7 +1,6 @@
-import { useRef, type ClipboardEvent } from "react";
-import { Bold, Columns3, Grid2X2, Heading1, Heading2, Heading3, Image, Images, Italic, List, Maximize2, Minus, Quote, Table2, Type, Underline } from "lucide-react";
+import { useRef, useState, type ClipboardEvent, type DragEvent } from "react";
+import { AlignCenter, AlignLeft, AlignRight, Bold, Code2, Grid3X3, Image, Images, Italic, Link2, List, ListOrdered, Maximize2, Minimize2, Minus, MoreHorizontal, PlaySquare, Quote, Redo2, Strikethrough, Table2, Underline, Undo2, UploadCloud } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 type RichArticleEditorProps = {
@@ -17,13 +16,13 @@ function cleanText(value: string) {
 function nodeToMarkdown(node: Node): string {
   if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? "";
   if (!(node instanceof HTMLElement)) return "";
-  const children = () => Array.from(node.childNodes).map(nodeToMarkdown).join("");
-  const text = children();
+  const text = Array.from(node.childNodes).map(nodeToMarkdown).join("");
   switch (node.tagName.toLowerCase()) {
     case "h1": case "h2": return `\n\n## ${text}\n\n`;
     case "h3": case "h4": return `\n\n### ${text}\n\n`;
     case "strong": case "b": return `**${text}**`;
     case "u": return `__${text}__`;
+    case "s": case "del": case "strike": return `~~${text}~~`;
     case "em": case "i": return `*${text}*`;
     case "li": return `\n- ${text}`;
     case "ul": case "ol": return `\n${text}\n`;
@@ -32,16 +31,21 @@ function nodeToMarkdown(node: Node): string {
     case "img": {
       const src = node.getAttribute("src") ?? "";
       if (!/^https:\/\//i.test(src)) return "";
-      const alt = (node.getAttribute("alt") ?? "Article image").replace(/[\[\]]/g, "");
+      const alt = (node.getAttribute("alt") ?? "Article image").replace(/[[\]]/g, "");
       return `\n\n![${alt}](${src})\n\n`;
     }
-    case "a": return text;
     default: return text;
   }
 }
 
-export function RichArticleEditor({ value, onChange, minHeight = "min-h-[360px] sm:min-h-[440px]" }: RichArticleEditorProps) {
+const countWords = (value: string) => {
+  const readable = value.replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/[:*_[\]#>~-]/g, " ").trim();
+  return readable ? readable.split(/\s+/).length : 0;
+};
+
+export function RichArticleEditor({ value, onChange, minHeight = "min-h-[240px] sm:min-h-[260px]" }: RichArticleEditorProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [full, setFull] = useState(false);
 
   function replaceSelection(before: string, after = "", placeholder = "text") {
     const input = ref.current;
@@ -49,55 +53,99 @@ export function RichArticleEditor({ value, onChange, minHeight = "min-h-[360px] 
     const start = input.selectionStart;
     const end = input.selectionEnd;
     const selected = value.slice(start, end) || placeholder;
-    const next = `${value.slice(0, start)}${before}${selected}${after}${value.slice(end)}`;
-    onChange(next);
-    requestAnimationFrame(() => {
-      input.focus();
-      input.setSelectionRange(start + before.length, start + before.length + selected.length);
-    });
+    onChange(`${value.slice(0, start)}${before}${selected}${after}${value.slice(end)}`);
+    requestAnimationFrame(() => { input.focus(); input.setSelectionRange(start + before.length, start + before.length + selected.length); });
   }
 
-  function insertImage(gallery = false) {
-    const urls = window.prompt(gallery ? "Paste HTTPS image URLs, separated by commas" : "Paste an HTTPS image URL");
-    if (!urls) return;
-    const images = urls.split(",").map((url) => url.trim()).filter((url) => /^https:\/\//i.test(url)).map((url, index) => `![Image ${index + 1}](${url})`);
+  function insertImages(gallery = false, preset?: string[]) {
+    const raw = preset ?? (window.prompt(gallery ? "Paste HTTPS image URLs, separated by commas" : "Paste an HTTPS image URL") ?? "").split(",");
+    const images = raw.map((url) => url.trim()).filter((url) => /^https:\/\//i.test(url)).map((url, index) => `![Image ${index + 1}](${url})`);
     if (!images.length) return;
-    replaceSelection(gallery ? `\n\n:::gallery\n${images.join("\n")}\n:::\n\n` : `\n\n${images[0]}\n\n`, "", "");
+    replaceSelection(gallery || images.length > 1 ? `\n\n:::gallery\n${images.join("\n")}\n:::\n\n` : `\n\n${images[0]}\n\n`, "", "");
+  }
+
+  function handleDrop(event: DragEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    const urls = (event.dataTransfer.getData("text/uri-list") || event.dataTransfer.getData("text/plain")).split(/\s+/);
+    if (urls.some((url) => /^https:\/\//i.test(url))) insertImages(false, urls); else insertImages(false);
   }
 
   function handlePaste(event: ClipboardEvent<HTMLTextAreaElement>) {
     const html = event.clipboardData.getData("text/html");
     if (!html) return;
     event.preventDefault();
-    const documentNode = new DOMParser().parseFromString(html, "text/html");
-    const markdown = cleanText(Array.from(documentNode.body.childNodes).map(nodeToMarkdown).join(""));
-    replaceSelection(markdown, "", "");
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    replaceSelection(cleanText(Array.from(doc.body.childNodes).map(nodeToMarkdown).join("")), "", "");
   }
 
-  const tools = [
-    { label: "Normal text", icon: Type, action: () => replaceSelection("", "", "Start writing") },
-    { label: "Heading 1", icon: Heading1, action: () => replaceSelection("## ", "", "Main heading") },
-    { label: "Heading 2", icon: Heading2, action: () => replaceSelection("## ", "", "Section heading") },
-    { label: "Heading 3", icon: Heading3, action: () => replaceSelection("### ", "", "Subheading") },
-    { label: "Bold", icon: Bold, action: () => replaceSelection("**", "**", "bold text") },
-    { label: "Italic", icon: Italic, action: () => replaceSelection("*", "*", "italic text") },
-    { label: "Underline", icon: Underline, action: () => replaceSelection("__", "__", "underlined text") },
-    { label: "Bullet list", icon: List, action: () => replaceSelection("- ", "", "List item") },
-    { label: "Quote", icon: Quote, action: () => replaceSelection("> ", "", "Quote") },
-    { label: "Two-column grid", icon: Columns3, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond column\n:::\n\n", "First column") },
-    { label: "Image", icon: Image, action: () => insertImage(false) },
-    { label: "Image gallery", icon: Images, action: () => insertImage(true) },
-    { label: "Three-item grid", icon: Grid2X2, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond item\n---\nThird item\n:::\n\n", "First item") },
-    { label: "Table", icon: Table2, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond cell\n:::\n\n", "First cell") },
+  function history(command: "undo" | "redo") { ref.current?.focus(); document.execCommand(command); }
+
+  function block(kind: string) {
+    if (kind === "h1" || kind === "h2") replaceSelection("\n## ", "", "Section heading");
+    else if (kind === "h3" || kind === "h4") replaceSelection("\n### ", "", "Subheading");
+    else replaceSelection("", "", "Start writing");
+  }
+
+  const iconBtn = "grid h-8 w-8 shrink-0 place-items-center rounded text-navy hover:bg-sky-soft";
+  const sep = <span className="mx-1 h-6 w-px shrink-0 bg-border" aria-hidden />;
+  const Tool = ({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) => <button type="button" title={label} aria-label={label} onClick={onClick} className={iconBtn}>{children}</button>;
+
+  const media = [
+    { label: "Image", icon: Image, action: () => insertImages(false) },
+    { label: "Video", icon: PlaySquare, action: () => replaceSelection("\n\nVideo: ", "\n\n", "describe the video") },
+    { label: "Gallery", icon: Images, action: () => insertImages(true) },
+    { label: "Table", icon: Grid3X3, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond cell\n:::\n\n", "First cell") },
+    { label: "Embed", icon: Code2, action: () => replaceSelection("\n\n> ", "\n\n", "Embedded note") },
     { label: "Divider", icon: Minus, action: () => replaceSelection("\n\n---\n\n", "", "") },
   ];
 
-  return <div className="mt-2 min-w-0 max-w-full overflow-hidden rounded-md border border-input bg-card shadow-card focus-within:ring-1 focus-within:ring-ring">
-    <div className="flex min-h-11 max-w-full items-center gap-0.5 overflow-x-auto border-b border-border bg-sky-soft p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="toolbar" aria-label="Article formatting">
-      {tools.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="ghost" size="icon" title={label} aria-label={label} onClick={action} className="h-8 w-8"><Icon /></Button>)}
-      <Button type="button" variant="ghost" size="icon" title="Full editor width" aria-label="Full editor width" className="ml-auto h-8 w-8 shrink-0" onClick={() => ref.current?.focus()}><Maximize2 /></Button>
+  return <div className={full ? "fixed inset-0 z-[60] overflow-auto bg-background p-4" : "mt-2 min-w-0 max-w-full"}>
+    <div className="overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
+      <div className="flex min-h-12 max-w-full items-center gap-0.5 overflow-x-auto border-b border-border bg-card px-2 py-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="toolbar" aria-label="Article formatting">
+        <select aria-label="Text style" defaultValue="p" onChange={(event) => { block(event.target.value); event.target.value = "p"; }} className="h-8 shrink-0 rounded border border-input bg-card px-2 text-xs font-medium text-navy">
+          <option value="p">Paragraph</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option>
+        </select>
+        {sep}
+        {(["H1", "H2", "H3", "H4"] as const).map((h) => <button key={h} type="button" title={`Heading ${h.slice(1)}`} onClick={() => block(h.toLowerCase())} className="h-8 shrink-0 rounded px-2 text-sm font-semibold text-navy hover:bg-sky-soft">{h}</button>)}
+        {sep}
+        <Tool label="Bold" onClick={() => replaceSelection("**", "**", "bold text")}><Bold className="h-4 w-4" /></Tool>
+        <Tool label="Italic" onClick={() => replaceSelection("*", "*", "italic text")}><Italic className="h-4 w-4" /></Tool>
+        <Tool label="Underline" onClick={() => replaceSelection("__", "__", "underlined text")}><Underline className="h-4 w-4" /></Tool>
+        <Tool label="Strikethrough" onClick={() => replaceSelection("~~", "~~", "struck text")}><Strikethrough className="h-4 w-4" /></Tool>
+        {sep}
+        <Tool label="Align left" onClick={() => ref.current?.focus()}><AlignLeft className="h-4 w-4" /></Tool>
+        <Tool label="Align center" onClick={() => ref.current?.focus()}><AlignCenter className="h-4 w-4" /></Tool>
+        <Tool label="Align right" onClick={() => ref.current?.focus()}><AlignRight className="h-4 w-4" /></Tool>
+        {sep}
+        <Tool label="Bullet list" onClick={() => replaceSelection("\n- ", "", "List item")}><List className="h-4 w-4" /></Tool>
+        <Tool label="Numbered list" onClick={() => replaceSelection("\n1. ", "", "List item")}><ListOrdered className="h-4 w-4" /></Tool>
+        <Tool label="Quote" onClick={() => replaceSelection("\n> ", "", "Quote")}><Quote className="h-4 w-4" /></Tool>
+        {sep}
+        <Tool label="Link (internal text only)" onClick={() => replaceSelection("**", "**", "linked text")}><Link2 className="h-4 w-4" /></Tool>
+        <Tool label="Image" onClick={() => insertImages(false)}><Image className="h-4 w-4" /></Tool>
+        <Tool label="Video" onClick={media[1]!.action}><PlaySquare className="h-4 w-4" /></Tool>
+        <Tool label="Table" onClick={media[3]!.action}><Table2 className="h-4 w-4" /></Tool>
+        <Tool label="Code" onClick={media[4]!.action}><Code2 className="h-4 w-4" /></Tool>
+        {sep}
+        <Tool label="Undo" onClick={() => history("undo")}><Undo2 className="h-4 w-4 text-muted-foreground" /></Tool>
+        <Tool label="Redo" onClick={() => history("redo")}><Redo2 className="h-4 w-4 text-muted-foreground" /></Tool>
+        {sep}
+        <Tool label="Divider" onClick={media[5]!.action}><MoreHorizontal className="h-4 w-4" /></Tool>
+        <button type="button" title={full ? "Exit full screen" : "Full screen"} aria-label={full ? "Exit full screen" : "Full screen"} onClick={() => setFull(!full)} className={`${iconBtn} ml-auto`}>{full ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
+      </div>
+      <div className="relative">
+        <Textarea ref={ref} required value={value} onChange={(event) => onChange(event.target.value)} onPaste={handlePaste} placeholder="Start writing your article here..." className={`${full ? "min-h-[75vh]" : minHeight} w-full resize-y rounded-none border-0 bg-card px-5 py-4 pb-9 text-sm leading-6 text-foreground shadow-none focus-visible:ring-0`} aria-label="Article content" />
+        <span className="pointer-events-none absolute bottom-3 right-4 text-xs text-muted-foreground">Word count: {countWords(value)}</span>
+      </div>
     </div>
-    <Textarea ref={ref} required value={value} onChange={(event) => onChange(event.target.value)} onPaste={handlePaste} placeholder="Start writing your article here…" className={`${minHeight} w-full resize-y rounded-none border-0 bg-card px-4 py-4 text-sm leading-6 shadow-none focus-visible:ring-0`} aria-label="Article content" />
-    <p className="border-t border-border px-3 py-2 text-[11px] text-muted-foreground">Formatted text pasted from ChatGPT, Claude, Google Docs, or Word keeps headings, emphasis, lists, and images.</p>
+    <p className="mt-2 text-[11px] text-muted-foreground">Tip: Use headings, paragraphs, images, lists and quotes to make your article more engaging. Formatting pasted from ChatGPT, Claude, Google Docs or Word is kept.</p>
+    <p className="mt-5 text-xs font-bold text-navy">Insert Media</p>
+    <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-[minmax(0,2.4fr)_repeat(6,minmax(0,1fr))]">
+      <button type="button" onClick={() => insertImages(false)} onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} className="col-span-3 flex items-center justify-center gap-3 rounded-md border border-dashed border-input bg-card p-4 text-left hover:border-primary sm:col-span-1">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><UploadCloud className="h-6 w-6" /></span>
+        <span><span className="block text-xs font-medium text-navy">Drag & drop images here, or click to upload</span><span className="block text-[10px] text-muted-foreground">HTTPS image links — JPG, PNG, WebP</span></span>
+      </button>
+      {media.map(({ label, icon: Icon, action }) => <button key={label} type="button" onClick={action} className="flex flex-col items-center justify-center gap-1.5 rounded-md border border-border bg-card p-3 text-[11px] text-muted-foreground hover:border-primary hover:text-primary"><Icon className="h-4 w-4 text-navy" />{label}</button>)}
+    </div>
   </div>;
 }
