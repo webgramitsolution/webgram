@@ -71,6 +71,13 @@
       "when": 1790838541706,
       "tag": "0009_enquiry_replies_and_post_views",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790920910246,
+      "tag": "0010_add_admin_configurable_guest_post_cost",
+      "breakpoints": true
     }
   ]
 }
