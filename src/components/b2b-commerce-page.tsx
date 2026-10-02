@@ -150,10 +150,10 @@ export function B2BCommercePage() {
               portals, GST invoicing and ERP-ready integrations in one system.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild className="h-10 bg-gold px-6 text-[15px] font-bold text-navy hover:bg-gold/90">
+              <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90">
                 <Link to="/contact">Get a Free Consultation <ArrowRight /></Link>
               </Button>
-              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[15px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark">
+              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark">
                 <Link to="/work/$slug" params={{ slug: "case-studies" }}>View Demo <ArrowRight /></Link>
               </Button>
             </div>
@@ -268,8 +268,8 @@ export function B2BCommercePage() {
             <h2 className="text-[25px] font-bold leading-[1.08] md:text-[27px]">Let’s Build Your B2B<br />Ecommerce Solution.</h2>
             <p className="mt-3 max-w-[420px] text-[14px] leading-[1.55] text-on-dark/85 md:text-[15px]">Discuss your requirements with our experts and get a customized<br className="hidden md:block" /> solution for your business.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild className="h-10 bg-gold px-6 text-[15px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
-              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[15px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button>
+              <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button>
+              <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
