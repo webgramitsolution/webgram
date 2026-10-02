@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [x] Add a real live article preview and complete formatting controls to both post creation screens
 - [x] Match admin and guest blog writing forms to the supplied creation dashboard
 - [x] Add an administrator-controlled guest post credit price with server-side enforcement
 - [x] Remove gaps between blog content and fixed desktop ad rails
