@@ -98,6 +98,18 @@
   --color-brand-aws: var(--brand-aws);
   --color-brand-odoo: var(--brand-odoo);
   --color-brand-sap: var(--brand-sap);
+  --color-game-liquid-1: var(--game-liquid-1);
+  --color-game-liquid-2: var(--game-liquid-2);
+  --color-game-liquid-3: var(--game-liquid-3);
+  --color-game-liquid-4: var(--game-liquid-4);
+  --color-game-liquid-5: var(--game-liquid-5);
+  --color-game-liquid-6: var(--game-liquid-6);
+  --color-game-liquid-7: var(--game-liquid-7);
+  --color-game-liquid-8: var(--game-liquid-8);
+  --color-game-liquid-9: var(--game-liquid-9);
+  --color-game-liquid-10: var(--game-liquid-10);
+  --color-game-liquid-11: var(--game-liquid-11);
+  --color-game-liquid-12: var(--game-liquid-12);
 }
 
 :root {
@@ -172,6 +184,32 @@
   --brand-aws: oklch(0.72 0.16 70);
   --brand-odoo: oklch(0.46 0.09 328);
   --brand-sap: oklch(0.68 0.15 228);
+  --game-liquid-1: oklch(0.69 0.2 43);
+  --game-liquid-2: oklch(0.59 0.22 25);
+  --game-liquid-3: oklch(0.86 0.17 91);
+  --game-liquid-4: oklch(0.72 0.15 145);
+  --game-liquid-5: oklch(0.65 0.2 254);
+  --game-liquid-6: oklch(0.58 0.2 310);
+  --game-liquid-7: oklch(0.68 0.13 183);
+  --game-liquid-8: oklch(0.62 0.23 357);
+  --game-liquid-9: oklch(0.75 0.18 65);
+  --game-liquid-10: oklch(0.72 0.13 218);
+  --game-liquid-11: oklch(0.75 0.17 125);
+  --game-liquid-12: oklch(0.5 0.2 293);
+}
+
+.game-board {
+  background: linear-gradient(to bottom, var(--muted), var(--background));
+}
+
+.game-tube-button,
+.game-tube {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-tube-button,
+  .game-tube { transition: none; }
 }
 
 .dark {

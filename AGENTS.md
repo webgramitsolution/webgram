@@ -32,3 +32,4 @@
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
+- Guest game has 20 sequential water-sort levels; each first completion awards 20 credits through protected database functions, and extra glasses cost 10 credits after level five.
