@@ -1,5 +1,5 @@
 // Server-only: sends "article is live" emails for guest posts whose 30-minute review window has passed.
-const SITE_URL = "https://www.webgramitsolution.com";
+const SITE_URL = "https://webgramitsolution.com";
 
 export async function notifyDueGuestPosts() {
   try {
