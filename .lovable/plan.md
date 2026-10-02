@@ -11,7 +11,7 @@
 ## Legal pages
 - Remove the visible “Cookie settings” control from the footer while retaining the cookie-policy page and the consent choice shown where ads are used.
 - Give Privacy Policy, Terms, Cookie Policy, and Disclaimer the guest-login banner background and a consistent numbered legal-card layout inspired by “Guest Author Terms & Guidelines.”
-- Update legal wording for Indian privacy requirements, including the Digital Personal Data Protection Act, 2023, data-principal rights, grievance contact, consent, retention, guest content, services, advertising, and misuse protections. Keep wording protective but avoid claiming legal guarantees.
+- Expand each legal page into a polished 1,200–2,000-word document covering Indian privacy requirements, including the Digital Personal Data Protection Act, 2023, data-principal rights, grievance contact, consent, retention, guest content, services, advertising, and misuse protections. Keep wording protective but avoid claiming legal guarantees.
 
 ## Ad click-bombing safety
 - Keep ads consent-gated and limited to approved pages/slots.
