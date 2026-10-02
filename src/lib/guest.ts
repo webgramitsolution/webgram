@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export const CREDIT_COSTS = { post: 400, comment: 100, indexing: 100, story: 200, share: 10, level: 20 } as const;
+export const CREDIT_COSTS = { post: 200, comment: 50, indexing: 500, story: 200, share: 30, read: 20, level: 20 } as const;
 export const UNLOCK_LEVELS = 5;
 
 export function gameLevelReward(level: number) {
-  return 20 + Math.floor((Math.max(1, Math.min(20, level)) - 1) / 3) * 10;
+  const l = Math.max(1, Math.min(20, level));
+  return l <= 3 ? 20 : l === 4 ? 50 : l === 5 ? 80 : l === 6 ? 110 : l === 7 ? 150 : 200 + (l - 8) * 50;
 }
 
 export function gameCreditsEarned(levels: number) {
