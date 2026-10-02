@@ -131,16 +131,14 @@ export function B2BCommercePage() {
         />
         <div className="ecom-hero-shade absolute inset-0" />
         <div className="ecom-shell relative flex h-full items-center py-5">
-          <div className="max-w-[560px]">
+          <div className="max-w-[620px]">
             <nav className="sr-only" aria-label="Breadcrumb">
               <Link to="/">Home</Link> <span>›</span> Solutions <span>›</span> B2B Ecommerce
               Development
             </nav>
             <p className="ecom-eyebrow">B2B Ecommerce Development</p>
             <h1 className="mt-2 text-[29px] font-semibold leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
-              Powerful B2B
-              <br />
-              Ecommerce Solutions
+              Powerful B2B Ecommerce Solutions
               <br />
               for <span className="text-gold">Wholesale Growth.</span>
             </h1>
