@@ -159,7 +159,7 @@ export function B2BCommercePage() {
             </div>
             <div className="mt-5 grid max-w-[510px] grid-cols-3 gap-x-3 gap-y-2 sm:grid-cols-6">
               {heroCapabilities.map(([Icon, lineOne, lineTwo]) => (
-                <div key={lineOne} className="text-center text-[14px] font-semibold leading-[1.2]">
+                <div key={lineOne} className="text-center text-[11px] font-semibold leading-[1.25]">
                   <span className="mx-auto mb-1.5 grid h-8 w-8 place-items-center rounded-full border border-on-dark/55">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -179,7 +179,7 @@ export function B2BCommercePage() {
             {reasons.map(([Icon, title, text], index) => (
               <article key={title} className={`grid grid-cols-[38px_1fr] gap-2 px-1.5 py-1 ${index ? "md:border-l md:border-border" : ""}`}>
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-[18px] w-[18px]" /></span>
-                <div><h3 className="text-[15px] font-extrabold leading-tight text-navy md:text-[16px]">{title}</h3><p className="mt-1 text-[16px] leading-[1.4] text-muted-foreground md:text-[16px]">{text}</p></div>
+                <div><h3 className="text-[13px] font-extrabold leading-tight text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -197,7 +197,7 @@ export function B2BCommercePage() {
             {features.map(([Icon, title, text], index) => (
               <article key={title} className="grid min-h-[78px] grid-cols-[46px_1fr] items-center gap-2.5 rounded-md border border-border/70 bg-card p-3">
                 <span className={`grid h-10 w-10 place-items-center rounded-md ${index % 2 ? "bg-warning-soft text-warning" : "bg-primary-soft text-primary"}`}><Icon className="h-[22px] w-[22px]" /></span>
-                <div><h3 className="text-[16px] font-extrabold leading-[1.25] text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[16px] leading-[1.4] text-muted-foreground md:text-[14px]">{text}</p></div>
+                <div><h3 className="text-[14px] font-extrabold leading-[1.25] text-navy md:text-[15px]">{title}</h3><p className="mt-1 text-[13px] leading-[1.5] text-muted-foreground md:text-[13.5px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -216,7 +216,7 @@ export function B2BCommercePage() {
                 <div className="relative aspect-[1/0.92] overflow-hidden">
                   <img src={image} alt={`${title} using the B2B commerce platform`} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-top" />
                 </div>
-                <div className="min-h-[78px] px-3 py-2.5"><h3 className="text-[15px] font-bold text-navy md:text-[16px]">{title}</h3><p className="mt-1 text-[16px] leading-[1.45] text-muted-foreground md:text-[14px]">{text}</p></div>
+                <div className="min-h-[78px] px-3 py-2.5"><h3 className="text-[14px] font-bold text-navy md:text-[14.5px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -237,8 +237,8 @@ export function B2BCommercePage() {
                       <span className="relative hidden h-px flex-1 bg-primary md:block"><span className="absolute -right-0.5 -top-[3px] h-0 w-0 border-y-[3.5px] border-l-[6px] border-y-transparent border-l-primary" /></span>
                     )}
                   </div>
-                  <h3 className="mt-1.5 text-[15px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-0.5 text-[16px] leading-[1.45] text-muted-foreground md:text-[14px]">{text}</p>
+<h3 className="mt-1.5 text-[14px] font-extrabold text-navy">{title}</h3>
+                  <p className="mt-0.5 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p>
                 </div>
               </article>
             ))}
@@ -253,7 +253,7 @@ export function B2BCommercePage() {
             {industries.map(([image, title, text]) => (
               <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
                 <div className="relative h-[96px] overflow-hidden md:h-[104px]"><img src={image} alt={title} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-center" /></div>
-                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[14px] font-extrabold text-navy md:text-[15px]">{title}</h3><p className="mt-1 text-[16px] leading-[1.4] text-muted-foreground md:text-[14px]">{text}</p></div>
+                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[13.5px] font-extrabold text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[12.5px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>
@@ -274,7 +274,7 @@ export function B2BCommercePage() {
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {ctaBenefits.map(([Icon, title, text]) => (
-              <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60"><Icon className="h-[18px] w-[18px]" /></span><strong className="mt-2 block text-[15px]">{title}</strong><small className="mt-1 block text-[16px] text-on-dark/70">{text}</small></div>
+              <div key={title} className="text-center"><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/60"><Icon className="h-[18px] w-[18px]" /></span><strong className="mt-2 block text-[13px]">{title}</strong><small className="mt-1 block text-[12px] text-on-dark/70">{text}</small></div>
             ))}
           </div>
         </div>
