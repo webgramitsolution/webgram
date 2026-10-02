@@ -423,11 +423,8 @@ function Industries() {
           <p className="mt-3 text-[10px] leading-4 text-on-dark/75">
             We develop customized commerce solutions for diverse industries.
           </p>
-          <Button
-            size="sm"
-            className="mt-4 bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90"
-          >
-            Explore Industries <ArrowRight />
+          <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[10px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
+            <Link to="/industries/$slug" params={{ slug: "manufacturing" }}>View All Industries <ArrowRight /></Link>
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
@@ -463,10 +460,6 @@ function B2BFeatures() {
       <Button asChild className="mt-4 h-10 w-full font-bold"><Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Build Your B2B Platform <ArrowRight /></Link></Button>
     </div>
   </section>;
-}
-
-function FinalCta() {
-  return <section className="relative overflow-hidden bg-navy py-8 text-on-dark"><div className="ecom-waves absolute inset-0" aria-hidden="true" /><div className="page-shell relative grid items-center gap-6 md:grid-cols-[1fr_auto]"><div><h2 className="text-[28px] font-extrabold leading-[1.05]">Have a Business Idea?<br />Let’s Build It Together.</h2><p className="mt-3 max-w-xl text-[11px] leading-5 text-on-dark/80">Tell us what you’re building. We’ll help turn it into a scalable digital commerce success story.</p><div className="mt-4 flex flex-wrap gap-3"><Button asChild className="bg-gold font-bold text-navy hover:bg-gold/90"><Link to="/contact">Start Your Project <ArrowRight /></Link></Button><Button asChild variant="outline" className="border-on-dark/60 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="tel:+917551120242">Talk to an Expert</a></Button></div></div><div className="grid grid-cols-2 gap-3 text-center sm:grid-cols-4">{[[Users,"Free","Consultation"],[Code2,"Tailored","Solution"],[Zap,"On-Time","Delivery"],[Headphones,"Long-Term","Support"]].map(([Icon,value,label]) => { const CtaIcon = Icon as Icon; return <div key={label as string}><span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-on-dark/30"><CtaIcon className="h-5 w-5" /></span><strong className="mt-2 block text-[9px]">{value as string}</strong><span className="block text-[8px] text-on-dark/65">{label as string}</span></div>; })}</div></div></section>;
 }
 
 function CaseStudies() {
@@ -643,7 +636,6 @@ function HomePage() {
       <Technology />
       <MobileServices />
       <MobileReviews reviews={reviews} />
-      <FinalCta />
     </main>
   );
 }

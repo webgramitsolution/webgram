@@ -25,6 +25,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as ServicesWebsiteDesignRouteImport } from './routes/services.website-design'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
@@ -118,6 +119,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesWebsiteDesignRoute = ServicesWebsiteDesignRouteImport.update({
+  id: '/services/website-design',
+  path: '/services/website-design',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
   id: '/solutions/$slug',
   path: '/solutions/$slug',
@@ -208,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
@@ -238,6 +245,7 @@ export interface FileRoutesByTo {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
@@ -270,6 +278,7 @@ export interface FileRoutesById {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
@@ -302,6 +311,7 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/resources/$slug'
     | '/services/$slug'
+    | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
     | '/admin/blog'
@@ -332,6 +342,7 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/resources/$slug'
     | '/services/$slug'
+    | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
     | '/admin/requests'
@@ -363,6 +374,7 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/resources/$slug'
     | '/services/$slug'
+    | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
     | '/_authenticated/admin/blog'
@@ -396,6 +408,7 @@ export interface RootRouteChildren {
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesWebsiteDesignRoute: typeof ServicesWebsiteDesignRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   BlogCategorySlugRoute: typeof BlogCategorySlugRoute
@@ -513,6 +526,13 @@ declare module '@tanstack/react-router' {
       path: '/services/$slug'
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/website-design': {
+      id: '/services/website-design'
+      path: '/services/website-design'
+      fullPath: '/services/website-design'
+      preLoaderRoute: typeof ServicesWebsiteDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solutions/$slug': {
@@ -684,6 +704,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriesSlugRoute: IndustriesSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  ServicesWebsiteDesignRoute: ServicesWebsiteDesignRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   BlogCategorySlugRoute: BlogCategorySlugRoute,
