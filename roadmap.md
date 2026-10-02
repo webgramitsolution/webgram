@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [x] Rebuild the full phone homepage to follow the supplied two-screen commerce reference without its final CTA
 - [x] Match the phone “Built Around Your Industry” section to the supplied 3×2 reference grid
 - [x] Remove the homepage “Have a Business Idea? Let’s Build It Together.” section
 - [x] Fix the direct Website Design service page and verify it no longer renders blank

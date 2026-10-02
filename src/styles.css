@@ -422,6 +422,10 @@
   display: contents;
 }
 
+.mobile-hero-services {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .hero-shell {
     min-height: 720px;
@@ -689,45 +693,148 @@
 
 @media (max-width: 767px) {
   .hero-shell {
-    min-height: 610px;
+    min-height: 674px;
+    padding-bottom: 88px;
   }
   .hero-media {
     inset: 0;
-    height: 100%;
+    bottom: 88px;
+    height: auto;
   }
   .hero-media img {
     object-fit: cover;
-    object-position: center center;
+    object-position: center bottom;
     opacity: 1;
   }
   .hero-copy {
-    min-height: 610px;
+    min-height: 586px;
     align-items: flex-start;
-    padding-top: 2.1rem;
+    padding-top: 1.65rem;
+    padding-bottom: 13rem;
   }
   .hero-copy > div {
     max-width: 100%;
   }
   .hero-copy h1 {
-    font-size: 2.35rem;
+    font-size: 2rem;
     line-height: 1.02;
   }
   .hero-copy p {
     max-width: 21rem;
+    font-size: 0.78rem;
+    line-height: 1.15rem;
   }
   .hero-copy > div > div:last-child {
     display: none;
+  }
+  .mobile-hero-services {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 3;
+    display: grid;
+    height: 88px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    background: var(--background);
+    color: var(--navy);
+  }
+  .mobile-hero-services > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding-inline: 0.2rem;
+    text-align: center;
+  }
+  .mobile-hero-services span {
+    display: grid;
+    height: 2.4rem;
+    width: 2.4rem;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--primary-soft);
+    color: var(--primary);
+  }
+  .mobile-hero-services svg {
+    height: 1.15rem;
+    width: 1.15rem;
+  }
+  .mobile-hero-services strong {
+    max-width: 5rem;
+    font-size: 0.55rem;
+    line-height: 0.7rem;
+  }
+  .logo-scroll {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+  .logo-scroll > div {
+    height: 2.7rem;
+    border: 0;
+    box-shadow: none;
+    padding: 0.25rem;
+  }
+  .logo-scroll > div:nth-child(n+9) {
+    display: none;
+  }
+  .logo-scroll img {
+    max-height: 2rem;
+  }
+  #company .page-shell > div:last-child {
+    gap: 0.55rem;
+  }
+  #company article {
+    min-height: 5.8rem;
+    align-items: start;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: 0.65rem;
   }
   #solutions .page-shell > div:first-child,
   #company .page-shell > div:first-child {
     align-items: start;
   }
   #solutions .page-shell > div:last-child {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
   }
   #solutions article {
-    min-height: 150px;
-    padding-right: 44%;
+    min-height: 205px;
+    padding: 0.75rem;
+    padding-bottom: 6.7rem;
+  }
+  #solutions article h3 {
+    font-size: 0.65rem;
+  }
+  #solutions article p {
+    font-size: 0.55rem;
+    line-height: 0.8rem;
+  }
+  #solutions .service-visual {
+    inset: auto 0 0;
+    height: 6.4rem;
+    width: 100%;
+  }
+  #solutions .service-visual::before {
+    background: linear-gradient(180deg, var(--card), transparent 36%);
+  }
+  #services .page-shell {
+    display: block;
+  }
+  #services .page-shell > div:first-child {
+    padding-right: 0;
+  }
+  #services .page-shell > div:first-child .button {
+    display: none;
+  }
+  #services .page-shell > div:nth-child(2) {
+    display: block;
+    margin-top: 1rem;
   }
   #company .page-shell > div:last-child {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -748,6 +855,50 @@
   #case-studies .case-scroll {
     grid-auto-columns: 82%;
     scrollbar-width: none;
+  }
+  #case-studies {
+    display: none;
+  }
+  .b2b-feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .b2b-feature-grid > div {
+    min-height: 3.7rem;
+    grid-template-columns: 1.4rem minmax(0, 1fr);
+    gap: 0.25rem;
+    padding: 0.35rem;
+  }
+  .b2b-feature-grid > div > span {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+  .b2b-feature-grid strong {
+    font-size: 0.48rem;
+  }
+  #resources .page-shell {
+    display: block;
+  }
+  #resources .page-shell > div:first-child p {
+    max-width: none;
+  }
+  #resources .page-shell > div:last-child {
+    margin-top: 1rem;
+  }
+  #resources .page-shell > div:last-child > div {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+  #resources .page-shell > div:last-child > div > div:nth-child(n+12) {
+    display: none;
+  }
+  #resources .page-shell > div:last-child span:first-child {
+    height: 2.75rem;
+    width: 100%;
+    border-radius: var(--radius);
+    padding: 0.55rem;
+  }
+  #resources .page-shell > div:last-child span:last-child {
+    display: none;
   }
   .ecom-hero > img {
     object-position: 62% center;
