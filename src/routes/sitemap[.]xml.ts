@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
-const BASE = "https://www.webgramitsolution.com";
+const BASE = "https://webgramitsolution.com";
 const STATIC_PATHS = ["/","/about","/contact","/privacy-policy","/terms-and-conditions","/cookie-policy","/disclaimer","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/solutions/marketplace-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/industries/manufacturing","/industries/retail","/industries/wholesale","/industries/furniture","/industries/fashion","/industries/electronics","/industries/building-materials","/work/case-studies","/work/portfolio","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs","/resources/insights"];
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
