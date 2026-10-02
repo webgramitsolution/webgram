@@ -131,20 +131,20 @@ export function B2BCommercePage() {
         />
         <div className="ecom-hero-shade absolute inset-0" />
         <div className="ecom-shell relative flex h-full items-center py-5">
-          <div className="max-w-[520px]">
+          <div className="max-w-[560px]">
             <nav className="sr-only" aria-label="Breadcrumb">
               <Link to="/">Home</Link> <span>›</span> Solutions <span>›</span> B2B Ecommerce
               Development
             </nav>
             <p className="ecom-eyebrow">B2B Ecommerce Development</p>
-            <h1 className="mt-2 text-[29px] font-semibold leading-[1.08] sm:text-[32px] md:text-[34px] lg:text-[36px]">
+            <h1 className="mt-2 text-[29px] font-semibold leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
               Powerful B2B
               <br />
               Ecommerce Solutions
               <br />
               for <span className="text-gold">Wholesale Growth.</span>
             </h1>
-            <p className="mt-3 max-w-[505px] text-[14px] font-medium leading-[1.5] text-on-dark/90 md:text-[15px]">
+            <p className="mt-2 max-w-[540px] text-[14px] font-medium leading-[1.5] text-on-dark/90 md:text-[15px]">
               We build secure B2B commerce platforms for manufacturers, wholesalers and
               distributors, combining contract pricing, bulk ordering, RFQ workflows, dealer
               portals, GST invoicing and ERP-ready integrations in one system.
@@ -157,10 +157,10 @@ export function B2BCommercePage() {
                 <Link to="/work/$slug" params={{ slug: "case-studies" }}>View Demo <ArrowRight /></Link>
               </Button>
             </div>
-            <div className="mt-5 grid max-w-[510px] grid-cols-3 gap-x-3 gap-y-2 sm:grid-cols-6">
+            <div className="mt-4 grid max-w-[540px] grid-cols-3 gap-x-3 gap-y-2 sm:grid-cols-6">
               {heroCapabilities.map(([Icon, lineOne, lineTwo]) => (
-                <div key={lineOne} className="text-center text-[14px] font-semibold leading-[1.25]">
-                  <span className="mx-auto mb-1.5 grid h-8 w-8 place-items-center rounded-full border border-on-dark/55">
+                <div key={lineOne} className="text-center text-[12px] font-semibold leading-[1.2]">
+                  <span className="mx-auto mb-1 grid h-7 w-7 place-items-center rounded-full border border-on-dark/55">
                     <Icon className="h-4 w-4" />
                   </span>
                   <span className="block">{lineOne}</span>
