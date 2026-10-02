@@ -49,7 +49,7 @@ function Write() {
   return <div className="min-h-screen bg-sky-soft"><BlogAuthorHeader /><main className="mx-auto w-[min(100%-1rem,1540px)] px-2 py-5">
     <FormPageTitle title="Create New Post" />
     {!s.unlocked ? <div className="mt-4"><LockedNotice levels={s.levels} /></div> : null}
-    <form onSubmit={submit} className="mt-4 grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
+    <form onSubmit={submit} className="mt-4 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_420px]">
       <div className="min-w-0 space-y-4">
         <section className={cardClass}>
           <label className="block text-sm font-bold text-navy">Post Title <span className="text-destructive">*</span><Input required minLength={3} maxLength={180} value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Enter your blog post title here..." className={field} /></label>
