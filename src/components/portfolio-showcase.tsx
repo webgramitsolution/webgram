@@ -1,8 +1,9 @@
 import { ArrowUpRight, CheckCircle2, ExternalLink, MapPin } from "lucide-react";
 
 import type { PortfolioItem } from "@/lib/portfolio";
+import { technologyStack } from "@/lib/site-images";
 
-export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; height?: number }) {
+export function ScrollingFrame({ item, height = 400, eager = false }: { item: PortfolioItem; height?: number; eager?: boolean }) {
   return (
     <a href={item.url} target="_blank" rel="noopener" aria-label={`Open ${item.name} live website`} className="group block overflow-hidden rounded-xl border border-border bg-card shadow-card transition-shadow hover:shadow-lg">
       <div className="flex items-center gap-1.5 border-b border-border bg-muted px-3 py-2.5">
@@ -14,7 +15,7 @@ export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; he
         </span>
       </div>
       <div className="portfolio-frame relative overflow-hidden bg-white" style={{ height, ["--frame-h" as string]: `${height}px` }}>
-        <img src={item.image} alt={`${item.name} full live website preview, designed by Webgram IT Solution`} loading="lazy" decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
+        <img src={item.image} alt={`${item.name} full live website preview, designed by Webgram IT Solution`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
         <span className="absolute bottom-3 right-3 rounded-full bg-navy/90 px-3 py-1.5 text-[12px] font-semibold text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">Open live website</span>
       </div>
     </a>
@@ -22,10 +23,12 @@ export function ScrollingFrame({ item, height = 400 }: { item: PortfolioItem; he
 }
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
+  const technologies = technologyStack.slice(0, 4);
+
   return (
-    <article className="grid gap-6 rounded-2xl border border-border bg-card p-4 shadow-card md:p-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
+    <article className="grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8">
       <ScrollingFrame item={item} height={460} />
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-col">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-[14px] font-semibold text-primary">{item.category}</p>
           <p className="flex items-center gap-1 text-[14px] text-muted-foreground"><MapPin className="h-4 w-4" />{item.location}</p>
@@ -37,7 +40,20 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {item.delivered.map((point) => <li key={point} className="flex items-center gap-2 text-[15px] text-navy"><CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />{point}</li>)}
         </ul>
-        <div className="mt-6 lg:mt-auto lg:pt-6">
+        <div className="mt-6 border-t border-border pt-5">
+          <p className="text-[14px] font-semibold text-navy">Technology used</p>
+          <div className="mt-3 grid grid-cols-4 gap-3">
+            {technologies.map((technology) => (
+              <div key={technology.name} className="flex min-w-0 flex-col items-center gap-1.5 text-center">
+                <span className="grid h-11 w-11 place-items-center rounded-md border border-border bg-background p-2">
+                  <img src={technology.src} alt={`${technology.name} technology`} width={48} height={48} loading="lazy" className="h-full w-full object-contain" />
+                </span>
+                <span className="truncate text-[12px] text-muted-foreground">{technology.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-6 md:mt-auto md:pt-6">
           <a href={item.url} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 rounded-md bg-navy px-5 py-3 text-[15px] font-semibold text-on-dark hover:opacity-90">Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>
           <p className="mt-2 text-[13px] text-muted-foreground">{item.domain}</p>
         </div>

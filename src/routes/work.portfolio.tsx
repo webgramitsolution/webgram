@@ -24,6 +24,7 @@ export const Route = createFileRoute("/work/portfolio")({
       { property: "og:url", content: URL },
       { property: "og:image", content: heroImage },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroImage },
     ],
     scripts: [
       {
@@ -79,9 +80,9 @@ function PortfolioPage() {
       <SiteHeader />
       <section className="contact-hero text-on-dark">
         <img src={heroImage} alt="Webgram IT Solution website portfolio" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-right" />
-        <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[620px]">
-          <h1 className="page-title max-w-[720px]">Websites Designed for Growth<br /><span className="text-gold">Built to Perform.</span></h1>
-          <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">
+        <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[50%] max-md:max-w-full">
+          <h1 className="page-title max-w-[720px] leading-[1.08]">Websites Designed for Growth<br /><span className="text-gold">Built to Perform.</span></h1>
+          <p className="page-lead mt-2 max-w-[680px] text-on-dark/85">
             Real, live projects for businesses in India and Canada — ecommerce stores, B2B wholesale platforms and lead-generating business websites. Each preview scrolls through the actual homepage.
           </p></div>
         </div>

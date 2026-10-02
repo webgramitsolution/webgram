@@ -1,10 +1,10 @@
 # Roadmap
 
 ## Open
-- [ ] Clean Services and Solutions heroes and add the supplied testimonial slider above the footer
-- [ ] Rebuild Portfolio previews at full clarity, improve project copy, correct Houskase/Naval Medical, and add Adlite Electricals
-- [ ] Add portfolio/FAQ hero imagery, remove the supplied trust-logo strip, and align portfolio structured data with business NAP
-- [ ] Make Case Studies indexable with real project details and client reviews
+- [x] Clean Services and Solutions heroes and add the supplied testimonial slider above the footer
+- [x] Rebuild Portfolio previews at full clarity, improve project copy, correct Houskase/Naval Medical, and add Adlite Electricals
+- [x] Add portfolio/FAQ hero imagery, remove the supplied trust-logo strip, and align portfolio structured data with business NAP
+- [x] Make Case Studies indexable with real project details and existing published, attributable client reviews
 - [ ] Publish the completed frontend update and verify Portfolio, Guides, FAQs, and Case Studies live
 - [x] Read all 32 Google Business Profile reviews and reply to the three that had no reply
 - [ ] Update Google profile name, phone and address to match the Contact page (blocked: profile-field editing is not reachable through the connected Google access; must be done in business.google.com)
