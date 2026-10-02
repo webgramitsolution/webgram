@@ -59,3 +59,4 @@
 - [x] Blog SEO, author box, service-page links, and guest/admin flows
 - [x] Reference-led mobile homepage, editorial blog grid, sticky article ad rails, and admin enquiry inbox
 - [x] Contact form works on Hostinger without private key
+- [ ] Review snippet schema on all pages
