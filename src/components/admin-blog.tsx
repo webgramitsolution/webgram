@@ -2,9 +2,10 @@ import { FormEvent, useMemo, useState } from "react";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Clock, Eye, FilePenLine, FileText, Grid2x2, Inbox, LogOut, Plus, Save, Search, Send, Settings2, Trash2, Home, User } from "lucide-react";
+import { ArrowLeft, Clock, Eye, FilePenLine, FileText, Grid2x2, Inbox, LogOut, Plus, Save, Search, Send, Settings2, Trash2, Home, User, ChevronDown, FolderOpen, Image as ImageIcon } from "lucide-react";
 
 import { BlogAuthorHeader } from "@/components/blog-author-header";
+import { CardTitle, FormPageTitle, MetaRow, cardClass } from "@/components/blog-form-ui";
 import { RichArticleEditor } from "@/components/rich-article-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,7 +92,6 @@ export function AdminBlogEditor({ post, categories, name }: { post?: Post; categ
   async function submit(event: FormEvent) { event.preventDefault(); setBusy(true); setError(""); try { await save({ data: { id: post?.id, title: form.title, slug: form.slug, excerpt: form.excerpt, content: form.content, featuredImage: form.featured_image, featuredImageAlt: form.featured_image_alt, categoryId: form.category_id || null, subcategoryId: form.subcategory_id || null, tags: form.tags, faqs: form.faqs.filter((faq) => faq.question.trim() && faq.answer.trim()), noindex: form.noindex, authorName: form.author_name, status: form.status, seoTitle: form.seo_title, seoDescription: form.seo_description } }); await router.invalidate(); await navigate({ to: "/admin/blog" }); } catch (caught) { setError(caught instanceof Error ? caught.message : "Article could not be saved."); } finally { setBusy(false); } }
   async function removePost() { if (!post || !window.confirm("Delete this article permanently?")) return; setBusy(true); await remove({ data: { id: post.id } }); await router.invalidate(); await navigate({ to: "/admin/blog" }); }
   const roots = categories.filter((item) => !item.parent_id); const children = categories.filter((item) => item.parent_id === form.category_id);
-  const wordCount = form.content.trim() ? form.content.trim().split(/\s+/).length : 0;
   const field = "mt-2 h-10 bg-card";
   const title = post ? "Edit Blog Post" : "Create New Post";
   return <div className="min-h-screen bg-sky-soft"><BlogAuthorHeader admin /><main className="mx-auto w-[min(100%-1rem,1540px)] px-2 py-5">
