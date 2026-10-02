@@ -11,9 +11,8 @@ export function SubpageTemplate({ sectionLabel, page }: { sectionLabel: string; 
       <SiteHeader />
       <section className="contact-hero bg-navy py-12 text-on-dark md:py-16">
         <div className="header-shell">
-          <p className="page-eyebrow text-gold">{sectionLabel}</p>
-          <h1 className="page-title mt-2">{page.title}</h1>
-          <p className="page-lead mt-2 max-w-[560px] text-on-dark/80">{page.tagline}</p>
+          <h1 className="page-title max-w-[720px] leading-[1.12]">{page.title}<br /><span className="text-gold">{page.tagline}</span></h1>
+          <p className="page-lead mt-3 max-w-[620px] text-on-dark/80">{page.description}</p>
         </div>
       </section>
       <section className="py-10 md:py-14">

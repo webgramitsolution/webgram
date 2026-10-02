@@ -472,6 +472,26 @@
   box-shadow: 0 8px 24px color-mix(in oklab, var(--navy) 7%, transparent);
 }
 
+@keyframes testimonial-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+.testimonial-marquee {
+  animation: testimonial-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+.testimonial-strip:hover .testimonial-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee {
+    animation: none;
+  }
+}
+
 /* Hero: phone keeps enough room for its stacked copy. Tablet and wider screens
    use a shallower frame, removing 40px from both the top and bottom. */
 .hero-shell {
