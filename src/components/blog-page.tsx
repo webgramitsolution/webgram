@@ -24,9 +24,9 @@ function PostImage({ post, className }: { post: Post; className: string }) {
   return post.featured_image ? <img src={post.featured_image} alt={post.featured_image_alt || post.title} className={className} /> : <div className={`${className} bg-primary-soft`} aria-hidden />;
 }
 
-export function BlogPage({ categories, posts }: { categories: Category[]; posts: Post[] }) {
+export function BlogPage({ categories, posts, initialCategory = "all" }: { categories: Category[]; posts: Post[]; initialCategory?: string }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState(initialCategory);
   const [subcategory, setSubcategory] = useState("all");
   const filtered = useMemo(() => posts.filter((post) => {
     const matchesText = `${post.title} ${post.excerpt}`.toLowerCase().includes(query.toLowerCase());

@@ -18,8 +18,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           posts.push(...(data ?? []));
           if (!data || data.length < 1000) break;
         }
+        const { data: categories, error: categoryError } = await client.from("blog_categories").select("slug").eq("is_active", true).is("parent_id", null).order("display_order");
+        if (categoryError) return new Response("Sitemap unavailable", { status: 500 });
         const urls = [
           ...STATIC_PATHS.map((p) => `<url><loc>${BASE}${p === "/" ? "/" : p}</loc></url>`),
+          ...(categories ?? []).map((category) => `<url><loc>${BASE}/blog/category/${esc(category.slug)}</loc></url>`),
           ...posts.map((p) => `<url><loc>${BASE}/blog/${esc(p.slug)}</loc><lastmod>${p.updated_at.slice(0, 10)}</lastmod></url>`),
         ];
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;

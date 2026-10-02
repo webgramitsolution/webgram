@@ -59,6 +59,27 @@ export const getPublicBlogPost = createServerFn({ method: "GET" })
     return { ...post, category, subcategory, related: related ?? [] };
   });
 
+export const getPublicBlogCategory = createServerFn({ method: "GET" })
+  .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
+  .handler(async ({ data }) => {
+    const client = publicClient();
+    const { data: category, error: categoryError } = await client
+      .from("blog_categories")
+      .select("id,name,slug,description,parent_id")
+      .eq("slug", data.slug)
+      .eq("is_active", true)
+      .is("parent_id", null)
+      .maybeSingle();
+    if (categoryError) throw categoryError;
+    if (!category) return null;
+    const [{ data: children, error: childError }, { data: posts, error: postError }] = await Promise.all([
+      client.from("blog_categories").select("id,name,slug,parent_id").eq("parent_id", category.id).eq("is_active", true).order("display_order"),
+      client.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,category_id,subcategory_id,tags,author_name,published_at").eq("category_id", category.id).eq("status", "published").eq("noindex", false).lte("published_at", new Date().toISOString()).order("published_at", { ascending: false }),
+    ]);
+    if (childError || postError) throw childError ?? postError;
+    return { category, children: children ?? [], posts: posts ?? [] };
+  });
+
 async function requireAdmin(context: { supabase: ReturnType<typeof publicClient>; userId: string }) {
   const { data, error } = await context.supabase.rpc("has_role", {
     _user_id: context.userId,
