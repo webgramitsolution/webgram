@@ -37,7 +37,7 @@ export const getPublicBlogPost = createServerFn({ method: "GET" })
     const client = publicClient();
     const { data: post, error } = await client
       .from("blog_posts")
-      .select("id,title,slug,excerpt,content,featured_image,featured_image_alt,author_name,published_at,seo_title,seo_description,category_id,subcategory_id,tags,faqs,noindex")
+      .select("id,title,slug,excerpt,content,featured_image,featured_image_alt,author_name,published_at,seo_title,seo_description,category_id,subcategory_id,tags,faqs,noindex,view_count")
       .eq("slug", data.slug)
       .eq("status", "published")
       .maybeSingle();
