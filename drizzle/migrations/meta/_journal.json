@@ -71,6 +71,27 @@
       "when": 1790838541706,
       "tag": "0009_enquiry_replies_and_post_views",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790920910246,
+      "tag": "0010_add_admin_configurable_guest_post_cost",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1790921078163,
+      "tag": "0011_lock_legacy_guest_post_submission_paths",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1790921112721,
+      "tag": "0012_allow_safe_guest_article_images_with_dynamic_cost",
+      "breakpoints": true
     }
   ]
 }

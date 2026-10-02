@@ -92,14 +92,25 @@ export const getAdminBlog = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requireAdmin(context);
-    const [{ data: posts, error: postError }, { data: categories, error: categoryError }, { data: profile }] =
+    const [{ data: posts, error: postError }, { data: categories, error: categoryError }, { data: profile }, { data: guestPostCost, error: settingsError }] =
       await Promise.all([
         context.supabase.from("blog_posts").select("*").order("updated_at", { ascending: false }),
         context.supabase.from("blog_categories").select("*").order("display_order"),
         context.supabase.from("profiles").select("display_name,avatar_url").eq("id", context.userId).maybeSingle(),
+        context.supabase.rpc("get_guest_post_cost"),
       ]);
-    if (postError || categoryError) throw postError ?? categoryError;
-    return { posts: posts ?? [], categories: categories ?? [], profile };
+    if (postError || categoryError || settingsError) throw postError ?? categoryError ?? settingsError;
+    return { posts: posts ?? [], categories: categories ?? [], profile, guestPostCost: guestPostCost ?? 400 };
+  });
+
+export const updateGuestPostCost = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ cost: z.number().int().min(0).max(100000) }).parse(input))
+  .handler(async ({ context, data }) => {
+    await requireAdmin(context);
+    const { data: cost, error } = await context.supabase.rpc("set_guest_post_cost", { _cost: data.cost });
+    if (error) throw error;
+    return { cost };
   });
 
 const postInput = z.object({

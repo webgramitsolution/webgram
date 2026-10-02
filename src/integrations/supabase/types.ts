@@ -180,6 +180,27 @@ export type Database = {
           },
         ]
       }
+      blog_settings: {
+        Row: {
+          guest_post_cost: number
+          id: boolean
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          guest_post_cost?: number
+          id?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          guest_post_cost?: number
+          id?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       credit_ledger: {
         Row: {
           amount: number
@@ -481,6 +502,7 @@ export type Database = {
         Returns: undefined
       }
       credit_balance: { Args: { _user_id: string }; Returns: number }
+      get_guest_post_cost: { Args: never; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -491,6 +513,7 @@ export type Database = {
       increment_post_view: { Args: { _slug: string }; Returns: undefined }
       my_credit_balance: { Args: never; Returns: number }
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
+      set_guest_post_cost: { Args: { _cost: number }; Returns: number }
       submit_guest_post: {
         Args: {
           _author_name: string

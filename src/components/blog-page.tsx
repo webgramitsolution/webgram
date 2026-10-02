@@ -61,9 +61,9 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-[1600px] gap-5 px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
+      <div className="mx-auto grid max-w-[1540px] px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px] xl:px-0">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
-      <section className="min-w-0 py-9">
+      <section className="min-w-0 px-3 py-9 md:px-5">
         {grouped.length ? grouped.map((group, index) => <div key={group.category.id}>
           <div id={`category-${group.category.slug}`}>
           <div className="mb-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"><span className="hidden h-px bg-border sm:block" /><h2 className="truncate text-center text-2xl font-extrabold text-navy">{group.category.name}</h2><div className="flex items-center justify-end gap-4"><span className="h-px min-w-5 flex-1 bg-border" /><Button type="button" variant="ghost" size="sm" onClick={() => setCategory(group.category.id)} className="shrink-0 text-primary">View more</Button></div></div>
