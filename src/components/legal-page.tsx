@@ -1,30 +1,53 @@
 import { SiteHeader } from "@/components/site-header";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
+import { FileText, ShieldCheck, Info } from "lucide-react";
 
 export type LegalSection = { title: string; paragraphs: string[]; bullets?: string[] };
 
+const HERO = "https://ik.imagekit.io/x3cipokny/icon/guest%20post%20banner.png";
+
 export function LegalPage({ eyebrow, title, summary, updated, sections }: { eyebrow: string; title: string; summary: string; updated: string; sections: LegalSection[] }) {
-  return <div className="min-h-screen bg-background text-foreground">
+  return <div className="min-h-screen bg-sky-soft text-foreground">
     <SiteHeader />
     <main>
-      <header className="border-b border-border bg-sky-soft py-12 md:py-16">
-        <div className="page-shell max-w-4xl">
-          <p className="page-eyebrow text-primary">{eyebrow}</p>
-          <h1 className="mt-3 text-navy">{title}</h1>
-          <p className="mt-4 max-w-3xl text-muted-foreground">{summary}</p>
-          <p className="mt-4 text-xs font-semibold text-navy">Last updated: {updated}</p>
+      <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label={title}>
+        <div className="page-shell relative py-9 md:py-12">
+          <div className="max-w-[58%] lg:max-w-[620px]">
+            <p className="text-xs font-extrabold uppercase tracking-wide text-primary">{eyebrow}</p>
+            <h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">{title}</h1>
+            <p className="mt-3 max-w-lg text-sm text-muted-foreground">{summary}</p>
+            <p className="mt-4 text-[10px] font-bold uppercase tracking-wider text-navy opacity-70">Last updated: {updated}</p>
+          </div>
         </div>
-      </header>
-      <div className="page-shell grid gap-5 py-10 md:py-14 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
+      </section>
+
+      <div className="page-shell grid gap-6 py-8 md:grid-cols-[1fr_minmax(0,180px)] xl:grid-cols-[180px_1fr_180px]">
         <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
-        <div className="min-w-0 space-y-9">
-          {sections.map((section) => <section key={section.title}>
-            <h2 className="text-navy">{section.title}</h2>
-            <div className="mt-3 space-y-3 text-muted-foreground">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-            {section.bullets ? <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul> : null}
-          </section>)}
+        
+        <div className="space-y-4">
+          {sections.map((section, i) => (
+            <article key={section.title} className="rounded-lg border border-border bg-card p-5 shadow-card md:p-6">
+              <div className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-primary-soft text-primary">
+                  {i % 3 === 0 ? <FileText className="h-5 w-5" /> : i % 3 === 1 ? <ShieldCheck className="h-5 w-5" /> : <Info className="h-5 w-5" />}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-lg font-extrabold text-navy">{section.title}</h2>
+                  <div className="mt-3 space-y-3 text-[14px] leading-6 text-muted-foreground">
+                    {section.paragraphs.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
+                  </div>
+                  {section.bullets ? (
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-[13px] leading-6 text-muted-foreground">
+                      {section.bullets.map((item, idx) => <li key={idx}>{item}</li>)}
+                    </ul>
+                  ) : null}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-        <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
+
+        <aside className="hidden md:block"><div className="sticky top-32"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>
       <BlogAdsConsent />
     </main>
