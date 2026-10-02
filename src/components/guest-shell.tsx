@@ -17,17 +17,18 @@ const nav = [
   { to: "/guest/support", label: "Support", icon: LifeBuoy },
 ] as const;
 
-export function GuestShell({ title, balance, levels, children }: { title: string; balance: number; levels: number; children: React.ReactNode }) {
+export function GuestShell({ title, balance, levels, children, rightRail }: { title: string; balance: number; levels: number; children: React.ReactNode; rightRail?: React.ReactNode }) {
   const navigate = useNavigate(); const qc = useQueryClient();
   async function signOut() { await qc.cancelQueries(); qc.clear(); await supabase.auth.signOut(); await navigate({ to: "/guest-login", replace: true }); }
   return <div className="min-h-screen bg-sky-soft"><SiteHeader />
-    <div className="page-shell grid min-w-0 gap-6 py-8 lg:grid-cols-[230px_minmax(0,1fr)]">
-      <aside className="h-max min-w-0 max-w-full rounded-md border border-border bg-card p-3 shadow-card lg:sticky lg:top-[124px] lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto">
+    <div className={`grid min-w-0 ${rightRail ? "md:grid-cols-[190px_minmax(0,1fr)_180px] lg:grid-cols-[230px_minmax(0,1fr)_220px] xl:grid-cols-[230px_minmax(0,1fr)_250px]" : "md:grid-cols-[230px_minmax(0,1fr)]"}`}>
+      <aside className="min-w-0 max-w-full border-r border-border bg-card p-3 shadow-card md:sticky md:top-[103px] md:h-[calc(100vh-103px)] md:self-start md:overflow-hidden">
         <div className="rounded-md bg-navy p-4 text-on-dark"><p className="text-[10px] font-bold uppercase tracking-widest text-on-dark/70">Your credits</p><p className="mt-1 flex items-center gap-2 text-3xl font-extrabold"><Coins className="h-6 w-6 text-gold" />{balance}</p><p className="mt-2 text-[11px] text-on-dark/70">{levels}/20 levels complete</p></div>
-        <nav className="mt-3 flex max-w-full gap-1 overflow-x-auto lg:flex-col">{nav.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: true }} activeProps={{ className: "bg-sky-soft text-primary" }} className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-navy hover:bg-sky-soft"><item.icon className="h-4 w-4" />{item.label}</Link>)}</nav>
+        <nav className="guest-nav mt-3 flex max-w-full gap-1 overflow-x-auto md:flex-col md:overflow-visible">{nav.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: true }} activeProps={{ className: "bg-sky-soft text-primary" }} className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-navy hover:bg-sky-soft"><item.icon className="h-4 w-4 shrink-0" />{item.label}</Link>)}</nav>
         <Button variant="ghost" size="sm" onClick={signOut} className="mt-2 w-full justify-start text-muted-foreground"><LogOut />Sign out</Button>
       </aside>
-      <main className="min-w-0 rounded-md border border-border bg-background p-4 shadow-card sm:p-6"><h1 className="text-3xl font-extrabold text-navy">{title}</h1><div className="mt-5">{children}</div></main>
+      <main className="min-w-0 bg-background p-3 sm:p-5"><h1 className="sr-only">{title}</h1>{children}</main>
+      {rightRail ? <aside className="hidden border-l border-border bg-card p-3 md:block"><div className="sticky top-[118px]">{rightRail}</div></aside> : null}
     </div>
   </div>;
 }

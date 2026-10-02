@@ -26,7 +26,7 @@ function loadAds() {
   document.head.appendChild(script);
 }
 
-export function BlogAdsConsent() {
+export function BlogAdsConsent({ context = "blog" }: { context?: "blog" | "game" }) {
   const [consent, setConsent] = useState<Consent>(null);
   useEffect(() => {
     const saved = window.localStorage.getItem(CONSENT_KEY) as Consent;
@@ -48,7 +48,7 @@ export function BlogAdsConsent() {
   }, []);
   function choose(value: Exclude<Consent, null>) { window.localStorage.setItem(CONSENT_KEY, value); setConsent(value); window.dispatchEvent(new CustomEvent("webgram:ad-consent", { detail: value })); if (value === "accepted") loadAds(); }
   if (consent) return null;
-  return <aside className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-md border border-border bg-card p-4 shadow-xl" aria-label="Advertising cookie choices"><div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center"><div><h2 className="text-base font-extrabold text-navy">Your advertising choice</h2><p className="mt-1 text-xs text-muted-foreground">Blog ads help support our journal. Allow advertising cookies for personalised delivery and measurement, or reject them and continue reading.</p></div><div className="flex gap-2"><Button variant="outline" onClick={() => choose("rejected")}>Reject</Button><Button onClick={() => choose("accepted")}>Accept</Button></div></div></aside>;
+  return <aside className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-md border border-border bg-card p-4 shadow-xl" aria-label="Advertising cookie choices"><div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center"><div><h2 className="text-base font-extrabold text-navy">Your advertising choice</h2><p className="mt-1 text-xs text-muted-foreground">{context === "game" ? "Ads help support the free game." : "Blog ads help support our journal."} Allow advertising cookies for delivery and measurement, or reject them and continue.</p></div><div className="flex gap-2"><Button variant="outline" onClick={() => choose("rejected")}>Reject</Button><Button onClick={() => choose("accepted")}>Accept</Button></div></div></aside>;
 }
 
 export function BlogAdBand({ label = "Advertisement", position = "category", rail = false }: { label?: string; position?: BlogAdPosition; rail?: boolean }) {

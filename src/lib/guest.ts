@@ -4,6 +4,14 @@ import { supabase } from "@/integrations/supabase/client";
 export const CREDIT_COSTS = { post: 400, comment: 100, indexing: 100, story: 200, share: 10, level: 20 } as const;
 export const UNLOCK_LEVELS = 5;
 
+export function gameLevelReward(level: number) {
+  return 20 + Math.floor((Math.max(1, Math.min(20, level)) - 1) / 3) * 10;
+}
+
+export function gameCreditsEarned(levels: number) {
+  return Array.from({ length: Math.max(0, Math.min(20, levels)) }, (_, index) => gameLevelReward(index + 1)).reduce((total, reward) => total + reward, 0);
+}
+
 export function errorText(error: unknown) {
   if (error && typeof error === "object" && "message" in error) return String((error as { message: string }).message);
   return "Something went wrong. Please try again.";
