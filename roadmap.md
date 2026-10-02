@@ -5,6 +5,8 @@
 - [x] Match the blog article center column to the supplied reference
 - [x] Restore the guest writing page surface and verify the rich editor
 - [x] Make the supplied phone homepage banner clearly visible
+- [x] Prevent missing private server credentials from blanking the public blog
+- [x] Pin the patched YAML parser version reported by the dependency scanner
 - [x] Add indexable primary blog category pages and include them in the dynamic sitemap
 - [x] Verify a real guest submission and admin approval
 - [x] Submit the live sitemap in Google Search Console
