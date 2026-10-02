@@ -89,14 +89,14 @@ function AboutHero() {
             Commerce for a<br />
             <span className="text-gold">Better Tomorrow</span>
           </h1>
-          <p className="mt-4 max-w-[400px] text-[11px] leading-[1.6] text-on-dark/90">
+          <p className="mt-4 max-w-[400px] text-[14px] leading-[1.6] text-on-dark/90">
             We are a technology-driven company focused on building high-performance eCommerce, B2B,
             B2C and custom digital solutions that help businesses grow, scale and succeed.
           </p>
           <div className="mt-5 flex items-center gap-5">
             <Button
               asChild
-              className="h-10 rounded-sm bg-gold px-7 text-[10px] font-bold text-navy hover:bg-gold/90"
+              className="h-10 rounded-sm bg-gold px-7 text-[13px] font-bold text-navy hover:bg-gold/90"
             >
               <a href="#story">
                 Our Story <ArrowRight />
@@ -106,9 +106,9 @@ function AboutHero() {
               <span className="grid h-8 w-8 place-items-center rounded-full bg-card text-navy">
                 <Play className="h-3.5 w-3.5 fill-current" />
               </span>
-              <span className="text-[10px] font-semibold leading-tight">
+              <span className="text-[13px] font-semibold leading-tight">
                 Watch Video
-                <small className="block text-[8px] font-normal text-on-dark/70">1.45 min</small>
+                <small className="block text-[12px] font-normal text-on-dark/70">1.45 min</small>
               </span>
             </span>
           </div>
@@ -116,7 +116,7 @@ function AboutHero() {
             {stats.map(([n, l]) => (
               <div key={l} className="px-3 first:pl-0">
                 <strong className="block text-[20px] font-extrabold leading-none">{n}</strong>
-                <span className="mt-1 block text-[8px] leading-tight text-on-dark/80">{l}</span>
+                <span className="mt-1 block text-[12px] leading-tight text-on-dark/80">{l}</span>
               </div>
             ))}
           </div>
@@ -162,7 +162,7 @@ function WhoWeAre() {
             <br />
             <span className="text-primary">Technology Partner</span>
           </h2>
-          <p className="mt-3 max-w-[400px] text-[10.5px] leading-[1.6] text-muted-foreground">
+          <p className="mt-3 max-w-[400px] text-[14px] leading-[1.6] text-muted-foreground">
             Webgram IT Solution is a leading web development and digital commerce company in Delhi
             NCR, helping businesses transform their ideas into powerful online platforms. We
             specialize in eCommerce, B2B portals, marketplace development, custom web applications
@@ -170,7 +170,7 @@ function WhoWeAre() {
           </p>
           <Button
             asChild
-            className="mt-4 h-9 rounded-sm bg-gold px-5 text-[10px] font-bold text-navy hover:bg-gold/90"
+            className="mt-4 h-9 rounded-sm bg-gold px-5 text-[13px] font-bold text-navy hover:bg-gold/90"
           >
             <Link to="/contact">
               More About Us <ArrowRight />
@@ -185,8 +185,8 @@ function WhoWeAre() {
             >
               <Icon className="h-7 w-7 shrink-0 text-primary" />
               <div>
-                <h3 className="text-[11px] font-bold leading-tight text-navy">{t}</h3>
-                <p className="mt-2 text-[9px] leading-[1.6] text-muted-foreground">{d}</p>
+                <h3 className="text-[14px] font-bold leading-tight text-navy">{t}</h3>
+                <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">{d}</p>
               </div>
             </article>
           ))}
@@ -244,7 +244,7 @@ function Purpose() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-3 text-[13px] font-bold text-navy">{title}</h3>
-                <p className="mt-2 text-[9.5px] leading-[1.6] text-muted-foreground">{text}</p>
+                <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">{text}</p>
               </article>
             ))}
           </div>
@@ -296,13 +296,13 @@ function Journey() {
             Our Journey
           </p>
           <h2 className="mt-2 text-[22px] font-extrabold text-navy">From Ideas to Impact</h2>
-          <p className="mt-2 text-[10px] leading-[1.6] text-muted-foreground">
+          <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">
             A journey of continuous learning, innovation and delivering value to businesses across
             industries.
           </p>
           <Button
             asChild
-            className="mt-4 h-8 rounded-sm bg-gold px-4 text-[9px] font-bold text-navy hover:bg-gold/90"
+            className="mt-4 h-8 rounded-sm bg-gold px-4 text-[13px] font-bold text-navy hover:bg-gold/90"
           >
             <a href="#story">
               View Our Journey <ArrowRight />
@@ -318,9 +318,9 @@ function Journey() {
                 </span>
                 {i < steps.length - 1 && <span className="ml-2 h-px flex-1 bg-gold/70" />}
               </div>
-              <strong className="mt-3 block text-[10px] text-navy">{y}</strong>
-              <h3 className="text-[9.5px] font-bold text-navy">{t}</h3>
-              <p className="mt-1 text-[8.5px] leading-[1.5] text-muted-foreground">{d}</p>
+              <strong className="mt-3 block text-[13px] text-navy">{y}</strong>
+              <h3 className="text-[13px] font-bold text-navy">{t}</h3>
+              <p className="mt-1 text-[13px] leading-[1.5] text-muted-foreground">{d}</p>
             </article>
           ))}
         </div>
@@ -341,13 +341,13 @@ function Workspace() {
           <h2 className="mt-2 text-[21px] font-extrabold leading-tight text-navy">
             A Creative &amp; Collaborative Environment
           </h2>
-          <p className="mt-2 text-[10px] leading-[1.5] text-muted-foreground">
+          <p className="mt-2 text-[13px] leading-[1.5] text-muted-foreground">
             Our team works in a modern, collaborative and innovative environment, combining
             creativity with technology to deliver exceptional results for our clients.
           </p>
           <Button
             asChild
-            className="mt-4 h-8 rounded-sm bg-gold px-4 text-[9px] font-bold text-navy hover:bg-gold/90"
+            className="mt-4 h-8 rounded-sm bg-gold px-4 text-[13px] font-bold text-navy hover:bg-gold/90"
           >
             <Link to="/contact">
               Join Our Team <ArrowRight />
@@ -365,7 +365,7 @@ function Workspace() {
                 loading="lazy"
                 className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] md:h-[160px]"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/80 to-transparent px-3 pb-2 pt-6 text-[9px] font-semibold text-on-dark">
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/80 to-transparent px-3 pb-2 pt-6 text-[13px] font-semibold text-on-dark">
                 {image.label}
               </figcaption>
             </figure>
@@ -388,7 +388,7 @@ function WhyChoose() {
     <section className="bg-navy py-5 text-on-dark">
       <div className="page-shell">
         <h2 className="text-[17px] font-bold">Why Businesses Choose Webgram</h2>
-        <p className="mt-1 text-[10px] text-on-dark/80">
+        <p className="mt-1 text-[13px] text-on-dark/80">
           More than just development — we are your long-term digital commerce partner.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 md:divide-x md:divide-on-dark/20">
@@ -398,8 +398,8 @@ function WhyChoose() {
                 <Icon className="h-4 w-4" />
               </span>
               <div>
-                <strong className="block text-[9.5px]">{t}</strong>
-                <small className="block text-[8px] leading-tight text-on-dark/75">{d}</small>
+                <strong className="block text-[13px]">{t}</strong>
+                <small className="block text-[12px] leading-tight text-on-dark/75">{d}</small>
               </div>
             </div>
           ))}

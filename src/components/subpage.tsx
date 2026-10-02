@@ -21,7 +21,7 @@ export function SubpageTemplate({ sectionLabel, page }: { sectionLabel: string; 
           <div>
             <h2 className="content-title text-navy">Overview</h2>
             <p className="content-body mt-3 text-muted-foreground">{page.description}</p>
-            <Button asChild className="mt-6 h-11 bg-gold px-6 text-[12px] font-bold text-navy hover:bg-gold/90">
+            <Button asChild className="mt-6 h-11 bg-gold px-6 text-[14px] font-bold text-navy hover:bg-gold/90">
               <Link to="/contact">
                 Start Your Project <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
@@ -29,7 +29,7 @@ export function SubpageTemplate({ sectionLabel, page }: { sectionLabel: string; 
           </div>
           <ul className="rounded-lg border border-border bg-card p-5 shadow-card">
             {page.points.map((point) => (
-              <li key={point} className="flex items-center gap-2.5 border-b border-border py-2.5 text-[12.5px] font-medium text-navy last:border-0">
+              <li key={point} className="flex items-center gap-2.5 border-b border-border py-2.5 text-[15px] font-medium text-navy last:border-0">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                 {point}
               </li>
