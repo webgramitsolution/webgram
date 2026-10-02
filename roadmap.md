@@ -1,6 +1,9 @@
 # Roadmap
 
 ## Open
+- [x] Add indexable primary blog category pages and include them in the dynamic sitemap
+- [ ] Verify a real guest submission and admin approval (blocked: test session has multiple users and needs the user's account choice)
+- [ ] Submit the live sitemap in Google Search Console after the updated Hostinger build is deployed
 - [x] Match the blog detail reference and add safe rich formatting to guest article posting
 - [x] Restore one responsive ad band after every two blog category sections while keeping footer anchor ads suppressed
 - [x] Match the journal header to the shared navy logo/header treatment
