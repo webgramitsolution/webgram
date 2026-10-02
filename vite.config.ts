@@ -12,4 +12,6 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Self-hosted builds (Hostinger Node.js) need a Node server; Lovable's own builds override this.
+  nitro: { preset: "node-server" },
 });
