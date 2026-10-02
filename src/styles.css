@@ -800,11 +800,41 @@
     align-items: start;
   }
   #solutions .page-shell > div:last-child {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
   }
   #solutions article {
-    min-height: 150px;
-    padding-right: 44%;
+    min-height: 205px;
+    padding: 0.75rem;
+    padding-bottom: 6.7rem;
+  }
+  #solutions article h3 {
+    font-size: 0.65rem;
+  }
+  #solutions article p {
+    font-size: 0.55rem;
+    line-height: 0.8rem;
+  }
+  #solutions .service-visual {
+    inset: auto 0 0;
+    height: 6.4rem;
+    width: 100%;
+  }
+  #solutions .service-visual::before {
+    background: linear-gradient(180deg, var(--card), transparent 36%);
+  }
+  #services .page-shell {
+    display: block;
+  }
+  #services .page-shell > div:first-child {
+    padding-right: 0;
+  }
+  #services .page-shell > div:first-child .button {
+    display: none;
+  }
+  #services .page-shell > div:nth-child(2) {
+    display: block;
+    margin-top: 1rem;
   }
   #company .page-shell > div:last-child {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -827,6 +857,47 @@
     scrollbar-width: none;
   }
   #case-studies {
+    display: none;
+  }
+  .b2b-feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .b2b-feature-grid > div {
+    min-height: 3.7rem;
+    grid-template-columns: 1.4rem minmax(0, 1fr);
+    gap: 0.25rem;
+    padding: 0.35rem;
+  }
+  .b2b-feature-grid > div > span {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+  .b2b-feature-grid strong {
+    font-size: 0.48rem;
+  }
+  #resources .page-shell {
+    display: block;
+  }
+  #resources .page-shell > div:first-child p {
+    max-width: none;
+  }
+  #resources .page-shell > div:last-child {
+    margin-top: 1rem;
+  }
+  #resources .page-shell > div:last-child > div {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+  #resources .page-shell > div:last-child > div > div:nth-child(n+12) {
+    display: none;
+  }
+  #resources .page-shell > div:last-child span:first-child {
+    height: 2.75rem;
+    width: 100%;
+    border-radius: var(--radius);
+    padding: 0.55rem;
+  }
+  #resources .page-shell > div:last-child span:last-child {
     display: none;
   }
   .ecom-hero > img {

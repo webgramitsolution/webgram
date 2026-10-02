@@ -364,7 +364,7 @@ function Ecosystem() {
             Learn More <ArrowRight />
           </Button>
         </div>
-        <div className="hidden min-w-0 md:block">
+        <div className="min-w-0">
           <img
             src={IMAGES.ecosystem}
             alt="Webgram commerce ecosystem linking storefront, commerce, operations, payments, analytics and integrations"
@@ -460,7 +460,7 @@ function B2BFeatures() {
       <p className="eyebrow text-primary">B2B Commerce</p>
       <h2 className="section-title mt-2">Powering Modern B2B Commerce</h2>
       <p className="section-subtitle max-w-xl">Advanced B2B features that digitize wholesale and distribution businesses.</p>
-      <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
+      <div className="b2b-feature-grid mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
         {b2bFeatures.map(([IconComponent, label]) => <div key={label} className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"><span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><strong className="text-[9px] leading-tight text-navy">{label}</strong></div>)}
       </div>
       <Button asChild className="mt-4 h-10 w-full font-bold"><Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Build Your B2B Platform <ArrowRight /></Link></Button>
