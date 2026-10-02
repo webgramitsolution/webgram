@@ -113,6 +113,13 @@
       "when": 1790929961011,
       "tag": "0015_add_secure_game_glass_purchase",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1790932657314,
+      "tag": "0016_tier_guest_game_rewards",
+      "breakpoints": true
     }
   ]
 }
