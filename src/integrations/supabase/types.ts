@@ -584,6 +584,16 @@ export type Database = {
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       set_guest_post_cost: { Args: { _cost: number }; Returns: number }
       start_blog_read: { Args: { _post_id: string }; Returns: undefined }
+      submit_enquiry: {
+        Args: {
+          _email: string
+          _message: string
+          _name: string
+          _phone: string
+          _service: string
+        }
+        Returns: string
+      }
       submit_guest_post: {
         Args: {
           _author_name: string
