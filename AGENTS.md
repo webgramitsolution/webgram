@@ -23,7 +23,7 @@
 - Blog management stays authenticated with server-side role checks; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
-- AdSense is consent-gated: blog listing shows one responsive band after every two category sections; article/legal pages use fixed desktop rails; the game alone may use a right rail and skippable post-win break. Never render top, bottom, footer, or guest-posting ads.
+- AdSense is consent-gated: blog listing shows one responsive band after every two category sections; article/legal pages use fixed desktop rails; the game alone may use a right rail (also on phones) and skippable post-win break. Never render top, bottom, footer, or guest-posting ads.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
@@ -32,4 +32,5 @@
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
-- Guest game has 20 sequential water-sort levels; first-completion rewards start at 20 credits and rise by 10 every three levels through a protected database function. Extra glasses cost 10 credits after level five, and advertising never determines rewards.
+- Guest game has 20 sequential water-sort levels; first-completion rewards follow the protected `game_level_reward` database function. Extra glasses cost 10 credits after level five, and advertising never determines rewards.
+- Reading (scroll-to-end + 60s) and 6-platform share rewards are timed and granted once per post by security-definer RPCs; the browser only starts/claims.
