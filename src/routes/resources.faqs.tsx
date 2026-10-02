@@ -85,7 +85,7 @@ function FaqsPage() {
         <img src={heroImage} alt="Website development questions and answers" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-right" />
         <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[50%] max-md:max-w-full">
           <h1 className="page-title max-w-[700px] leading-[1.08]">Frequently Asked Questions<br /><span className="text-gold">Clear Answers, No Jargon.</span></h1>
-          <p className="page-lead mt-2 max-w-[680px] text-on-dark/85">Quick answers about our services, process, timelines, pricing and support.</p></div>
+          <p className="page-lead mt-2 max-w-[34rem] text-on-dark/85">Quick answers about our services, process,<br className="hidden sm:block" /> timelines, pricing and support.</p></div>
         </div>
       </section>
       <section className="py-10 md:py-14">

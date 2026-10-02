@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const CONSENT_KEY = "webgram-ad-consent";
+const AD_GUARD_KEY = "webgram-ad-guard";
+const AD_CLICK_WINDOW_MS = 60_000;
+const AD_CLICK_LIMIT = 3;
 type Consent = "accepted" | "rejected" | null;
 const CONSENT_REGIONS = new Set(["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH"]);
 const PUBLISHER_ID = "ca-pub-5971464853495085";
@@ -55,18 +58,33 @@ export function BlogAdBand({ label = "Advertisement", position = "category", rai
   const slot = BLOG_AD_SLOTS[position];
   const adRef = useRef<HTMLModElement>(null);
   const [accepted, setAccepted] = useState(false);
+  const [guarded, setGuarded] = useState(false);
   useEffect(() => {
-    const syncConsent = () => setAccepted(window.localStorage.getItem(CONSENT_KEY) === "accepted");
+    const syncConsent = () => { setAccepted(window.localStorage.getItem(CONSENT_KEY) === "accepted"); setGuarded(window.sessionStorage.getItem(AD_GUARD_KEY) === "blocked"); };
     syncConsent();
     window.addEventListener("webgram:ad-consent", syncConsent);
     return () => window.removeEventListener("webgram:ad-consent", syncConsent);
   }, []);
+  function registerAdInteraction() {
+    const now = Date.now();
+    const raw = window.sessionStorage.getItem(AD_GUARD_KEY);
+    let parsed = { startedAt: now, count: 0 };
+    if (raw && raw !== "blocked") {
+      try {
+        const stored = JSON.parse(raw) as { startedAt?: unknown; count?: unknown };
+        if (typeof stored.startedAt === "number" && typeof stored.count === "number") parsed = { startedAt: stored.startedAt, count: stored.count };
+      } catch { window.sessionStorage.removeItem(AD_GUARD_KEY); }
+    }
+    const state = now - parsed.startedAt > AD_CLICK_WINDOW_MS ? { startedAt: now, count: 1 } : { startedAt: parsed.startedAt, count: parsed.count + 1 };
+    if (state.count >= AD_CLICK_LIMIT) { window.sessionStorage.setItem(AD_GUARD_KEY, "blocked"); setGuarded(true); }
+    else window.sessionStorage.setItem(AD_GUARD_KEY, JSON.stringify(state));
+  }
   useEffect(() => {
     if (!slot || !accepted || !adRef.current || adRef.current.dataset["adStatus"]) return;
     loadAds();
     try { (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle = (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle ?? []; (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle?.push({}); } catch { /* AdSense retries after its script is ready. */ }
   }, [accepted, slot]);
-  return <aside className={rail ? "mx-auto w-[160px]" : "w-full py-4"} aria-label={label}><div className={`grid place-items-center border border-border bg-muted/35 ${rail ? "min-h-[600px] rounded-md" : "min-h-[110px] overflow-hidden"}`}>{slot && accepted ? <ins ref={adRef} className={`adsbygoogle block w-full ${rail ? "min-h-[600px]" : "min-h-[110px]"}`} data-ad-client={PUBLISHER_ID} data-ad-slot={slot} data-ad-format={rail ? "vertical" : "auto"} data-full-width-responsive="true" /> : <span className="px-3 text-center text-[13px] font-semibold uppercase text-muted-foreground">{label}<small className="mt-1 block normal-case">{slot ? "Accept advertising cookies to load this ad" : "Reserved ad position"}</small></span>}</div></aside>;
+  return <aside className={rail ? "mx-auto w-[160px]" : "w-full py-4"} aria-label={label} onPointerDownCapture={registerAdInteraction}><div className={`grid place-items-center border border-border bg-muted/35 ${rail ? "min-h-[600px] rounded-md" : "min-h-[110px] overflow-hidden"}`}>{slot && accepted && !guarded ? <ins ref={adRef} className={`adsbygoogle block w-full ${rail ? "min-h-[600px]" : "min-h-[110px]"}`} data-ad-client={PUBLISHER_ID} data-ad-slot={slot} data-ad-format={rail ? "vertical" : "auto"} data-full-width-responsive="true" /> : <span className="px-3 text-center text-[13px] font-semibold uppercase text-muted-foreground">{guarded ? "Advertisements paused" : label}<small className="mt-1 block normal-case">{guarded ? "Unusual rapid activity was detected for this session" : slot ? "Accept advertising cookies to load this ad" : "Reserved ad position"}</small></span>}</div></aside>;
 }
 
 export function openCookieSettings() { if (typeof window !== "undefined") window.dispatchEvent(new Event("webgram:cookie-settings")); }

@@ -57,7 +57,7 @@ export const Route = createFileRoute("/about")({
 
 const menu: Array<[string, string[]]> = [
   ["Home", []],
-  ["Solutions", ["Ecommerce Development", "B2B Commerce", "Marketplace Development"]],
+  ["Solutions", ["Ecommerce Development", "B2B Commerce", "Website Design & Development"]],
   ["Services", ["Website Development", "SEO", "Google Ads", "Social Media Ads"]],
   ["Industries", ["Manufacturing", "Retail", "Wholesale", "Furniture"]],
   ["Case Studies", []],

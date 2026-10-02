@@ -1,12 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/legal-page";
+import { termsSections } from "@/lib/legal-content";
 
 const description = "Terms governing use of the Webgram IT Solution website, enquiries, guest content and professional digital services.";
 export const Route = createFileRoute("/terms-and-conditions")({ head: () => ({ meta: [{ name: "robots", content: "noindex, follow" }, { title: "Terms & Conditions | Webgram IT Solution" }, { name: "description", content: description }, { property: "og:title", content: "Terms & Conditions | Webgram IT Solution" }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { property: "og:url", content: "https://webgramitsolution.com/terms-and-conditions" }, { name: "twitter:card", content: "summary" }] }), component: TermsPage });
-function TermsPage() { return <LegalPage eyebrow="Legal" title="Terms & Conditions" summary={description} updated="30 September 2026" sections={[
-  { title: "Website use", paragraphs: ["You may use this website for lawful business and informational purposes. You must not attempt to disrupt the service, access restricted systems or submit deceptive or harmful material."] },
-  { title: "Services and quotations", paragraphs: ["Website content is general information, not a binding quotation. Scope, price, delivery dates, responsibilities and payment terms become binding only when agreed in a written proposal or contract."] },
-  { title: "Guest content", paragraphs: ["Guest authors remain responsible for submitted content. Submissions must be original, lawful, at least the required length and must not contain prohibited external links. We may review, edit, reject or remove content that violates these terms."] },
-  { title: "Intellectual property", paragraphs: ["The Webgram name, website design and original site content belong to Webgram IT Solution or their respective licensors. Client ownership and licences are governed by the relevant project agreement."] },
-  { title: "Limitation and changes", paragraphs: ["We aim to keep information accurate and services available, but cannot guarantee uninterrupted access. To the extent permitted by law, liability is limited to the terms of the applicable written service agreement. We may update these terms when our services or legal obligations change."] },
-]} />; }
+function TermsPage() { return <LegalPage eyebrow="Legal" title="Terms & Conditions" summary={description} updated="2 October 2026" sections={termsSections} />; }

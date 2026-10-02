@@ -11,12 +11,13 @@ export function LegalPage({ eyebrow, title, summary, updated, sections }: { eyeb
     <SiteHeader />
     <main>
       <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label={title}>
+        <span className="absolute inset-y-0 left-0 w-[72%] bg-sky-soft/90 md:hidden" aria-hidden="true" />
         <div className="page-shell relative py-9 md:py-12">
           <div className="max-w-[58%] lg:max-w-[620px]">
             <p className="text-xs font-extrabold uppercase tracking-wide text-primary">{eyebrow}</p>
             <h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">{title}</h1>
-            <p className="mt-3 max-w-lg text-sm text-muted-foreground">{summary}</p>
-            <p className="mt-4 text-[10px] font-bold uppercase tracking-wider text-navy opacity-70">Last updated: {updated}</p>
+            <p className="mt-3 max-w-lg text-[16px] leading-7 text-muted-foreground">{summary}</p>
+            <p className="mt-4 text-[13px] font-bold uppercase tracking-wider text-navy opacity-70">Last updated: {updated}</p>
           </div>
         </div>
       </section>
@@ -32,12 +33,12 @@ export function LegalPage({ eyebrow, title, summary, updated, sections }: { eyeb
                   {i % 3 === 0 ? <FileText className="h-5 w-5" /> : i % 3 === 1 ? <ShieldCheck className="h-5 w-5" /> : <Info className="h-5 w-5" />}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h2 className="text-lg font-extrabold text-navy">{section.title}</h2>
-                  <div className="mt-3 space-y-3 text-[14px] leading-6 text-muted-foreground">
+                  <h2 className="text-[21px] text-navy md:text-[24px]">{section.title}</h2>
+                  <div className="mt-3 space-y-4 text-[15px] leading-7 text-muted-foreground md:text-[16px]">
                     {section.paragraphs.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
                   </div>
                   {section.bullets ? (
-                    <ul className="mt-4 list-disc space-y-2 pl-5 text-[13px] leading-6 text-muted-foreground">
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-7 text-muted-foreground md:text-[16px]">
                       {section.bullets.map((item, idx) => <li key={idx}>{item}</li>)}
                     </ul>
                   ) : null}

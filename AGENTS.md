@@ -26,6 +26,7 @@
 - AdSense is consent-gated: blog listing shows one responsive band after every two category sections; article/legal pages use fixed desktop rails; the game alone may use a right rail (also on phones) and skippable post-win break. Never render top, bottom, footer, or guest-posting ads.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
+- Legal pages share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
 - Guest article formatting is stored as restricted Markdown-style text and rendered without raw HTML so pasted rich content cannot execute scripts.
 - Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
