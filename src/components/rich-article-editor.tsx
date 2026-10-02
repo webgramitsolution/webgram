@@ -85,11 +85,11 @@ export function RichArticleEditor({ value, onChange }: RichArticleEditorProps) {
     { label: "Three-item grid", icon: Grid2X2, action: () => replaceSelection("\n\n:::grid\n", "\n---\nSecond item\n---\nThird item\n:::\n\n", "First item") },
   ];
 
-  return <div className="mt-2 min-w-0 max-w-full overflow-hidden rounded-md border border-input bg-card focus-within:ring-1 focus-within:ring-ring">
-    <div className="flex flex-wrap gap-1 border-b border-border bg-muted p-2" role="toolbar" aria-label="Article formatting">
+  return <div className="mt-2 min-w-0 max-w-full overflow-hidden rounded-md border border-input bg-background shadow-card focus-within:ring-1 focus-within:ring-ring">
+    <div className="flex flex-wrap gap-1 border-b border-border bg-sky-soft p-2" role="toolbar" aria-label="Article formatting">
       {tools.map(({ label, icon: Icon, action }) => <Button key={label} type="button" variant="ghost" size="icon" title={label} aria-label={label} onClick={action} className="h-8 w-8"><Icon /></Button>)}
     </div>
-    <Textarea ref={ref} required value={value} onChange={(event) => onChange(event.target.value)} onPaste={handlePaste} className="min-h-[440px] resize-y rounded-none border-0 text-sm leading-6 shadow-none focus-visible:ring-0" aria-label="Article content" />
+    <Textarea ref={ref} required value={value} onChange={(event) => onChange(event.target.value)} onPaste={handlePaste} placeholder="Write or paste your formatted article here…" className="min-h-[440px] resize-y rounded-none border-0 bg-card px-4 py-4 text-sm leading-6 shadow-none focus-visible:ring-0" aria-label="Article content" />
     <p className="border-t border-border px-3 py-2 text-[11px] text-muted-foreground">Formatted text pasted from ChatGPT, Claude, Google Docs, or Word keeps headings, emphasis, lists, and images.</p>
   </div>;
 }

@@ -1,6 +1,10 @@
 # Roadmap
 
 ## Open
+- [ ] Make blog category ad rails use the same full-size fixed format as article rails
+- [ ] Match the blog article center column to the supplied reference
+- [ ] Restore the guest writing page surface and verify the rich editor
+- [ ] Make the supplied phone homepage banner clearly visible
 - [x] Add indexable primary blog category pages and include them in the dynamic sitemap
 - [x] Verify a real guest submission and admin approval
 - [x] Submit the live sitemap in Google Search Console
