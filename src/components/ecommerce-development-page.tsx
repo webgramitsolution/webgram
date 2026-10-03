@@ -38,8 +38,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { technologyStack } from "@/lib/site-images";
 
-const heroImage =
-  "https://ik.imagekit.io/cf1bg2bnu/Minimal%20Furniture%20E-commerce%20Studio%20Scene.png";
+const heroImage = "https://ik.imagekit.io/home1/About%20us%20page/ecommer.png";
 
 const benefits = [
   [Store, "24/7", "Sales Channel"],
@@ -219,8 +218,8 @@ export function EcommerceDevelopmentPage() {
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="ecom-hero-shade absolute inset-0" />
-        <div className="ecom-shell ecom-hero-content relative flex h-full items-center py-6">
-          <div className="ecom-hero-copy max-w-[520px]">
+        <div className="ecom-shell relative flex h-full items-center py-6">
+          <div className="max-w-[520px]">
             <nav className="sr-only" aria-label="Breadcrumb">
               <Link to="/">Home</Link> <span className="px-1.5">›</span> Solutions{" "}
               <span className="px-1.5">›</span> Ecommerce Development
@@ -234,7 +233,7 @@ export function EcommerceDevelopmentPage() {
               We design and develop powerful, scalable and conversion-focused ecommerce websites
               that help you attract customers, increase sales and build a strong online brand.
             </p>
-            <div className="ecom-hero-actions mt-5 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3">
               <Button
                 asChild
                 className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"
@@ -253,7 +252,7 @@ export function EcommerceDevelopmentPage() {
                 </Link>
               </Button>
             </div>
-            <div className="ecom-hero-benefits mt-6 grid max-w-[500px] grid-cols-4 gap-3">
+            <div className="mt-6 grid max-w-[500px] grid-cols-2 gap-3 sm:grid-cols-4">
               {[
                 [ShoppingBag, "Custom Store Design"],
                 [ShieldCheck, "Secure & Scalable"],
@@ -264,7 +263,7 @@ export function EcommerceDevelopmentPage() {
                 return (
                   <div
                     key={title as string}
-                    className="flex min-w-0 items-center gap-2 text-[12px] font-semibold leading-3"
+                    className="flex items-center gap-2 text-[12px] font-semibold leading-3"
                   >
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-on-dark/60">
                       <FeatureIcon className="h-4 w-4" />
@@ -390,9 +389,9 @@ export function EcommerceDevelopmentPage() {
               Learn More <ArrowRight className="inline h-3 w-3" />
             </span>
           </div>
-          <div className="ecom-process-grid mt-5 grid grid-cols-6 gap-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-6">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="ecom-process-step relative min-w-0 md:block">
+              <article key={title} className="relative grid grid-cols-[42px_1fr] gap-2 md:block">
                 {index < process.length - 1 && (
                   <ArrowRight className="absolute -right-2 top-4 hidden h-3 w-3 text-primary md:block" />
                 )}
@@ -401,7 +400,7 @@ export function EcommerceDevelopmentPage() {
                 >
                   <Icon className="h-5 w-5" />
                 </span>
-                <div className="ecom-process-copy md:mt-2">
+                <div className="md:mt-2">
                   <span className="text-[12px] font-bold text-navy">{number}</span>
                   <h3 className="text-[13px] font-extrabold text-navy">{title}</h3>
                   <p className="mt-1 text-[12px] leading-[1.25] text-muted-foreground">{text}</p>
@@ -412,7 +411,7 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section className="ecom-technology bg-card py-6">
+      <section className="bg-card py-6">
         <div className="ecom-shell grid items-center gap-5 md:grid-cols-[280px_1fr]">
           <div>
             <Eyebrow>Technology We Use</Eyebrow>
@@ -564,7 +563,7 @@ export function EcommerceDevelopmentPage() {
               </Button>
             </div>
           </div>
-          <div className="ecom-final-benefits grid grid-cols-2 gap-5 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
             {[
               [Headphones, "Free Consultation", "Discuss your idea"],
               [Brush, "Custom Solution", "Tailored to your needs"],

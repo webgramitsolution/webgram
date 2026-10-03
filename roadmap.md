@@ -1,6 +1,3 @@
-# Ecommerce mobile reference update
-- [x] Match the ecommerce solution page’s phone layout to the supplied reference and use the new furniture hero artwork.
-
 # Roadmap
 
 ## Open
