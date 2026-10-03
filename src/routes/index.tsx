@@ -309,8 +309,8 @@ function TrustStrip() {
             </div>
           ))}
         </div>
-        <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-3">
-          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[13px] text-muted-foreground">{label}</small></span></div>)}
+        <div className="mt-5 grid grid-cols-4 border-y border-border">
+          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex min-w-0 flex-col items-center justify-center gap-2 px-1 py-3 text-center sm:flex-row sm:gap-3 sm:px-3 sm:py-4 sm:text-left ${index > 0 ? "border-l border-border" : ""}`}><span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary-soft text-primary sm:h-10 sm:w-10"><IconComponent className="h-4 w-4 sm:h-5 sm:w-5" /></span><span className="min-w-0"><strong className="block text-base font-extrabold leading-none text-navy sm:text-lg">{value}</strong><small className="mt-1 block text-[12px] leading-4 text-muted-foreground sm:text-[13px]">{label}</small></span></div>)}
         </div>
       </div>
     </section>
