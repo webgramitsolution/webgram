@@ -54,6 +54,7 @@
 - [x] Configure the supplied blog and article AdSense slots
 - [ ] Email domain DNS verification (blocked: user must add the supplied TXT + NS records at registrar)
 - [x] Make homepage commerce tabs interactive and repair homepage portfolio and website-type images for live deployment
+- [x] Replace broken technology logos, enforce two-line service heroes, remove selected blog blocks, and add four phone commerce cards
 
 ## Done
 - [x] Legal pages, sitemap, metadata, and footer links

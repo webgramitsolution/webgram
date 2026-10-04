@@ -27,9 +27,6 @@ import { useRef, type ReactNode } from "react";
 import businessWebsites from "@/assets/business-websites.png";
 import corporateWebsites from "@/assets/corporate-websites.png";
 import educationalWebsite from "@/assets/educational-website.png";
-import laravelLogo from "@/assets/laravel.svg.asset.json";
-import mysqlLogo from "@/assets/mysql.png.asset.json";
-import phpLogo from "@/assets/php.svg.asset.json";
 import portfolioWebsites from "@/assets/portfolio-websites.png";
 import productServiceWebsites from "@/assets/product-service-websites.png";
 import professionalWebsites from "@/assets/professional-websites.png";
@@ -39,6 +36,9 @@ import { deliveredProjects, industryImages, technologyStack } from "@/lib/site-i
 
 const WEBSITE_DESIGN_HERO = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
 const WEBSITE_DESIGN_PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/Modern%20Ecommerce%20Analytics%20Showcase.png";
+const PHP_LOGO = "https://ik.imagekit.io/cf1bg2bnu/php.svg?updatedAt=1791030389514";
+const LARAVEL_LOGO = "https://ik.imagekit.io/cf1bg2bnu/Laravel.svg?updatedAt=1791030350339";
+const MYSQL_LOGO = "https://ik.imagekit.io/cf1bg2bnu/MySQL.svg?updatedAt=1791030316642";
 
 const heroBenefits = [
   [PenTool, "Modern &", "Unique Design"],
@@ -87,10 +87,10 @@ const technologies = [
   technologyStack[4],
   technologyStack[0],
   technologyStack[1],
-  { name: "PHP", src: phpLogo.url },
-  { name: "Laravel", src: laravelLogo.url },
+  { name: "PHP", src: PHP_LOGO },
+  { name: "Laravel", src: LARAVEL_LOGO },
   technologyStack[2],
-  { name: "MySQL", src: mysqlLogo.url },
+  { name: "MySQL", src: MYSQL_LOGO },
   technologyStack[9],
   technologyStack[10],
 ].filter((technology): technology is { name: string; src: string } => Boolean(technology));
