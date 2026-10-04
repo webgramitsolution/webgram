@@ -271,13 +271,6 @@ function Hero() {
             ))}
           </div>
         </div>
-      </div>
-      <div className="mobile-hero-services" aria-label="Commerce capabilities">
-        {[[ShoppingCart, "Ecommerce"], [Users, "B2B & B2C"], [Store, "Marketplace"], [Code2, "Custom Development"]].map(([ItemIcon, label]) => {
-          const CapabilityIcon = ItemIcon as Icon;
-          return <div key={label as string}><span><CapabilityIcon /></span><strong>{label as string}</strong></div>;
-        })}
-      </div>
     </section>
   );
 }
