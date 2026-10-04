@@ -39,3 +39,4 @@
 - Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
 - Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
 - The supplied client-testimonial image strip is shared above the public footer so page components do not duplicate it.
+- Public portfolio and website-type preview images are bundled project assets so they also render on self-hosted live deployments.

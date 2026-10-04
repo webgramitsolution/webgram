@@ -19,7 +19,7 @@ import {
   ReceiptText,
   Warehouse,
 } from "lucide-react";
-import type { ComponentType } from "react";
+import { useState, type ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
@@ -472,20 +472,64 @@ function B2BFeatures() {
 }
 
 function MobileCommerceExperience() {
+  const experiences = [
+    {
+      id: "b2c",
+      label: "B2C Ecommerce",
+      image: IMAGES.caseLifestyle,
+      alt: "Modern furniture and lifestyle ecommerce storefront",
+      features: ["Fashion", "Beauty", "Electronics", "Furniture", "D2C", "Lifestyle"],
+      linkLabel: "Explore B2C Solutions",
+      slug: "ecommerce-development",
+    },
+    {
+      id: "b2b",
+      label: "B2B Ecommerce",
+      image: IMAGES.caseManufacturing,
+      alt: "Scalable B2B commerce platform for wholesale businesses",
+      features: ["Wholesale Pricing", "Bulk Orders", "RFQ", "MOQ Controls", "Dealer Login", "Credit Terms"],
+      linkLabel: "Explore B2B Solutions",
+      slug: "b2b-commerce",
+    },
+    {
+      id: "marketplace",
+      label: "Marketplace",
+      image: IMAGES.caseDistribution,
+      alt: "Multi-vendor marketplace and operations dashboard",
+      features: ["Multi-Vendor", "Seller Portal", "Commissions", "Order Routing", "Payouts", "Analytics"],
+      linkLabel: "Explore Marketplace Solutions",
+      slug: "marketplace-development",
+    },
+  ] as const;
+  const [activeId, setActiveId] = useState<(typeof experiences)[number]["id"]>("b2c");
+  const active = experiences.find((experience) => experience.id === activeId) ?? experiences[0];
+
   return <section className="bg-sky-soft py-7 md:hidden">
     <div className="page-shell">
       <h2 className="section-title">Ecommerce Experiences That Convert</h2>
       <p className="section-subtitle">We create high-converting commerce experiences for every business model.</p>
-      <div className="mt-4 flex gap-2" aria-label="Commerce experience types">
-        <Button size="sm" className="h-8 flex-1 text-[13px]">B2C Ecommerce</Button>
-        <Button size="sm" variant="outline" className="h-8 flex-1 text-[13px]">B2B Ecommerce</Button>
-        <Button size="sm" variant="outline" className="h-8 flex-1 text-[13px]">Marketplace</Button>
+      <div className="mt-4 grid grid-cols-3 gap-2" role="tablist" aria-label="Commerce experience types">
+        {experiences.map((experience) => (
+          <Button
+            key={experience.id}
+            type="button"
+            size="sm"
+            variant={activeId === experience.id ? "default" : "outline"}
+            role="tab"
+            aria-selected={activeId === experience.id}
+            aria-controls="commerce-experience-panel"
+            onClick={() => setActiveId(experience.id)}
+            className="h-8 min-w-0 px-1 text-[12px]"
+          >
+            {experience.label}
+          </Button>
+        ))}
       </div>
-      <article className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card">
-        <img src={IMAGES.caseLifestyle} alt="Modern ecommerce experience for furniture and lifestyle products" width={1934} height={813} loading="lazy" className="h-full min-h-36 w-full rounded object-cover" />
+      <article id="commerce-experience-panel" role="tabpanel" className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card">
+        <img key={active.id} src={active.image} alt={active.alt} width={1934} height={813} loading="lazy" className="h-full min-h-36 w-full rounded object-cover" />
         <div className="flex flex-col justify-center">
-          {['Fashion', 'Beauty', 'Electronics', 'Furniture', 'D2C', 'Lifestyle'].map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[13px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
-          <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }} className="mt-2 text-[13px] font-extrabold text-primary">Explore B2C Solutions →</Link>
+          {active.features.map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[13px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
+          <Link to="/solutions/$slug" params={{ slug: active.slug }} className="mt-2 text-[13px] font-extrabold text-primary">{active.linkLabel} →</Link>
         </div>
       </article>
     </div>
@@ -678,17 +722,17 @@ function HomePortfolio() {
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div>
             <p className="eyebrow text-primary">Portfolio</p>
-            <h2 className="section-title mt-1 text-[26px] leading-[1.08]">Websites We Have<br />Built</h2>
-            <p className="mt-1.5 max-w-[560px] text-[16px] leading-6 text-muted-foreground">Live projects for brands in India and Canada — every preview scrolls through the real website.</p>
+            <h2 className="section-title mt-1 text-[26px] leading-[1.08] md:whitespace-nowrap">Websites We Have Built</h2>
+            <p className="mt-1.5 max-w-[500px] text-[16px] leading-6 text-muted-foreground">Live projects for brands in India and Canada —<br className="hidden sm:block" /> every preview scrolls through the real website.</p>
           </div>
           <Button asChild className="hidden h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90 sm:inline-flex">
             <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
           </Button>
         </div>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
-              <ScrollingFrame item={item} height={300} eager />
+              <ScrollingFrame item={item} height={270} eager />
               <h3 className="mt-3 text-[17px] text-navy">{item.name}</h3>
               <p className="text-[14px] text-muted-foreground">{item.category}</p>
             </div>
