@@ -58,6 +58,22 @@ export function ArticleBody({ content, preview = false }: { content: string; pre
     if (image) { blocks.push(<figure key={`image-${index}`}><img src={image[2]} alt={image[1] || "Article image"} loading="lazy" /></figure>); index += 1; continue; }
     if (/^Video:\s*https:\/\//i.test(line)) { const url = line.replace(/^Video:\s*/i, ""); blocks.push(<div key={`video-${index}`} className="article-embed"><a href={url} target="_blank" rel="noreferrer">Open embedded video</a></div>); index += 1; continue; }
     if (line === "---") { blocks.push(<hr key={`hr-${index}`} />); index += 1; continue; }
+    if (line.startsWith("```")) {
+      const code: string[] = []; index += 1;
+      while (index < lines.length && !(lines[index]?.trim() ?? "").startsWith("```")) { code.push(lines[index] ?? ""); index += 1; }
+      blocks.push(<pre key={`code-${index}`} className="overflow-x-auto rounded-md bg-muted p-4 text-[14px]"><code>{code.join("\n")}</code></pre>); index += 1; continue;
+    }
+    if (line.startsWith("|")) {
+      const rows: string[][] = [];
+      while (index < lines.length && (lines[index]?.trim() ?? "").startsWith("|")) {
+        const row = (lines[index]?.trim() ?? "").replace(/^\||\|$/g, "").split("|").map((cell) => cell.trim());
+        if (!row.every((cell) => /^:?-{2,}:?$/.test(cell))) rows.push(row);
+        index += 1;
+      }
+      const [head, ...body] = rows;
+      blocks.push(<div key={`table-${index}`} className="my-5 overflow-x-auto rounded-md border border-border"><table className="w-full border-collapse text-[15px]">{head ? <thead className="bg-sky-soft"><tr>{head.map((cell, i) => <th key={i} className="border-b border-border px-3 py-2 text-left font-semibold text-navy"><InlineText value={cell} /></th>)}</tr></thead> : null}<tbody>{body.map((row, r) => <tr key={r} className="border-b border-border last:border-0">{row.map((cell, i) => <td key={i} className="px-3 py-2 align-top"><InlineText value={cell} /></td>)}</tr>)}</tbody></table></div>);
+      continue;
+    }
     if (line.startsWith("#### ")) { blocks.push(<h4 key={`h4-${index}`}><InlineText value={line.slice(5)} /></h4>); index += 1; continue; }
     if (line.startsWith("### ")) { blocks.push(<h3 key={`h3-${index}`}><InlineText value={line.slice(4)} /></h3>); index += 1; continue; }
     if (line.startsWith("## ")) { blocks.push(<h2 key={`h2-${index}`}><InlineText value={line.slice(3)} /></h2>); index += 1; continue; }
@@ -68,13 +84,13 @@ export function ArticleBody({ content, preview = false }: { content: string; pre
       while (index < lines.length && /^\d+\.\s/.test(lines[index]?.trim() ?? "")) { items.push((lines[index]?.trim() ?? "").replace(/^\d+\.\s/, "")); index += 1; }
       blocks.push(<ol key={`ordered-${index}`}>{items.map((item, itemIndex) => <li key={itemIndex}><InlineText value={item} /></li>)}</ol>); continue;
     }
-    if (line.startsWith("- ")) {
+    if (/^[-*•]\s/.test(line)) {
       const items: string[] = [];
-      while (index < lines.length && lines[index]?.trim().startsWith("- ")) { items.push((lines[index]?.trim() ?? "").slice(2)); index += 1; }
+      while (index < lines.length && /^[-*•]\s/.test(lines[index]?.trim() ?? "")) { items.push((lines[index]?.trim() ?? "").slice(2)); index += 1; }
       blocks.push(<ul key={`list-${index}`}>{items.map((item, itemIndex) => <li key={itemIndex}><InlineText value={item} /></li>)}</ul>); continue;
     }
     const paragraph = [line]; index += 1;
-    while (index < lines.length && lines[index]?.trim() && !/^(## |### |- |:::|!\[)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
+    while (index < lines.length && lines[index]?.trim() && !/^(#{1,4} |[-*•] |\d+\. |> |\||```|---$|:::|!\[|Video:)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
     blocks.push(<p key={`p-${index}`}><InlineText value={paragraph.join(" ")} /></p>);
   }
   return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;

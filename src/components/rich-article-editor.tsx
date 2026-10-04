@@ -15,21 +15,43 @@ function cleanText(value: string) {
   return value.replace(/\u00a0/g, " ").replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+const inline = (value: string) => value.replace(/\s*\n+\s*/g, " ").trim();
+
+function tableToMarkdown(table: HTMLElement): string {
+  const rows = Array.from(table.querySelectorAll("tr")).map((row) => Array.from(row.querySelectorAll("th,td")).map((cell) => inline(Array.from(cell.childNodes).map(nodeToMarkdown).join("")).replace(/\|/g, "/") || " "));
+  if (!rows.length) return "";
+  const width = Math.max(...rows.map((row) => row.length));
+  const pad = (row: string[]) => `| ${[...row, ...Array(width - row.length).fill(" ")].join(" | ")} |`;
+  return `\n\n${[pad(rows[0]!), `| ${Array(width).fill("---").join(" | ")} |`, ...rows.slice(1).map(pad)].join("\n")}\n\n`;
+}
+
 function nodeToMarkdown(node: Node): string {
-  if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? "";
+  if (node.nodeType === Node.TEXT_NODE) return (node.textContent ?? "").replace(/\s*\n\s*/g, " ");
   if (!(node instanceof HTMLElement)) return "";
+  const tag = node.tagName.toLowerCase();
+  if (tag === "table") return tableToMarkdown(node);
+  if (tag === "pre") return `\n\n\`\`\`\n${(node.textContent ?? "").replace(/\n+$/, "")}\n\`\`\`\n\n`;
+  if (tag === "ul" || tag === "ol") {
+    const items = Array.from(node.children).filter((child) => child.tagName.toLowerCase() === "li");
+    return `\n\n${items.map((li, index) => `${tag === "ol" ? `${index + 1}.` : "-"} ${inline(Array.from(li.childNodes).map(nodeToMarkdown).join(""))}`).join("\n")}\n\n`;
+  }
   const text = Array.from(node.childNodes).map(nodeToMarkdown).join("");
-  switch (node.tagName.toLowerCase()) {
-    case "h1": case "h2": return `\n\n## ${text}\n\n`;
-    case "h3": case "h4": return `\n\n### ${text}\n\n`;
-    case "strong": case "b": return `**${text}**`;
+  switch (tag) {
+    case "script": case "style": return "";
+    case "h1": return `\n\n# ${inline(text)}\n\n`;
+    case "h2": return `\n\n## ${inline(text)}\n\n`;
+    case "h3": return `\n\n### ${inline(text)}\n\n`;
+    case "h4": case "h5": case "h6": return `\n\n#### ${inline(text)}\n\n`;
+    case "strong": case "b": return text.trim() ? `**${text.trim()}** ` : "";
     case "u": return `__${text}__`;
     case "s": case "del": case "strike": return `~~${text}~~`;
-    case "em": case "i": return `*${text}*`;
-    case "li": return `\n- ${text}`;
-    case "ul": case "ol": return `\n${text}\n`;
+    case "em": case "i": return text.trim() ? `*${text.trim()}* ` : "";
+    case "code": return `\`${text}\``;
+    case "blockquote": return `\n\n> ${inline(text)}\n\n`;
+    case "hr": return "\n\n---\n\n";
     case "br": return "\n";
-    case "p": case "div": case "section": case "article": return `\n\n${text}\n\n`;
+    case "li": return `\n- ${inline(text)}`;
+    case "p": case "div": case "section": case "article": case "figure": case "figcaption": return `\n\n${text}\n\n`;
     case "img": {
       const src = node.getAttribute("src") ?? "";
       if (!/^https:\/\//i.test(src)) return "";
