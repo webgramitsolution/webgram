@@ -21,14 +21,17 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import laravelLogo from "@/assets/laravel.svg.asset.json";
-import mysqlLogo from "@/assets/mysql.png.asset.json";
-import phpLogo from "@/assets/php.svg.asset.json";
-import reduxLogo from "@/assets/redux.svg.asset.json";
-import tailwindLogo from "@/assets/tailwind-css.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { deliveredProjects, nextjsLogo, portalImages, technologyStack } from "@/lib/site-images";
+
+const PORTAL_TECH_LOGOS = {
+  Laravel: "https://ik.imagekit.io/cf1bg2bnu/Laravel.svg?updatedAt=1791030350339",
+  PHP: "https://ik.imagekit.io/cf1bg2bnu/php.svg?updatedAt=1791030389514",
+  MySQL: "https://ik.imagekit.io/cf1bg2bnu/MySQL.svg?updatedAt=1791030316642",
+  Redux: "https://ik.imagekit.io/cf1bg2bnu/redux.svg?updatedAt=1791030288711",
+  "Tailwind CSS": "https://ik.imagekit.io/cf1bg2bnu/Tailwind%20CSS.webp?updatedAt=1791030246669",
+} as const;
 
 const heroBenefits = [
   [Users, "Role-Based", "Access"],
@@ -76,15 +79,15 @@ const technologies = [
   { name: "React.js", src: pickTech("React.js") },
   { name: "Next.js", src: nextjsLogo },
   { name: "Node.js", src: pickTech("Node.js") },
-  { name: "Laravel", src: laravelLogo.url },
-  { name: "PHP", src: phpLogo.url },
-  { name: "MySQL", src: mysqlLogo.url },
+  { name: "Laravel", src: PORTAL_TECH_LOGOS.Laravel },
+  { name: "PHP", src: PORTAL_TECH_LOGOS.PHP },
+  { name: "MySQL", src: PORTAL_TECH_LOGOS.MySQL },
   { name: "PostgreSQL", src: pickTech("PostgreSQL") },
   { name: "AWS", src: pickTech("AWS") },
   { name: "Google Cloud", src: pickTech("Google Cloud") },
   { name: "Supabase", src: pickTech("Supabase") },
-  { name: "Redux", src: reduxLogo.url },
-  { name: "Tailwind CSS", src: tailwindLogo.url },
+  { name: "Redux", src: PORTAL_TECH_LOGOS.Redux },
+  { name: "Tailwind CSS", src: PORTAL_TECH_LOGOS["Tailwind CSS"] },
 ] as const;
 
 const projects = [
@@ -124,7 +127,7 @@ export function WebPortalDevelopmentPage() {
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="max-w-[520px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › Web Portal Development</nav>
-          <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]">Custom Web Portals That Connect<br />and <span className="text-gold">Accelerate Growth.</span></h1>
+          <h1 className="text-[27px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]"><span className="block whitespace-nowrap">Custom Web Portals</span><span className="block whitespace-nowrap">That <span className="text-gold">Accelerate Growth.</span></span></h1>
           <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">We design and develop powerful web portals tailored to your business needs — including customer portals, vendor portals, employee portals and advanced dashboards.</p>
           <div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button></div>
           <div className="mt-4 grid max-w-[500px] grid-cols-3 gap-3 sm:grid-cols-5">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>

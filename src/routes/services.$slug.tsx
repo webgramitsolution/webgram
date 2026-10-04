@@ -62,5 +62,6 @@ function ServicesPage() {
     slug === "api-integration" ? <ApiIntegrationPage /> :
     slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
     <SubpageTemplate sectionLabel={section.label} page={page} />;
-  return <>{body}<LatestBlogPosts /></>;
+  const showLatestPosts = slug !== "web-portal-development" && slug !== "website-maintenance";
+  return <>{body}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
 }

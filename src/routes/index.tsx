@@ -117,6 +117,14 @@ const services: Array<{
     image: IMAGES.custom,
     alt: "Laptop showing custom commerce application source code",
   },
+  {
+    icon: Store,
+    title: "Marketplace Development",
+    text: "Multi-vendor marketplaces with seller tools, commissions, payouts and order management.",
+    link: "Explore Marketplace",
+    image: IMAGES.marketplace,
+    alt: "Multi-vendor marketplace storefront and seller dashboard",
+  },
 ];
 
 const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }> = [
@@ -319,11 +327,11 @@ function Services() {
             View All Solutions →
           </a>
         </div>
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {services.map(({ icon: IconComponent, title, text, link, image, alt }) => (
+        <div className="mt-5 grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-3">
+          {services.map(({ icon: IconComponent, title, text, link, image, alt }, index) => (
             <article
               key={title}
-              className="relative min-h-[210px] overflow-hidden rounded-md border border-border bg-card p-4 pr-[46%] shadow-card"
+              className={`relative min-h-[320px] overflow-hidden rounded-md border border-border bg-card p-3 shadow-card md:min-h-[210px] md:p-4 md:pr-[46%] ${index === 3 ? "md:hidden" : ""}`}
             >
               <span className="grid h-11 w-11 place-items-center rounded-md bg-primary text-primary-foreground">
                 <IconComponent className="h-6 w-6" />
@@ -336,7 +344,7 @@ function Services() {
               >
                 {link} →
               </a>
-              <div className="service-visual">
+              <div className="service-visual max-md:!bottom-0 max-md:!left-0 max-md:!right-0 max-md:!top-auto max-md:!h-[112px] max-md:!w-full">
                 <img src={image} alt={alt} width={1536} height={1024} loading="lazy" />
               </div>
             </article>
