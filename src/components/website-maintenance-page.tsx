@@ -23,11 +23,9 @@ import {
   siLaravel,
   siPhp,
   siShopify,
-  siWoocommerce,
   siWordpress,
 } from "simple-icons";
 
-import css3Logo from "@/assets/css3.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { deliveredProjects, maintenanceImages } from "@/lib/site-images";
