@@ -76,13 +76,13 @@ const magentoMark: BrandMark = { path: "M12 1.6 2.6 7v10l3.5 2V9.1L12 5.6l5.9 3.
 
 const platforms: Platform[] = [
   { name: "WordPress", icon: siWordpress, color: "text-[#21759B]" },
-  { name: "WooCommerce", icon: siWoocommerce, color: "text-[#96588A]" },
+  { name: "WooCommerce", image: "https://ik.imagekit.io/cf1bg2bnu/WooCommerce.png?updatedAt=1791030824171" },
   { name: "Shopify", icon: siShopify, color: "text-[#7AB55C]" },
   { name: "Magento", icon: magentoMark, color: "text-[#EE672F]" },
   { name: "Laravel", icon: siLaravel, color: "text-[#FF2D20]" },
   { name: "PHP", icon: siPhp, color: "text-[#777BB4]" },
   { name: "HTML5", icon: siHtml5, color: "text-[#E34F26]" },
-  { name: "CSS3", image: css3Logo.url },
+  { name: "CSS3", image: "https://ik.imagekit.io/cf1bg2bnu/CSS3.webp?updatedAt=1791030904874" },
   { name: "Cloudflare", icon: siCloudflare, color: "text-[#F38020]" },
   { name: "cPanel", icon: siCpanel, color: "text-[#FF6C2C]" },
   { name: "AWS", image: "https://ik.imagekit.io/home1/home%20page/10_AWS.png" },
