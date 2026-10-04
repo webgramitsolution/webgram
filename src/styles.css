@@ -565,17 +565,16 @@
 
 @media (max-width: 767px) {
   .hero-shell {
-    min-height: 720px;
+    min-height: 560px;
   }
   .hero-media img {
     object-fit: cover;
     object-position: center bottom;
   }
   .hero-copy {
-    min-height: 720px;
     align-items: flex-start;
     padding-top: 3rem;
-    padding-bottom: 16rem;
+    padding-bottom: 3rem;
   }
   .bg-hero-overlay {
     background: linear-gradient(
@@ -830,12 +829,11 @@
 
 @media (max-width: 767px) {
   .hero-shell {
-    min-height: 674px;
-    padding-bottom: 88px;
+    min-height: 560px;
+    padding-bottom: 0;
   }
   .hero-media {
     inset: 0;
-    bottom: 88px;
     height: auto;
   }
   .hero-media img {
@@ -844,10 +842,9 @@
     opacity: 1;
   }
   .hero-copy {
-    min-height: 586px;
     align-items: flex-start;
     padding-top: 1.65rem;
-    padding-bottom: 13rem;
+    padding-bottom: 3rem;
   }
   .hero-copy > div {
     max-width: 100%;
