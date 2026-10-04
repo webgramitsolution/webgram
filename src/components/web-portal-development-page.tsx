@@ -73,7 +73,7 @@ const process = [
   [Rocket, "06", "Deployment", "Go live and provide ongoing support."],
 ] as const;
 
-const pickTech = (name: string) => technologyStack.find((tech) => tech.name === name)!.src;
+const pickTech = (name: string) => technologyStack.find((tech) => tech.name === name)?.src ?? "";
 
 const technologies = [
   { name: "React.js", src: pickTech("React.js") },
