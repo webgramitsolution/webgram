@@ -161,12 +161,6 @@ const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }
 
 const industries = ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics"];
 
-const proof = [
-  [ClipboardCheck, "100+", "Web Projects"],
-  [ShoppingCart, "50+", "Ecommerce Solutions"],
-  [Users, "20+", "Industries Served"],
-  [Headphones, "24/7", "Technical Support"],
-] as const;
 
 const b2bFeatures = [
   [ReceiptText, "Customer-specific pricing"], [BriefcaseBusiness, "Wholesale pricing"],
@@ -301,9 +295,6 @@ function TrustStrip() {
               />
             </div>
           ))}
-        </div>
-        <div className="mt-5 grid grid-cols-2 border-y border-border md:grid-cols-3">
-          {proof.map(([IconComponent, value, label], index) => <div key={label} className={`flex items-center justify-center gap-3 px-3 py-4 ${index % 2 ? "border-l border-border" : ""} md:border-l md:first:border-l-0`}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><IconComponent className="h-5 w-5" /></span><span><strong className="block text-lg font-extrabold leading-none text-navy">{value}</strong><small className="mt-1 block text-[13px] text-muted-foreground">{label}</small></span></div>)}
         </div>
       </div>
     </section>
