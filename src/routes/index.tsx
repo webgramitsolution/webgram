@@ -14,7 +14,6 @@ import {
   Zap,
   Star,
   ClipboardCheck,
-  Headphones,
   MapPin,
   PackageCheck,
   ReceiptText,
