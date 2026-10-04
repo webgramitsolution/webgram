@@ -53,6 +53,7 @@
 - [x] Update the footer WhatsApp icon/link and verify SMTP configuration safely
 - [x] Configure the supplied blog and article AdSense slots
 - [ ] Email domain DNS verification (blocked: user must add the supplied TXT + NS records at registrar)
+- [x] Make homepage commerce tabs interactive and repair homepage portfolio and website-type images for live deployment
 
 ## Done
 - [x] Legal pages, sitemap, metadata, and footer links

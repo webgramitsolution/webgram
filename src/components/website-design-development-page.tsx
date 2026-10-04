@@ -24,15 +24,15 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import businessWebsites from "@/assets/business-websites.png.asset.json";
-import corporateWebsites from "@/assets/corporate-websites.png.asset.json";
-import educationalWebsite from "@/assets/educational-website.png.asset.json";
+import businessWebsites from "@/assets/business-websites.png";
+import corporateWebsites from "@/assets/corporate-websites.png";
+import educationalWebsite from "@/assets/educational-website.png";
 import laravelLogo from "@/assets/laravel.svg.asset.json";
 import mysqlLogo from "@/assets/mysql.png.asset.json";
 import phpLogo from "@/assets/php.svg.asset.json";
-import portfolioWebsites from "@/assets/portfolio-websites.png.asset.json";
-import productServiceWebsites from "@/assets/product-service-websites.png.asset.json";
-import professionalWebsites from "@/assets/professional-websites.png.asset.json";
+import portfolioWebsites from "@/assets/portfolio-websites.png";
+import productServiceWebsites from "@/assets/product-service-websites.png";
+import professionalWebsites from "@/assets/professional-websites.png";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { deliveredProjects, industryImages, technologyStack } from "@/lib/site-images";
@@ -55,12 +55,12 @@ const strengths = [
 ] as const;
 
 const solutions = [
-  [corporateWebsites.url, Building2, "Corporate Websites", "Professional websites that build your brand and credibility.", "bg-violet-soft text-violet"],
-  [businessWebsites.url, BriefcaseBusiness, "Business Websites", "Modern websites for growing businesses and service providers.", "bg-orange-soft text-orange"],
-  [professionalWebsites.url, Users, "Professional Websites", "Personal websites for consultants, freelancers and experts.", "bg-primary-soft text-primary"],
-  [productServiceWebsites.url, ShoppingCart, "Product & Service Websites", "Showcase products and services with conversion-focused design.", "bg-success-soft text-success"],
-  [portfolioWebsites.url, FolderOpen, "Portfolio Websites", "Creative portfolios for agencies, designers and artists.", "bg-cyan-soft text-cyan"],
-  [educationalWebsite.url, School, "Educational Websites", "Schools, colleges, coaching and online learning platforms.", "bg-primary-soft text-primary"],
+  [corporateWebsites, Building2, "Corporate Websites", "Professional websites that build your brand and credibility.", "bg-violet-soft text-violet"],
+  [businessWebsites, BriefcaseBusiness, "Business Websites", "Modern websites for growing businesses and service providers.", "bg-orange-soft text-orange"],
+  [professionalWebsites, Users, "Professional Websites", "Personal websites for consultants, freelancers and experts.", "bg-primary-soft text-primary"],
+  [productServiceWebsites, ShoppingCart, "Product & Service Websites", "Showcase products and services with conversion-focused design.", "bg-success-soft text-success"],
+  [portfolioWebsites, FolderOpen, "Portfolio Websites", "Creative portfolios for agencies, designers and artists.", "bg-cyan-soft text-cyan"],
+  [educationalWebsite, School, "Educational Websites", "Schools, colleges, coaching and online learning platforms.", "bg-primary-soft text-primary"],
 ] as const;
 
 const process = [
