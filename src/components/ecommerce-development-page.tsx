@@ -32,11 +32,8 @@ import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
 import fashionCaseImage from "@/assets/ecommerce-fashion-case.jpg";
 import furnitureCaseImage from "@/assets/ecommerce-furniture-case.jpg";
 import industriesStrip from "@/assets/ecommerce-industries.jpg";
-import mysqlLogo from "@/assets/mysql.png.asset.json";
-import phpLogo from "@/assets/php.svg.asset.json";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { technologyStack } from "@/lib/site-images";
 
 const heroImage = "https://ik.imagekit.io/home1/About%20us%20page/ecommer.png";
 
@@ -98,17 +95,17 @@ const process = [
 ] as const;
 
 const technologies = [
-  technologyStack[3],
-  technologyStack[4],
-  technologyStack[0],
-  technologyStack[1],
-  technologyStack[2],
-  { name: "PHP", src: phpLogo.url },
-  { name: "MySQL", src: mysqlLogo.url },
-  technologyStack[7],
-  technologyStack[9],
-  technologyStack[10],
-];
+  { name: "WooCommerce", src: "https://ik.imagekit.io/cf1bg2bnu/WooCommerce.png?updatedAt=1791030824171" },
+  { name: "WordPress", src: "https://ik.imagekit.io/cf1bg2bnu/wordpress.webp" },
+  { name: "React.js", src: "https://ik.imagekit.io/cf1bg2bnu/React.js.webp" },
+  { name: "Node.js", src: "https://ik.imagekit.io/cf1bg2bnu/Node.js.webp" },
+  { name: "PHP", src: "https://ik.imagekit.io/cf1bg2bnu/php.svg?updatedAt=1791030389514" },
+  { name: "MySQL", src: "https://ik.imagekit.io/cf1bg2bnu/MySQL.svg?updatedAt=1791030316642" },
+  { name: "Razorpay", src: "https://ik.imagekit.io/cf1bg2bnu/Razorpay.png" },
+  { name: "AWS", src: "https://ik.imagekit.io/cf1bg2bnu/AWS.webp" },
+  { name: "Google Cloud", src: "https://ik.imagekit.io/cf1bg2bnu/Google%20Cloud.svg" },
+  { name: "Laravel", src: "https://ik.imagekit.io/cf1bg2bnu/Laravel.svg?updatedAt=1791030350339" },
+] as const;
 
 const projects = [
   {
@@ -373,37 +370,28 @@ export function EcommerceDevelopmentPage() {
 
       <section className="bg-sky-soft py-6">
         <div className="ecom-shell">
-          <div className="grid items-end gap-3 md:grid-cols-[1fr_1.1fr_auto]">
-            <div>
-              <Eyebrow>Our Development Process</Eyebrow>
-              <h2 className="ecom-title mt-2">
-                From Idea to Launch
-                <br />A Clear & Proven Process
-              </h2>
-            </div>
-            <p className="ecom-copy">
-              We follow a structured development process to ensure your ecommerce website is
-              delivered on time, with the right features and the best performance.
-            </p>
-            <span className="text-[13px] font-bold text-primary">
-              Learn More <ArrowRight className="inline h-3 w-3" />
-            </span>
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-6">
+          <p className="ecom-eyebrow"><span className="h-0.5 w-8 bg-gold" />Our Development Process</p>
+          <h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">
+            From Idea to Launch — A Clear &amp; Proven Process
+          </h2>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-3">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="relative grid grid-cols-[42px_1fr] gap-2 md:block">
+              <article key={title} className="relative grid grid-cols-[45px_1fr] gap-2">
                 {index < process.length - 1 && (
-                  <ArrowRight className="absolute -right-2 top-4 hidden h-3 w-3 text-primary md:block" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[40px] right-[-14px] top-[20px] hidden h-px bg-primary/40 md:block"
+                  >
+                    <ArrowRight className="absolute -right-1 -top-[6px] h-3 w-3 text-primary" />
+                  </span>
                 )}
-                <span
-                  className={`grid h-10 w-10 place-items-center rounded-full ${index % 2 ? "bg-warning-soft text-warning" : "bg-primary-soft text-primary"}`}
-                >
+                <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full bg-primary-soft text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
-                <div className="md:mt-2">
-                  <span className="text-[12px] font-bold text-navy">{number}</span>
-                  <h3 className="text-[13px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-1 text-[12px] leading-[1.25] text-muted-foreground">{text}</p>
+                <div className="relative z-10">
+                  <strong className="text-[12px] text-navy">{number}</strong>
+                  <h3 className="mt-0.5 text-[15px] font-extrabold text-navy">{title}</h3>
+                  <p className="mt-1 text-[14px] leading-[1.4] text-muted-foreground">{text}</p>
                 </div>
               </article>
             ))}
