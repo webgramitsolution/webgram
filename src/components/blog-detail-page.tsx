@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
@@ -29,7 +29,7 @@ function InlineText({ value }: { value: string }) {
 
 const imagePattern = /^!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)$/i;
 
-export function ArticleBody({ content, preview = false }: { content: string; preview?: boolean }) {
+export function ArticleBody({ content, preview = false, advertisements = false }: { content: string; preview?: boolean; advertisements?: boolean }) {
   const lines = content.replace(/\\n/g, "\n").split("\n");
   const blocks: React.ReactNode[] = [];
   let index = 0;
@@ -93,7 +93,9 @@ export function ArticleBody({ content, preview = false }: { content: string; pre
     while (index < lines.length && lines[index]?.trim() && !/^(#{1,4} |[-*•] |\d+\. |> |\||```|---$|:::|!\[|Video:)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
     blocks.push(<p key={`p-${index}`}><InlineText value={paragraph.join(" ")} /></p>);
   }
-  return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
+  const firstAd = Math.max(0, Math.ceil(blocks.length / 3) - 1);
+  const secondAd = Math.max(firstAd + 1, Math.ceil(blocks.length * 2 / 3) - 1);
+  return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <Fragment key={blockIndex}>{block}{advertisements && !preview && blockIndex === firstAd ? <BlogAdBand position="articleFeed" label="Article advertisement" /> : null}{advertisements && !preview && (blockIndex === secondAd || (blocks.length === 1 && blockIndex === 0)) ? <BlogAdBand position="articleContent" label="In-article advertisement" /> : null}</Fragment>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
 }
 
 export function BlogDetailPage({ post }: { post: Post }) {
@@ -121,10 +123,11 @@ export function BlogDetailPage({ post }: { post: Post }) {
           <BlogShareButtons postId={post.id} title={post.title} />
         </div>
       </section>
-      <article className="py-5"><ArticleBody content={post.content} /></article>
+      <article className="py-5"><ArticleBody content={post.content} advertisements /></article>
       {faqs.length ? <section className="mx-auto mb-10 w-[min(100%,760px)]"><h2 className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       {post.related.length ? <nav className="mb-4 grid overflow-hidden rounded-md border border-border bg-sky-soft md:grid-cols-2" aria-label="Previous and next articles">{post.related.slice(0, 2).map((item, index) => <Link key={item.id} to="/blog/$slug" params={{ slug: item.slug }} className={`flex min-h-16 items-center gap-3 p-3 hover:bg-primary-soft ${index === 1 ? "border-t border-border text-right md:border-l md:border-t-0 md:flex-row-reverse" : ""}`}>{item.featured_image ? <img src={item.featured_image} alt="" className="h-11 w-16 shrink-0 rounded-sm object-cover" /> : null}<span className="min-w-0"><span className="flex items-center gap-1 text-[13px] font-bold text-primary">{index === 0 ? <><ArrowLeft className="h-3 w-3" /> Previous Post</> : <>Next Post <ArrowRight className="h-3 w-3" /></>}</span><strong className="mt-1 block truncate text-[14px] text-navy">{item.title}</strong></span></Link>)}</nav> : null}
       <BlogEngagement postId={post.id} title={post.title} />
+      <BlogAdBand position="afterComments" label="Advertisement below comments" />
         </div>
         <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>

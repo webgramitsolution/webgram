@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Beaker, ChevronLeft, ChevronRight, Coins, RefreshCw, RotateCcw, Trophy, Volume2, VolumeX } from "lucide-react";
 import { toast } from "sonner";
@@ -84,12 +84,13 @@ function Game() {
   const [winAdDismissed, setWinAdDismissed] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [buying, setBuying] = useState(false);
+  const initialLevelLoaded = useRef(false);
 
   const resetLevel = useCallback((levelIndex: number) => {
     setTubes(makeLevel(levelIndex)); setSelectedTube(null); setHistory([]); setMoves(0); setGameWon(false); setWinAdDismissed(false);
   }, []);
 
-  useEffect(() => { if (!status.loading) setCurrentLevel(Math.min(status.levels, LEVELS.length - 1)); }, [status.levels, status.loading]);
+  useEffect(() => { if (!status.loading && !initialLevelLoaded.current) { initialLevelLoaded.current = true; setCurrentLevel(Math.min(status.levels, LEVELS.length - 1)); } }, [status.levels, status.loading]);
   useEffect(() => { resetLevel(currentLevel); }, [currentLevel, resetLevel]);
 
   const playSound = useCallback((type: "pour" | "win" | "error") => {
@@ -151,7 +152,7 @@ function Game() {
 
   const nextUnlocked = Math.min(status.levels, LEVELS.length - 1);
   const reward = gameLevelReward(currentLevel + 1);
-  const rightRail = <div><p className="pb-3 text-center text-[13px] font-bold uppercase tracking-widest text-muted-foreground">Advertisement</p><BlogAdBand rail position="detailRight" label="Game advertisement" /></div>;
+  const rightRail = <div><p className="pb-3 text-center text-[13px] font-bold uppercase text-muted-foreground">Advertisement</p><BlogAdBand rail compactRail position="detailRight" label="Game advertisement" /></div>;
 
   return <><GuestShell title="Water Sort Puzzle" balance={status.balance} levels={status.levels} rightRail={rightRail}>
     <div className="overflow-hidden rounded-md border border-border bg-card shadow-card">
