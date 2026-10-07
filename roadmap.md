@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [ ] Repair Ecommerce Success Stories card sizing, clipped tags and metric readability across screen sizes
 - [x] Add supplied article/content/comment ads and fix persistent game ads and consent initialization; article slots verified in preview
 - [ ] Verify signed-in game win-to-Skip flow (blocked: requesting user's account is absent; user must sign in in preview)
 - [x] Rebuild every legal page as a polished 1,200–2,000-word document, including India DPDP coverage and protective business/advertising terms

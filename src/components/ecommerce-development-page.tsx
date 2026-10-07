@@ -438,8 +438,8 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section className="bg-sky-soft py-6">
-        <div className="ecom-shell grid gap-4 md:grid-cols-[280px_1fr]">
+      <section className="bg-sky-soft py-6" aria-label="Ecommerce success stories">
+        <div className="ecom-shell grid min-w-0 gap-4 md:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
           <div className="self-center">
             <Eyebrow>Success Stories</Eyebrow>
             <h2 className="ecom-title mt-2">
@@ -460,32 +460,22 @@ export function EcommerceDevelopmentPage() {
               </Link>
             </Button>
           </div>
-          <div className="ecom-scroll grid grid-flow-col auto-cols-[270px] gap-3 overflow-x-auto md:grid-cols-3 md:overflow-visible">
+          <div className="ecom-scroll grid min-w-0 grid-flow-col auto-cols-[280px] gap-3 overflow-x-auto pb-1 md:auto-cols-auto md:grid-flow-row md:grid-cols-3 md:overflow-visible md:pb-0">
             {projects.map((project) => (
               <article
                 key={project.title}
-                className="overflow-hidden rounded-md border border-border bg-card shadow-card"
+                className="flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card"
               >
-                <div className="relative h-[94px] overflow-hidden">
-                  <div className="relative z-10 w-[63%] p-3 pr-0">
-                    <h3 className="text-[13px] font-extrabold leading-tight text-navy">
+                <div className="relative min-h-[132px] flex-1 overflow-hidden">
+                  <div className="relative z-10 w-[65%] p-3 pr-1">
+                    <h3 className="text-[15px] font-medium leading-5 text-navy">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-[12px] leading-[1.35] text-muted-foreground">
+                    <p className="mt-2 text-[14px] leading-5 text-muted-foreground">
                       {project.description}
                     </p>
-                    <div className="mt-2.5 flex flex-wrap gap-1">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded bg-primary-soft px-1.5 py-1 text-[12px] font-semibold leading-none text-navy"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
-                  <div className="absolute inset-y-0 right-0 w-[42%] overflow-hidden">
+                  <div className="absolute inset-y-0 right-0 w-[35%] overflow-hidden">
                     <img
                       src={project.image}
                       alt={`${project.title} project`}
@@ -497,16 +487,19 @@ export function EcommerceDevelopmentPage() {
                     <span className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-card to-transparent" />
                   </div>
                 </div>
-                <div className="grid h-[48px] grid-cols-3 border-t border-border">
+                <div className="flex min-h-16 flex-wrap content-start gap-1.5 px-3 pb-3 pt-2">
+                  {project.tags.map((tag) => <span key={tag} className="max-w-full rounded-sm bg-primary-soft px-1.5 py-1 text-[13px] font-medium leading-4 text-navy">{tag}</span>)}
+                </div>
+                <div className="grid min-h-[88px] grid-cols-3 border-t border-border">
                   {project.metrics.map(([value, label], index) => (
                     <div
                       key={label}
-                      className={`flex min-w-0 flex-col justify-center px-2 ${index ? "border-l border-border" : ""}`}
+                      className={`flex min-w-0 flex-col px-2 py-3 ${index ? "border-l border-border" : ""}`}
                     >
-                      <strong className="block text-[13px] font-extrabold leading-none text-navy">
+                      <strong className="block text-[15px] font-semibold leading-5 text-navy">
                         {value}
                       </strong>
-                      <span className="mt-1 block text-[12px] leading-none text-muted-foreground">
+                      <span className="mt-1 block break-words text-[13px] leading-4 text-muted-foreground">
                         {label}
                       </span>
                     </div>
