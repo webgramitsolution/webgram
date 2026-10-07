@@ -1,7 +1,8 @@
 # Roadmap
 
 ## Open
-- [ ] Add supplied article/content/comment ads and fix persistent game ads, consent initialization, and Skip flow
+- [x] Add supplied article/content/comment ads and fix persistent game ads and consent initialization; article slots verified in preview
+- [ ] Verify signed-in game win-to-Skip flow (blocked: requesting user's account is absent; user must sign in in preview)
 - [x] Rebuild every legal page as a polished 1,200–2,000-word document, including India DPDP coverage and protective business/advertising terms
 - [x] Add a dedicated 1,200–2,000-word India DPDP Policy page and footer link
 - [x] Hide and noindex Marketplace Development; align FAQ wrapping, WhatsApp icon, footer cookie control, and ad click-bombing safeguards
