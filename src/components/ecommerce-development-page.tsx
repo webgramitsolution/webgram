@@ -370,7 +370,7 @@ export function EcommerceDevelopmentPage() {
 
       <section className="bg-sky-soft py-6">
         <div className="ecom-shell">
-          <p className="ecom-eyebrow"><span className="h-0.5 w-8 bg-gold" />Our Development Process</p>
+          <p className="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.16em] text-primary"><span className="h-0.5 w-8 bg-gold" />Our Development Process</p>
           <h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">
             From Idea to Launch — A Clear &amp; Proven Process
           </h2>
