@@ -487,19 +487,19 @@ export function EcommerceDevelopmentPage() {
                     <span className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-card to-transparent" />
                   </div>
                 </div>
-                <div className="flex min-h-16 flex-wrap content-start gap-1.5 px-3 pb-3 pt-2">
+                <div className="flex min-h-16 flex-wrap content-start gap-1.5 px-3 pb-3 pt-2 md:min-h-20 lg:min-h-16">
                   {project.tags.map((tag) => <span key={tag} className="max-w-full rounded-sm bg-primary-soft px-1.5 py-1 text-[13px] font-medium leading-4 text-navy">{tag}</span>)}
                 </div>
-                <div className="grid min-h-[88px] grid-cols-3 border-t border-border">
+                <div className="grid min-h-[88px] grid-cols-3 border-t border-border md:grid-cols-1 lg:grid-cols-3">
                   {project.metrics.map(([value, label], index) => (
                     <div
                       key={label}
-                      className={`flex min-w-0 flex-col px-2 py-3 ${index ? "border-l border-border" : ""}`}
+                      className={`flex min-w-0 flex-col px-2 py-3 md:flex-row md:items-start md:gap-2 md:py-2 lg:flex-col lg:gap-0 lg:py-3 ${index ? "border-l border-border md:border-l-0 md:border-t lg:border-l lg:border-t-0" : ""}`}
                     >
-                      <strong className="block text-[15px] font-semibold leading-5 text-navy">
+                      <strong className="block shrink-0 text-[15px] font-semibold leading-5 text-navy md:w-11 lg:w-auto">
                         {value}
                       </strong>
-                      <span className="mt-1 block break-words text-[13px] leading-4 text-muted-foreground">
+                      <span className="mt-1 block text-[13px] leading-4 text-muted-foreground md:mt-0 md:leading-5 lg:mt-1 lg:leading-4">
                         {label}
                       </span>
                     </div>
