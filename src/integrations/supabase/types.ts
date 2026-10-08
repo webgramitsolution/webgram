@@ -407,6 +407,39 @@ export type Database = {
         }
         Relationships: []
       }
+      regional_demo_leads: {
+        Row: {
+          company_email: string
+          created_at: string
+          full_name: string
+          id: string
+          project_scope: string
+          region: string
+          webhook_status: string
+          whatsapp: string
+        }
+        Insert: {
+          company_email: string
+          created_at?: string
+          full_name: string
+          id?: string
+          project_scope: string
+          region: string
+          webhook_status?: string
+          whatsapp: string
+        }
+        Update: {
+          company_email?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          project_scope?: string
+          region?: string
+          webhook_status?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       share_clicks: {
         Row: {
           clicked_at: string
@@ -576,6 +609,10 @@ export type Database = {
         Returns: boolean
       }
       increment_post_view: { Args: { _slug: string }; Returns: undefined }
+      mark_regional_lead_webhook: {
+        Args: { _id: string; _status: string }
+        Returns: undefined
+      }
       my_credit_balance: { Args: never; Returns: number }
       record_share_click: {
         Args: { _platform: string; _post_id: string }
@@ -636,6 +673,16 @@ export type Database = {
             }
             Returns: string
           }
+      submit_regional_lead: {
+        Args: {
+          _email: string
+          _name: string
+          _region: string
+          _scope: string
+          _whatsapp: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       app_role: "admin" | "editor"
