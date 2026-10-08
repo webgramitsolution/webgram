@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AeRouteImport } from './routes/ae'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
@@ -20,6 +21,7 @@ import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DpdpPolicyRouteImport } from './routes/dpdp-policy'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
 import { Route as GuestLoginRouteImport } from './routes/guest-login'
+import { Route as KwRouteImport } from './routes/kw'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
@@ -64,6 +66,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AeRoute = AeRouteImport.update({
+  id: '/ae',
+  path: '/ae',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -97,6 +104,11 @@ const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
 const GuestLoginRoute = GuestLoginRouteImport.update({
   id: '/guest-login',
   path: '/guest-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KwRoute = KwRouteImport.update({
+  id: '/kw',
+  path: '/kw',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -232,6 +244,7 @@ const AuthenticatedAdminBlogNewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -239,6 +252,7 @@ export interface FileRoutesByFullPath {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
+  '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
@@ -268,6 +282,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -275,6 +290,7 @@ export interface FileRoutesByTo {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
+  '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
@@ -306,6 +322,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_guest': typeof GuestRouteWithChildren
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -313,6 +330,7 @@ export interface FileRoutesById {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/guest-login': typeof GuestLoginRoute
+  '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
@@ -344,6 +362,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/ae'
     | '/auth'
     | '/contact'
     | '/cookie-policy'
@@ -351,6 +370,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
+    | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
@@ -380,6 +400,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/ae'
     | '/auth'
     | '/contact'
     | '/cookie-policy'
@@ -387,6 +408,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
+    | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
@@ -417,6 +439,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/_guest'
     | '/about'
+    | '/ae'
     | '/auth'
     | '/contact'
     | '/cookie-policy'
@@ -424,6 +447,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/guest-login'
+    | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
@@ -456,6 +480,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   GuestRoute: typeof GuestRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AeRoute: typeof AeRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
@@ -463,6 +488,7 @@ export interface RootRouteChildren {
   DpdpPolicyRoute: typeof DpdpPolicyRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
   GuestLoginRoute: typeof GuestLoginRoute
+  KwRoute: typeof KwRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
@@ -507,6 +533,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ae': {
+      id: '/ae'
+      path: '/ae'
+      fullPath: '/ae'
+      preLoaderRoute: typeof AeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -556,6 +589,13 @@ declare module '@tanstack/react-router' {
       path: '/guest-login'
       fullPath: '/guest-login'
       preLoaderRoute: typeof GuestLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kw': {
+      id: '/kw'
+      path: '/kw'
+      fullPath: '/kw'
+      preLoaderRoute: typeof KwRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -792,6 +832,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   GuestRoute: GuestRouteWithChildren,
   AboutRoute: AboutRoute,
+  AeRoute: AeRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
@@ -799,6 +840,7 @@ const rootRouteChildren: RootRouteChildren = {
   DpdpPolicyRoute: DpdpPolicyRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
   GuestLoginRoute: GuestLoginRoute,
+  KwRoute: KwRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,

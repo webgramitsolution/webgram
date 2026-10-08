@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ChevronRight,
@@ -49,9 +49,11 @@ const mobileItems: Array<{ label: string; icon: typeof Home; target: Target }> =
 ];
 
 export function SiteHeader() {
-  const [country, setCountry] = useState("in");
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const navigate = useNavigate();
+  const regional = /^\/(ae|kw)(\/|$)/.test(pathname);
+  const country = pathname.startsWith("/ae") ? "ae" : pathname.startsWith("/kw") ? "kw" : "in";
   const [mobileOpen, setMobileOpen] = useState(false);
-  useEffect(() => { setCountry(window.localStorage.getItem("webgram-country") ?? "in"); }, []);
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMobileOpen(false); };
@@ -65,12 +67,15 @@ export function SiteHeader() {
       window.location.href = `https://www-webgramitsolution-com.translate.goog${path}?_x_tr_sl=en&_x_tr_tl=hi&_x_tr_hl=hi`;
     } else window.location.href = `https://webgramitsolution.com${window.location.pathname}${window.location.search}`;
   }
-  function changeCountry(value: string) { setCountry(value); window.localStorage.setItem("webgram-country", value); }
+  function changeCountry(value: string) {
+    window.localStorage.setItem("webgram-country", value);
+    if (value === "ae") void navigate({ to: "/ae" }); else if (value === "kw") void navigate({ to: "/kw" }); else void navigate({ to: "/" });
+  }
   const closeMenu = () => setMobileOpen(false);
   return <>
     <header className="sticky top-0 z-50 border-b border-border bg-card text-navy shadow-card md:border-on-dark/60 md:bg-navy md:text-on-dark">
       <div className="hidden h-[31px] border-b border-on-dark/20 md:block"><div className="header-shell flex h-full items-center justify-between whitespace-nowrap text-[11px] font-medium uppercase lg:text-[13px]">
-        <div className="flex h-full items-center"><label className="sr-only" htmlFor="site-language">Language</label><select id="site-language" defaultValue="en" onChange={(event) => changeLanguage(event.target.value)} className="h-full border-x border-on-dark/15 bg-navy px-2 text-[11px] uppercase text-on-dark outline-none lg:px-3 lg:text-[13px]"><option value="en">English</option><option value="hi">हिन्दी</option></select><label className="sr-only" htmlFor="site-country">Country</label><select id="site-country" value={country} onChange={(event) => changeCountry(event.target.value)} className="h-full border-r border-on-dark/15 bg-navy px-2 text-[11px] uppercase text-on-dark outline-none lg:px-3 lg:text-[13px]"><option value="in">India</option><option value="us">USA</option><option value="gb">UK</option><option value="ae">UAE</option></select><strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong></div>
+        <div className="flex h-full items-center">{regional ? null : <><label className="sr-only" htmlFor="site-language">Language</label><select id="site-language" defaultValue="en" onChange={(event) => changeLanguage(event.target.value)} className="h-full border-x border-on-dark/15 bg-navy px-2 text-[11px] uppercase text-on-dark outline-none lg:px-3 lg:text-[13px]"><option value="en">English</option><option value="hi">हिन्दी</option></select></>}<label className="sr-only" htmlFor="site-country">Country</label><select id="site-country" value={country} onChange={(event) => changeCountry(event.target.value)} className="h-full border-r border-on-dark/15 bg-navy px-2 text-[11px] uppercase text-on-dark outline-none lg:px-3 lg:text-[13px]"><option value="in">India</option><option value="ae">UAE</option><option value="kw">Kuwait</option></select><strong className="px-3 font-semibold">GSTN:- 07CUHPK2017G1ZW</strong></div>
         <div className="flex h-full items-center"><span className="flex items-center gap-3 border-r border-on-dark/15 px-3" aria-label="Social channels"><a href="https://www.facebook.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="h-3.5 w-3.5" /></a><a href="https://www.instagram.com/webgramitsolution/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="h-3.5 w-3.5" /></a><a href="https://www.youtube.com/@webgramitsolution" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube className="h-3.5 w-3.5" /></a><a href="https://www.linkedin.com/company/webgramitsolution" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin className="h-3.5 w-3.5" /></a><a href="https://wa.me/webgramitsolution" target="_blank" rel="noreferrer" aria-label="WhatsApp"><img src="https://ik.imagekit.io/x3cipokny/icon/whatsapp.png" alt="" className="h-3.5 w-3.5 object-contain invert md:invert-0" /></a></span>{topLinks.map(([label, target]) => <Link key={label} {...target} className="flex h-full items-center border-r border-on-dark/15 px-3 hover:opacity-75">{label}</Link>)}</div>
       </div></div>
       <div className="header-shell flex h-[72px] items-center justify-between gap-5"><Link to="/" className="flex shrink-0 items-center" aria-label="Webgram IT Solution home"><img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} className="h-[34px] w-auto object-contain brightness-0 md:h-[30px] md:invert lg:h-[36px]" /></Link>

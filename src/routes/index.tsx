@@ -34,6 +34,12 @@ const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner
 export const Route = createFileRoute("/")({
   loader: () => getPublishedHomepageReviews(),
   head: () => ({
+    links: [
+      { rel: "alternate", hrefLang: "en-in", href: "https://webgramitsolution.com/" },
+      { rel: "alternate", hrefLang: "en-ae", href: "https://webgramitsolution.com/ae/" },
+      { rel: "alternate", hrefLang: "en-kw", href: "https://webgramitsolution.com/kw/" },
+      { rel: "alternate", hrefLang: "x-default", href: "https://webgramitsolution.com/" },
+    ],
     meta: [
       { title: "Webgram IT Solution | Digital Commerce Engineered for Growth" },
       {
