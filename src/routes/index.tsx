@@ -635,34 +635,34 @@ function CaseStudies() {
 
 function Technology() {
   return (
-    <section id="resources" className="bg-card py-6">
-      <div className="page-shell grid gap-4 md:grid-cols-[178px_1fr] md:items-center lg:grid-cols-[205px_1fr]">
-        <div>
+    <section id="resources" aria-label="Technology that works together" className="bg-card py-8">
+      <div className="page-shell grid gap-6 md:grid-cols-[178px_minmax(0,1fr)] md:items-center lg:grid-cols-[205px_minmax(0,1fr)]">
+        <div className="min-w-0">
           <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">
             Technology That
             <br />
             Works Together
           </h2>
-          <p className="mt-2 max-w-[178px] text-[13px] font-medium leading-[1.5] text-muted-foreground lg:max-w-[205px] lg:text-[14px]">
+          <p className="mt-3 text-[15px] font-medium leading-relaxed text-muted-foreground md:max-w-[178px] lg:max-w-[205px]">
             We use modern, reliable and scalable technologies to build high-performance commerce
             solutions.
           </p>
         </div>
-        <div className="md:border-l md:border-border md:pl-5 lg:pl-7">
-          <div className="grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-6 xl:grid-cols-12">
+        <div className="min-w-0 md:border-l md:border-border md:pl-5 lg:pl-7">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
             {technologyStack.map(({ name, src }) => (
-              <div key={name} className="flex flex-col items-center">
-                <span className="grid h-14 w-14 place-items-center rounded-xl border border-border/80 bg-card p-3 shadow-card lg:h-16 lg:w-16">
+              <div key={name} className="flex min-w-0 flex-col items-center gap-2">
+                <span className="flex h-[72px] w-full shrink-0 items-center justify-center overflow-hidden rounded-md border border-border/80 bg-card shadow-card">
                   <img
                     src={src}
                     alt={`${name} logo`}
-                    width={1200}
-                    height={1200}
+                    width={48}
+                    height={40}
                     loading="lazy"
-                    className="h-full w-full object-contain"
+                    className="block h-10 w-12 max-w-full shrink-0 object-contain"
                   />
                 </span>
-                <span className="mt-2 block text-center text-[13px] leading-none text-muted-foreground lg:text-[13px]">
+                <span className="block min-h-9 w-full break-words text-center text-[13px] leading-[18px] text-muted-foreground">
                   {name}
                 </span>
               </div>

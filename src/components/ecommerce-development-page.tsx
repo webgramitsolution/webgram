@@ -305,7 +305,7 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section className="bg-sky-soft py-6">
+      <section aria-label="Ecommerce development process" className="bg-sky-soft py-8 md:py-6">
         <div className="ecom-shell">
           <div className="grid items-end gap-3 md:grid-cols-[1fr_1.1fr_auto]">
             <div>
@@ -370,13 +370,13 @@ export function EcommerceDevelopmentPage() {
 
       <section className="bg-sky-soft py-6">
         <div className="ecom-shell">
-          <p className="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.16em] text-primary"><span className="h-0.5 w-8 bg-gold" />Our Development Process</p>
-          <h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">
+          <p className="flex items-center gap-2 text-[13px] font-semibold uppercase text-primary"><span className="h-0.5 w-8 shrink-0 bg-gold" />Our Development Process</p>
+          <h2 className="mt-3 text-[24px] font-medium leading-[1.3] text-navy md:text-[27px]">
             From Idea to Launch — A Clear &amp; Proven Process
           </h2>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-3">
+          <div className="mt-7 grid gap-6 md:mt-5 md:grid-cols-6 md:gap-3">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="relative grid grid-cols-[45px_1fr] gap-2">
+              <article key={title} className="relative grid min-w-0 grid-cols-[48px_minmax(0,1fr)] items-start gap-4 md:grid-cols-[45px_minmax(0,1fr)] md:gap-2">
                 {index < process.length - 1 && (
                   <span
                     aria-hidden="true"
@@ -385,13 +385,13 @@ export function EcommerceDevelopmentPage() {
                     <ArrowRight className="absolute -right-1 -top-[6px] h-3 w-3 text-primary" />
                   </span>
                 )}
-                <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full bg-primary-soft text-primary">
-                  <Icon className="h-5 w-5" />
+                <span className="relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary-soft text-primary md:h-10 md:w-10">
+                  <Icon className="h-6 w-6 md:h-5 md:w-5" />
                 </span>
-                <div className="relative z-10">
-                  <strong className="text-[12px] text-navy">{number}</strong>
-                  <h3 className="mt-0.5 text-[15px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-1 text-[14px] leading-[1.4] text-muted-foreground">{text}</p>
+                <div className="relative z-10 min-w-0">
+                  <strong className="block text-[13px] leading-5 text-primary md:text-navy">{number}</strong>
+                  <h3 className="mt-1 text-[18px] font-medium leading-6 text-navy md:text-[15px] md:leading-5">{title}</h3>
+                  <p className="mt-1.5 text-[16px] leading-6 text-muted-foreground md:mt-1 md:text-[14px] md:leading-[1.4]">{text}</p>
                 </div>
               </article>
             ))}
