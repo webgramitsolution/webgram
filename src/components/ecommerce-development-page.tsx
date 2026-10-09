@@ -305,7 +305,7 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section aria-label="Ecommerce development process" className="bg-sky-soft py-8 md:py-6">
+      <section className="bg-sky-soft py-6">
         <div className="ecom-shell">
           <div className="grid items-end gap-3 md:grid-cols-[1fr_1.1fr_auto]">
             <div>
@@ -368,7 +368,7 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section className="bg-sky-soft py-6">
+      <section aria-label="Ecommerce development process" className="bg-sky-soft py-8 md:py-6">
         <div className="ecom-shell">
           <p className="flex items-center gap-2 text-[13px] font-semibold uppercase text-primary"><span className="h-0.5 w-8 shrink-0 bg-gold" />Our Development Process</p>
           <h2 className="mt-3 text-[24px] font-medium leading-[1.3] text-navy md:text-[27px]">

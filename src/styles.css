@@ -971,31 +971,6 @@
   .b2b-feature-grid strong {
     font-size: 0.8125rem;
   }
-  #resources .page-shell {
-    display: block;
-  }
-  #resources .page-shell > div:first-child p {
-    max-width: none;
-  }
-  #resources .page-shell > div:last-child {
-    margin-top: 1rem;
-  }
-  #resources .page-shell > div:last-child > div {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0.45rem;
-  }
-  #resources .page-shell > div:last-child > div > div:nth-child(n+12) {
-    display: none;
-  }
-  #resources .page-shell > div:last-child span:first-child {
-    height: 2.75rem;
-    width: 100%;
-    border-radius: var(--radius);
-    padding: 0.55rem;
-  }
-  #resources .page-shell > div:last-child span:last-child {
-    display: none;
-  }
   .ecom-hero > img {
     object-position: 62% center;
     opacity: 0.42;
