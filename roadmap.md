@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [x] Repair homepage technology logo containment and Ecommerce phone process spacing; verified at 320, 393, 837 and 1280px
 - [x] Repair Ecommerce Success Stories card sizing, clipped tags and metric readability across screen sizes
 - [x] Add supplied article/content/comment ads and fix persistent game ads and consent initialization; article slots verified in preview
 - [ ] Verify signed-in game win-to-Skip flow (blocked: requesting user's account is absent; user must sign in in preview)
