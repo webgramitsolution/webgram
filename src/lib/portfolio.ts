@@ -2,17 +2,12 @@ import kingsports from "@/assets/kingsportsmgt.jpg";
 import houskase from "@/assets/houskase.jpg";
 import regal from "@/assets/regalconsultinggroup.jpg";
 import freshandbright from "@/assets/freshandbright.jpg";
-import navalAsset from "@/assets/navalmedical.jpg.asset.json";
-import partyAsset from "@/assets/mypartysuppliers.jpg.asset.json";
-import chaatewalaAsset from "@/assets/chaatewala.jpg.asset.json";
-import mukeshAsset from "@/assets/mukeshmurtikar.jpg.asset.json";
-import adliteAsset from "@/assets/adliteelectricals.jpg.asset.json";
+import naval from "@/assets/navalmedical.jpg";
+import party from "@/assets/mypartysuppliers.jpg";
+import chaatewala from "@/assets/chaatewala.jpg";
+import mukesh from "@/assets/mukeshmurtikar.jpg";
+import adlite from "@/assets/adliteelectricals.jpg";
 
-const naval = navalAsset.url;
-const party = partyAsset.url;
-const chaatewala = chaatewalaAsset.url;
-const mukesh = mukeshAsset.url;
-const adlite = adliteAsset.url;
 
 export type PortfolioItem = {
   name: string;
