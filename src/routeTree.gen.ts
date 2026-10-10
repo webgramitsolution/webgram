@@ -27,6 +27,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as LocationsCityRouteImport } from './routes/locations.$city'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
 import { Route as ResourcesGuidesRouteImport } from './routes/resources.guides'
@@ -134,6 +135,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsCityRoute = LocationsCityRouteImport.update({
+  id: '/locations/$city',
+  path: '/locations/$city',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
@@ -258,6 +264,7 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
@@ -296,6 +303,7 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
@@ -336,6 +344,7 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
@@ -376,6 +385,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/locations/$city'
     | '/resources/$slug'
     | '/resources/faqs'
     | '/resources/guides'
@@ -414,6 +424,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/locations/$city'
     | '/resources/$slug'
     | '/resources/faqs'
     | '/resources/guides'
@@ -453,6 +464,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/locations/$city'
     | '/resources/$slug'
     | '/resources/faqs'
     | '/resources/guides'
@@ -494,6 +506,7 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
+  LocationsCityRoute: typeof LocationsCityRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesFaqsRoute: typeof ResourcesFaqsRoute
   ResourcesGuidesRoute: typeof ResourcesGuidesRoute
@@ -631,6 +644,13 @@ declare module '@tanstack/react-router' {
       path: '/industries/$slug'
       fullPath: '/industries/$slug'
       preLoaderRoute: typeof IndustriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$city': {
+      id: '/locations/$city'
+      path: '/locations/$city'
+      fullPath: '/locations/$city'
+      preLoaderRoute: typeof LocationsCityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources/$slug': {
@@ -846,6 +866,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
+  LocationsCityRoute: LocationsCityRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesFaqsRoute: ResourcesFaqsRoute,
   ResourcesGuidesRoute: ResourcesGuidesRoute,

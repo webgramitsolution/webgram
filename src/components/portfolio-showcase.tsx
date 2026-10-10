@@ -23,7 +23,7 @@ export function ScrollingFrame({ item, height = 400, eager = false }: { item: Po
 }
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
-  const technologies = technologyStack.slice(0, 4);
+  const technologies = technologyStack.filter((t) => t.name !== "More").slice(0, 8);
 
   return (
     <article className="grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8">
@@ -42,13 +42,13 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         </ul>
         <div className="mt-6 border-t border-border pt-5">
           <p className="text-[14px] font-semibold text-navy">Technology used</p>
-          <div className="mt-3 grid grid-cols-4 gap-3">
+          <div className="mt-3 grid grid-cols-4 gap-x-3 gap-y-4">
             {technologies.map((technology) => (
               <div key={technology.name} className="flex min-w-0 flex-col items-center gap-1.5 text-center">
-                <span className="grid h-11 w-11 place-items-center rounded-md border border-border bg-background p-2">
+                <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-gradient-to-b from-card to-muted p-2 shadow-card transition-transform hover:-translate-y-0.5">
                   <img src={technology.src} alt={`${technology.name} technology`} width={48} height={48} loading="lazy" className="h-full w-full object-contain" />
                 </span>
-                <span className="truncate text-[12px] text-muted-foreground">{technology.name}</span>
+                <span className="w-full truncate text-[13px] font-medium text-navy">{technology.name}</span>
               </div>
             ))}
           </div>

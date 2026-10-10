@@ -160,13 +160,6 @@ function RootShell({ children }: { children: ReactNode }) {
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWNQJB9');`,
           }}
         />
-        {/* Weglot — English/Arabic language switcher with automatic RTL */}
-        <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `Weglot.initialize({api_key:'wg_872ce6808ebb668649592539a3fafafc3'});`,
-          }}
-        />
         <HeadContent />
       </head>
       <body>
@@ -189,6 +182,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
+
+  // Weglot loads after hydration so React does not remove its language switcher.
+  useEffect(() => {
+    const w = window as unknown as { Weglot?: { initialize: (o: object) => void } };
+    if (w.Weglot || document.getElementById("weglot-sdk")) return;
+    const script = document.createElement("script");
+    script.id = "weglot-sdk";
+    script.src = "https://cdn.weglot.com/weglot.min.js";
+    script.onload = () => w.Weglot?.initialize({ api_key: "wg_872ce6808ebb668649592539a3fafafc3" });
+    document.head.appendChild(script);
+  }, []);
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
