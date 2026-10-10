@@ -41,11 +41,11 @@ export const Route = createFileRoute("/")({
       { rel: "alternate", hrefLang: "x-default", href: "https://webgramitsolution.com/" },
     ],
     meta: [
-      { title: "Webgram IT Solution | Digital Commerce Engineered for Growth" },
+      { title: "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution" },
       {
         name: "description",
         content:
-          "High-performance B2B, B2C, marketplace and custom commerce solutions engineered for sustainable growth.",
+          "Webgram IT Solution is an ecommerce and B2B website development company in Delhi NCR — serving Delhi, South Delhi, Noida, Gurugram and Faridabad with SEO-ready websites.",
       },
       { property: "og:title", content: "Webgram IT Solution | Digital Commerce" },
       {
