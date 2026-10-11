@@ -30,32 +30,40 @@ import { portfolio } from "@/lib/portfolio";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 
 const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
+const HOME_TITLE = "Ecommerce Website Development Company | Webgram IT Solution";
+const HOME_DESCRIPTION = "Webgram IT Solution builds custom ecommerce websites, B2B and B2C online stores, and multi-vendor marketplaces with scalable features tailored to your business.";
+const HERO_DESKTOP = `${IMAGES.hero}&tr=w-1920,q-80,f-auto`.replace("&tr=", "?tr=");
+const HERO_PHONE = `${PHONE_HERO}?tr=w-768,q-80,f-auto`;
 
 export const Route = createFileRoute("/")({
   loader: () => getPublishedHomepageReviews(),
   head: () => ({
     links: [
+      { rel: "canonical", href: "https://webgramitsolution.com/" },
+      { rel: "preload", as: "image", href: HERO_DESKTOP, media: "(min-width: 768px)", fetchPriority: "high" },
+      { rel: "preload", as: "image", href: HERO_PHONE, media: "(max-width: 767px)", fetchPriority: "high" },
       { rel: "alternate", hrefLang: "en-in", href: "https://webgramitsolution.com/" },
       { rel: "alternate", hrefLang: "en-ae", href: "https://webgramitsolution.com/ae/" },
       { rel: "alternate", hrefLang: "en-kw", href: "https://webgramitsolution.com/kw/" },
       { rel: "alternate", hrefLang: "x-default", href: "https://webgramitsolution.com/" },
     ],
     meta: [
-      { title: "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution" },
+      { title: HOME_TITLE },
       {
         name: "description",
         content:
-          "Webgram IT Solution is an ecommerce and B2B website development company in Delhi NCR — serving Delhi, South Delhi, Noida, Gurugram and Faridabad with SEO-ready websites.",
+          HOME_DESCRIPTION,
       },
-      { property: "og:title", content: "Webgram IT Solution | Digital Commerce" },
+      { property: "og:title", content: HOME_TITLE },
+      { property: "og:url", content: "https://webgramitsolution.com/" },
       {
         property: "og:description",
-        content: "Build, sell and scale with a full-service digital commerce technology partner.",
+        content: HOME_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif" },
+      { property: "og:image", content: `${IMAGES.hero}?tr=w-1200,h-630,fo-center,q-80,f-jpg` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif" },
+      { name: "twitter:image", content: `${IMAGES.hero}?tr=w-1200,h-630,fo-center,q-80,f-jpg` },
     ],
     scripts: [
       {
@@ -233,9 +241,12 @@ function Hero() {
     <section id="top" className="hero-shell">
       <div className="hero-media">
         <picture>
-          <source media="(max-width: 767px)" srcSet={PHONE_HERO} />
+          <source media="(max-width: 767px)" srcSet={HERO_PHONE} />
           <img
-          src={IMAGES.hero}
+          src={HERO_DESKTOP}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           alt="Webgram IT Solution digital commerce storefront displayed across laptop and mobile screens"
           width={2170}
           height={725}
@@ -245,10 +256,8 @@ function Hero() {
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <h1 className="max-w-[500px] text-[35px] font-bold leading-[1.04] tracking-normal sm:text-[42px] lg:text-[46px]">
-            Digital Commerce,
-            <br />
-            Engineered for <span className="text-gold">Growth.</span>
+          <h1 className="max-w-[500px] text-[35px] font-medium leading-[1.12] tracking-normal sm:text-[38px] lg:text-[42px]">
+            Ecommerce Website Development for <span className="text-gold">Business Growth</span>
           </h1>
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
             We build high-performance B2B, B2C, marketplace and custom commerce platforms designed
@@ -256,17 +265,19 @@ function Hero() {
           </p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button
+              asChild
               size="lg"
               className="h-10 bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90"
             >
-              Start Your Project <ArrowRight />
+              <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }}>Ecommerce Development <ArrowRight /></Link>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="h-10 border-on-dark/60 bg-transparent px-5 text-[14px] font-semibold text-on-dark shadow-none hover:bg-on-dark/10 hover:text-on-dark"
             >
-              Explore Our Solutions
+              <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Explore B2B Solutions</Link>
             </Button>
           </div>
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] font-medium text-on-dark/90">
@@ -649,7 +660,7 @@ function Technology() {
           </p>
         </div>
         <div className="min-w-0 md:border-l md:border-border md:pl-5 lg:pl-7">
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+          <div className="technology-row grid grid-cols-3 gap-3 md:grid-flow-col md:auto-cols-[90px] md:grid-cols-none md:overflow-x-auto md:pb-3">
             {technologyStack.map(({ name, src }) => (
               <div key={name} className="flex min-w-0 flex-col items-center gap-2">
                 <span className="flex h-[72px] w-full shrink-0 items-center justify-center overflow-hidden rounded-md border border-border/80 bg-card shadow-card">
@@ -693,14 +704,14 @@ type Review = Awaited<ReturnType<typeof getPublishedHomepageReviews>>[number];
 
 function MobileReviews({ reviews }: { reviews: Review[] }) {
   if (!reviews.length) return null;
-  return <section className="bg-background py-7 md:hidden" aria-labelledby="home-reviews-title">
+  return <section className="bg-background py-7" aria-labelledby="home-reviews-title">
     <div className="page-shell">
       <p className="page-eyebrow text-primary">Client reviews</p>
       <h2 id="home-reviews-title" className="mt-2 text-[23px] font-extrabold text-navy">Trusted by growing businesses.</h2>
-      <div className="case-scroll -mx-4 mt-4 grid snap-x snap-mandatory grid-flow-col auto-cols-[88%] gap-3 overflow-x-auto px-4 pb-2">
+      <div className="case-scroll -mx-4 mt-4 grid snap-x snap-mandatory grid-flow-col auto-cols-[88%] gap-3 overflow-x-auto px-4 pb-2 md:auto-cols-[45%] lg:auto-cols-[32%]">
         {reviews.map((review) => <article key={review.id} className="snap-start rounded-md border border-border bg-card p-5 shadow-card">
           <div className="flex gap-1 text-gold" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div>
-          <p className="mt-4 text-[13px] leading-6 text-foreground">“{review.review_text}”</p>
+          <p className="mt-4 text-[15px] leading-6 text-foreground">“{review.review_text}”</p>
           <div className="mt-5 border-t border-border pt-4"><strong className="block text-sm text-navy">{review.customer_name}</strong><span className="text-[14px] text-muted-foreground">{[review.customer_role, review.company_name].filter(Boolean).join(" · ")}</span></div>
         </article>)}
       </div>
@@ -724,7 +735,7 @@ function HomePage() {
       <div className="hidden md:block"><CaseStudies /></div>
       <HomePortfolio />
       <Technology />
-      <div className="hidden md:block"><MobileReviews reviews={reviews} /></div>
+      <MobileReviews reviews={reviews} />
     </main>
   );
 }
