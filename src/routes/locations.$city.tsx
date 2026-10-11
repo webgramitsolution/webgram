@@ -80,6 +80,15 @@ function LocationPage() {
         </div>
       </section>
       <section className="bg-sky-soft py-10">
+        {l.projectFocus && <div className="header-shell pb-10">
+          <h2 className="text-[26px] text-navy">Planning your website in {l.city}</h2>
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {l.projectFocus.map((focus) => <article key={focus.title} className="min-w-0">
+              <h3 className="text-[19px] text-navy">{focus.title}</h3>
+              <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{focus.text}</p>
+            </article>)}
+          </div>
+        </div>}
         <div className="header-shell">
           <h2 className="text-[24px] text-navy">Why {l.city} businesses choose Webgram IT Solution</h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
