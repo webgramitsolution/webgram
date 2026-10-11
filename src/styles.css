@@ -855,8 +855,8 @@
   }
   .hero-copy p {
     max-width: 21rem;
-    font-size: 0.78rem;
-    line-height: 1.15rem;
+    font-size: 0.875rem;
+    line-height: 1.4rem;
   }
   .hero-copy > div > div:last-child {
     display: none;
@@ -1012,6 +1012,23 @@
 }
 
 .hover-scroll { scrollbar-width: none; }
+.technology-row { scrollbar-width: thin; scrollbar-color: var(--border) transparent; overscroll-behavior-x: contain; }
+/* Move the artwork, not its pixels: printed logos and labels stay readable. */
+@media (min-width: 768px) {
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.hero-media, .ecom-hero > img, .contact-hero > img, .site-hero > img) {
+    width: 65%;
+    left: 0;
+    right: auto;
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.hero-media img, .ecom-hero > img, .contact-hero > img, .site-hero > img) {
+    object-fit: cover;
+    object-position: right center;
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.bg-hero-overlay, .ecom-hero-shade) {
+    background: linear-gradient(270deg, var(--navy) 0%, color-mix(in oklab, var(--navy) 96%, transparent) 35%, color-mix(in oklab, var(--navy) 12%, transparent) 65%, transparent 100%);
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) .hero-copy > div { max-width: 45%; }
+}
 .hover-scroll::-webkit-scrollbar { width: 0; }
 .hover-scroll:hover { scrollbar-width: thin; }
 .hover-scroll:hover::-webkit-scrollbar { width: 6px; }
