@@ -646,7 +646,7 @@ function CaseStudies() {
 function Technology() {
   return (
     <section id="resources" aria-label="Technology that works together" className="bg-card py-8">
-      <div className="page-shell grid gap-6 md:grid-cols-[178px_minmax(0,1fr)] md:items-center lg:grid-cols-[205px_minmax(0,1fr)]">
+      <div className="page-shell grid gap-6 md:items-center lg:grid-cols-[205px_minmax(0,1fr)]">
         <div className="min-w-0">
           <h2 className="text-[19px] font-bold leading-[1.15] text-navy lg:text-[21px]">
             Technology That
@@ -658,7 +658,7 @@ function Technology() {
             solutions.
           </p>
         </div>
-        <div className="min-w-0 md:border-l md:border-border md:pl-5 lg:pl-7">
+        <div className="min-w-0 lg:border-l lg:border-border lg:pl-7">
           <div className="technology-row home-technology-row grid grid-cols-3 gap-2 md:grid-flow-col md:grid-cols-none md:overflow-x-auto lg:grid-flow-row lg:grid-cols-12">
             {technologyStack.map(({ name, src }) => (
               <div key={name} className="flex min-w-0 flex-col items-center gap-2">
