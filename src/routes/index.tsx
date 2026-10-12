@@ -256,12 +256,11 @@ function Hero() {
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <h1 className="max-w-[500px] text-[35px] font-medium leading-[1.12] tracking-normal sm:text-[38px] lg:text-[42px]">
-            Ecommerce Website Development for <span className="text-gold">Business Growth</span>
+          <h1 className="max-w-[500px] text-[30px] font-medium leading-[1.12] tracking-normal md:text-[30px] lg:text-[34px]">
+            professional ecommerce website development company in <span className="text-gold">delhi ncr.</span>
           </h1>
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
-            We build high-performance B2B, B2C, marketplace and custom commerce platforms designed
-            around your business.
+            Grow your online business with custom B2B and B2C ecommerce websites built using WooCommerce and Shopify. We create professional online stores for wholesalers, retailers, manufacturers and growing businesses across India.
           </p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button
@@ -660,7 +659,7 @@ function Technology() {
           </p>
         </div>
         <div className="min-w-0 md:border-l md:border-border md:pl-5 lg:pl-7">
-          <div className="technology-row grid grid-cols-3 gap-3 md:grid-flow-col md:auto-cols-[90px] md:grid-cols-none md:overflow-x-auto md:pb-3">
+          <div className="technology-row home-technology-row grid grid-cols-3 gap-2 md:grid-flow-col md:grid-cols-none md:overflow-x-auto lg:grid-flow-row lg:grid-cols-12">
             {technologyStack.map(({ name, src }) => (
               <div key={name} className="flex min-w-0 flex-col items-center gap-2">
                 <span className="flex h-[72px] w-full shrink-0 items-center justify-center overflow-hidden rounded-md border border-border/80 bg-card shadow-card">
