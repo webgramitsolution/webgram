@@ -42,9 +42,9 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         </ul>
         <div className="mt-6 border-t border-border pt-5">
           <p className="text-[14px] font-semibold text-navy">Technology used</p>
-          <div className="technology-row mt-3 grid grid-flow-col auto-cols-[94px] gap-3 overflow-x-auto pb-3">
+          <div className="technology-row mt-3 grid snap-x snap-proximity grid-flow-col auto-cols-[78px] gap-1.5 overflow-x-auto">
             {technologies.map((technology) => (
-              <div key={technology.name} className="flex min-w-0 flex-col items-center gap-1.5 text-center">
+              <div key={technology.name} className="flex min-w-0 snap-start flex-col items-center gap-1.5 text-center">
                 <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-gradient-to-b from-card to-muted p-2 shadow-card transition-transform hover:-translate-y-0.5">
                   <img src={technology.src} alt={`${technology.name} technology`} width={48} height={48} loading="lazy" className="h-full w-full object-contain" />
                 </span>
