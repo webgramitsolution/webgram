@@ -1,7 +1,8 @@
 # Roadmap
 
 ## Open
-- [ ] Fix language-aware heroes, homepage heading/SEO/LCP/reviews, single-row technology logos and distinct NCR service content; verify phone/tablet/desktop.
+- [x] Fix language-aware heroes, homepage heading/SEO/LCP, single-row technology logos and distinct NCR service content; checked at 393/837/1280px without overflow or browser errors.
+- [ ] Display detailed genuine homepage reviews on all devices (layout ready; blocked: all three published reviews are below the required length).
 - [x] Repair homepage technology logo containment and Ecommerce phone process spacing; verified at 320, 393, 837 and 1280px
 - [x] Repair Ecommerce Success Stories card sizing, clipped tags and metric readability across screen sizes
 - [x] Add supplied article/content/comment ads and fix persistent game ads and consent initialization; article slots verified in preview
