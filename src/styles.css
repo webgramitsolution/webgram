@@ -1016,7 +1016,7 @@
 .technology-row { scrollbar-width: none; overscroll-behavior-x: contain; }
 .technology-row::-webkit-scrollbar { display: none; }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .home-technology-row { grid-auto-columns: calc((100% - 72px) / 10); }
+  .home-technology-row { grid-auto-columns: 84px; }
 }
 @media (min-width: 768px) {
   .hero-shell { height: auto; min-height: 420px; }
