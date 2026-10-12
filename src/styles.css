@@ -829,12 +829,17 @@
 
 @media (max-width: 767px) {
   .hero-shell {
-    min-height: 560px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     padding-bottom: 0;
   }
   .hero-media {
-    inset: 0;
-    height: auto;
+    position: relative;
+    inset: auto;
+    order: 2;
+    height: 300px;
+    flex-shrink: 0;
   }
   .hero-media img {
     object-fit: cover;
@@ -842,16 +847,18 @@
     opacity: 1;
   }
   .hero-copy {
+    order: 1;
+    min-height: 0;
     align-items: flex-start;
     padding-top: 1.65rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
   }
   .hero-copy > div {
     max-width: 100%;
   }
   .hero-copy h1 {
     font-size: 2rem;
-    line-height: 1.02;
+    line-height: 1.12;
   }
   .hero-copy p {
     max-width: 21rem;
@@ -979,13 +986,7 @@
     background: color-mix(in oklab, var(--navy) 86%, transparent);
   }
   .bg-hero-overlay {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--navy) 99%, transparent) 0%,
-      color-mix(in oklab, var(--navy) 94%, transparent) 42%,
-      color-mix(in oklab, var(--navy) 32%, transparent) 64%,
-      transparent 100%
-    );
+    display: none;
   }
   .industry-card {
     min-height: 118px;
@@ -1028,6 +1029,21 @@
     background: linear-gradient(270deg, var(--navy) 0%, color-mix(in oklab, var(--navy) 96%, transparent) 35%, color-mix(in oklab, var(--navy) 12%, transparent) 65%, transparent 100%);
   }
   :is(html[dir="rtl"], html[lang="ar"]) .hero-copy > div { max-width: 45%; }
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.ecom-hero, .contact-hero, .site-hero) > :is(.ecom-shell, .header-shell, .page-shell) > div:first-child {
+    width: 45%;
+    max-width: 45%;
+    min-width: 0;
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.ecom-hero, .contact-hero, .site-hero) h1 .whitespace-nowrap { white-space: normal; }
+}
+@media (min-width: 768px) and (max-width: 1179px) {
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.hero-shell, .ecom-hero, .contact-hero, .site-hero) h1 {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.hero-shell, .ecom-hero, .contact-hero, .site-hero) a {
+    padding-inline: 12px;
+  }
 }
 .hover-scroll::-webkit-scrollbar { width: 0; }
 .hover-scroll:hover { scrollbar-width: thin; }
