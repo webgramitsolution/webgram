@@ -44,3 +44,5 @@
 - The supplied client-testimonial image strip is shared above the public footer so page components do not duplicate it.
 - Public portfolio and website-type preview images are bundled project assets so they also render on self-hosted live deployments.
 - Regional landing pages `/ae` and `/kw` share `RegionalLanding`; demo leads save through the `submit_regional_lead` RPC, then the server forwards JSON to the `MAKE_WEBHOOK_URL` env var so the webhook URL never reaches the browser.
+- Cost estimator leads save through the validated `submit_cost_estimate` RPC (publishable key, server-side price calculation) so quotes cannot be tampered with in the browser.
+- Retired URLs get 301s from the `REDIRECTS` map in `src/server.ts`; the sitemap lists only allow-listed business blog categories.
