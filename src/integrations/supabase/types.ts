@@ -201,6 +201,48 @@ export type Database = {
         }
         Relationships: []
       }
+      cost_estimate_leads: {
+        Row: {
+          business_model: string
+          created_at: string
+          currency: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          full_name: string
+          id: string
+          integrations: string[]
+          phone: string
+          source_page: string
+        }
+        Insert: {
+          business_model: string
+          created_at?: string
+          currency?: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          full_name: string
+          id?: string
+          integrations?: string[]
+          phone?: string
+          source_page?: string
+        }
+        Update: {
+          business_model?: string
+          created_at?: string
+          currency?: string
+          email?: string
+          estimate_max?: number
+          estimate_min?: number
+          full_name?: string
+          id?: string
+          integrations?: string[]
+          phone?: string
+          source_page?: string
+        }
+        Relationships: []
+      }
       credit_ledger: {
         Row: {
           amount: number
@@ -621,6 +663,17 @@ export type Database = {
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       set_guest_post_cost: { Args: { _cost: number }; Returns: number }
       start_blog_read: { Args: { _post_id: string }; Returns: undefined }
+      submit_cost_estimate: {
+        Args: {
+          _email: string
+          _integrations: string[]
+          _model: string
+          _name: string
+          _phone: string
+          _source: string
+        }
+        Returns: string
+      }
       submit_enquiry: {
         Args: {
           _email: string
