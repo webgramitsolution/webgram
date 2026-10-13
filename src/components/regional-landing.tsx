@@ -125,5 +125,31 @@ export function regionalHead(path: "ae" | "kw", title: string, description: stri
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: url }, ...hreflangLinks],
+    scripts: [regionalServiceSchema(path, url), {
+      type: "application/ld+json",
+      children: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: path === "ae" ? "United Arab Emirates" : "Kuwait", item: url },
+      ] }),
+    }],
+  };
+}
+
+function regionalServiceSchema(path: "ae" | "kw", url: string) {
+  const ae = path === "ae";
+  const services = ae ? ["Tabby integration", "Tamara integration", "PayTabs integration"] : ["KNET payment gateway integration", "MyFatoorah setup"];
+  return {
+    type: "application/ld+json",
+    children: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: ae ? "Ecommerce Development in the UAE" : "Ecommerce Development in Kuwait",
+      serviceType: "Ecommerce website development",
+      url,
+      provider: { "@id": `${SITE}/#organization`, "@type": "Organization", name: "Webgram IT Solution" },
+      areaServed: { "@type": "Country", name: ae ? "United Arab Emirates" : "Kuwait" },
+      offers: { "@type": "Offer", priceCurrency: ae ? "AED" : "KWD", price: ae ? "9500" : "800", priceSpecification: { "@type": "PriceSpecification", minPrice: ae ? 9500 : 800, priceCurrency: ae ? "AED" : "KWD" } },
+      hasOfferCatalog: { "@type": "OfferCatalog", name: "Payment integrations", itemListElement: services.map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) },
+    }),
   };
 }

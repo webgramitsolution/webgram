@@ -12,17 +12,25 @@ import { registerGuestAccount, sendGuestLoginCode } from "@/lib/auth-email.funct
 const HERO = "https://ik.imagekit.io/x3cipokny/icon/guest%20post%20banner.png";
 
 export const Route = createFileRoute("/guest-login")({
-  head: () => ({ meta: [
-    { title: "Guest Author Panel – Write, Publish & Earn | Webgram IT Solution" },
-    { name: "description", content: "Register as a Webgram guest author to write articles, publish on our blog and earn credits. Read the guest posting guidelines and create your account." },
-    { property: "og:title", content: "Guest Author Panel – Write, Publish & Earn Credits" },
-    { property: "og:description", content: "Share your expertise with business owners and technology enthusiasts on the Webgram blog." },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: HERO },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "robots", content: "noindex" },
-    { name: "twitter:image", content: HERO },
-  ] }),
+  head: () => ({
+    meta: [
+      { title: "Write for Us – Submit a Guest Post to Webgram IT Solution" },
+      { name: "description", content: "Write for us on technology, AI, ecommerce, business and digital marketing. Submit a guest post to the Webgram IT Solution blog, follow our guest posting guidelines and get published." },
+      { name: "keywords", content: "write for us, guest post, submit guest post, guest posting site, write for us technology, write for us ecommerce, write for us digital marketing, write for us business, guest blogging India" },
+      { property: "og:title", content: "Write for Us – Submit a Guest Post to Webgram IT Solution" },
+      { property: "og:description", content: "Write for us on technology, AI, ecommerce, business and digital marketing. Submit a guest post to the Webgram IT Solution blog, follow our guest posting guidelines and get published." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://webgramitsolution.com/guest-login" },
+      { property: "og:image", content: HERO },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: HERO },
+    ],
+    links: [{ rel: "canonical", href: "https://webgramitsolution.com/guest-login" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://webgramitsolution.com/" },
+      { "@type": "ListItem", position: 2, name: "Write for Us", item: "https://webgramitsolution.com/guest-login" },
+    ] }) }],
+  }),
   component: GuestLogin,
 });
 
@@ -107,7 +115,7 @@ function GuestLogin() {
   return <div className="min-h-screen bg-sky-soft"><SiteHeader /><main>
     <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label="Guest author panel">
       <div className="page-shell relative py-7 md:py-9">
-        <div className="max-w-[58%] lg:max-w-[620px]"><p className="text-xs font-extrabold uppercase tracking-wide text-primary">Guest Author Panel</p><h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">Write, Publish & <span className="text-primary">Earn Credits</span></h1><p className="mt-2 max-w-lg text-sm text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
+        <div className="max-w-[58%] lg:max-w-[620px]"><p className="text-[13px] font-semibold uppercase tracking-wide text-primary">Guest Posting</p><h1 className="mt-1.5 text-3xl font-medium leading-tight text-navy lg:text-4xl">Write for Us – <span className="text-primary">Submit a Guest Post</span> to Webgram IT Solution</h1><p className="mt-2 max-w-lg text-sm text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
           <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">{heroFeatures.map(({ icon: Icon, a, b }) => <div key={b} className="flex items-center gap-2"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-card text-primary shadow-card"><Icon className="h-5 w-5" /></span><span className="text-[14px] font-semibold leading-tight text-navy">{a}<br />{b}</span></div>)}</div></div>
       </div>
     </section>
