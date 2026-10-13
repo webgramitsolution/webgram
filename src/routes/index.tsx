@@ -70,30 +70,7 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": "https://webgramitsolution.com/#organization",
-          name: "Webgram IT Solution",
-          url: "https://webgramitsolution.com/",
-          logo: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
-          description: "Enterprise ecommerce and web development company serving Delhi NCR, the UAE and Kuwait.",
-          telephone: "+91 7551120242",
-          areaServed: [{ "@type": "City", name: "Delhi NCR" }, { "@type": "Country", name: "United Arab Emirates" }, { "@type": "Country", name: "Kuwait" }],
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://webgramitsolution.com/" }],
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          areaServed: ["Delhi NCR", "United Arab Emirates", "Kuwait"],
           name: "Webgram IT Solution",
           url: "https://webgramitsolution.com/",
           image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
