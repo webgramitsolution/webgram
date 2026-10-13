@@ -53,8 +53,29 @@ function withNoindexOnPreviewHosts(request: Request, response: Response): Respon
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 
+// Permanent redirects for retired URLs so old links keep their value.
+const REDIRECTS: Record<string, string> = {
+  "/blog/category/personal-finance-and-investing": "/resources/blog",
+  "/blog/category/health-healthcare-and-wellness": "/resources/blog",
+  "/blog/category/agriculture-farming-and-rural-development": "/resources/blog",
+  "/blog/category/relationships-family-and-social-life": "/resources/blog",
+  "/blog": "/resources/blog",
+  "/write-for-us": "/guest-login",
+  "/ae/index.html": "/ae/",
+  "/kw/index.html": "/kw/",
+};
+function redirectFor(request: Request): Response | null {
+  const url = new URL(request.url);
+  const path = url.pathname.length > 1 ? url.pathname.replace(/\/+$/, "") : url.pathname;
+  const target = REDIRECTS[path] ?? REDIRECTS[url.pathname];
+  if (!target || target === url.pathname) return null;
+  return new Response(null, { status: 301, headers: { Location: target + url.search } });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const redirect = redirectFor(request);
+    if (redirect) return redirect;
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

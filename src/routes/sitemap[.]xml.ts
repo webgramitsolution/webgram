@@ -3,7 +3,10 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
 const BASE = "https://webgramitsolution.com";
-const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs","/ae/","/kw/","/locations/delhi","/locations/noida","/locations/faridabad","/locations/gurugram","/locations/delhi-ncr","/locations/south-delhi"];
+const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs","/guest-login","/ae/","/kw/","/locations/delhi","/locations/noida","/locations/faridabad","/locations/gurugram","/locations/delhi-ncr","/locations/south-delhi"];
+const LASTMOD = "2026-10-12";
+const ALLOWED_CATEGORIES = ["technology-and-ai-explainers", "business-and-entrepreneurship", "make-money-online-and-digital-marketing"];
+const HOME_ALTERNATES = `<xhtml:link rel="alternate" hreflang="en-in" href="${BASE}/" /><xhtml:link rel="alternate" hreflang="en-ae" href="${BASE}/ae/" /><xhtml:link rel="alternate" hreflang="en-kw" href="${BASE}/kw/" /><xhtml:link rel="alternate" hreflang="x-default" href="${BASE}/" />`;
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -18,14 +21,14 @@ export const Route = createFileRoute("/sitemap.xml")({
           posts.push(...(data ?? []));
           if (!data || data.length < 1000) break;
         }
-        const { data: categories, error: categoryError } = await client.from("blog_categories").select("slug").eq("is_active", true).is("parent_id", null).order("display_order");
+        const { data: categories, error: categoryError } = await client.from("blog_categories").select("slug").eq("is_active", true).is("parent_id", null).in("slug", ALLOWED_CATEGORIES).order("display_order");
         if (categoryError) return new Response("Sitemap unavailable", { status: 500 });
         const urls = [
-          ...STATIC_PATHS.map((p) => `<url><loc>${BASE}${p === "/" ? "/" : p}</loc></url>`),
+          ...STATIC_PATHS.map((p) => `<url><loc>${BASE}${p}</loc><lastmod>${LASTMOD}</lastmod>${p === "/" || p === "/ae/" || p === "/kw/" ? HOME_ALTERNATES : ""}</url>`),
           ...(categories ?? []).map((category) => `<url><loc>${BASE}/blog/category/${esc(category.slug)}</loc></url>`),
           ...posts.map((p) => `<url><loc>${BASE}/blog/${esc(p.slug)}</loc><lastmod>${p.updated_at.slice(0, 10)}</lastmod></url>`),
         ];
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "public, max-age=3600" } });
       },
     },
