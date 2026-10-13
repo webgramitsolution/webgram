@@ -34,7 +34,7 @@ export function CostEstimator() {
     e.preventDefault();
     setError("");
     const parsed = schema.safeParse(form);
-    if (!parsed.success) return setError(parsed.error.issues[0].message);
+    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Please check your details");
     setState("sending");
     const { error: rpcError } = await supabase.rpc("submit_cost_estimate", {
       _name: parsed.data.name, _email: parsed.data.email, _phone: parsed.data.phone,
