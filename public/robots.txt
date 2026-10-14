@@ -6,7 +6,6 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /guest
-Disallow: /guest-login
 Disallow: /auth
 Disallow: /api/
 Disallow: /_serverFn/

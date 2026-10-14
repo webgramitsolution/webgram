@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
 const BASE = "https://webgramitsolution.com";
-const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs","/ae/","/kw/","/locations/delhi","/locations/noida","/locations/faridabad","/locations/gurugram","/locations/delhi-ncr","/locations/south-delhi"];
+const STATIC_PATHS = ["/","/about","/contact","/solutions/ecommerce-development","/solutions/b2b-commerce","/solutions/website-design-development","/services/web-portal-development","/services/website-design","/services/wordpress","/services/woocommerce","/services/shopify","/services/api-integration","/services/website-maintenance","/services/speed-optimization","/work/portfolio","/work/case-studies","/work/client-stories","/resources/blog","/resources/guides","/resources/faqs","/guest-login","/ae/","/kw/","/locations/delhi","/locations/noida","/locations/faridabad","/locations/gurugram","/locations/delhi-ncr","/locations/south-delhi"];
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...(categories ?? []).map((category) => `<url><loc>${BASE}/blog/category/${esc(category.slug)}</loc></url>`),
           ...posts.map((p) => `<url><loc>${BASE}/blog/${esc(p.slug)}</loc><lastmod>${p.updated_at.slice(0, 10)}</lastmod></url>`),
         ];
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "public, max-age=3600" } });
       },
     },
