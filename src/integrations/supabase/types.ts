@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
@@ -198,6 +198,48 @@ export type Database = {
           id?: boolean
           updated_at?: string
           updated_by?: string | null
+        }
+        Relationships: []
+      }
+      cost_estimate_leads: {
+        Row: {
+          business_model: string
+          created_at: string
+          currency: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          full_name: string
+          id: string
+          integrations: string[]
+          phone: string
+          source_page: string
+        }
+        Insert: {
+          business_model: string
+          created_at?: string
+          currency?: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          full_name: string
+          id?: string
+          integrations?: string[]
+          phone?: string
+          source_page?: string
+        }
+        Update: {
+          business_model?: string
+          created_at?: string
+          currency?: string
+          email?: string
+          estimate_max?: number
+          estimate_min?: number
+          full_name?: string
+          id?: string
+          integrations?: string[]
+          phone?: string
+          source_page?: string
         }
         Relationships: []
       }
@@ -621,6 +663,17 @@ export type Database = {
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       set_guest_post_cost: { Args: { _cost: number }; Returns: number }
       start_blog_read: { Args: { _post_id: string }; Returns: undefined }
+      submit_cost_estimate: {
+        Args: {
+          _email: string
+          _integrations: string[]
+          _model: string
+          _name: string
+          _phone: string
+          _source: string
+        }
+        Returns: string
+      }
       submit_enquiry: {
         Args: {
           _email: string
