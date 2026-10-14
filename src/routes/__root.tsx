@@ -34,6 +34,13 @@ function NotFoundComponent() {
             Go home
           </Link>
         </div>
+        <nav aria-label="Helpful links" className="mt-6 flex flex-wrap justify-center gap-x-4 gap-y-2 text-[15px] text-primary">
+          <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }}>Ecommerce Development</Link>
+          <Link to="/services/website-design">Website Design</Link>
+          <Link to="/work/portfolio">Portfolio</Link>
+          <Link to="/resources/$slug" params={{ slug: "blog" }}>Blog</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
       </div>
     </div>
   );

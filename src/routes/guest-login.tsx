@@ -11,18 +11,20 @@ import { registerGuestAccount, sendGuestLoginCode } from "@/lib/auth-email.funct
 
 const HERO = "https://ik.imagekit.io/x3cipokny/icon/guest%20post%20banner.png";
 
+const DESC = "Submit a guest post to Webgram IT Solution. Share original articles on web development, eCommerce, SEO and digital marketing with our readers.";
+
 export const Route = createFileRoute("/guest-login")({
   head: () => ({ meta: [
-    { title: "Guest Author Panel – Write, Publish & Earn | Webgram IT Solution" },
-    { name: "description", content: "Register as a Webgram guest author to write articles, publish on our blog and earn credits. Read the guest posting guidelines and create your account." },
-    { property: "og:title", content: "Guest Author Panel – Write, Publish & Earn Credits" },
-    { property: "og:description", content: "Share your expertise with business owners and technology enthusiasts on the Webgram blog." },
+    { title: "Guest Post Submission | Write for Us – Webgram IT Solution" },
+    { name: "description", content: DESC },
+    { property: "og:title", content: "Guest Post Submission | Write for Us – Webgram IT Solution" },
+    { property: "og:description", content: DESC },
     { property: "og:type", content: "website" },
     { property: "og:image", content: HERO },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "robots", content: "noindex" },
+    { name: "keywords", content: "guest post submission, write for us, submit a guest post, guest posting website, guest blogging sites, guest article submission, submit an article, guest post opportunities, contribute an article, write for us technology, write for us digital marketing" },
     { name: "twitter:image", content: HERO },
-  ] }),
+  ], links: [{ rel: "canonical", href: "https://webgramitsolution.com/guest-login" }] }),
   component: GuestLogin,
 });
 
@@ -107,7 +109,7 @@ function GuestLogin() {
   return <div className="min-h-screen bg-sky-soft"><SiteHeader /><main>
     <section className="relative overflow-hidden bg-sky-soft bg-cover bg-right bg-no-repeat" style={{ backgroundImage: `url(${HERO})` }} aria-label="Guest author panel">
       <div className="page-shell relative py-7 md:py-9">
-        <div className="max-w-[58%] lg:max-w-[620px]"><p className="text-xs font-extrabold uppercase tracking-wide text-primary">Guest Author Panel</p><h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">Write, Publish & <span className="text-primary">Earn Credits</span></h1><p className="mt-2 max-w-lg text-sm text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
+        <div className="max-w-[58%] lg:max-w-[620px]"><p className="text-xs font-extrabold uppercase tracking-wide text-primary">Guest Post Submission · Write for Us</p><h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">Guest Post Submission: <span className="text-primary">Write for Us</span></h1><p className="mt-2 max-w-lg text-sm text-muted-foreground">Share your knowledge, insights and experience with our growing community of business owners, professionals and technology enthusiasts.</p>
           <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">{heroFeatures.map(({ icon: Icon, a, b }) => <div key={b} className="flex items-center gap-2"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-card text-primary shadow-card"><Icon className="h-5 w-5" /></span><span className="text-[14px] font-semibold leading-tight text-navy">{a}<br />{b}</span></div>)}</div></div>
       </div>
     </section>
@@ -157,5 +159,13 @@ function GuestLogin() {
         <p className="mt-3 flex items-center gap-2 rounded-md bg-sky-soft p-2 text-[14px] text-muted-foreground"><ShieldCheck className="h-4 w-4 text-primary" />Your information is secure and will never be shared with third parties.</p>
       </section>
     </div>
+  <section className="page-shell pb-8" aria-labelledby="gp-seo"><div className="rounded-lg border border-border bg-card p-5 shadow-card">
+      <h2 id="gp-seo" className="text-xl font-medium text-navy">Submit a Guest Post – Guest Posting Website for Technology & Business Writers</h2>
+      <p className="mt-2 text-[15px] leading-6 text-muted-foreground">Looking for websites that accept guest posts? Webgram IT Solution welcomes guest article submission from bloggers, developers and marketers. Submit an article on web development, eCommerce, SEO or digital marketing and reach business owners across India. Creating an account is free, and every guest post is reviewed before it goes live.</p>
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <div><h3 className="text-[16px] font-medium text-navy">Write for Us – Technology</h3><p className="mt-1 text-[14px] leading-6 text-muted-foreground">Contribute an article on web development, React, WordPress, WooCommerce, Shopify, AI tools and website performance.</p></div>
+        <div><h3 className="text-[16px] font-medium text-navy">Write for Us – Digital Marketing</h3><p className="mt-1 text-[14px] leading-6 text-muted-foreground">Share practical guides on SEO, content marketing, social media, paid ads and online business growth.</p></div>
+        <div><h3 className="text-[16px] font-medium text-navy">Guest Post Opportunities for Bloggers</h3><p className="mt-1 text-[14px] leading-6 text-muted-foreground">Unlike many guest blogging sites, you can submit a guest post for free using credits earned in your guest dashboard.</p></div>
+      </div></div></section>
   </main></div>;
 }

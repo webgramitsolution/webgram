@@ -257,7 +257,7 @@ function Hero() {
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
           <h1 className="max-w-[500px] text-[30px] font-medium leading-[1.12] tracking-normal md:text-[30px] lg:text-[34px]">
-            professional ecommerce website development company in <span className="text-gold">delhi ncr.</span>
+            Professional Ecommerce Website Development Company in <span className="text-gold">Delhi NCR.</span>
           </h1>
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
             Grow your online business with custom B2B and B2C ecommerce websites built using WooCommerce and Shopify. We create professional online stores for wholesalers, retailers, manufacturers and growing businesses across India.
