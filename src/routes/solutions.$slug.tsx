@@ -6,6 +6,7 @@ import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-pag
 import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 import { servicePageSchema } from "@/lib/schema";
+import { NotFoundPage } from "@/components/not-found-page";
 
 const section = menuSections.solutions;
 const websiteDesignBanner = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/solutions/$slug")({
     return page;
   },
   head: ({ loaderData, params }) => ({
+    links: [{ rel: "canonical", href: `https://webgramitsolution.com/solutions/${params.slug}` }],
     meta: [
       { title: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
@@ -46,6 +48,8 @@ export const Route = createFileRoute("/solutions/$slug")({
     scripts: servicePageSchema("solutions", "Solutions", params.slug, loaderData),
   }),
   component: SolutionsPage,
+  notFoundComponent: NotFoundPage,
+  errorComponent: () => <NotFoundPage />,
 });
 
 function SolutionsPage() {

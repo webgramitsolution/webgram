@@ -10,7 +10,7 @@ const menu = [
   { label: "Healthcare", matches: ["health"] },
 ];
 
-export function BlogPublicHeader({ categories, activeSlug, onSelect }: { categories: BlogMenuCategory[]; activeSlug?: string; onSelect?: (id: string) => void }) {
+export function BlogPublicHeader({ categories, activeSlug, onSelect }: { categories: BlogMenuCategory[]; activeSlug?: string | undefined; onSelect?: (id: string) => void }) {
   const items = menu.flatMap((item) => {
     const category = categories.find((c) => !c.parent_id && item.matches.some((match) => `${c.name} ${c.slug}`.toLowerCase().includes(match)));
     return category ? [{ ...item, category }] : [];
