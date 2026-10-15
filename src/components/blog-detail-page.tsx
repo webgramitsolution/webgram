@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
 
-import { SiteHeader } from "@/components/site-header";
+import { BlogPublicHeader, type BlogMenuCategory } from "@/components/blog-public-header";
 import { BlogEngagement, BlogShareButtons } from "@/components/blog-engagement";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
 
@@ -98,7 +98,7 @@ export function ArticleBody({ content, preview = false, advertisements = false }
   return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <Fragment key={blockIndex}>{block}{advertisements && !preview && blockIndex === firstAd ? <BlogAdBand position="articleFeed" label="Article advertisement" /> : null}{advertisements && !preview && (blockIndex === secondAd || (blocks.length === 1 && blockIndex === 0)) ? <BlogAdBand position="articleContent" label="In-article advertisement" /> : null}</Fragment>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
 }
 
-export function BlogDetailPage({ post }: { post: Post }) {
+export function BlogDetailPage({ post, categories }: { post: Post; categories: BlogMenuCategory[] }) {
   const minutes = Math.max(2, Math.ceil(post.content.split(/\s+/).length / 200));
   const faqs = (Array.isArray(post.faqs) ? post.faqs : []).filter((faq): faq is Faq => Boolean(faq && typeof faq === "object" && "question" in faq && "answer" in faq));
   useEffect(() => {
@@ -108,7 +108,7 @@ export function BlogDetailPage({ post }: { post: Post }) {
     void supabase.rpc("increment_post_view", { _slug: post.slug });
   }, [post.slug]);
   return <div className="min-h-screen bg-background text-foreground">
-    <SiteHeader />
+    <BlogPublicHeader categories={categories} activeSlug={post.category?.slug} />
     <main className="bg-card">
       <div className="border-b border-border bg-background"><nav className="page-shell flex h-11 items-center gap-2 overflow-hidden text-[14px] text-muted-foreground" aria-label="Breadcrumb"><Home className="h-3.5 w-3.5 shrink-0" /><Link to="/" className="hover:text-primary">Home</Link><span>›</span><Link to="/resources/$slug" params={{ slug: "blog" }} className="hover:text-primary">Blog</Link><span>›</span>{post.category ? <><span className="text-navy">{post.category.name}</span><span>›</span></> : null}<span className="truncate">{post.title}</span></nav></div>
       <div className="mx-auto grid w-full max-w-[1280px] py-5 xl:grid-cols-[160px_minmax(0,1fr)_160px] xl:gap-4 xl:px-4">
