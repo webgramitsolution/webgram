@@ -9,6 +9,7 @@ import { SubpageTemplate } from "@/components/subpage";
 import { LatestBlogPosts } from "@/components/latest-blog-posts";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 import { servicePageSchema } from "@/lib/schema";
+import { NotFoundPage } from "@/components/not-found-page";
 
 const section = menuSections.services;
 
@@ -33,6 +34,7 @@ export const Route = createFileRoute("/services/$slug")({
     return page;
   },
   head: ({ loaderData, params }) => ({
+    links: [{ rel: "canonical", href: `https://webgramitsolution.com/services/${params.slug}` }],
     meta: [
       { title: `${loaderData?.title ?? "Services"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
@@ -50,6 +52,8 @@ export const Route = createFileRoute("/services/$slug")({
     scripts: servicePageSchema("services", "Services", params.slug, loaderData),
   }),
   component: ServicesPage,
+  notFoundComponent: NotFoundPage,
+  errorComponent: () => <NotFoundPage />,
 });
 
 function ServicesPage() {
