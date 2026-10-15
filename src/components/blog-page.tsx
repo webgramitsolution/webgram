@@ -5,20 +5,13 @@ import { CalendarDays, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
+import { BlogPublicHeader } from "@/components/blog-public-header";
 
-const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792";
 
 type Category = { id: string; name: string; slug: string; description: string; display_order: number; parent_id: string | null };
 type Post = { id: string; title: string; slug: string; excerpt: string; featured_image: string | null; featured_image_alt: string; category_id: string | null; subcategory_id: string | null; tags: string[]; author_name: string; published_at: string | null };
 
 const formatDate = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(new Date(value)) : "";
-const BLOG_MENU = [
-  { label: "Business", matches: ["business", "entrepreneur"] },
-  { label: "Finance", matches: ["finance", "invest"] },
-  { label: "Technology", matches: ["technology", "tech", "ai"] },
-  { label: "Travel", matches: ["travel"] },
-  { label: "Healthcare", matches: ["health"] },
-] as const;
 
 function PostImage({ post, className }: { post: Post; className: string }) {
   return post.featured_image ? <img src={post.featured_image} alt={post.featured_image_alt || post.title} className={className} /> : <div className={`${className} bg-primary-soft`} aria-hidden />;
@@ -33,23 +26,11 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     return matchesText && (category === "all" || post.category_id === category) && (subcategory === "all" || post.subcategory_id === subcategory);
   }), [posts, query, category, subcategory]);
   const roots = categories.filter((item) => !item.parent_id); const children = categories.filter((item) => item.parent_id === category);
-  const journalCategories = BLOG_MENU.map((menuItem) => ({
-    ...menuItem,
-    category: roots.find((item) => menuItem.matches.some((match) => `${item.name} ${item.slug}`.toLowerCase().includes(match))),
-  })).filter((item): item is typeof item & { category: Category } => Boolean(item.category));
   const grouped = roots.map((item) => ({ category: item, posts: filtered.filter((post) => post.category_id === item.id), children: categories.filter((child) => child.parent_id === item.id) })).filter((group) => group.posts.length);
 
   return <div className="min-h-screen bg-background text-foreground">
     <main>
-      <header className="sticky top-0 z-50 border-b border-on-dark/20 bg-navy text-on-dark shadow-card">
-        <div className="header-shell grid min-h-[80px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-          <div className="flex min-w-0 items-center gap-5 lg:gap-7"><Link to="/" className="shrink-0" aria-label="Webgram IT Solution home"><img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} className="h-[30px] w-auto object-contain brightness-0 invert lg:h-[36px]" /></Link><nav className="flex min-w-0 items-center gap-1 overflow-x-auto py-1 [scrollbar-width:none] sm:gap-2 lg:gap-4 [&::-webkit-scrollbar]:hidden" aria-label="Blog categories">
-             <Button size="sm" variant={category === "all" ? "default" : "ghost"} onClick={() => { setCategory("all"); setSubcategory("all"); }} className={`text-[14px] font-semibold uppercase lg:text-[13px] ${category === "all" ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>All</Button>
-             {journalCategories.map(({ label, category: item }) => <Button key={item.id} size="sm" variant={category === item.id ? "default" : "ghost"} onClick={() => { setCategory(item.id); setSubcategory("all"); }} className={`whitespace-nowrap text-[14px] font-semibold uppercase lg:text-[13px] ${category === item.id ? "" : "text-on-dark hover:bg-on-dark/10 hover:text-on-dark"}`}>{label}</Button>)}
-          </nav></div>
-          <Button asChild size="sm" className="h-9 shrink-0 bg-gold px-4 font-bold text-navy hover:bg-gold/90"><Link to="/guest-login"><span>Write for us</span><span aria-hidden>→</span></Link></Button>
-        </div>
-      </header>
+      <BlogPublicHeader categories={categories} activeSlug={roots.find((item) => item.id === category)?.slug} onSelect={(id) => { setCategory(id); setSubcategory("all"); }} />
 
       <section className="border-y border-border bg-sky-soft py-5">
         <div className="page-shell flex flex-col gap-3 sm:flex-row">

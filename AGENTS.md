@@ -15,6 +15,7 @@
 
 - Routes: `/`, `/contact`, `/about`, dynamic solution/service/work/resource pages, public blog, secured admin, and secured guest panel.
 - Shared public header is sticky; shared footer is mounted at root. Dashboard sidebars remain sticky while content scrolls.
+- Blog listings and article pages use one category header so navigation remains identical; missing URLs and articles use the shared not-found view while preserving HTTP 404 responses.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
 - Keep desktop composition on tablets; only phones compact or stack. Heroes are 348px on tablet/desktop and taller on phones; imagery uses contain.
 - Arabic hero artwork is cropped into a left-side region via language-aware shared CSS, never horizontally mirrored, so printed artwork stays legible.
