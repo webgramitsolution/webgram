@@ -9,6 +9,7 @@ const description = "Professional website design and development for fast, respo
 
 export const Route = createFileRoute("/services/website-design")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://webgramitsolution.com/services/website-design" }],
     meta: [
       { title },
       { name: "description", content: description },
