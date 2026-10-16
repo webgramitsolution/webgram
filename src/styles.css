@@ -151,7 +151,7 @@
   --ink: oklch(0.25 0.075 258);
   --navy: oklch(0.19 0.083 254);
   --on-dark: oklch(0.985 0.006 250);
-  --gold: oklch(0.83 0.143 83);
+  --gold: #1443d8;
   --linkedin: oklch(0.52 0.13 245);
   --instagram: oklch(0.6 0.22 0);
   --facebook: oklch(0.55 0.19 260);
@@ -198,6 +198,11 @@
   --game-liquid-10: oklch(0.72 0.13 218);
   --game-liquid-11: oklch(0.75 0.17 125);
   --game-liquid-12: oklch(0.5 0.2 293);
+}
+
+/* The former gold buttons now use the blue accent, with contrasting labels. */
+a.bg-gold, button.bg-gold {
+  color: var(--on-dark);
 }
 
 .game-board {

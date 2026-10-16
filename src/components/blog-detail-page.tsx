@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
 
 import { BlogPublicHeader, type BlogMenuCategory } from "@/components/blog-public-header";
 import { BlogEngagement, BlogShareButtons } from "@/components/blog-engagement";
@@ -29,7 +29,7 @@ function InlineText({ value }: { value: string }) {
 
 const imagePattern = /^!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)$/i;
 
-export function ArticleBody({ content, preview = false, advertisements = false }: { content: string; preview?: boolean; advertisements?: boolean }) {
+export function ArticleBody({ content, preview = false, advertisements = false, recommendations = [] }: { content: string; preview?: boolean; advertisements?: boolean; recommendations?: Related[] }) {
   const lines = content.replace(/\\n/g, "\n").split("\n");
   const blocks: React.ReactNode[] = [];
   let index = 0;
@@ -93,9 +93,9 @@ export function ArticleBody({ content, preview = false, advertisements = false }
     while (index < lines.length && lines[index]?.trim() && !/^(#{1,4} |[-*•] |\d+\. |> |\||```|---$|:::|!\[|Video:)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
     blocks.push(<p key={`p-${index}`}><InlineText value={paragraph.join(" ")} /></p>);
   }
-  const firstAd = Math.max(0, Math.ceil(blocks.length / 3) - 1);
-  const secondAd = Math.max(firstAd + 1, Math.ceil(blocks.length * 2 / 3) - 1);
-  return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <Fragment key={blockIndex}>{block}{advertisements && !preview && blockIndex === firstAd ? <BlogAdBand position="articleFeed" label="Article advertisement" /> : null}{advertisements && !preview && (blockIndex === secondAd || (blocks.length === 1 && blockIndex === 0)) ? <BlogAdBand position="articleContent" label="In-article advertisement" /> : null}</Fragment>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
+  const adBoundaries = [1, 2, 3, 4].map((part) => Math.max(0, Math.ceil(blocks.length * part / 5) - 1));
+  const recommendationBoundaries = recommendations.map((_, itemIndex) => Math.max(0, Math.ceil(blocks.length * (itemIndex + 1) / 3) - 1));
+  return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <Fragment key={blockIndex}>{block}{!preview ? recommendations.map((item, itemIndex) => recommendationBoundaries[itemIndex] === blockIndex ? <aside key={item.id} className="my-6 border-y border-border bg-primary-soft px-4 py-4" aria-label="Related article"><span className="mb-2 block text-[13px] font-medium text-muted-foreground">{itemIndex === 0 ? "Also read this blog" : "Read about this"}</span><Link to="/blog/$slug" params={{ slug: item.slug }} className="flex items-start justify-between gap-3 text-[16px] font-medium leading-6 text-primary">{item.title}<ArrowRight className="mt-1 h-4 w-4 shrink-0" /></Link></aside> : null) : null}{advertisements && !preview ? adBoundaries.map((boundary, adIndex) => boundary === blockIndex ? <BlogAdBand key={`article-ad-${adIndex}`} position={adIndex % 2 === 0 ? "articleFeed" : "articleContent"} label={`Article advertisement ${adIndex + 1}`} /> : null) : null}</Fragment>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
 }
 
 export function BlogDetailPage({ post, categories }: { post: Post; categories: BlogMenuCategory[] }) {
@@ -111,8 +111,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
     <BlogPublicHeader categories={categories} activeSlug={post.category?.slug} />
     <main className="bg-card">
       <div className="border-b border-border bg-background"><nav className="page-shell flex h-11 items-center gap-2 overflow-hidden text-[14px] text-muted-foreground" aria-label="Breadcrumb"><Home className="h-3.5 w-3.5 shrink-0" /><Link to="/" className="hover:text-primary">Home</Link><span>›</span><Link to="/resources/$slug" params={{ slug: "blog" }} className="hover:text-primary">Blog</Link><span>›</span>{post.category ? <><span className="text-navy">{post.category.name}</span><span>›</span></> : null}<span className="truncate">{post.title}</span></nav></div>
-      <div className="mx-auto grid w-full max-w-[1280px] py-5 xl:grid-cols-[160px_minmax(0,1fr)_160px] xl:gap-4 xl:px-4">
-        <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
+      <div className="mx-auto w-full max-w-[928px] py-5 xl:px-4">
         <div className="min-w-0 bg-card px-3 md:px-5 xl:px-0">
       {post.featured_image ? <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card"><img src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" /></figure> : null}
       <section className="pt-4">
@@ -123,13 +122,11 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
           <BlogShareButtons postId={post.id} title={post.title} />
         </div>
       </section>
-      <article className="py-5"><ArticleBody content={post.content} advertisements /></article>
+      <article className="py-5"><ArticleBody content={post.content} advertisements recommendations={post.related} /></article>
       {faqs.length ? <section className="mx-auto mb-10 w-[min(100%,760px)]"><h2 className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
-      {post.related.length ? <nav className="mb-4 grid overflow-hidden rounded-md border border-border bg-sky-soft md:grid-cols-2" aria-label="Previous and next articles">{post.related.slice(0, 2).map((item, index) => <Link key={item.id} to="/blog/$slug" params={{ slug: item.slug }} className={`flex min-h-16 items-center gap-3 p-3 hover:bg-primary-soft ${index === 1 ? "border-t border-border text-right md:border-l md:border-t-0 md:flex-row-reverse" : ""}`}>{item.featured_image ? <img src={item.featured_image} alt="" className="h-11 w-16 shrink-0 rounded-sm object-cover" /> : null}<span className="min-w-0"><span className="flex items-center gap-1 text-[13px] font-bold text-primary">{index === 0 ? <><ArrowLeft className="h-3 w-3" /> Previous Post</> : <>Next Post <ArrowRight className="h-3 w-3" /></>}</span><strong className="mt-1 block truncate text-[14px] text-navy">{item.title}</strong></span></Link>)}</nav> : null}
       <BlogEngagement postId={post.id} title={post.title} />
       <BlogAdBand position="afterComments" label="Advertisement below comments" />
         </div>
-        <aside className="hidden xl:block"><div className="sticky top-32"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>
       <BlogAdsConsent />
     </main>
