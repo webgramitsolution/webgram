@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Open
-- [ ] Redesign 404 from supplied reference and share blog category menu with article pages; verify devices and HTTP status.
-- [ ] Review live indexing and LLM readiness, then recommend an evidence-based first audience-growth action.
+- [x] Redesign 404 from supplied reference and share blog category menu with article pages; checked 320/393/768/951/1280px and HTTP 404.
+- [x] Review live indexing and LLM readiness, then recommend an evidence-based first audience-growth action; Google report and research reviewed.
 - [x] Fix language-aware heroes, homepage heading/SEO/LCP, single-row technology logos and distinct NCR service content; checked at 393/837/1280px without overflow or browser errors.
 - [ ] Display detailed genuine homepage reviews on all devices (layout ready; blocked: all three published reviews are below the required length).
 - [x] Repair homepage technology logo containment and Ecommerce phone process spacing; verified at 320, 393, 837 and 1280px
