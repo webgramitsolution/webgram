@@ -3,11 +3,12 @@ import { BlogDetailPage } from "@/components/blog-detail-page";
 import { getPublicBlogPost, getPublicBlog } from "@/lib/blog.functions";
 import { NotFoundPage } from "@/components/not-found-page";
 import { Button } from "@/components/ui/button";
+import { selectArticleRecommendations } from "@/lib/article-recommendations";
 
 const SITE = "https://webgramitsolution.com";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: async ({ params }) => { const [post, blog] = await Promise.all([getPublicBlogPost({ data: { slug: params.slug } }), getPublicBlog()]); if (!post) throw notFound(); return { ...post, menuCategories: blog.categories }; },
+  loader: async ({ params }) => { const [post, blog] = await Promise.all([getPublicBlogPost({ data: { slug: params.slug } }), getPublicBlog()]); if (!post) throw notFound(); return { ...post, related: selectArticleRecommendations(blog.posts, post), menuCategories: blog.categories }; },
   notFoundComponent: NotFoundPage,
   errorComponent: () => <div className="page-shell py-16"><h1>Article unavailable</h1><p className="my-4">Please try again shortly.</p><Button asChild><a href="/resources/blog">Back to blog</a></Button></div>,
   head: ({ loaderData, params }) => { const faqs = Array.isArray(loaderData?.faqs) ? loaderData.faqs.filter((faq): faq is { question: string; answer: string } => Boolean(faq && typeof faq === "object" && !Array.isArray(faq) && "question" in faq && "answer" in faq)) : []; return ({ links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }], scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "BlogPosting", headline: loaderData.title, description: loaderData.seo_description ?? loaderData.excerpt, image: loaderData.featured_image ?? undefined, datePublished: loaderData.published_at, author: { "@type": "Person", name: loaderData.author_name }, publisher: { "@type": "Organization", name: "Webgram IT Solution" }, mainEntityOfPage: `${SITE}/blog/${params.slug}` }) }, ...(faqs.length ? [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }) }] : [])] : [], meta: [
