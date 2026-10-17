@@ -1,7 +1,9 @@
 # Roadmap
 
 ## Open
-- [ ] Restore sticky article side ads and top ad, keep four inline/comment ads, fix single-line clickable phone breadcrumb, and investigate guest submission.
+- [x] Restore sticky article side ads/top ad, preserve inline/comment ads and fix single-line clickable phone breadcrumb; desktop/phone verified.
+- [x] Replace silent guest submit blocking with explicit validation and draft-preserving errors; seven tests pass and RPC permissions confirmed.
+- [ ] Verify guest submission saves and reads back through signed-in UI (blocked: requesting user has no preview account; preview sign-in needed).
 - [x] Add blog-card short previews/Read More, unique automatic article recommendations, four content ads plus fifth below comments, and replace gold accent with requested blue; three tests pass and real article navigation/phone layout verified.
 - [x] Redesign 404 from supplied reference and share blog category menu with article pages; checked 320/393/768/951/1280px and HTTP 404.
 - [x] Review live indexing and LLM readiness, then recommend an evidence-based first audience-growth action; Google report and research reviewed.

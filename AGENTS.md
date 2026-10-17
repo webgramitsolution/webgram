@@ -27,13 +27,13 @@
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
 - AdSense is consent-gated: blog listing uses category bands; public articles use a top unit above the cover, sticky desktop side rails, four block-boundary inline units and one below comments; legal pages use desktop rails; the game alone uses a responsive right rail and explicit-dismissal post-win break. Never render sitewide top, bottom, footer, or guest-posting ads.
-- Blog cards expose a short excerpt and Read More link; article recommendations use published listing data ranked by category, shared tags and recency, excluding existing body links and duplicate destinations so automatic links never repeat.
+- Blog cards show excerpts/Read More; recommendations rank published posts by category, tags and recency, excluding existing links and duplicate destinations.
 - All ad formats use the shared ad renderer with one initialization per visible element and shared consent events, so route changes and automatic consent do not leave placements unloaded.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
-- Guest article formatting is stored as restricted Markdown-style text and rendered without raw HTML so pasted rich content cannot execute scripts.
+- Guest articles use safe Markdown, not raw HTML; submit validates explicitly rather than browser-checking collapsed FAQs, preserving drafts and visible errors.
 - Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
