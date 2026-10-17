@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CalendarDays, Search } from "lucide-react";
 
@@ -32,6 +32,8 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     <main>
       <BlogPublicHeader categories={categories} activeSlug={roots.find((item) => item.id === category)?.slug} onSelect={(id) => { setCategory(id); setSubcategory("all"); }} />
 
+      <div className="page-shell"><BlogAdBand position="top" label="Advertisement above search" /></div>
+
       <section className="border-y border-border bg-sky-soft py-5">
         <div className="page-shell flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1"><Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search articles..." className="h-11 bg-card pl-11" /></div>
@@ -47,17 +49,16 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
       <div className="mx-auto grid max-w-[1540px] px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px] xl:px-0">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
       <section className="min-w-0 px-3 py-9 md:px-5">
-        {grouped.length ? grouped.map((group, index) => <div key={group.category.id}>
+        {grouped.length ? grouped.map((group) => <div key={group.category.id}>
           <div id={`category-${group.category.slug}`}>
           <div className="mb-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"><span className="hidden h-px bg-border sm:block" /><h2 className="truncate text-center text-2xl font-extrabold text-navy">{group.category.name}</h2><div className="flex items-center justify-end gap-4"><span className="h-px min-w-5 flex-1 bg-border" /><Button type="button" variant="ghost" size="sm" onClick={() => setCategory(group.category.id)} className="shrink-0 text-primary">View more</Button></div></div>
           <div className="mb-5 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">{group.children.map((child) => <button key={child.id} onClick={() => { setCategory(group.category.id); setSubcategory(child.id); }} className="shrink-0 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-navy hover:text-primary">{child.name}</button>)}</div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-          {group.posts.map((post) => <div key={post.id} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card">
+          <div className="grid grid-cols-2 gap-3">
+          {group.posts.map((post, postIndex) => <Fragment key={post.id}><div className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card">
             <Link to="/blog/$slug" params={{ slug: post.slug }} className="block aspect-[16/9] overflow-hidden"><PostImage post={post} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></Link>
-            <div className="flex flex-1 flex-col p-3"><h3 className="line-clamp-3 text-[14px] font-medium leading-[1.35] text-navy group-hover:text-primary"><Link to="/blog/$slug" params={{ slug: post.slug }}>{post.title}</Link></h3><span className="mt-2 block truncate text-[13px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[13px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span>{post.excerpt ? <p className="mt-3 line-clamp-3 text-[14px] leading-6 text-muted-foreground">{post.excerpt}</p> : null}<div className="mt-auto pt-3"><Button asChild variant="link" className="h-auto p-0 text-[14px]"><Link to="/blog/$slug" params={{ slug: post.slug }} aria-label={`Read more: ${post.title}`}>Read More</Link></Button></div></div>
-          </div>)}
+            <div className="flex flex-1 flex-col p-3"><h3 className="line-clamp-3 text-[14px] font-medium leading-[1.35] text-navy group-hover:text-primary"><Link to="/blog/$slug" params={{ slug: post.slug }}>{post.title}</Link></h3><span className="mt-2 block truncate text-[13px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[13px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span><div className="mt-auto pt-3"><Button asChild variant="link" className="h-auto p-0 text-[14px]"><Link to="/blog/$slug" params={{ slug: post.slug }} aria-label={`Read more: ${post.title}`}>Read More</Link></Button></div></div>
+          </div>{(postIndex + 1) % 2 === 0 ? <div className="col-span-full"><BlogAdBand position="category" label={`Advertisement in ${group.category.name} after articles ${postIndex} and ${postIndex + 1}`} /></div> : null}</Fragment>)}
            </div><div className="h-12" /></div>
-          {(index + 1) % 2 === 0 ? <BlogAdBand position="category" label={`Advertisement after ${group.category.name}`} /> : null}
         </div>) : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
