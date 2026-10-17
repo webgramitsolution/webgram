@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Add blog-card short previews/Read More, unique automatic article recommendations, four content ads plus fifth below comments, and replace gold accent with requested blue.
+- [x] Add blog-card short previews/Read More, unique automatic article recommendations, four content ads plus fifth below comments, and replace gold accent with requested blue; three tests pass and real article navigation/phone layout verified.
 - [x] Redesign 404 from supplied reference and share blog category menu with article pages; checked 320/393/768/951/1280px and HTTP 404.
 - [x] Review live indexing and LLM readiness, then recommend an evidence-based first audience-growth action; Google report and research reviewed.
 - [x] Fix language-aware heroes, homepage heading/SEO/LCP, single-row technology logos and distinct NCR service content; checked at 393/837/1280px without overflow or browser errors.
