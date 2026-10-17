@@ -110,9 +110,11 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
   return <div className="min-h-screen bg-background text-foreground">
     <BlogPublicHeader categories={categories} activeSlug={post.category?.slug} />
     <main className="bg-card">
-      <div className="border-b border-border bg-background"><nav className="page-shell flex h-11 items-center gap-2 overflow-hidden text-[14px] text-muted-foreground" aria-label="Breadcrumb"><Home className="h-3.5 w-3.5 shrink-0" /><Link to="/" className="hover:text-primary">Home</Link><span>›</span><Link to="/resources/$slug" params={{ slug: "blog" }} className="hover:text-primary">Blog</Link><span>›</span>{post.category ? <><span className="text-navy">{post.category.name}</span><span>›</span></> : null}<span className="truncate">{post.title}</span></nav></div>
-      <div className="mx-auto w-full max-w-[928px] py-5 xl:px-4">
+      <div className="border-b border-border bg-background"><nav className="page-shell flex h-11 min-w-0 items-center gap-2 overflow-hidden whitespace-nowrap text-[14px] text-muted-foreground" aria-label="Breadcrumb"><Link to="/" className="flex shrink-0 items-center gap-1.5 hover:text-primary"><Home className="h-3.5 w-3.5" />Home</Link><span className="shrink-0">›</span><Link to="/resources/$slug" params={{ slug: "blog" }} className="shrink-0 hover:text-primary">Blog</Link><span className="shrink-0">›</span>{post.category ? <><Link to="/blog/category/$slug" params={{ slug: post.category.slug }} title={post.category.name} className="max-w-24 shrink-0 truncate text-navy hover:text-primary sm:max-w-56">{post.category.name}</Link><span className="shrink-0">›</span></> : null}<Link to="/blog/$slug" params={{ slug: post.slug }} aria-current="page" title={post.title} className="min-w-0 truncate hover:text-primary">{post.title}</Link></nav></div>
+      <div className="mx-auto grid w-full max-w-[1280px] py-5 xl:grid-cols-[160px_minmax(0,1fr)_160px] xl:gap-4 xl:px-4">
+        <aside className="hidden xl:block"><div className="sticky top-28"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
         <div className="min-w-0 bg-card px-3 md:px-5 xl:px-0">
+      <BlogAdBand position="top" label="Advertisement above featured image" />
       {post.featured_image ? <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card"><img src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" /></figure> : null}
       <section className="pt-4">
         <p className="inline-flex rounded-sm bg-primary px-2 py-1 text-[13px] font-extrabold uppercase text-primary-foreground">{post.category?.name ?? "Webgram Journal"}</p>
@@ -127,6 +129,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
       <BlogEngagement postId={post.id} title={post.title} />
       <BlogAdBand position="afterComments" label="Advertisement below comments" />
         </div>
+        <aside className="hidden xl:block"><div className="sticky top-28"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>
       <BlogAdsConsent />
     </main>
