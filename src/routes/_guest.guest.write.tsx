@@ -11,9 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { displayName, errorText, useGuestPostCost, useGuestStatus } from "@/lib/guest";
+import { guestPostIssues } from "@/lib/guest-post-validation";
 
 export const Route = createFileRoute("/_guest/guest/write")({
-  head: () => ({ meta: [{ title: "Write a Guest Article | Webgram" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Write a Guest Article | Webgram" }, { name: "description", content: "Prepare and submit your original guest article to Webgram IT Solution." }, { property: "og:title", content: "Write a Guest Article | Webgram" }, { property: "og:description", content: "Prepare and submit your original guest article to Webgram IT Solution." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" }] }),
   component: Write,
 });
 
@@ -33,23 +34,30 @@ function Write() {
   const hasLink = LINK.test(f.content.replace(IMAGE, "")) || LINK.test(f.excerpt);
   const roots = cats.filter((cat) => !cat.parent_id); const children = cats.filter((cat) => cat.parent_id === f.category);
   const tags = f.tags.split(",").map((tag) => tag.trim()).filter(Boolean).slice(0, 10);
-  const completeFaqs = f.faqs.every((faq) => faq.question.trim().length >= 5 && faq.answer.trim().length >= 5);
-  const canSubmit = s.unlocked && !postCost.loading && s.balance >= postCost.cost && words >= 800 && !hasLink && Boolean(f.category && f.subcategory && tags.length && completeFaqs && f.seoTitle.trim().length >= 10 && f.seoDescription.trim().length >= 50);
 
   async function submit(e: FormEvent) {
-    e.preventDefault(); setBusy(true); setError("");
-    const { error: err } = await supabase.rpc("submit_guest_post_v2", { _title: f.title, _excerpt: f.excerpt, _content: f.content, _category_id: f.category, _subcategory_id: f.subcategory, _tags: tags, _faqs: f.faqs, _image: f.image, _author_name: f.author || displayName(s.email), _seo_title: f.seoTitle, _seo_description: f.seoDescription });
-    setBusy(false);
-    if (err) { setError(errorText(err)); return; }
-    localStorage.removeItem("guest-draft");
-    await navigate({ to: "/guest" });
+    e.preventDefault(); if (busy) return; setError("");
+    const issues = guestPostIssues(f);
+    if (!s.unlocked) issues.unshift("Complete five game levels to unlock guest posting.");
+    if (postCost.loading || s.loading) issues.unshift("Please wait for your account and credit balance to load.");
+    if (s.balance < postCost.cost) issues.unshift(`You need ${postCost.cost - s.balance} more credits.`);
+    if (issues.length) { setError(issues.join("\n")); return; }
+    setBusy(true);
+    try {
+      localStorage.setItem("guest-draft", JSON.stringify(f));
+      const { error: err } = await supabase.rpc("submit_guest_post_v2", { _title: f.title.trim(), _excerpt: f.excerpt.trim(), _content: f.content, _category_id: f.category, _subcategory_id: f.subcategory, _tags: tags, _faqs: f.faqs, _image: f.image, _author_name: f.author.trim() || displayName(s.email), _seo_title: f.seoTitle.trim(), _seo_description: f.seoDescription.trim() });
+      if (err) { setError(errorText(err)); return; }
+      localStorage.removeItem("guest-draft");
+      await navigate({ to: "/guest" });
+    } catch (err) { setError(errorText(err)); }
+    finally { setBusy(false); }
   }
   const field = "mt-2 h-10 bg-card";
   const [faqQuery, setFaqQuery] = useState("");
   return <div className="min-h-screen bg-sky-soft"><BlogAuthorHeader /><main className="mx-auto w-[min(100%-1rem,1540px)] px-2 py-5">
     <FormPageTitle title="Create New Post" />
     {!s.unlocked ? <div className="mt-4"><LockedNotice levels={s.levels} /></div> : null}
-    <form onSubmit={submit} className="mt-4 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_420px]">
+    <form noValidate onSubmit={submit} className="mt-4 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_420px]">
       <div className="min-w-0 space-y-4">
         <section className={cardClass}>
           <label className="block text-sm font-bold text-navy">Post Title <span className="text-destructive">*</span><Input required minLength={3} maxLength={180} value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Enter your blog post title here..." className={field} /></label>
@@ -66,9 +74,9 @@ function Write() {
         </section>
       </div>
       <aside className="min-w-0 space-y-4">
-        <section className={cardClass}><div className="flex flex-wrap items-center justify-between gap-2"><CardTitle icon={Send}>Publish</CardTitle><div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => { localStorage.setItem("guest-draft", JSON.stringify(f)); setSaved(new Date()); }}>Save Draft</Button><Button disabled={busy || !canSubmit} size="sm">{busy ? "Submitting..." : "Submit for Review"}</Button></div></div>
+        <section className={cardClass}><div className="flex flex-wrap items-center justify-between gap-2"><CardTitle icon={Send}>Publish</CardTitle><div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => { localStorage.setItem("guest-draft", JSON.stringify(f)); setSaved(new Date()); }}>Save Draft</Button><Button type="submit" disabled={busy} size="sm">{busy ? "Submitting..." : "Submit for Review"}</Button></div></div>
           <div className="mt-4 rounded border border-border"><MetaRow label="Status"><span className="rounded bg-muted px-2 py-0.5 font-semibold">Draft</span></MetaRow><MetaRow label="Visibility">Private (Only admin can see)</MetaRow><MetaRow label="Review">Post will be reviewed by our editorial team</MetaRow><MetaRow label="Cost">{postCost.loading ? "Loading..." : `${postCost.cost} credits (balance ${s.balance})`}</MetaRow><MetaRow label="Last Saved">{saved ? saved.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "Not saved yet"}</MetaRow></div>
-          {error ? <p role="alert" className="mt-3 text-xs font-semibold text-destructive">{error}</p> : null}{s.unlocked && !postCost.loading && s.balance < postCost.cost ? <p className="mt-2 text-xs text-warning">You need {postCost.cost - s.balance} more credits.</p> : null}</section>
+          {error ? <p role="alert" className="mt-3 whitespace-pre-line text-[14px] font-semibold text-destructive">{error}</p> : null}{s.unlocked && !postCost.loading && s.balance < postCost.cost ? <p className="mt-2 text-xs text-warning">You need {postCost.cost - s.balance} more credits.</p> : null}</section>
         <section className={cardClass}><CardTitle icon={FolderOpen}>Categories</CardTitle><div className="mt-3 grid grid-cols-2 gap-3"><label className="text-sm font-semibold text-navy">Select Category <span className="text-destructive">*</span><select required value={f.category} onChange={(e) => setF({ ...f, category: e.target.value, subcategory: "" })} className="mt-2 h-10 w-full rounded-md border border-input bg-card px-2 text-xs"><option value="">Choose a category</option>{roots.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label><label className="text-sm font-semibold text-navy">Sub Category<select required value={f.subcategory} onChange={(e) => setF({ ...f, subcategory: e.target.value })} className="mt-2 h-10 w-full rounded-md border border-input bg-card px-2 text-xs"><option value="">Choose a sub category</option>{children.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label></div><label className="mt-3 block text-sm font-semibold text-navy">Tags<Input required value={f.tags} onChange={(e) => setF({ ...f, tags: e.target.value })} placeholder="Add tags separated by commas" className={field} /></label><p className="mt-1 text-xs text-muted-foreground">Use relevant tags to get more visibility</p></section>
         <section className={cardClass}><CardTitle icon={ImagePlus}>Feature Image</CardTitle><div className="mt-3 grid place-items-center rounded-md border border-dashed border-input p-4 text-center">{/^https:\/\//i.test(f.image) ? <img src={f.image} alt="Featured preview" className="max-h-28 rounded object-contain" /> : <ImagePlus className="h-8 w-8 text-navy" />}<p className="mt-1 text-xs font-semibold text-navy">Image URL only</p><p className="text-[13px] text-muted-foreground">Paste an https:// image link · Recommended 1200 × 630 px</p></div><div className="mt-3 flex gap-2"><Input type="url" inputMode="url" pattern="https://.+" title="Only https:// image URLs are accepted" value={f.image} onChange={(e) => setF({ ...f, image: e.target.value.trim() })} placeholder="https://ik.imagekit.io/archfacingb2b/your-image.jpg" className={field} />{f.image ? <Button type="button" variant="outline" size="sm" className="h-10" onClick={() => setF({ ...f, image: "" })}>Remove</Button> : null}</div>{f.image && !/^https:\/\//i.test(f.image) ? <p className="mt-1 text-[14px] font-semibold text-destructive">Only https:// image URLs are accepted.</p> : null}
           <div className="mt-3 rounded-md border border-border bg-muted/50 px-3 py-2"><p className="text-[14px] font-bold text-navy">Use this — an ImageKit image link</p><p className="mt-1 break-all font-mono text-[14px] text-muted-foreground">https://imagekit.io/ → https://ik.imagekit.io/archfacingb2b/your-image.jpg</p><p className="mt-1 text-[14px] text-muted-foreground">Upload the image on <a href="https://imagekit.io/" target="_blank" rel="noopener noreferrer" className="font-bold text-primary underline decoration-2">imagekit.io</a>, copy its full URL, and paste it above. Only https:// links are accepted.</p></div></section>
