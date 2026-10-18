@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Add blog ad above search and after two cards within categories; hide listing descriptions and verify phone/desktop.
+- [x] Add blog ad above search and after two cards within categories; hide listing descriptions; verified real posts at 393/1280px without overflow, build OK.
 - [x] Restore sticky article side ads/top ad, preserve inline/comment ads and fix single-line clickable phone breadcrumb; desktop/phone verified.
 - [x] Replace silent guest submit blocking with explicit validation and draft-preserving errors; seven tests pass and RPC permissions confirmed.
 - [ ] Verify guest submission saves and reads back through signed-in UI (blocked: requesting user has no preview account; preview sign-in needed).
