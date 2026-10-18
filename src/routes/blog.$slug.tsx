@@ -19,7 +19,7 @@ export const Route = createFileRoute("/blog/$slug")({
     { property: "og:title", content: loaderData?.seo_title ?? loaderData?.title ?? "Article | Webgram IT Solution" },
     { property: "og:description", content: loaderData?.seo_description ?? loaderData?.excerpt ?? "Webgram digital commerce insight." },
     { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" },
-    ...(loaderData?.noindex ? [{ name: "robots", content: "noindex,follow" }] : []),
+    { name: "robots", content: loaderData?.noindex ? "noindex,follow" : "index,follow,max-image-preview:large" },
     ...(loaderData?.featured_image ? [{ property: "og:image", content: loaderData.featured_image }, { name: "twitter:image", content: loaderData.featured_image }] : []),
   ] }); },
   component: Page,
