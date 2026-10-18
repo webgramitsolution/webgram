@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Set portfolio/blog four-column grids, eight-post previews and ads before subsequent categories; verify layouts and Discover eligibility.
+- [x] Set portfolio/blog four-column tablet/desktop grids, eight-post category previews and ads before subsequent categories; verified 393/951/1280px, View more, two tests and build OK. Added large-image preview permission; sampled cover is 2172px wide. Europe indexing/Discover inclusion remain Google-controlled, not guaranteed.
 - [x] Add blog ad above search and after two cards within categories; hide listing descriptions; verified real posts at 393/1280px without overflow, build OK.
 - [x] Restore sticky article side ads/top ad, preserve inline/comment ads and fix single-line clickable phone breadcrumb; desktop/phone verified.
 - [x] Replace silent guest submit blocking with explicit validation and draft-preserving errors; seven tests pass and RPC permissions confirmed.
