@@ -88,8 +88,8 @@ function PortfolioPage() {
         </div>
       </section>
       <section className="py-10 md:py-14">
-        <div className="header-shell grid gap-6 md:gap-8">
-          {portfolio.map((item) => <PortfolioCard key={item.domain} item={item} />)}
+        <div className="header-shell grid grid-cols-1 gap-4 md:grid-cols-4">
+          {portfolio.map((item) => <PortfolioCard key={item.domain} item={item} compact />)}
         </div>
       </section>
       <section className="bg-sky-soft py-10">

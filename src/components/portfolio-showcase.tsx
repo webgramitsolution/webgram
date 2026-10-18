@@ -22,22 +22,22 @@ export function ScrollingFrame({ item, height = 400, eager = false }: { item: Po
   );
 }
 
-export function PortfolioCard({ item }: { item: PortfolioItem }) {
+export function PortfolioCard({ item, compact = false }: { item: PortfolioItem; compact?: boolean }) {
   const technologies = technologyStack.filter((t) => t.name !== "More");
 
   return (
-    <article className="grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8">
-      <ScrollingFrame item={item} height={460} />
+    <article className={compact ? "flex min-w-0 flex-col gap-4 rounded-lg border border-border bg-card p-3 shadow-card" : "grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8"}>
+      <ScrollingFrame item={item} height={compact ? 260 : 460} />
       <div className="flex min-w-0 flex-col">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-[14px] font-semibold text-primary">{item.category}</p>
           <p className="flex items-center gap-1 text-[14px] text-muted-foreground"><MapPin className="h-4 w-4" />{item.location}</p>
         </div>
-        <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">{item.name}</h2>
+        <h2 className={compact ? "mt-2 text-[20px] leading-tight text-navy" : "mt-2 text-[26px] leading-tight text-navy md:text-[30px]"}>{item.name}</h2>
         <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{item.summary}</p>
         <h3 className="mt-6 text-[19px] text-navy">Key Features</h3>
         <span className="mt-2 block h-0.5 w-8 bg-navy" />
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        <ul className={compact ? "mt-4 grid gap-3" : "mt-4 grid gap-3 sm:grid-cols-2"}>
           {item.delivered.map((point) => <li key={point} className="flex items-center gap-2 text-[15px] text-navy"><CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />{point}</li>)}
         </ul>
         <div className="mt-6 border-t border-border pt-5">
