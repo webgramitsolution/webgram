@@ -67,7 +67,8 @@ export function BlogAdBand({ label = "Advertisement", position = "category", rai
     const syncConsent = () => { setAccepted(window.localStorage.getItem(CONSENT_KEY) === "accepted"); setGuarded(window.sessionStorage.getItem(AD_GUARD_KEY) === "blocked"); };
     syncConsent();
     window.addEventListener("webgram:ad-consent", syncConsent);
-    return () => window.removeEventListener("webgram:ad-consent", syncConsent);
+    window.addEventListener("webgram:ad-guard", syncConsent);
+    return () => { window.removeEventListener("webgram:ad-consent", syncConsent); window.removeEventListener("webgram:ad-guard", syncConsent); };
   }, []);
   function registerAdInteraction() {
     const now = Date.now();
@@ -80,7 +81,7 @@ export function BlogAdBand({ label = "Advertisement", position = "category", rai
       } catch { window.sessionStorage.removeItem(AD_GUARD_KEY); }
     }
     const state = now - parsed.startedAt > AD_CLICK_WINDOW_MS ? { startedAt: now, count: 1 } : { startedAt: parsed.startedAt, count: parsed.count + 1 };
-    if (state.count >= AD_CLICK_LIMIT) { window.sessionStorage.setItem(AD_GUARD_KEY, "blocked"); setGuarded(true); }
+    if (state.count >= AD_CLICK_LIMIT) { window.sessionStorage.setItem(AD_GUARD_KEY, "blocked"); setGuarded(true); window.dispatchEvent(new Event("webgram:ad-guard")); }
     else window.sessionStorage.setItem(AD_GUARD_KEY, JSON.stringify(state));
   }
   useEffect(() => {

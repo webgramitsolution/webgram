@@ -27,7 +27,8 @@
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
 - AdSense is consent-gated: blog listing uses category bands; public articles use a top unit above the cover, sticky desktop side rails, four block-boundary inline units and one below comments; legal pages use desktop rails; the game alone uses a responsive right rail and explicit-dismissal post-win break. Never render sitewide top, bottom, footer, or guest-posting ads.
-- Blog previews use a shared limit selector with complete View more access; excerpts stay in search/social data. Recommendations rank by category/tags/recency without duplicate links.
+- Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
+- Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
 - All ad formats use the shared ad renderer with one initialization per visible element and shared consent events, so route changes and automatic consent do not leave placements unloaded.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
@@ -43,6 +44,6 @@
 - Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
 - Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
 - Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
-- The supplied client-testimonial image strip is shared above the public footer so page components do not duplicate it.
+- Share the supplied testimonial strip above the public footer; never duplicate it in pages.
 - Portfolio/website previews use bundled assets for self-hosting; PortfolioCard has a compact grid variant to preserve readable details.
 - Regional landing pages `/ae` and `/kw` share `RegionalLanding`; demo leads save through the `submit_regional_lead` RPC, then the server forwards JSON to the `MAKE_WEBHOOK_URL` env var so the webhook URL never reaches the browser.
