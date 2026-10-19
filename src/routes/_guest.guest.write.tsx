@@ -11,15 +11,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { displayName, errorText, useGuestPostCost, useGuestStatus } from "@/lib/guest";
-import { guestPostIssues } from "@/lib/guest-post-validation";
+import { guestArticleStats, guestPostIssues } from "@/lib/guest-post-validation";
 
 export const Route = createFileRoute("/_guest/guest/write")({
   head: () => ({ meta: [{ title: "Write a Guest Article | Webgram" }, { name: "description", content: "Prepare and submit your original guest article to Webgram IT Solution." }, { property: "og:title", content: "Write a Guest Article | Webgram" }, { property: "og:description", content: "Prepare and submit your original guest article to Webgram IT Solution." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" }] }),
   component: Write,
 });
 
-const LINK = /(https?:\/\/|www\.|<a[\s>]|\[[^\]]*\]\()/i;
-const IMAGE = /!\[[^\]]*\]\(https:\/\/[^\s)]+\)/gi;
 
 function Write() {
   const s = useGuestStatus(); const navigate = useNavigate();
@@ -29,9 +27,8 @@ function Write() {
   const [busy, setBusy] = useState(false); const [error, setError] = useState(""); const [saved, setSaved] = useState<Date | null>(null);
   useEffect(() => { try { const d = localStorage.getItem("guest-draft"); if (d) setF((cur) => ({ ...cur, ...JSON.parse(d) })); } catch { /* ignore bad draft */ } }, []);
   useEffect(() => { void supabase.from("blog_categories").select("id,name,parent_id").eq("is_active", true).order("display_order").then(({ data }) => setCats(data ?? [])); }, []);
-  const readableContent = f.content.replace(IMAGE, " ").replace(/[:*_[\]#>-]/g, " ");
-  const words = readableContent.trim() ? readableContent.trim().split(/\s+/).length : 0;
-  const hasLink = LINK.test(f.content.replace(IMAGE, "")) || LINK.test(f.excerpt);
+  const { words } = guestArticleStats(f.content);
+  const { links } = guestArticleStats(`${f.content}\n${f.excerpt}\n${f.title}`);
   const roots = cats.filter((cat) => !cat.parent_id); const children = cats.filter((cat) => cat.parent_id === f.category);
   const tags = f.tags.split(",").map((tag) => tag.trim()).filter(Boolean).slice(0, 10);
 
@@ -64,8 +61,8 @@ function Write() {
           <p className="mt-1 text-right text-xs text-muted-foreground">{f.title.length}/180</p>
           <p className="text-sm font-bold text-navy">Content <span className="text-destructive">*</span></p>
           <RichArticleEditor value={f.content} onChange={(content) => setF({ ...f, content })} />
-          <p className={`mt-3 text-xs font-semibold ${words >= 800 ? "text-success" : "text-warning"}`}>Minimum 800 words ({words}/800). External links are not allowed.</p>
-          {hasLink ? <p className="mt-1 text-xs font-bold text-destructive">Remove external links to submit.</p> : null}
+          <p className={`mt-3 text-[14px] font-semibold ${words >= 400 ? "text-success" : "text-warning"}`}>Minimum 400 words ({words}/400). External URLs: {links}/1.</p>
+          {links > 1 ? <p className="mt-1 text-[14px] font-bold text-destructive">Keep only one external URL to submit.</p> : null}
         </section>
         <section className={cardClass}>
           <div className="flex flex-wrap items-center justify-between gap-3"><div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-lg font-bold text-primary-foreground">?</span><div><h2 className="text-lg font-extrabold text-navy">Frequently Asked Questions (FAQ)</h2><p className="text-xs text-muted-foreground">Add five complete questions and answers for readers</p></div></div>

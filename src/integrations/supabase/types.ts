@@ -736,6 +736,10 @@ export type Database = {
         }
         Returns: string
       }
+      validate_guest_article_content: {
+        Args: { _content: string; _excerpt: string; _title: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "editor"

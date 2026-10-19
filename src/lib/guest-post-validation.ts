@@ -1,13 +1,19 @@
 type GuestPostFields = { title: string; excerpt: string; content: string; category: string; subcategory: string; tags: string; image: string; author: string; seoTitle: string; seoDescription: string; faqs: { question: string; answer: string }[] };
+export function guestArticleStats(content: string) {
+  const withoutImages = content.replace(/!\[[^\]]*\]\(https:\/\/[^\s)]+\)/gi, " ");
+  const links = (withoutImages.match(/https?:\/\/[^\s<>"')\]]+|www\.[^\s<>"')\]]+/gi) ?? []).length;
+  const readable = withoutImages.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/https?:\/\/[^\s<>"')\]]+|www\.[^\s<>"')\]]+/gi, " ").replace(/[:*_[\]#>-]/g, " ").trim();
+  return { words: readable ? readable.split(/\s+/).length : 0, links };
+}
 export function guestPostIssues(f: GuestPostFields): string[] {
   const issues: string[] = [];
-  const withoutImages = f.content.replace(/!\[[^\]]*\]\(https:\/\/[^\s)]+\)/gi, "");
-  const readable = withoutImages.replace(/[:*_[\]#>-]/g, " ").trim();
-  const words = readable ? readable.split(/\s+/).length : 0;
+  const { words } = guestArticleStats(f.content);
+  const { links } = guestArticleStats(`${f.content}\n${f.excerpt}\n${f.title}`);
   if (f.title.trim().length < 3 || f.title.length > 180) issues.push("Post title must be between 3 and 180 characters.");
   if (f.excerpt.trim().length < 10 || f.excerpt.length > 500) issues.push("Add a post excerpt between 10 and 500 characters.");
-  if (words < 800) issues.push(`Article needs at least 800 words (currently ${words}).`);
-  if (/(https?:\/\/|www\.|<a[\s>]|\[[^\]]*\]\()/i.test(`${withoutImages}\n${f.excerpt}\n${f.title}`)) issues.push("Remove external links from the title, excerpt and article; HTTPS images are allowed.");
+  if (words < 400) issues.push(`Article needs at least 400 words (currently ${words}).`);
+  if (links > 1) issues.push("Only one external URL is allowed across the title, excerpt and article; HTTPS images are allowed separately.");
+  if (/<\/?[a-z][^>]*>|\]\(\s*(?:javascript|data|vbscript):/i.test(f.content)) issues.push("Use safe Markdown instead of HTML or unsafe links.");
   if (!f.category) issues.push("Choose a category.");
   if (!f.subcategory) issues.push("Choose a subcategory.");
   const tags = f.tags.split(",").map((tag) => tag.trim()).filter(Boolean);
