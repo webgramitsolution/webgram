@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { CREDIT_COSTS, useGuestPostCost, useGuestStatus } from "@/lib/guest";
 
 export const Route = createFileRoute("/_guest/guest/")({
-  head: () => ({ meta: [{ title: "Guest Dashboard | Webgram" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "My Guest Articles & Credits | Webgram" }, { name: "description", content: "Manage your guest articles and publishing credits." }, { property: "og:title", content: "My Guest Articles & Credits | Webgram" }, { property: "og:description", content: "Manage your guest articles and publishing credits." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" }] }),
   component: Dashboard,
 });
 
