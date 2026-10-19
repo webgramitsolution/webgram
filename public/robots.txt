@@ -4,6 +4,7 @@
 # All crawlers: public pages allowed, private areas blocked
 User-agent: *
 Allow: /
+Allow: /guest-login$
 Disallow: /admin
 Disallow: /guest
 Disallow: /auth
@@ -13,6 +14,7 @@ Disallow: /_serverFn/
 # Google
 User-agent: Googlebot
 Allow: /
+Allow: /guest-login$
 Disallow: /admin
 Disallow: /guest
 Disallow: /auth
@@ -37,6 +39,7 @@ Allow: /
 # Bing / Yahoo / DuckDuckGo
 User-agent: Bingbot
 Allow: /
+Allow: /guest-login$
 Disallow: /admin
 Disallow: /guest
 Disallow: /auth
@@ -125,4 +128,3 @@ User-agent: DotBot
 Disallow: /
 
 Sitemap: https://webgramitsolution.com/sitemap.xml
-Sitemap: https://webgramitsolution.com/feed.xml

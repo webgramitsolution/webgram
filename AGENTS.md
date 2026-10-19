@@ -33,7 +33,7 @@
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
-- Guest articles use safe Markdown, not raw HTML; submit validates explicitly rather than browser-checking collapsed FAQs, preserving drafts and visible errors.
+- Guest articles use safe Markdown; shared browser statistics and a database validator enforce submission limits across RPC overloads, with visible errors and saved drafts.
 - Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.

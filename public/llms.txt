@@ -2,9 +2,7 @@
 
 > Webgram IT Solution is a professional ecommerce website development company in Delhi NCR, India. We build custom B2B and B2C ecommerce websites, WooCommerce and Shopify stores, multi-vendor marketplaces, web portals and API integrations for wholesalers, retailers, manufacturers and growing businesses. We also serve clients in the UAE and Kuwait.
 
-- Website: https://webgramitsolution.com/
-- Phone: +91 7551120242
-- Address: F3/780, Block C, Devli, Sangam Vihar, New Delhi 110062, India
+Website: https://webgramitsolution.com/. Phone: +91 7551120242. Address: F3/780, Block C, Devli, Sangam Vihar, New Delhi 110062, India.
 
 ## Solutions
 - [Ecommerce Development](https://webgramitsolution.com/solutions/ecommerce-development): custom B2C online stores
@@ -37,3 +35,9 @@
 - [FAQs](https://webgramitsolution.com/resources/faqs)
 - [About](https://webgramitsolution.com/about)
 - [Contact](https://webgramitsolution.com/contact)
+
+Published articles cover business, technology, AI, ecommerce and digital marketing. The public blog and category pages link to current articles. Private guest writing, account and administrative pages are not public resources.
+
+## Optional
+- [RSS feed](https://webgramitsolution.com/feed.xml): recently published public articles
+- [XML sitemap](https://webgramitsolution.com/sitemap.xml): canonical public pages and published articles
