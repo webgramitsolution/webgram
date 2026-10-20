@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Add 20% article disclosure with Read more; verify public category sitemap/indexing and shared ad safety without changing business targeting.
+- [x] Add 20% article disclosure on the same URL; verified grid-to-article expansion at 393/1280px, four inline ads after expansion, all 20 public category URLs return 200 and belong to canonical sitemap. Shared guard pauses all own placements; seven tests and build pass. No VPN block added; Google indexing/European traffic and certified consent compliance are not guaranteed.
 - [x] Apply 400-word/one-URL guest rules in browser and all three submission overloads; seven browser-rule tests and database boundary tests pass. Sitemap/robots/llms return 200, canonical URLs verified; full publishing still awaits requesting user's preview sign-in.
 - [x] Set portfolio/blog four-column tablet/desktop grids, eight-post category previews and ads before subsequent categories; verified 393/951/1280px, View more, two tests and build OK. Added large-image preview permission; sampled cover is 2172px wide. Europe indexing/Discover inclusion remain Google-controlled, not guaranteed.
 - [x] Add blog ad above search and after two cards within categories; hide listing descriptions; verified real posts at 393/1280px without overflow, build OK.
