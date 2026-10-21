@@ -209,10 +209,11 @@ export const deleteBlogCategory = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-// Due-post notifications only run for signed-in callers, never from public reads.
+// Due-post notifications require an administrator, never a public or guest read.
 export const runDueGuestNotifications = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .handler(async () => {
+  .handler(async ({ context }) => {
+    await requireAdmin(context);
     const { notifyDueGuestPosts } = await import("./guest-notify.server");
     await notifyDueGuestPosts();
     return { ok: true };
