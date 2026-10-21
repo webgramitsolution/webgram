@@ -7,7 +7,7 @@ import { BlogPublicHeader, type BlogMenuCategory } from "@/components/blog-publi
 import { BlogEngagement, BlogShareButtons } from "@/components/blog-engagement";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
 import { Button } from "@/components/ui/button";
-import { articlePreviewBlockCount } from "@/lib/article-disclosure";
+import { articlePreviewBlockCount, articleAdBoundaries } from "@/lib/article-disclosure";
 
 type Related = { id: string; title: string; slug: string; excerpt: string; featured_image: string | null; featured_image_alt: string; published_at: string | null };
 type Faq = { question: string; answer: string };
@@ -32,6 +32,14 @@ function InlineText({ value }: { value: string }) {
 const imagePattern = /^!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)$/i;
 
 export function ArticleBody({ content, preview = false, advertisements = false, recommendations = [], collapsed = false }: { content: string; preview?: boolean; advertisements?: boolean; recommendations?: Related[]; collapsed?: boolean }) {
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const sync = () => setPhone(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
   const lines = content.replace(/\\n/g, "\n").split("\n");
   const blocks: React.ReactNode[] = [];
   let index = 0;
@@ -95,7 +103,7 @@ export function ArticleBody({ content, preview = false, advertisements = false, 
     while (index < lines.length && lines[index]?.trim() && !/^(#{1,4} |[-*•] |\d+\. |> |\||```|---$|:::|!\[|Video:)/.test(lines[index]?.trim() ?? "")) { paragraph.push(lines[index]?.trim() ?? ""); index += 1; }
     blocks.push(<p key={`p-${index}`}><InlineText value={paragraph.join(" ")} /></p>);
   }
-  const adBoundaries = [1, 2, 3, 4].map((part) => Math.max(0, Math.ceil(blocks.length * part / 5) - 1));
+  const adBoundaries = articleAdBoundaries(blocks.length, phone);
   const recommendationBoundaries = recommendations.map((_, itemIndex) => Math.max(0, Math.ceil(blocks.length * (itemIndex + 1) / 3) - 1));
   const previewCount = articlePreviewBlockCount(blocks.length);
   return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <div key={blockIndex} hidden={collapsed && blockIndex >= previewCount}>{block}{!preview && (!collapsed || blockIndex < previewCount) ? recommendations.map((item, itemIndex) => recommendationBoundaries[itemIndex] === blockIndex ? <aside key={item.id} className="my-6 border-y border-border bg-primary-soft px-4 py-4" aria-label="Related article"><span className="mb-2 block text-[13px] font-medium text-muted-foreground">{itemIndex === 0 ? "Also read this blog" : "Read about this"}</span><Link to="/blog/$slug" params={{ slug: item.slug }} className="flex items-start justify-between gap-3 text-[16px] font-medium leading-6 text-primary">{item.title}<ArrowRight className="mt-1 h-4 w-4 shrink-0" /></Link></aside> : null) : null}{advertisements && !preview && (!collapsed || blockIndex < previewCount) ? adBoundaries.map((boundary, adIndex) => boundary === blockIndex ? <BlogAdBand key={`article-ad-${adIndex}`} position={adIndex % 2 === 0 ? "articleFeed" : "articleContent"} label={`Article advertisement ${adIndex + 1}`} /> : null) : null}</div>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
@@ -131,6 +139,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
       </section>
       <article id="article-content" className="py-5"><ArticleBody content={post.content} advertisements recommendations={post.related} collapsed={!expanded} /></article>
       {!expanded ? <div className="mb-8 flex justify-center border-t border-border pt-5"><Button size="lg" aria-expanded={expanded} aria-controls="article-content" onClick={() => setExpandedSlug(post.slug)}>Read more<ArrowRight /></Button></div> : null}
+      {!expanded ? <BlogAdBand position="afterPreview" label="Advertisement below Read more" /> : null}
       <div hidden={!expanded}>
       {faqs.length ? <section className="mx-auto mb-10 w-[min(100%,760px)]"><h2 className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       {expanded ? <><BlogEngagement postId={post.id} title={post.title} /><BlogAdBand position="afterComments" label="Advertisement below comments" /></> : null}
