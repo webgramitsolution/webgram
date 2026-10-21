@@ -55,3 +55,28 @@ export function isComplete(tubes: Tube[]) {
   return tubes.every((tube) => tube.colors.length === 0 || (tube.colors.length === TUBE_CAPACITY && tube.colors.every((color) => color === tube.colors[0])));
 }
 
+export type GameAction = { from: number; to: number } | { glass: true };
+
+export function verifyGameSolution(level: number, actions: GameAction[], paidGlasses: number) {
+  if (!Number.isInteger(level) || level < 1 || level > LEVELS.length || !actions.length || actions.length > 5000) return false;
+  const board = makeLevel(level - 1);
+  let glasses = 0;
+  for (const action of actions) {
+    if ("glass" in action) {
+      if (action.glass !== true || ++glasses > paidGlasses) return false;
+      board.push({ colors: [] });
+      continue;
+    }
+    if (!Number.isInteger(action.from) || !Number.isInteger(action.to) || action.from === action.to) return false;
+    const source = board[action.from]?.colors;
+    const target = board[action.to]?.colors;
+    if (!source?.length || !target || target.length >= TUBE_CAPACITY) return false;
+    const color = source[source.length - 1];
+    if (target.length && target[target.length - 1] !== color) return false;
+    while (source.length && source[source.length - 1] === color && target.length < TUBE_CAPACITY) {
+      target.push(source.pop()!);
+    }
+  }
+  return isComplete(board);
+}
+
