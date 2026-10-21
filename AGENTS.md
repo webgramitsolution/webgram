@@ -41,7 +41,7 @@
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
 - Guest game has 20 sequential water-sort levels; first-completion rewards follow the protected `game_level_reward` database function. Extra glasses cost 10 credits after level five, and advertising never determines rewards.
-- Reading (scroll-to-end + 60s) and 6-platform share rewards are timed and granted once per post by security-definer RPCs; the browser only starts/claims.
+- Reading and 6-platform share rewards use timed, once-per-post RPCs; the unused legacy `claim_share_reward` stays disabled to prevent bypassing the current flow.
 - Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
 - Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
 - Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
