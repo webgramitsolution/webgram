@@ -152,7 +152,7 @@ function Game() {
 
   const nextUnlocked = Math.min(status.levels, LEVELS.length - 1);
   const reward = gameLevelReward(currentLevel + 1);
-  const rightRail = <div><p className="pb-3 text-center text-[13px] font-bold uppercase text-muted-foreground">Advertisement</p><BlogAdBand rail compactRail position="detailRight" label="Game advertisement" /></div>;
+  const rightRail = <div><BlogAdBand rail compactRail position="detailRight" label="Game advertisement" /></div>;
 
   return <><GuestShell title="Water Sort Puzzle" balance={status.balance} levels={status.levels} rightRail={rightRail}>
     <div className="overflow-hidden rounded-md border border-border bg-card shadow-card">
