@@ -25,7 +25,10 @@ function Game() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [tubes, setTubes] = useState<Tube[]>(() => makeLevel(0));
   const [selectedTube, setSelectedTube] = useState<number | null>(null);
-  const [history, setHistory] = useState<Tube[][]>([]);
+  const [history, setHistory] = useState<Array<{ tubes: Tube[]; actions: GameAction[] }>>([]);
+  const [actions, setActions] = useState<GameAction[]>([]);
+  const [attemptId, setAttemptId] = useState<string | null>(null);
+  const attemptGeneration = useRef(0);
   const [moves, setMoves] = useState(0);
   const [gameWon, setGameWon] = useState(false);
   const [winAdDismissed, setWinAdDismissed] = useState(false);
@@ -35,7 +38,13 @@ function Game() {
 
   const resetLevel = useCallback((levelIndex: number) => {
     setTubes(makeLevel(levelIndex)); setSelectedTube(null); setHistory([]); setMoves(0); setGameWon(false); setWinAdDismissed(false);
-  }, []);
+    setActions([]); setAttemptId(null);
+    const generation = ++attemptGeneration.current;
+    if (!status.userId) return;
+    void startGameAttempt({ data: { level: levelIndex + 1 } }).then((id) => {
+      if (generation === attemptGeneration.current) setAttemptId(id);
+    }).catch((error) => { if (generation === attemptGeneration.current) toast.error(errorText(error)); });
+  }, [status.userId]);
 
   useEffect(() => { if (!status.loading && !initialLevelLoaded.current) { initialLevelLoaded.current = true; setCurrentLevel(Math.min(status.levels, LEVELS.length - 1)); } }, [status.levels, status.loading]);
   useEffect(() => { resetLevel(currentLevel); }, [currentLevel, resetLevel]);
@@ -53,15 +62,18 @@ function Game() {
     } catch { /* Sound is optional. */ }
   }, [soundEnabled]);
 
-  async function awardLevel(level: number) {
-    const reward = gameLevelReward(level);
-    const { error } = await supabase.rpc("complete_game_level", { _level: level });
-    if (error) toast.error(errorText(error)); else toast.success(`Level complete! +${reward} credits`);
-    await status.refresh();
+  async function awardLevel(solution: GameAction[]) {
+    if (!attemptId) return;
+    try {
+      const result = await completeGameAttempt({ data: { attemptId, actions: solution } });
+      const reward = result && typeof result === "object" && !Array.isArray(result) ? result["reward"] : 0;
+      toast.success(typeof reward === "number" && reward > 0 ? `Level complete! +${reward} credits` : "Level complete — reward already collected");
+      await status.refresh();
+    } catch (error) { toast.error(errorText(error)); }
   }
 
   function handleTubeClick(index: number) {
-    if (gameWon) return;
+    if (gameWon || buying || !attemptId) return;
     const target = tubes[index];
     if (!target) return;
     if (selectedTube === null) { if (target.colors.length) setSelectedTube(index); return; }
@@ -80,19 +92,24 @@ function Game() {
       from.colors.pop(); to.colors.push(color); poured += 1;
     }
     setSelectedTube(null); if (!poured) return;
-    setHistory((entries) => [...entries, tubes.map((tube) => ({ colors: [...tube.colors] }))]); setTubes(next); setMoves((value) => value + 1); playSound("pour");
-    if (isComplete(next)) { setGameWon(true); playSound("win"); if (currentLevel < status.levels) toast.success("Level complete — reward already collected"); else void awardLevel(currentLevel + 1); }
+    const nextActions = [...actions, { from: selectedTube, to: index }];
+    setHistory((entries) => [...entries, { tubes: tubes.map((tube) => ({ colors: [...tube.colors] })), actions }]); setActions(nextActions); setTubes(next); setMoves((value) => value + 1); playSound("pour");
+    if (isComplete(next)) { setGameWon(true); playSound("win"); void awardLevel(nextActions); }
   }
 
   function undo() {
     const previous = history[history.length - 1]; if (!previous || gameWon) return;
-    setTubes(previous); setHistory((entries) => entries.slice(0, -1)); setMoves((value) => Math.max(0, value - 1)); setSelectedTube(null);
+    if (buying) return;
+    setTubes(previous.tubes); setActions(previous.actions); setHistory((entries) => entries.slice(0, -1)); setMoves((value) => Math.max(0, value - 1)); setSelectedTube(null);
   }
 
   async function buyGlass() {
-    if (buying || gameWon) return; setBuying(true);
+    if (buying || gameWon || !attemptId) return; setBuying(true);
+    const generation = attemptGeneration.current;
     const { data, error } = await supabase.rpc("buy_game_glass"); setBuying(false);
     if (error) { toast.error(errorText(error)); return; }
+    if (generation !== attemptGeneration.current) { await status.refresh(); return; }
+    setActions((value) => [...value, { glass: true }]); setHistory([]);
     setTubes((value) => [...value, { colors: [] }]); toast.success("Empty glass added"); await status.refresh();
     if (typeof data === "number") toast.message(`${data} credits remaining`);
   }
