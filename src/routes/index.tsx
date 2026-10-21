@@ -753,7 +753,7 @@ function HomePortfolio() {
             <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
           </Button>
         </div>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-3 lg:gap-4">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
               <ScrollingFrame item={item} height={270} eager />
