@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { runDueGuestNotifications } from "@/lib/blog.functions";
 
 export const CREDIT_COSTS = { post: 200, comment: 50, indexing: 500, story: 200, share: 30, read: 20, level: 20 } as const;
 export const UNLOCK_LEVELS = 5;
@@ -24,7 +23,6 @@ export function useGuestStatus() {
   const refresh = useCallback(async () => {
     const { data: auth } = await supabase.auth.getUser();
     if (!auth.user) { setState((s) => ({ ...s, loading: false, userId: "" })); return; }
-    void runDueGuestNotifications().catch(() => undefined);
     const [{ data: balance }, { count }] = await Promise.all([
       supabase.rpc("my_credit_balance"),
       supabase.from("game_progress").select("level", { count: "exact", head: true }).eq("user_id", auth.user.id),

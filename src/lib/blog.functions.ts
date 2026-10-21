@@ -88,6 +88,8 @@ export const getAdminBlog = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requireAdmin(context);
+    const { notifyDueGuestPosts } = await import("./guest-notify.server");
+    await notifyDueGuestPosts();
     const [{ data: posts, error: postError }, { data: categories, error: categoryError }, { data: profile }, { data: guestPostCost, error: settingsError }] =
       await Promise.all([
         context.supabase.from("blog_posts").select("*").order("updated_at", { ascending: false }),
@@ -209,10 +211,11 @@ export const deleteBlogCategory = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-// Due-post notifications only run for signed-in callers, never from public reads.
+// Due-post notifications require an administrator, never a public or guest read.
 export const runDueGuestNotifications = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .handler(async () => {
+  .handler(async ({ context }) => {
+    await requireAdmin(context);
     const { notifyDueGuestPosts } = await import("./guest-notify.server");
     await notifyDueGuestPosts();
     return { ok: true };

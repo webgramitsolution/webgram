@@ -23,7 +23,7 @@
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
 - Keep ImageKit URLs verbatim and supplied Next.js/API Integration logos.
 - Email delivery uses Hostinger SMTP through a server-only helper. Guest OTP links are generated server-side and sent by SMTP.
-- Blog management stays authenticated with server-side role checks; public posts require published status and elapsed publish time.
+- Blog management and due guest-email triggers require server-checked admin roles; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
 - AdSense is consent-gated: lists use category bands; articles use cover-top, desktop rails, boundary inline, below-comments and collapsed-preview multiplex units. Disclosure helpers control preview/device ad counts without stacking. Legal pages use desktop rails; game alone uses a right rail and dismissible win break. No sitewide/footer/guest-posting ads.
@@ -40,8 +40,8 @@
 - Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.com`.
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
-- Guest game has 20 sequential water-sort levels; first-completion rewards follow the protected `game_level_reward` database function. Extra glasses cost 10 credits after level five, and advertising never determines rewards.
-- Reading and 6-platform share rewards use timed, once-per-post RPCs; the unused legacy `claim_share_reward` stays disabled to prevent bypassing the current flow.
+- Game rewards require authenticated server replay of shared water-sort rules and owned attempts, then a service-only atomic award; level-only claims stay disabled. Preserve reward amounts, paid glasses and ad independence.
+- Reading rewards remain timed and once-per-post; both sharing award RPCs stay disabled to prevent unverified credits.
 - Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
 - Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
 - Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
