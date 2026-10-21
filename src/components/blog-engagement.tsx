@@ -16,43 +16,31 @@ const platforms = [
   { id: "tumblr", label: "Tumblr", url: (u: string, t: string) => `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${u}&title=${t}` },
   { id: "x", label: "X", url: (u: string, t: string) => `https://twitter.com/intent/tweet?url=${u}&text=${t}` },
 ] as const;
-const SHARE_WAIT = 27;
 
 export function BlogShareButtons({ postId, title }: { postId: string; title: string }) {
   const [signedIn, setSignedIn] = useState(false);
   const [clicked, setClicked] = useState<Set<string>>(new Set());
-  const [left, setLeft] = useState<number | null>(null);
   const [message, setMessage] = useState("");
   useEffect(() => { void supabase.auth.getUser().then(async ({ data }) => {
     if (!data.user) return; setSignedIn(true);
-    const [{ data: rows }, { data: done }] = await Promise.all([
-      supabase.from("share_clicks").select("platform").eq("post_id", postId),
-      supabase.from("engagement_rewards").select("rewarded_at").eq("post_id", postId).eq("kind", "share").maybeSingle(),
-    ]);
+    const { data: rows } = await supabase.from("share_clicks").select("platform").eq("post_id", postId);
     setClicked(new Set((rows ?? []).map((r) => r.platform)));
-    if (done?.rewarded_at) setMessage(`Share reward already earned (+${CREDIT_COSTS.share})`);
   }); }, [postId]);
-  useEffect(() => {
-    if (left === null) return;
-    if (left <= 0) { setLeft(null); void supabase.rpc("claim_share_bonus", { _post_id: postId }).then(({ data, error }) => setMessage(error ? errorText(error) : data ? `+${CREDIT_COSTS.share} credits added!` : "Share reward already earned")); return; }
-    const t = window.setTimeout(() => setLeft((v) => (v ?? 1) - 1), 1000); return () => window.clearTimeout(t);
-  }, [left, postId]);
   async function share(platform: (typeof platforms)[number]) {
     const url = encodeURIComponent(window.location.href); const encodedTitle = encodeURIComponent(title);
     if (platform.id === "instagram") void navigator.clipboard?.writeText(window.location.href);
     window.open(platform.url(url, encodedTitle), "_blank", "noopener,noreferrer");
     if (!signedIn) return;
-    const { data, error } = await supabase.rpc("record_share_click", { _post_id: postId, _platform: platform.id });
+    const { error } = await supabase.rpc("record_share_click", { _post_id: postId, _platform: platform.id });
     if (error) { setMessage(errorText(error)); return; }
     const next = new Set(clicked); next.add(platform.id); setClicked(next);
-    if ((data ?? next.size) >= platforms.length && !message.includes("earned")) { setLeft(SHARE_WAIT); setMessage(""); }
-    else if (platform.id === "instagram") setMessage("Link copied — paste it in Instagram.");
+    if (platform.id === "instagram") setMessage("Link copied — paste it in Instagram.");
   }
   const icons: Record<string, typeof Facebook> = { facebook: Facebook, instagram: Instagram, linkedin: Linkedin, pinterest: Pin, tumblr: Share2, x: Twitter };
   return <div className="flex flex-wrap items-center justify-end gap-2" aria-label="Share article">
     <span className="mr-1 text-[13px] font-semibold text-muted-foreground">Share:</span>
     {platforms.map((platform) => { const Icon = icons[platform.id] ?? Share2; const done = clicked.has(platform.id); return <Button key={platform.id} type="button" variant="ghost" size="icon" onClick={() => void share(platform)} title={`Share on ${platform.label}`} aria-label={`Share on ${platform.label}`} className={`h-7 w-7 rounded-full text-primary-foreground hover:text-primary-foreground ${done ? "bg-success hover:bg-success/90" : "bg-primary hover:bg-primary/90"}`}><Icon className="h-3.5 w-3.5" /></Button>; })}
-    {signedIn ? <span className="w-full text-right text-[13px] font-semibold text-success">{left !== null ? `Credits in ${left}s…` : message || `Share on all 6 (${clicked.size}/6) to earn ${CREDIT_COSTS.share} credits`}</span> : null}
+    {signedIn ? <span className="w-full text-right text-[13px] font-semibold text-success">{message || "Sharing does not award credits."}</span> : null}
   </div>;
 }
 

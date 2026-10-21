@@ -88,6 +88,8 @@ export const getAdminBlog = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requireAdmin(context);
+    const { notifyDueGuestPosts } = await import("./guest-notify.server");
+    await notifyDueGuestPosts();
     const [{ data: posts, error: postError }, { data: categories, error: categoryError }, { data: profile }, { data: guestPostCost, error: settingsError }] =
       await Promise.all([
         context.supabase.from("blog_posts").select("*").order("updated_at", { ascending: false }),
