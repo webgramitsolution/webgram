@@ -162,6 +162,13 @@
       "when": 1792542694759,
       "tag": "0022_disable_unverified_sharing_credits",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1792542838418,
+      "tag": "0023_verified_game_attempt_rewards",
+      "breakpoints": true
     }
   ]
 }

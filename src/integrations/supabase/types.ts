@@ -338,6 +338,30 @@ export type Database = {
         }
         Relationships: []
       }
+      game_attempts: {
+        Row: {
+          completed_at: string | null
+          id: string
+          level: number
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          level: number
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          level?: number
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       game_progress: {
         Row: {
           completed_at: string
@@ -628,6 +652,10 @@ export type Database = {
         Args: { _author_name: string; _body: string; _post_id: string }
         Returns: undefined
       }
+      award_verified_game_attempt: {
+        Args: { _attempt_id: string; _user_id: string }
+        Returns: Json
+      }
       buy_game_glass: { Args: never; Returns: number }
       claim_read_reward: { Args: { _post_id: string }; Returns: boolean }
       claim_share_bonus: { Args: { _post_id: string }; Returns: boolean }
@@ -663,6 +691,7 @@ export type Database = {
       request_instant_indexing: { Args: { _url: string }; Returns: undefined }
       set_guest_post_cost: { Args: { _cost: number }; Returns: number }
       start_blog_read: { Args: { _post_id: string }; Returns: undefined }
+      start_game_attempt: { Args: { _level: number }; Returns: string }
       submit_cost_estimate: {
         Args: {
           _email: string
