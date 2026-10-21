@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [ ] Set article preview to 5%, add multiplex below Read more and additional phone placements; remove game rail label and assess real video/VPN delivery constraints.
 - [x] Recover the Google-clicked legacy ecommerce article with a confirmed topic-equivalent live article and HTTP 301 route; GET/HEAD, slash variants and query preservation verified, three tests pass. Live activation awaits Hostinger deployment.
 - [x] Add 20% article disclosure on the same URL; verified grid-to-article expansion at 393/1280px, four inline ads after expansion, all 20 public category URLs return 200 and belong to canonical sitemap. Shared guard pauses all own placements; seven tests and build pass. No VPN block added; Google indexing/European traffic and certified consent compliance are not guaranteed.
 - [x] Apply 400-word/one-URL guest rules in browser and all three submission overloads; seven browser-rule tests and database boundary tests pass. Sitemap/robots/llms return 200, canonical URLs verified; full publishing still awaits requesting user's preview sign-in.
