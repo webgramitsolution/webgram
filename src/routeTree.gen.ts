@@ -15,6 +15,7 @@ import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AeRouteImport } from './routes/ae'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRouteImport } from './routes/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
@@ -77,6 +78,14 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute =
+  BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRouteImport.update(
+    {
+      id: '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi',
+      path: '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi',
+      getParentRoute: () => rootRouteImport,
+    } as any,
+  )
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -252,6 +261,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
+  '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -291,6 +301,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
+  '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -332,6 +343,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
+  '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -373,6 +385,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ae'
     | '/auth'
+    | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -412,6 +425,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ae'
     | '/auth'
+    | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -452,6 +466,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ae'
     | '/auth'
+    | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -494,6 +509,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AeRoute: typeof AeRoute
   AuthRoute: typeof AuthRoute
+  BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute: typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
@@ -560,6 +576,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': {
+      id: '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
+      path: '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
+      fullPath: '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
+      preLoaderRoute: typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -854,6 +877,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AeRoute: AeRoute,
   AuthRoute: AuthRoute,
+  BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute:
+    BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,

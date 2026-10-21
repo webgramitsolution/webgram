@@ -15,7 +15,7 @@
 
 - Routes: `/`, `/contact`, `/about`, dynamic solution/service/work/resource pages, public blog, secured admin, and secured guest panel.
 - Shared public header is sticky; shared footer is mounted at root. Dashboard sidebars remain sticky while content scrolls.
-- Blog listings and article pages use one category header so navigation remains identical; missing URLs and articles use the shared not-found view while preserving HTTP 404 responses.
+- Blog lists/articles share a category header; missing pages share the not-found view with HTTP 404.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
 - Keep desktop composition on tablets; only phones compact or stack. Heroes are 348px on tablet/desktop and taller on phones; imagery uses contain.
 - Arabic hero artwork is cropped into a left-side region via language-aware shared CSS, never horizontally mirrored, so printed artwork stays legible.
@@ -29,7 +29,7 @@
 - AdSense is consent-gated: blog listing uses category bands; public articles use a top unit above the cover, sticky desktop side rails, four block-boundary inline units and one below comments; legal pages use desktop rails; the game alone uses a responsive right rail and explicit-dismissal post-win break. Never render sitewide top, bottom, footer, or guest-posting ads.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
 - Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
-- All ad formats use the shared ad renderer with one initialization per visible element and shared consent events, so route changes and automatic consent do not leave placements unloaded.
+- Ads share one renderer, one initialization per visible unit and consent events across navigation.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
@@ -37,7 +37,8 @@
 - Guest articles use safe Markdown; shared browser statistics and a database validator enforce submission limits across RPC overloads, with visible errors and saved drafts.
 - Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
-- Public blog, category, and sitemap URLs use the apex `https://webgramitsolution.com` canonical origin to match the live Hostinger site.
+- Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.com`.
+- Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
 - Guest game has 20 sequential water-sort levels; first-completion rewards follow the protected `game_level_reward` database function. Extra glasses cost 10 credits after level five, and advertising never determines rewards.
 - Reading (scroll-to-end + 60s) and 6-platform share rewards are timed and granted once per post by security-definer RPCs; the browser only starts/claims.

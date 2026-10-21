@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Recover the Google-clicked legacy ecommerce article with a confirmed equivalent destination and verified permanent redirect.
+- [x] Recover the Google-clicked legacy ecommerce article with a confirmed topic-equivalent live article and HTTP 301 route; GET/HEAD, slash variants and query preservation verified, three tests pass. Live activation awaits Hostinger deployment.
 - [x] Add 20% article disclosure on the same URL; verified grid-to-article expansion at 393/1280px, four inline ads after expansion, all 20 public category URLs return 200 and belong to canonical sitemap. Shared guard pauses all own placements; seven tests and build pass. No VPN block added; Google indexing/European traffic and certified consent compliance are not guaranteed.
 - [x] Apply 400-word/one-URL guest rules in browser and all three submission overloads; seven browser-rule tests and database boundary tests pass. Sitemap/robots/llms return 200, canonical URLs verified; full publishing still awaits requesting user's preview sign-in.
 - [x] Set portfolio/blog four-column tablet/desktop grids, eight-post category previews and ads before subsequent categories; verified 393/951/1280px, View more, two tests and build OK. Added large-image preview permission; sampled cover is 2172px wide. Europe indexing/Discover inclusion remain Google-controlled, not guaranteed.
