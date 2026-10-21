@@ -26,7 +26,7 @@
 - Blog management stays authenticated with server-side role checks; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
-- AdSense is consent-gated: blog listing uses category bands; public articles use a top unit above the cover, sticky desktop side rails, four block-boundary inline units and one below comments; legal pages use desktop rails; the game alone uses a responsive right rail and explicit-dismissal post-win break. Never render sitewide top, bottom, footer, or guest-posting ads.
+- AdSense is consent-gated: lists use category bands; articles use cover-top, desktop rails, boundary inline, below-comments and collapsed-preview multiplex units. Disclosure helpers control preview/device ad counts without stacking. Legal pages use desktop rails; game alone uses a right rail and dismissible win break. No sitewide/footer/guest-posting ads.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
 - Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
