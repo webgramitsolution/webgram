@@ -148,6 +148,13 @@
       "when": 1792375778276,
       "tag": "0020_guest_articles_400_words_one_url",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1792542544636,
+      "tag": "0021_retire_unused_legacy_share_reward",
+      "breakpoints": true
     }
   ]
 }
