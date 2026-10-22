@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [ ] Update supplied favicon and redesign /guest/write without navigation sidebar, with dashboard header icon, top ad and sticky desktop side ads; verify writing controls and phone/tablet layout.
 - [x] Set article preview to 5%, add multiplex below Read more, six phone/four desktop inline placements and remove game rail heading; four tests and real article checks at 393/1280px pass. Ad placements tested with delivery stubbed, not real creative fill.
 - [ ] Enable real game/article video advertising (blocked: approved H5 Games access and article video-ad provider/tag not available; existing slots are display/multiplex).
 - [ ] Verify Germany/USA VPN ad delivery (blocked: no VPN session or AdSense account diagnostics/certified CMP configuration available; source has no VPN denylist; keep consent/guard).
