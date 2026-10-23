@@ -36,7 +36,15 @@ const HERO_DESKTOP = `${IMAGES.hero}&tr=w-1920,q-80,f-auto`.replace("&tr=", "?tr
 const HERO_PHONE = `${PHONE_HERO}?tr=w-768,q-80,f-auto`;
 
 export const Route = createFileRoute("/")({
-  loader: () => getPublishedHomepageReviews(),
+  // Reviews are optional: if the backend is unreachable, still render the homepage.
+  loader: async () => {
+    try {
+      return await getPublishedHomepageReviews();
+    } catch (error) {
+      console.error(error);
+      return [] as Awaited<ReturnType<typeof getPublishedHomepageReviews>>;
+    }
+  },
   head: () => ({
     links: [
       { rel: "canonical", href: "https://webgramitsolution.com/" },
