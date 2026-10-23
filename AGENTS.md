@@ -27,7 +27,7 @@
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
 - AdSense is consent-gated: lists use category bands; articles use cover-top, desktop rails, boundary inline, below-comments and collapsed-preview multiplex units. Disclosure helpers control preview/device ad counts without stacking. Legal pages use desktop rails; game uses a right rail and dismissible win break. Guest writing alone also uses top/desktop side placements; no sitewide/footer/other guest-panel ads.
-- Guest writing uses a compact author header and an unframed, sidebar-free workspace; desktop ad rails sit outside the form and collapse away before they squeeze the editor.
+- Guest writing uses a compact author header and an unframed, sidebar-free workspace; edge-aligned desktop ad rails sit outside the form and collapse before squeezing the editor. Its visual Tiptap editor serializes safe Markdown to preserve existing submission validation and public rendering; the admin editor remains separate.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
 - Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
