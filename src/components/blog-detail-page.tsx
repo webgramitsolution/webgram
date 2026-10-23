@@ -16,12 +16,13 @@ type Post = { id: string; title: string; slug: string; excerpt: string; content:
 const date = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
 
 function InlineText({ value }: { value: string }) {
-  const parts = value.split(/(\[[^\]]+\]\((?:https:\/\/|\/)[^)]+\)|`[^`]+`|\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\*[^*]+\*)/g).filter(Boolean);
+  const parts = value.split(/(\[[^\]]+\]\((?:https:\/\/|\/)[^)]+\)|`[^`]+`|\*\*[^*]+\*\*|__[^_]+__|\+\+[^+]+\+\+|~~[^~]+~~|\*[^*]+\*)/g).filter(Boolean);
   return <>{parts.map((part, index) => {
     const link = part.match(/^\[([^\]]+)\]\(((?:https:\/\/|\/)[^)]+)\)$/);
     if (link) return <a key={index} href={link[2]} target={link[2]?.startsWith("https://") ? "_blank" : undefined} rel={link[2]?.startsWith("https://") ? "noreferrer" : undefined}>{link[1]}</a>;
     if (part.startsWith("`") && part.endsWith("`")) return <code key={index}>{part.slice(1, -1)}</code>;
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={index}>{part.slice(2, -2)}</strong>;
+    if (part.startsWith("++") && part.endsWith("++")) return <u key={index}>{part.slice(2, -2)}</u>;
     if (part.startsWith("__") && part.endsWith("__")) return <u key={index}>{part.slice(2, -2)}</u>;
     if (part.startsWith("~~") && part.endsWith("~~")) return <s key={index}>{part.slice(2, -2)}</s>;
     if (part.startsWith("*") && part.endsWith("*")) return <em key={index}>{part.slice(1, -1)}</em>;
