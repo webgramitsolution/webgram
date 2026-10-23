@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Open
-- [ ] Compact guest writing settings, edge-aligned ad rails and unclipped media tools; show rich formatting while editing and verify responsive drafting.
+- [x] Compact guest writing settings (15% with readable minimum width), edge-aligned ad rails and unclipped media tools; rich heading/bold/table/HTML paste/image insertion, preview and local drafts verified at 320–1920px using a visual account fixture, no overflow or runtime errors, seven validation tests pass. Real signed-in publishing and actual ad delivery remain unverified.
 - [x] Update supplied 64px favicon and redesign /guest/write without navigation sidebar, with dashboard header icon, top ad and sticky desktop side ads. Visual fixture checks at 393/695/1280px show no overflow, draft saving works and seven validation tests pass; real signed-in submission remains blocked by missing requester account, real ad delivery not verified.
 - [x] Set article preview to 5%, add multiplex below Read more, six phone/four desktop inline placements and remove game rail heading; four tests and real article checks at 393/1280px pass. Ad placements tested with delivery stubbed, not real creative fill.
 - [ ] Enable real game/article video advertising (blocked: approved H5 Games access and article video-ad provider/tag not available; existing slots are display/multiplex).
