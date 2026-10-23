@@ -11,7 +11,14 @@ export const Route = createFileRoute("/resources/$slug")({
   loader: async ({ params }) => {
     const page = getSubpage("resources", params.slug);
     if (!page) throw notFound();
-    if (params.slug === "blog") return { page, blog: await getPublicBlog() };
+    if (params.slug === "blog") {
+      // Keep the blog page visible (empty) when the backend is unreachable.
+      const blog: Awaited<ReturnType<typeof getPublicBlog>> = await getPublicBlog().catch((error) => {
+        console.error(error);
+        return { categories: [], posts: [] };
+      });
+      return { page, blog };
+    }
     return { page, blog: null };
   },
   head: ({ loaderData, params }) => params.slug === "blog" ? ({
