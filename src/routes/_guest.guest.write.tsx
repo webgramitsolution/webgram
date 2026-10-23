@@ -62,7 +62,7 @@ function Write() {
     <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-2 text-sm text-muted-foreground"><Link to="/guest" className="hover:text-primary">Dashboard</Link><ChevronRight className="h-4 w-4" /><span aria-current="page">Write an article</span></nav>
     <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6"><h1 className="text-2xl font-medium text-navy sm:text-3xl">Write an article</h1><span className="flex items-center gap-2 text-sm text-muted-foreground"><Coins className="h-4 w-4 text-primary" />{s.loading ? "Loading balance…" : `${s.balance} credits`}</span></div>
     {!s.unlocked ? <div className="mt-4"><LockedNotice levels={s.levels} /></div> : null}
-    <form noValidate onSubmit={submit} className="guest-writing-form grid min-w-0 gap-x-5 lg:grid-cols-[minmax(0,1fr)_210px]">
+    <form noValidate onSubmit={submit} className="guest-writing-form grid min-w-0 gap-x-5 lg:grid-cols-[minmax(0,85fr)_minmax(160px,15fr)]">
       <div className="min-w-0">
         <section className={cardClass}>
           <label className="block text-sm font-bold text-navy">Post Title <span className="text-destructive">*</span><Input required minLength={3} maxLength={180} value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Enter your blog post title here..." className={field} /></label>

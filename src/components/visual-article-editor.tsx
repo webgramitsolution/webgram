@@ -4,7 +4,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "@tiptap/markdown";
 import ImageExtension from "@tiptap/extension-image";
 import { TableKit } from "@tiptap/extension-table";
-import { AlignCenter, AlignLeft, AlignRight, Bold, Code2, Eye, Image, Images, Italic, Link2, List, ListOrdered, Maximize2, Minimize2, Minus, Pencil, Quote, Redo2, Strikethrough, Table2, Underline, Undo2, X } from "lucide-react";
+import { Bold, Code2, Eye, Image, Images, Italic, Link2, List, ListOrdered, Maximize2, Minimize2, Minus, Pencil, PlaySquare, Quote, Redo2, Strikethrough, Table2, Underline, Undo2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArticleBody } from "@/components/blog-detail-page";
@@ -14,7 +14,7 @@ import { guestArticleStats } from "@/lib/guest-post-validation";
 export function VisualArticleEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   const [full, setFull] = useState(false);
   const [preview, setPreview] = useState(false);
-  const [media, setMedia] = useState<"image" | "gallery" | "link" | null>(null);
+  const [media, setMedia] = useState<"image" | "gallery" | "link" | "video" | null>(null);
   const [url, setUrl] = useState("");
   const [alt, setAlt] = useState("");
   const [mediaError, setMediaError] = useState("");
@@ -37,12 +37,13 @@ export function VisualArticleEditor({ value, onChange }: { value: string; onChan
   }, [full]);
   const state = useEditorState({ editor, selector: ({ editor: current }) => ({ bold: current?.isActive("bold"), italic: current?.isActive("italic"), underline: current?.isActive("underline"), strike: current?.isActive("strike"), bullets: current?.isActive("bulletList"), ordered: current?.isActive("orderedList"), heading: [1, 2, 3, 4].find((level) => current?.isActive("heading", { level })) ?? 0 }) });
   const tool = (label: string, icon: React.ReactNode, action: () => void, active = false) => <Button key={label} type="button" variant={active ? "secondary" : "ghost"} size="icon" title={label} aria-label={label} aria-pressed={active} onMouseDown={(event) => event.preventDefault()} onClick={action} className="h-8 w-8 shrink-0 text-foreground">{icon}</Button>;
-  function openMedia(kind: "image" | "gallery" | "link") { setMedia(kind); setUrl(""); setAlt(""); setMediaError(""); }
+  function openMedia(kind: "image" | "gallery" | "link" | "video") { setMedia(kind); setUrl(""); setAlt(""); setMediaError(""); }
   function insertMedia() {
     if (!editor || !media) return;
     const urls = (media === "gallery" ? url.split(/[,\n]/) : [url]).map((item) => item.trim()).filter(Boolean);
     if (!urls.length || urls.some((item) => !/^https:\/\//i.test(item) && !(media === "link" && /^\/(?!\/)/.test(item)))) { setMediaError("Enter a valid HTTPS URL."); return; }
-    if (media === "link") {
+    if (media === "video") editor.chain().focus().insertContent(`\n\nVideo: ${url.trim()}\n\n`, { contentType: "markdown" }).run();
+    else if (media === "link") {
       if (editor.state.selection.empty) editor.chain().focus().insertContent({ type: "text", text: alt.trim() || url.trim(), marks: [{ type: "link", attrs: { href: url.trim() } }] }).run();
       else editor.chain().focus().setLink({ href: url.trim() }).run();
     } else urls.forEach((src) => editor.chain().focus().setImage({ src, alt: alt.trim() || "Article image" }).run());
@@ -79,6 +80,7 @@ export function VisualArticleEditor({ value, onChange }: { value: string; onChan
       <h3 className="mb-2 text-[13px] font-medium text-muted-foreground">Insert Media</h3>
       <div className="flex flex-wrap items-center gap-1.5">
         <Button type="button" variant="outline" size="sm" className="h-9 text-[13px]" onClick={() => openMedia("image")}><Image className="h-4 w-4" />Image</Button>
+        <Button type="button" variant="outline" size="sm" className="h-9 text-[13px]" onClick={() => openMedia("video")}><PlaySquare className="h-4 w-4" />Video</Button>
         <Button type="button" variant="outline" size="sm" className="h-9 text-[13px]" onClick={() => openMedia("gallery")}><Images className="h-4 w-4" />Gallery</Button>
         <Button type="button" variant="outline" size="sm" className="h-9 text-[13px]" onClick={() => editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}><Table2 className="h-4 w-4" />Table</Button>
         {tool("Divider", <Minus className="h-4 w-4" />, () => { editor?.chain().focus().setHorizontalRule().run(); })}
