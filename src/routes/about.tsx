@@ -28,6 +28,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 import { aboutImages } from "@/lib/site-images";
+import { publicPageSchema } from "@/lib/site-identity";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -51,6 +52,7 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:image", content: `${aboutImages.banner}?tr=w-1200,h-630,c-at_max` },
     ],
     links: [{ rel: "canonical", href: "https://webgramitsolution.com/about" }],
+    scripts: publicPageSchema("/about", "About Webgram IT Solution", "Webgram IT Solution builds business websites, ecommerce stores and B2B commerce platforms in Delhi NCR.", "AboutPage"),
   }),
   component: AboutPage,
 });

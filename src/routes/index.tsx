@@ -28,6 +28,8 @@ import { SiteHeader } from "@/components/site-header";
 import { ScrollingFrame } from "@/components/portfolio-showcase";
 import { portfolio } from "@/lib/portfolio";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
+import { publicPageSchema } from "@/lib/site-identity";
+import { BusinessAnswers } from "@/components/business-answers";
 
 const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
 const HOME_TITLE = "Ecommerce Website Development Company | Webgram IT Solution";
@@ -73,33 +75,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: `${IMAGES.hero}?tr=w-1200,h-630,fo-center,q-80,f-jpg` },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Webgram IT Solution",
-          url: "https://webgramitsolution.com/",
-          image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
-          telephone: "+91 7551120242",
-          email: "info@webgramitsolution.com",
-          priceRange: "₹15,000 - ₹5,00,000",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "F3/780, Block C, Devli, Sangam Vihar",
-            addressLocality: "New Delhi",
-            postalCode: "110062",
-            addressCountry: "IN",
-          },
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "32", bestRating: "5" },
-          makesOffer: [
-            { "@type": "Offer", name: "Website Design & Development", priceCurrency: "INR", price: "15000" },
-            { "@type": "Offer", name: "Ecommerce Development", priceCurrency: "INR", price: "35000" },
-          ],
-        }),
-      },
-    ],
+    scripts: publicPageSchema("/", HOME_TITLE, HOME_DESCRIPTION),
   }),
   component: HomePage,
 });
@@ -743,6 +719,7 @@ function HomePage() {
       <HomePortfolio />
       <Technology />
       <MobileReviews reviews={reviews} />
+      <BusinessAnswers />
     </main>
   );
 }

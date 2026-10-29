@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
+import { publicPageSchema } from "@/lib/site-identity";
 
 const URL = "https://webgramitsolution.com/resources/faqs";
 const title = "FAQs — Website, Ecommerce & B2B Development | Webgram IT Solution";
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/resources/faqs")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: heroImage },
     ],
-    scripts: [{
+    scripts: [...publicPageSchema("/resources/faqs", title, description), {
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",

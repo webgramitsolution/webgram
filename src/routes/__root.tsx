@@ -17,6 +17,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { TestimonialStrip } from "@/components/testimonial-strip";
 import { Toaster } from "@/components/ui/sonner";
 import { NotFoundPage } from "@/components/not-found-page";
+import { businessIdentity, BUSINESS_ID, WEBSITE_ID } from "@/lib/site-identity";
 
 function NotFoundComponent() {
   return <NotFoundPage />;
@@ -86,26 +87,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          "@id": "https://webgramitsolution.com/#business",
-          name: "Webgram IT Solution",
-          url: "https://webgramitsolution.com/",
-          telephone: "+91 7551120242",
-          priceRange: "₹15,000 - ₹5,00,000",
-          address: { "@type": "PostalAddress", streetAddress: "F3/780, Block C, Devli, Sangam Vihar", addressLocality: "New Delhi", postalCode: "110062", addressCountry: "IN" },
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "32", bestRating: "5" },
-        }),
+        children: JSON.stringify(businessIdentity),
       },
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
+          "@id": WEBSITE_ID,
           name: "Webgram IT Solution",
           url: "https://webgramitsolution.com/",
-          publisher: { "@id": "https://webgramitsolution.com/#business" },
+          publisher: { "@id": BUSINESS_ID },
         }),
       },
       {
