@@ -7,7 +7,9 @@ import { readFileSync } from "node:fs";
 describe("public business identity", () => {
   it("uses only the canonical business domain in page identity", () => {
     assert.equal(SITE_URL, "https://webgramitsolution.com");
-    const page = JSON.parse(publicPageSchema("/about", "About", "Business information", "AboutPage")[0].children);
+    const script = publicPageSchema("/about", "About", "Business information", "AboutPage")[0];
+    if (!script) throw new Error("Expected page schema");
+    const page = JSON.parse(script.children);
     assert.equal(page.url, "https://webgramitsolution.com/about");
     assert.equal(page.about["@id"], "https://webgramitsolution.com/#business");
   });

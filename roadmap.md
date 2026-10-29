@@ -1,7 +1,8 @@
 # Roadmap
 
 ## Open
-- [ ] Optimize AEO with consistent business identity, visible service answers, truthful page schemas and private-path crawler exclusions; verify rendered pages and report live deployment blockers.
+- [x] Optimize AEO with one linked business identity, visible homepage answers, About/Contact/page breadcrumbs and corrected service schemas; SSR/navigation verified at 393/1280px and three tests pass. Existing live robots/llms return 200; Lovable noindex retained. Hostinger deployment still required.
+- [ ] Restore live sitemap availability (blocked: live /sitemap.xml returns 500 while its backend is paused; resume Cloud or complete a separate backend migration, then recheck).
 - [x] Compact guest writing settings (15% with readable minimum width), edge-aligned ad rails and unclipped media tools; rich heading/bold/table/HTML paste/image insertion, preview and local drafts verified at 320–1920px using a visual account fixture, no overflow or runtime errors, seven validation tests pass. Real signed-in publishing and actual ad delivery remain unverified.
 - [x] Update supplied 64px favicon and redesign /guest/write without navigation sidebar, with dashboard header icon, top ad and sticky desktop side ads. Visual fixture checks at 393/695/1280px show no overflow, draft saving works and seven validation tests pass; real signed-in submission remains blocked by missing requester account, real ad delivery not verified.
 - [x] Set article preview to 5%, add multiplex below Read more, six phone/four desktop inline placements and remove game rail heading; four tests and real article checks at 393/1280px pass. Ad placements tested with delivery stubbed, not real creative fill.
