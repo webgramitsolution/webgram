@@ -3,7 +3,7 @@ const SITE = "https://webgramitsolution.com";
 /** Describe visible services without generating hidden FAQ or fixed-price claims. */
 export function servicePageSchema(
   section: string,
-  sectionLabel: string,
+  _sectionLabel: string,
   slug: string,
   page: { title: string; description: string; points: string[] } | undefined,
 ) {
