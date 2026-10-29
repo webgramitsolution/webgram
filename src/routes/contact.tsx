@@ -39,10 +39,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { contactImages } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { submitEnquiry } from "@/lib/enquiry.functions";
+import { publicPageSchema } from "@/lib/site-identity";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://webgramitsolution.com/contact" }],
+    scripts: publicPageSchema("/contact", "Contact Webgram IT Solution", "Contact the Webgram IT Solution team in Sangam Vihar, New Delhi for website and ecommerce development.", "ContactPage"),
     meta: [
       { title: "Contact Webgram IT Solution | Start Your Project" },
       {

@@ -1,9 +1,9 @@
 const SITE = "https://webgramitsolution.com";
 
-/** Service + Breadcrumb + FAQ structured data for a section page (Google rich results). */
+/** Describe visible services without generating hidden FAQ or fixed-price claims. */
 export function servicePageSchema(
   section: string,
-  sectionLabel: string,
+  _sectionLabel: string,
   slug: string,
   page: { title: string; description: string; points: string[] } | undefined,
 ) {
@@ -15,6 +15,7 @@ export function servicePageSchema(
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
+        "@id": `${url}#service`,
         name: page.title,
         description: page.description,
         url,
@@ -35,21 +36,8 @@ export function servicePageSchema(
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
-          { "@type": "ListItem", position: 2, name: sectionLabel, item: `${SITE}/${section}/${slug}` },
-          { "@type": "ListItem", position: 3, name: page.title, item: url },
+          { "@type": "ListItem", position: 2, name: page.title, item: url },
         ],
-      }),
-    },
-    {
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          { q: `What is included in ${page.title}?`, a: `${page.description} Key features: ${page.points.join(", ")}.` },
-          { q: `How much does ${page.title} cost at Webgram IT Solution?`, a: "Projects start from ₹15,000 depending on scope. Contact us at +91 7551120242 for a free quote." },
-          { q: `Where is Webgram IT Solution located?`, a: "F3/780, Block C, Devli, Sangam Vihar, New Delhi 110062. We serve clients across India." },
-        ].map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
       }),
     },
   ];
