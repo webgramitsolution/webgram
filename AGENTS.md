@@ -49,3 +49,4 @@
 - Share the supplied testimonial strip above the public footer; never duplicate it in pages.
 - Portfolio/website previews use bundled assets for self-hosting; PortfolioCard has a compact grid variant to preserve readable details.
 - Regional landing pages `/ae` and `/kw` share `RegionalLanding`; demo leads save through the `submit_regional_lead` RPC, then the server forwards JSON to the `MAKE_WEBHOOK_URL` env var so the webhook URL never reaches the browser.
+- Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
