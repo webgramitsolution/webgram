@@ -113,6 +113,7 @@
 }
 
 :root {
+  --subpage-hero-phone-gradient: linear-gradient(160deg, color-mix(in oklch, var(--navy) 98%, transparent) 0%, color-mix(in oklch, var(--navy) 90%, transparent) 44%, color-mix(in oklch, var(--primary) 35%, transparent) 100%);
   --not-found-number-fill: linear-gradient(180deg, var(--primary), var(--navy) 70%);
   --not-found-number-shadow: 0 3px 0 var(--navy), 0 8px 14px color-mix(in oklch, var(--navy) 12%, transparent);
   --radius: 0.35rem;
@@ -1020,6 +1021,59 @@ a.bg-gold, button.bg-gold {
 }
 
 .hover-scroll { scrollbar-width: none; }
+/* Image-backed subpage heroes deliberately exclude the homepage hero-shell. */
+@media (min-width: 1024px) {
+  :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) > div:first-child {
+    width: 720px;
+    max-width: 60%;
+    min-width: 0;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) h1 {
+    max-width: none;
+    font-size: 34px;
+    line-height: 1.16;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 767px) {
+  :is(.contact-hero, .site-hero, .ecom-hero) {
+    isolation: isolate;
+    height: auto;
+    min-height: 430px;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: var(--subpage-hero-phone-gradient);
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) > img {
+    opacity: 1;
+    object-fit: cover;
+    object-position: 70% center;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) {
+    position: relative;
+    z-index: 2;
+    min-height: 430px;
+    padding-block: 2rem;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) h1 {
+    font-size: 30px;
+    line-height: 1.18;
+    font-weight: 500;
+    white-space: normal;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) h1 .whitespace-nowrap {
+    white-space: normal;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) h1 .text-gold {
+    color: var(--on-dark);
+  }
+}
 .technology-row { scrollbar-width: none; overscroll-behavior-x: contain; }
 .technology-row::-webkit-scrollbar { display: none; }
 @media (min-width: 768px) and (max-width: 1023px) {
