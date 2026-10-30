@@ -86,9 +86,9 @@ function AboutHero() {
       <div className="page-shell relative z-10 flex h-full items-center py-6 md:absolute md:inset-0">
         <div className="max-w-[440px] text-on-dark">
           <h1 className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]">
-            Building Digital
+            Building Digital Commerce
             <br />
-            Commerce for a<br />
+            for a{" "}
             <span className="text-gold">Better Tomorrow</span>
           </h1>
           <p className="mt-4 max-w-[400px] text-[14px] leading-[1.6] text-on-dark/90">

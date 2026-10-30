@@ -18,6 +18,7 @@
 - Blog lists/articles share a category header; missing pages share the not-found view with HTTP 404.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
 - Keep desktop composition on tablets; only phones compact or stack. Heroes are 348px on tablet/desktop and taller on phones; imagery uses contain.
+- Subpage hero presentation is shared through the contact-hero/site-hero/ecom-hero CSS selectors, excluding homepage hero-shell, so heading and phone photo-overlay changes remain consistent.
 - Arabic hero artwork is cropped into a left-side region via language-aware shared CSS, never horizontally mirrored, so printed artwork stays legible.
 - Technology rows keep readable fixed-width logo items with contained horizontal overflow when one row cannot fit.
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
