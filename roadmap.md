@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [ ] Update supplied LLM document, FAQ answers/schema and homepage SEO tags; retain Lovable noindex and verify rendered head.
 - [x] Fix non-homepage computer hero headings to two lines and phone photo/gradient contrast; About, Contact, Portfolio and shared service heroes checked at 320/394/1024/1280px without overflow; homepage unchanged.
 - [x] Optimize AEO with one linked business identity, visible homepage answers, About/Contact/page breadcrumbs and corrected service schemas; SSR/navigation verified at 393/1280px and three tests pass. Existing live robots/llms return 200; Lovable noindex retained. Hostinger deployment still required.
 - [ ] Restore live sitemap availability (blocked: live /sitemap.xml returns 500 while its backend is paused; resume Cloud or complete a separate backend migration, then recheck).
