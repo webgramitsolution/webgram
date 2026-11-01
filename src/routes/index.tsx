@@ -32,8 +32,8 @@ import { publicPageSchema } from "@/lib/site-identity";
 import { BusinessAnswers } from "@/components/business-answers";
 
 const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
-const HOME_TITLE = "Ecommerce Website Development Company | Webgram IT Solution";
-const HOME_DESCRIPTION = "Webgram IT Solution builds custom ecommerce websites, B2B and B2C online stores, and multi-vendor marketplaces with scalable features tailored to your business.";
+const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
+const HOME_DESCRIPTION = "Webgram IT Solution is a Delhi NCR based ecommerce website development company. We build custom WooCommerce, Shopify, B2B commerce platforms and multi-vendor marketplaces for businesses across India. Call +91 7551120242.";
 const HERO_DESKTOP = `${IMAGES.hero}&tr=w-1920,q-80,f-auto`.replace("&tr=", "?tr=");
 const HERO_PHONE = `${PHONE_HERO}?tr=w-768,q-80,f-auto`;
 
@@ -59,6 +59,14 @@ export const Route = createFileRoute("/")({
     ],
     meta: [
       { title: HOME_TITLE },
+      { name: "keywords", content: "ecommerce website development company Delhi, WooCommerce development Delhi NCR, Shopify development India, B2B ecommerce website Delhi, website development company Noida, ecommerce developer Gurgaon, B2B marketplace development India, WooCommerce developer Delhi, online store development Delhi NCR, ecommerce website company South Delhi, web portal development Delhi, multi vendor marketplace development India, website design company Delhi NCR, ecommerce website development company India, Webgram IT Solution" },
+      { name: "author", content: "Vikas Kumar, Webgram IT Solution" },
+      // The host-specific X-Robots-Tag still excludes the Lovable copy from indexing.
+      { name: "robots", content: "index, follow" },
+      { name: "geo.region", content: "IN-DL" },
+      { name: "geo.placename", content: "New Delhi" },
+      { name: "geo.position", content: "28.5089;77.2534" },
+      { name: "ICBM", content: "28.5089, 77.2534" },
       {
         name: "description",
         content:
