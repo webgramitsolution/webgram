@@ -65,6 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
+      { name: "google-site-verification", content: "ZT7ALIlXMzk-9XGJCx9XMUHIIQhWXlrYJe7GmvOXD9Y" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Webgram IT Solution" },
       { name: "description", content: "Digital commerce solutions built to sell and scale." },
