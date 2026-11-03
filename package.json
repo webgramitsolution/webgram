@@ -16,8 +16,7 @@
     "js-yaml": "4.3.2",
     "esbuild": "0.28.1",
     "undici": "7.30.1",
-    "seroval": "1.6.11",
-    "zod": "4.6.6"
+    "seroval": "1.6.11"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.78",
