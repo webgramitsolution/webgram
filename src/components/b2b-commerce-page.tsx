@@ -169,6 +169,13 @@ export function B2BCommercePage() {
         </div>
       </section>
 
+      <DirectAnswer
+        id="what-is-b2b-ecommerce"
+        question="What is B2B ecommerce development?"
+        answer="B2B ecommerce development is building an online ordering platform for business buyers instead of retail shoppers. Webgram IT Solution builds B2B portals for manufacturers, wholesalers and distributors with customer-specific pricing, minimum order quantities, bulk ordering, RFQ workflows, dealer accounts, GST invoicing and ERP-ready integrations, so repeat trade orders move online."
+      />
+
+
       <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Why Choose Webgram for B2B Ecommerce" description="" />
@@ -223,23 +230,23 @@ export function B2BCommercePage() {
       <section className="bg-sky-soft py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Our Development Process" description="A structured approach to build a high-performing B2B ecommerce platform." />
-          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-2">
+          <ol className="mt-5 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 md:grid-cols-6 md:gap-2">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="grid min-w-0 grid-cols-[46px_1fr] gap-2.5">
+              <li key={title} className="grid min-w-0 grid-cols-[46px_1fr] gap-2.5">
                 <span className="grid h-[46px] w-[46px] place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[14px] font-extrabold text-navy">{number}</span>
+                    <span aria-hidden="true" className="text-[14px] font-extrabold text-navy">{number}</span>
                     {index < process.length - 1 && (
                       <span className="relative hidden h-px flex-1 bg-primary md:block"><span className="absolute -right-0.5 -top-[3px] h-0 w-0 border-y-[3.5px] border-l-[6px] border-y-transparent border-l-primary" /></span>
                     )}
                   </div>
-<h3 className="mt-1.5 text-[14px] font-extrabold text-navy">{title}</h3>
-                  <p className="mt-0.5 text-[15px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p>
+                  <h3 className="mt-1.5 text-[14px] font-extrabold text-navy">{title}</h3>
+                  <p className="mt-0.5 text-[15px] leading-[1.5] text-muted-foreground md:text-[14px]">{text}</p>
                 </div>
-              </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
