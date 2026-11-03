@@ -27,6 +27,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
+import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 
 import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
 import fashionCaseImage from "@/assets/ecommerce-fashion-case.jpg";
@@ -274,6 +275,30 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
+      <DirectAnswer
+        id="what-is-ecommerce-development"
+        question="What is ecommerce website development?"
+        answer="Ecommerce website development is the process of planning, designing and building an online store where customers browse products, pay securely and track orders. Webgram IT Solution builds B2C and B2B ecommerce websites on WooCommerce, Shopify and custom stacks, with Razorpay payments, GST-ready invoicing, mobile-first design and SEO foundations included."
+      />
+
+      <ComparisonTable
+        id="woocommerce-vs-shopify"
+        title="WooCommerce vs Shopify for Indian B2B & Retail"
+        intro="Both platforms run successful Indian stores. The right choice depends on how much control, B2B logic and monthly cost your business needs."
+        columns={["Feature", "WooCommerce", "Shopify", "Best Suited For"]}
+        rows={[
+          { feature: "Ownership & hosting", a: "Open-source on your own hosting; full code and data control.", b: "Hosted SaaS; Shopify manages servers and updates.", best: "WooCommerce for control, Shopify for hands-off hosting." },
+          { feature: "Running cost", a: "No platform subscription; pay for hosting, plugins and maintenance.", b: "Monthly plan plus paid apps and theme costs.", best: "WooCommerce for lower long-term cost at scale." },
+          { feature: "B2B features (tiered pricing, MOQ, RFQ)", a: "Flexible through B2B plugins and custom development.", b: "Advanced B2B tools mainly on higher plans or apps.", best: "WooCommerce for wholesalers and manufacturers." },
+          { feature: "Indian payments & GST", a: "Razorpay, Cashfree, PayU and GST invoice plugins.", b: "Razorpay and other Indian gateways; GST via apps.", best: "Both work; WooCommerce offers deeper invoice customisation." },
+          { feature: "Speed to launch", a: "Needs setup, hosting and configuration.", b: "Quick to launch with ready themes.", best: "Shopify for fast retail launches." },
+          { feature: "Customisation", a: "Unlimited custom features, ERP and CRM integrations.", b: "Limited to theme code, apps and APIs.", best: "WooCommerce for custom workflows." },
+          { feature: "Maintenance", a: "Updates, security and backups are your responsibility.", b: "Platform handles security and core updates.", best: "Shopify for small teams without technical staff." },
+        ]}
+      />
+
+
+
       <section className="bg-card py-6">
         <div className="ecom-shell grid items-center gap-5 md:grid-cols-[1.05fr_1.55fr]">
           <div>
@@ -374,9 +399,9 @@ export function EcommerceDevelopmentPage() {
           <h2 className="mt-2 text-[20px] font-medium leading-[1.4] text-navy md:mt-3 md:text-[27px] md:leading-[1.3]">
             From Idea to Launch — A Clear &amp; Proven Process
           </h2>
-          <div className="mt-5 grid gap-0 md:grid-cols-6 md:gap-3">
+          <ol className="mt-5 grid list-none gap-0 p-0 md:grid-cols-6 md:gap-3">
             {process.map(([Icon, number, title, text], index) => (
-              <article key={title} className="relative grid min-w-0 grid-cols-[38px_minmax(0,1fr)] items-start gap-3 pb-5 last:pb-0 md:grid-cols-[45px_minmax(0,1fr)] md:gap-2 md:pb-0">
+              <li key={title} className="relative grid min-w-0 grid-cols-[38px_minmax(0,1fr)] items-start gap-3 pb-5 last:pb-0 md:grid-cols-[45px_minmax(0,1fr)] md:gap-2 md:pb-0">
                 {index < process.length - 1 && <span aria-hidden="true" className="absolute bottom-0 left-[18px] top-[38px] w-px bg-primary/20 md:hidden" />}
                 {index < process.length - 1 && (
                   <span
@@ -391,14 +416,14 @@ export function EcommerceDevelopmentPage() {
                 </span>
                 <div className="relative z-10 min-w-0">
                   <div className="flex min-h-[22px] items-center gap-2 pt-0.5 md:block md:pt-0">
-                    <strong className="block text-[12px] font-medium leading-5 text-primary md:text-[13px] md:font-bold md:text-navy">{number}</strong>
+                    <strong aria-hidden="true" className="block text-[12px] font-medium leading-5 text-primary md:text-[13px] md:font-bold md:text-navy">{number}</strong>
                     <h3 className="text-[16px] font-medium leading-[22px] text-navy md:mt-1 md:text-[15px] md:leading-5">{title}</h3>
                   </div>
-                  <p className="mt-1 text-[14px] leading-[21px] text-muted-foreground md:leading-[1.4]">{text}</p>
+                  <p className="mt-1 text-[15px] leading-[22px] text-muted-foreground md:text-[14px] md:leading-[1.4]">{text}</p>
                 </div>
-              </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
