@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { DirectAnswer } from "@/components/direct-answer";
 import {
   ArrowRight,
   Boxes,
