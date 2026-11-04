@@ -5,13 +5,19 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 
 export const businessIdentity = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   "@id": BUSINESS_ID,
   name: "Webgram IT Solution",
+  legalName: "Webgram IT Solution",
   url: `${SITE_URL}/`,
-  description: "Delhi NCR web development company building B2B and B2C ecommerce websites, WooCommerce and Shopify stores, web portals and API integrations.",
-  telephone: "+91 7551120242",
+  logo: "https://ik.imagekit.io/e1owsmcrg/webgramitsolution.com.jpg",
+  image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
+  description: "Webgram IT Solution is a Delhi NCR based web development company specializing in ecommerce websites, B2B commerce platforms, WooCommerce development, Shopify development and custom web portals for businesses across India.",
+  foundingDate: "2019",
+  founder: { "@type": "Person", name: "Vikas Kumar" },
+  telephone: "+917551120242",
   email: "info@webgramitsolution.com",
+  vatID: "07CUHPK2017G1ZW",
   address: {
     "@type": "PostalAddress",
     streetAddress: "F3/780, Block C, Devli, Sangam Vihar",
@@ -20,7 +26,25 @@ export const businessIdentity = {
     postalCode: "110062",
     addressCountry: "IN",
   },
-  areaServed: { "@type": "Country", name: "India" },
+  areaServed: ["Delhi", "Noida", "Gurgaon", "Faridabad", "Delhi NCR", "India"].map((name) => ({ "@type": "Place", name })),
+  serviceType: [
+    "Ecommerce Website Development", "WooCommerce Development", "Shopify Development",
+    "B2B Commerce Platform", "Marketplace Development", "Web Portal Development",
+    "Website Design", "API Integration", "Website Maintenance",
+  ],
+  sameAs: [
+    "https://www.facebook.com/webgramitsolution/",
+    "https://www.instagram.com/webgramitsolution/",
+    "https://www.youtube.com/@webgramitsolution",
+    "https://www.linkedin.com/company/webgramitsolution",
+    "https://www.pinterest.com/webgramitsolution/",
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "10:00",
+    closes: "19:00",
+  },
 };
 
 export function publicPageSchema(path: string, name: string, description: string, type = "WebPage") {

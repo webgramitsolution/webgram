@@ -98,6 +98,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@id": WEBSITE_ID,
           name: "Webgram IT Solution",
           url: "https://webgramitsolution.com/",
+          description: "Custom ecommerce websites, B2B platforms and WooCommerce development in Delhi NCR.",
+          inLanguage: "en-IN",
           publisher: { "@id": BUSINESS_ID },
         }),
       },
