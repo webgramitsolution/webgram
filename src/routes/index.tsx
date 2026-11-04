@@ -29,7 +29,6 @@ import { ScrollingFrame } from "@/components/portfolio-showcase";
 import { portfolio } from "@/lib/portfolio";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 import { publicPageSchema } from "@/lib/site-identity";
-import { BusinessAnswers } from "@/components/business-answers";
 
 const PHONE_HERO = "https://ik.imagekit.io/archfacingb2b/phone%20device%20banner.png";
 const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
@@ -727,7 +726,6 @@ function HomePage() {
       <HomePortfolio />
       <Technology />
       <MobileReviews reviews={reviews} />
-      <BusinessAnswers />
     </main>
   );
 }

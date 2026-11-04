@@ -30,12 +30,17 @@ export const Route = createFileRoute("/resources/faqs")({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "@id": `${URL}#webpage`,
+        "@id": `${URL}#faq`,
         url: URL,
+        name: title,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": "https://webgramitsolution.com/#website" },
+        about: { "@id": "https://webgramitsolution.com/#business" },
+        publisher: { "@id": "https://webgramitsolution.com/#business" },
         mainEntity: groups.flatMap((group) => group.items).map(([name, text]) => ({
           "@type": "Question",
           name,
-          acceptedAnswer: { "@type": "Answer", text },
+          acceptedAnswer: { "@type": "Answer", text, author: { "@id": "https://webgramitsolution.com/#business" } },
         })),
       }),
     }],
@@ -95,13 +100,13 @@ function FaqsPage() {
         </div>
       </section>
       <section className="py-10 md:py-14">
-        <div className="header-shell grid max-w-[920px] gap-8">
+        <div className="header-shell grid gap-8">
           {groups.map((group) => (
             <div key={group.title}>
               <h2 className="text-[24px] text-navy">{group.title}</h2>
-              <div className="mt-3 divide-y divide-border rounded-lg border border-border bg-card shadow-card">
+              <div className="mt-3 grid items-start gap-3 md:grid-cols-2">
                 {group.items.map(([q, a]) => (
-                  <details key={q} className="group px-5 py-4">
+                  <details key={q} className="group rounded-lg border border-border bg-card px-5 py-4 shadow-card">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-medium text-navy">
                       {q}<ChevronDown className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" />
                     </summary>
