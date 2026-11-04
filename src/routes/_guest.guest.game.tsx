@@ -46,8 +46,10 @@ function Game() {
     }).catch((error) => { if (generation === attemptGeneration.current) toast.error(errorText(error)); });
   }, [status.userId]);
 
-  useEffect(() => { if (!status.loading && !initialLevelLoaded.current) { initialLevelLoaded.current = true; setCurrentLevel(Math.min(status.levels, LEVELS.length - 1)); } }, [status.levels, status.loading]);
-  useEffect(() => { resetLevel(currentLevel); }, [currentLevel, resetLevel]);
+  const [levelReady, setLevelReady] = useState(false);
+  useEffect(() => { if (!status.loading && !initialLevelLoaded.current) { initialLevelLoaded.current = true; setCurrentLevel(Math.min(status.levels, LEVELS.length - 1)); setLevelReady(true); } }, [status.levels, status.loading]);
+  // Start exactly one attempt once the saved level is known, so an earlier level-1 request cannot close the real attempt.
+  useEffect(() => { if (levelReady) resetLevel(currentLevel); }, [currentLevel, resetLevel, levelReady]);
 
   const playSound = useCallback((type: "pour" | "win" | "error") => {
     if (!soundEnabled) return;
