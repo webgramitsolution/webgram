@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { DirectAnswer } from "@/components/direct-answer";
+import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 import {
   ArrowRight,
   Boxes,
@@ -174,6 +174,20 @@ export function B2BCommercePage() {
         id="what-is-b2b-ecommerce"
         question="What is B2B ecommerce development?"
         answer="B2B ecommerce development is building an online ordering platform for business buyers instead of retail shoppers. Webgram IT Solution builds B2B portals for manufacturers, wholesalers and distributors with customer-specific pricing, minimum order quantities, bulk ordering, RFQ workflows, dealer accounts, GST invoicing and ERP-ready integrations, so repeat trade orders move online."
+      />
+      <ComparisonTable
+        id="b2b-vs-b2c-ecommerce"
+        title="B2B vs B2C Ecommerce: Key Differences"
+        intro="Business buyers order differently from retail shoppers. This comparison shows which features a wholesale or distributor portal needs beyond a normal online store."
+        columns={["Feature", "B2B Ecommerce", "B2C Ecommerce", "What It Means for You"]}
+        rows={[
+          { feature: "Pricing", a: "Customer-group, tiered and contract pricing", b: "One public price for everyone", best: "B2B needs login-based price lists" },
+          { feature: "Order size", a: "Minimum order quantities and bulk carts", b: "Single items, small baskets", best: "Add MOQ rules and quick-order forms" },
+          { feature: "Quotes", a: "RFQ and negotiated quotes", b: "Instant checkout", best: "RFQ workflow for large or custom orders" },
+          { feature: "Payment", a: "Credit terms, invoices, bank transfer", b: "UPI, cards, wallets", best: "Support credit limits and GST invoices" },
+          { feature: "Accounts", a: "Company accounts with multiple users", b: "Individual shopper accounts", best: "Dealer and sub-user management" },
+          { feature: "Integrations", a: "ERP, inventory and accounting sync", b: "Payment gateway and shipping", best: "Plan ERP-ready APIs early" },
+        ]}
       />
 
 

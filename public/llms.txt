@@ -1,77 +1,43 @@
 # Webgram IT Solution
 
-> Webgram IT Solution is a web development company based in Sangam Vihar, New Delhi, India. Founded in 2019 by Vikas Kumar, the company specializes in ecommerce website development, B2B commerce platforms, WooCommerce development, Shopify development, marketplace development and custom web portals for businesses across India and internationally.
+> Webgram IT Solution is a Delhi NCR web development company (founded 2019 by Vikas Kumar, Sangam Vihar, New Delhi) building ecommerce websites, B2B commerce platforms, WooCommerce and Shopify stores, marketplaces and custom web portals for businesses in India and abroad.
 
-## Company
-
-- Name: Webgram IT Solution
-- Founder: Vikas Kumar
-- Founded: 2019
-- Location: F3/780, Sangam Vihar, New Delhi, Delhi 110062, India
-- Phone: +91 7551120242
-- Email: info@webgramitsolution.com
-- GSTIN: 07CUHPK2017G1ZW
-- Website: https://webgramitsolution.com
+Contact: +91 7551120242, info@webgramitsolution.com. GSTIN 07CUHPK2017G1ZW. Hours Monday to Saturday, 10:00 to 19:00 IST. Pricing is quoted per project after a requirement call; there is no fixed public price list.
 
 ## Services
 
-- Ecommerce website development (WooCommerce, Shopify)
-- B2B commerce platforms with MOQ, RFQ, wholesale pricing and customer groups
-- Multi-vendor marketplace development
-- Custom web portal development
-- Website design and development
-- API integration
-- Website maintenance and support
+- [Ecommerce Development](https://webgramitsolution.com/solutions/ecommerce-development): Online stores with WooCommerce or Shopify, payments, shipping and SEO.
+- [B2B Commerce](https://webgramitsolution.com/solutions/b2b-commerce): Wholesale portals with customer pricing, MOQ, RFQ and ERP-ready integrations.
+- [Website Design](https://webgramitsolution.com/services/website-design): Business websites designed for enquiries and search.
+- [WooCommerce Development](https://webgramitsolution.com/services/woocommerce): WordPress-based stores.
+- [Shopify Development](https://webgramitsolution.com/services/shopify): Hosted Shopify stores.
+- [Web Portal Development](https://webgramitsolution.com/services/web-portal-development): Custom portals and dashboards.
+- [Website Maintenance](https://webgramitsolution.com/services/website-maintenance): Updates, security and support.
 
-## Areas Served
+## Locations
 
-- Delhi, South Delhi, Sangam Vihar
-- Noida, Gurgaon, Faridabad
-- Delhi NCR
-- Pan India
-- International (Canada and other countries)
+- [Delhi](https://webgramitsolution.com/locations/delhi): Web development services in Delhi.
+- [Noida](https://webgramitsolution.com/locations/noida): Web development services in Noida.
+- [Gurugram (Gurgaon)](https://webgramitsolution.com/locations/gurugram): Web development services in Gurugram.
+- [Faridabad](https://webgramitsolution.com/locations/faridabad): Web development services in Faridabad.
+- [Delhi NCR](https://webgramitsolution.com/locations/delhi-ncr): Services across Delhi NCR.
+- [UAE](https://webgramitsolution.com/ae/): Services for UAE businesses.
+- [Kuwait](https://webgramitsolution.com/kw/): Services for Kuwait businesses.
 
-## Technologies Used
+## Work
 
-- WordPress, WooCommerce, Shopify
-- React, Next.js, Node.js
-- PostgreSQL, Supabase
-- Razorpay, PayU, Cashfree
-- WhatsApp API, Shiprocket, GoKwik
+- [Portfolio](https://webgramitsolution.com/work/portfolio): Live websites built for clients in India and Canada.
+- [Case Studies](https://webgramitsolution.com/work/case-studies): Project details and delivered scope.
 
-## Key Pages
+## Company
 
-- Homepage: https://webgramitsolution.com
-- About: https://webgramitsolution.com/about
-- Ecommerce Development: https://webgramitsolution.com/solutions/ecommerce-development
-- B2B Commerce: https://webgramitsolution.com/solutions/b2b-commerce
-- WooCommerce: https://webgramitsolution.com/services/woocommerce
-- Shopify: https://webgramitsolution.com/services/shopify
-- Web Portal Development: https://webgramitsolution.com/services/web-portal-development
-- Portfolio: https://webgramitsolution.com/work/portfolio
-- Case Studies: https://webgramitsolution.com/work/case-studies
-- FAQs: https://webgramitsolution.com/resources/faqs
-- Blog: https://webgramitsolution.com/resources/blog
-- Contact: https://webgramitsolution.com/contact
-
-## Notable Projects
-
-- Houskase (houskase.com) - D2C ecommerce store
-- King Sports Management (kingsportsmgt.com) - Sports management website
-- Regal Consulting Group (regalconsultinggroup.ca) - Staffing and recruitment, Canada
-- Fresh & Bright Cleaners (freshandbright.ca) - Local service business, Canada
-
-## Social Profiles
-
-- LinkedIn: https://www.linkedin.com/company/webgramitsolution
-- Instagram: https://www.instagram.com/webgramitsolution/
-- Facebook: https://www.facebook.com/webgramitsolution/
-- YouTube: https://www.youtube.com/@webgramitsolution
-- Pinterest: https://www.pinterest.com/webgramitsolution/
+- [About](https://webgramitsolution.com/about): Company background, founder and approach.
+- [FAQs](https://webgramitsolution.com/resources/faqs): Answers about cost, timelines, platforms and support.
+- [Contact](https://webgramitsolution.com/contact): Enquiry form, phone and address.
+- [Blog](https://webgramitsolution.com/resources/blog): Articles on ecommerce, SEO and technology.
 
 ## Optional
 
-- XML sitemap: https://webgramitsolution.com/sitemap.xml
-- RSS feed: https://webgramitsolution.com/feed.xml
-
-Private guest writing, account and administrative pages are not public resources.
+- [Full knowledge file](https://webgramitsolution.com/llms-full.txt): Case studies and technical architecture details.
+- [XML sitemap](https://webgramitsolution.com/sitemap.xml): All public URLs.
+- [RSS feed](https://webgramitsolution.com/feed.xml): Latest blog articles.

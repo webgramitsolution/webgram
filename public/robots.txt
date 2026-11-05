@@ -3,6 +3,7 @@
 
 # All crawlers: public pages allowed, private areas blocked
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Allow: /guest-login$
 Disallow: /admin
