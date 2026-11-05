@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { PortfolioCard } from "@/components/portfolio-showcase";
 import { Button } from "@/components/ui/button";
 import { portfolio } from "@/lib/portfolio";
+import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 
 const URL = "https://webgramitsolution.com/work/portfolio";
 const title = "Portfolio — Websites & Ecommerce Stores We Built | Webgram IT Solution";
@@ -92,6 +93,24 @@ function PortfolioPage() {
           {portfolio.map((item) => <PortfolioCard key={item.domain} item={item} compact />)}
         </div>
       </section>
+      <DirectAnswer
+        id="what-websites-does-webgram-build"
+        question="What kind of websites does Webgram IT Solution build?"
+        answer="Webgram IT Solution builds ecommerce stores, B2B wholesale platforms and lead-generating business websites for clients in India and Canada. Each project on this page is a real, live website using WordPress, WooCommerce, Shopify or React, designed for fast loading, mobile buyers, search visibility and measurable enquiries or sales."
+      />
+      <ComparisonTable
+        id="website-types-compared"
+        title="Which Website Type Fits Your Business?"
+        intro="A quick comparison of the three website types shown in our portfolio, so you can pick the right starting point."
+        columns={["Feature", "Ecommerce Store", "Business Website", "Best Suited For"]}
+        rows={[
+          { feature: "Main goal", a: "Sell products online", b: "Generate calls and enquiries", best: "Retail brands vs service businesses" },
+          { feature: "Platforms", a: "WooCommerce, Shopify", b: "WordPress, React", best: "Catalogue size and budget decide" },
+          { feature: "Key pages", a: "Catalogue, cart, checkout", b: "Services, about, contact", best: "Depends on how customers buy" },
+          { feature: "Integrations", a: "Payments, shipping, inventory", b: "Forms, WhatsApp, maps", best: "Plan before design starts" },
+          { feature: "Wholesale needs", a: "Add B2B pricing and MOQ", b: "Usually not required", best: "Manufacturers and distributors" },
+        ]}
+      />
       <section className="bg-sky-soft py-10">
         <div className="header-shell flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
           <div>
