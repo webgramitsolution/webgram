@@ -34,23 +34,6 @@ export const Route = createFileRoute("/work/portfolio")({
           "@context": "https://schema.org",
           "@graph": [
             {
-              "@type": "ProfessionalService",
-              "@id": "https://webgramitsolution.com/#business",
-              name: "Webgram IT Solution",
-              url: "https://webgramitsolution.com/",
-              image: heroImage,
-              telephone: "+91 7551120242",
-              email: "info@webgramitsolution.com",
-              priceRange: "₹15,000 - ₹5,00,000",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "F3/780, Block C, Devli, Sangam Vihar",
-                addressLocality: "New Delhi",
-                postalCode: "110062",
-                addressCountry: "IN",
-              },
-            },
-            {
               "@type": "CollectionPage",
               "@id": URL,
               name: title,

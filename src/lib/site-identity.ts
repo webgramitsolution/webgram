@@ -40,6 +40,15 @@ export const businessIdentity = {
     "https://www.linkedin.com/company/webgramitsolution",
     "https://www.pinterest.com/webgramitsolution/",
   ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: "+917551120242",
+    email: "info@webgramitsolution.com",
+    areaServed: "IN",
+    availableLanguage: ["en", "hi"],
+  },
+  knowsAbout: ["Ecommerce Website Design", "Shopify", "WooCommerce", "Custom Ecommerce Development", "B2B Ecommerce", "Marketplace Development"],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
