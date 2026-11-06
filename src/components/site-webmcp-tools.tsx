@@ -61,7 +61,7 @@ export function SiteWebMCPTools() {
         if (typeof page !== "string" || !(page in PAGES)) {
           throw new Error(`Unknown page; expected one of ${Object.keys(PAGES).join(", ")}.`);
         }
-        await navigate({ to: PAGES[page] });
+        await navigate({ href: PAGES[page] });
         return `Opened ${page} page.`;
       }),
   });
