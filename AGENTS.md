@@ -30,7 +30,7 @@
 - AdSense is consent-gated and limited to blog lists/articles, legal rails, game rail/win break and guest-writing top/side units; disclosure helpers set ad counts; no sitewide/footer ads.
 - Guest writing is sidebar-free with edge ad rails that collapse before the editor; its Tiptap editor serializes safe Markdown to keep validation/rendering; admin editor is separate.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
-- Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
+- Article disclosure keeps full HTML on one URL; hidden ads/rewards mount only after expansion.
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
@@ -49,7 +49,7 @@
 - Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
 - Share the supplied testimonial strip above the public footer; never duplicate it in pages.
 - Portfolio/website previews use bundled assets for self-hosting; PortfolioCard has a compact grid variant to preserve readable details.
-- Regional landing pages `/ae` and `/kw` share `RegionalLanding`; demo leads save through the `submit_regional_lead` RPC, then the server forwards JSON to the `MAKE_WEBHOOK_URL` env var so the webhook URL never reaches the browser.
+- `/ae` and `/kw` share `RegionalLanding`; leads save via `submit_regional_lead`, then the server forwards to `MAKE_WEBHOOK_URL` (never exposed to browser).
 - Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
 - FAQ JSON-LD is generated from the same grouped answers shown on the FAQ page and shares its page identity, preventing hidden or inconsistent answers; homepage head changes belong in the index route rather than a standalone HTML file.
 - Agent readiness: start.ts serves llms.txt as Markdown/Link header on `/`; WebMCP tools stay read-only.
