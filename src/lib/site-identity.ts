@@ -14,7 +14,7 @@ export const businessIdentity = {
   image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
   description: "Webgram IT Solution is a Delhi NCR based web development company specializing in ecommerce websites, B2B commerce platforms, WooCommerce development, Shopify development and custom web portals for businesses across India.",
   foundingDate: "2019",
-  founder: { "@type": "Person", name: "Vikas Kumar" },
+  founder: { "@type": "Person", name: "Vikas Kumar", sameAs: "https://www.linkedin.com/in/digivikas/" },
   telephone: "+917551120242",
   email: "info@webgramitsolution.com",
   vatID: "07CUHPK2017G1ZW",
@@ -31,6 +31,7 @@ export const businessIdentity = {
     "Ecommerce Website Development", "WooCommerce Development", "Shopify Development",
     "B2B Commerce Platform", "Marketplace Development", "Web Portal Development",
     "Website Design", "API Integration", "Website Maintenance",
+    "B2B Marketplace Website Development", "IndiaMART Style B2B Portal Development",
   ],
   sameAs: [
     "https://www.facebook.com/webgramitsolution/",
