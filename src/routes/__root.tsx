@@ -17,6 +17,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { TestimonialStrip } from "@/components/testimonial-strip";
 import { Toaster } from "@/components/ui/sonner";
 import { NotFoundPage } from "@/components/not-found-page";
+import { SiteWebMCPTools } from "@/components/site-webmcp-tools";
 import { businessIdentity, BUSINESS_ID, WEBSITE_ID } from "@/lib/site-identity";
 
 function NotFoundComponent() {
@@ -185,6 +186,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <SiteWebMCPTools />
       <Toaster richColors position="top-center" />
       <TestimonialStrip />
       <SiteFooter />

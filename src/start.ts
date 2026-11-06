@@ -18,6 +18,25 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+// Agents asking for Markdown get the llms.txt summary; HTML homepage advertises it via Link header.
+const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
+  const url = new URL(request.url);
+  if (url.pathname !== "/") return next();
+  const link = '</llms.txt>; rel="describedby"; type="text/markdown", </llms-full.txt>; rel="alternate"; type="text/markdown"';
+  if ((request.headers.get("accept") || "").includes("text/markdown")) {
+    const md = await fetch(new URL("/llms.txt", url)).then((r) => r.text()).catch(() => "# Webgram IT Solution\n");
+    return new Response(md, { headers: { "content-type": "text/markdown; charset=utf-8", link, vary: "Accept" } });
+  }
+  const result = await next();
+  try {
+    const res = (result as unknown as { response?: Response }).response ?? (result as unknown as Response);
+    res?.headers?.set?.("link", link);
+  } catch {
+    // Immutable headers: skip the hint rather than fail the page.
+  }
+  return result;
+});
+
 // Start installs this automatically when src/start.ts is absent; defining the
 // file opts out, so re-add it explicitly to keep server functions protected
 // from cross-site requests.
@@ -27,5 +46,5 @@ const csrfMiddleware = createCsrfMiddleware({
 
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
-  requestMiddleware: [errorMiddleware, csrfMiddleware],
+  requestMiddleware: [errorMiddleware, agentMiddleware, csrfMiddleware],
 }));
