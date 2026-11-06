@@ -27,8 +27,8 @@
 - Blog management and due guest-email triggers require server-checked admin roles; public posts require published status and elapsed publish time.
 - Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
 - Guest posts publish after 30 minutes without cron; public access policy hides them until then.
-- AdSense is consent-gated: lists use category bands; articles use cover-top, desktop rails, boundary inline, below-comments and collapsed-preview multiplex units. Disclosure helpers control preview/device ad counts without stacking. Legal pages use desktop rails; game uses a right rail and dismissible win break. Guest writing alone also uses top/desktop side placements; no sitewide/footer/other guest-panel ads.
-- Guest writing uses a compact author header and an unframed, sidebar-free workspace; edge-aligned desktop ad rails sit outside the form and collapse before squeezing the editor. Its visual Tiptap editor serializes safe Markdown to preserve existing submission validation and public rendering; the admin editor remains separate.
+- AdSense is consent-gated and limited to blog lists/articles, legal rails, game rail/win break and guest-writing top/side units; disclosure helpers set ad counts; no sitewide/footer ads.
+- Guest writing is sidebar-free with edge ad rails that collapse before the editor; its Tiptap editor serializes safe Markdown to keep validation/rendering; admin editor is separate.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
 - Article disclosure preserves full HTML on one URL; hidden ads/rewards mount after expansion to prevent hidden impressions and premature claims.
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
@@ -42,7 +42,7 @@
 - Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.com`.
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
-- Game rewards require authenticated server replay of shared water-sort rules and owned attempts, then a service-only atomic award; level-only claims stay disabled. Preserve reward amounts, paid glasses and ad independence.
+- Game rewards need authenticated server replay of owned attempts and an atomic service award; level-only claims stay disabled.
 - Reading rewards remain timed and once-per-post; both sharing award RPCs stay disabled to prevent unverified credits.
 - Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
 - Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
