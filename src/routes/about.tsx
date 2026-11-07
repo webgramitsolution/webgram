@@ -262,7 +262,7 @@ function Journey() {
       Rocket,
       "2019",
       "The Beginning",
-      "Webgram IT Solution was founded with a vision to build digital solutions for businesses.",
+      "Vikas Kumar started building websites for businesses, before Webgram IT Solution was GST registered in 2022.",
     ],
     [
       BarChart3,

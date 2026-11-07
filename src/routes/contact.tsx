@@ -238,7 +238,7 @@ function ContactForm() {
 
 function DirectContact() {
   const details = [
-    [Phone, "Call Us", "+91 7551120242", "Mon - Sat, 9:00 AM - 7:00 PM", "text-primary"],
+    [Phone, "Call Us", "+91 7551120242", "Mon - Sat, 10:00 AM - 7:00 PM", "text-primary"],
     [
       Mail,
       "Email Us",
@@ -445,10 +445,8 @@ function ConnectHours() {
           <div className="mt-4 flex gap-4">
             <Clock3 className="h-11 w-11 shrink-0 text-primary" />
             <dl className="grid flex-1 grid-cols-2 gap-y-2 text-[14px] text-muted-foreground">
-              <dt>Monday - Friday</dt>
-              <dd className="text-right">9:00 AM - 7:00 PM</dd>
-              <dt>Saturday</dt>
-              <dd className="text-right">9:00 AM - 5:00 PM</dd>
+              <dt>Monday - Saturday</dt>
+              <dd className="text-right">10:00 AM - 7:00 PM</dd>
               <dt>Sunday</dt>
               <dd className="text-right">
                 Closed

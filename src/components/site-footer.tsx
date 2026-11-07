@@ -25,7 +25,7 @@ const socials: Array<[LucideIcon | typeof PinterestIcon | null, string]> = [
   [Youtube, "YouTube"],
   [PinterestIcon, "Pinterest"],
 ];
-const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/webgramitsolution", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://www.pinterest.com/webgramitsolution/" };
+const socialUrls: Record<string, string> = { LinkedIn: "https://www.linkedin.com/company/webgramitsolution", Instagram: "https://www.instagram.com/webgramitsolution/", Facebook: "https://www.facebook.com/webgramitsolution/", WhatsApp: "https://wa.me/917551120242", YouTube: "https://www.youtube.com/@webgramitsolution", Pinterest: "https://www.pinterest.com/webgramitsolution/" };
 
 export function SiteFooter() {
   return (
