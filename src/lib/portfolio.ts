@@ -26,7 +26,7 @@ export const portfolio: PortfolioItem[] = [
     url: "https://kingsportsmgt.com/",
     domain: "kingsportsmgt.com",
     category: "Sports & Athlete Management",
-    location: "India",
+    location: "Kolkata, India",
     image: kingsports,
     summary:
       "A premium corporate website for an Indian sports management company covering athlete management, brand partnerships, digital media and sports infrastructure across football, cricket and tennis.",
@@ -37,7 +37,7 @@ export const portfolio: PortfolioItem[] = [
     url: "https://houskase.com/",
     domain: "houskase.com",
     category: "D2C Ecommerce Store",
-    location: "India",
+    location: "Delhi NCR, India",
     image: houskase,
     summary:
       "A high-utility ecommerce experience for household essentials, office supplies, mobile accessories and stationery. Clear collections, combo offers and frictionless product discovery support Houskase’s growing customer base across Delhi and beyond.",

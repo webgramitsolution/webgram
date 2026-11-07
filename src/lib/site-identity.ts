@@ -26,7 +26,7 @@ export const businessIdentity = {
     postalCode: "110062",
     addressCountry: "IN",
   },
-  areaServed: ["Delhi", "Noida", "Gurgaon", "Faridabad", "Delhi NCR", "India"].map((name) => ({ "@type": "Place", name })),
+  areaServed: ["Delhi", "Noida", "Gurgaon", "Faridabad", "Delhi NCR", "Lucknow", "Kolkata", "India", "United Arab Emirates", "Kuwait", "Canada"].map((name) => ({ "@type": "Place", name })),
   serviceType: [
     "Ecommerce Website Development", "WooCommerce Development", "Shopify Development",
     "B2B Commerce Platform", "Marketplace Development", "Web Portal Development",

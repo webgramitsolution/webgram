@@ -289,7 +289,7 @@ function TrustStrip() {
     <section className="bg-background py-5">
       <div className="page-shell">
         <h2 className="text-sm font-extrabold text-navy">
-          Trusted by Businesses Building Their Digital Future
+          Technologies &amp; Ecommerce Integrations We Power for Your Store
         </h2>
         <div
           className="logo-scroll mt-4 grid grid-flow-col auto-cols-[150px] items-center gap-3 overflow-x-auto pb-2 md:grid-flow-row md:auto-cols-auto md:grid-cols-7 md:overflow-visible md:pb-0"
