@@ -11,6 +11,9 @@ import { NotFoundPage } from "@/components/not-found-page";
 const section = menuSections.solutions;
 const websiteDesignBanner = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
 
+const seoTitles: Record<string, string> = {
+  "b2b-commerce": "B2B Ecommerce Portal & Marketplace Development Company in India | Webgram",
+};
 export const Route = createFileRoute("/solutions/$slug")({
   loader: ({ params }) => {
     const page = getSubpage("solutions", params.slug);
@@ -20,12 +23,12 @@ export const Route = createFileRoute("/solutions/$slug")({
   head: ({ loaderData, params }) => ({
     links: [{ rel: "canonical", href: `https://webgramitsolution.com/solutions/${params.slug}` }],
     meta: [
-      { title: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution` },
+      { title: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Solutions"} | Webgram IT Solution`) },
       { name: "description", content: loaderData?.description ?? "" },
       ...(params.slug === "marketplace-development" ? [{ name: "robots", content: "noindex, follow" }] : []),
       {
         property: "og:title",
-        content: `${loaderData?.title ?? "Solutions"} | Webgram IT Solution`,
+        content: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Solutions"} | Webgram IT Solution`),
       },
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },

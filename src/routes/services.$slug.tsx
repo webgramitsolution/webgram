@@ -25,6 +25,10 @@ const dedicatedBanners: Record<string, string> = {
   "website-design": websiteDesignBanner,
 };
 
+const seoTitles: Record<string, string> = {
+  shopify: "Shopify Website Development Company in Delhi NCR | Webgram IT Solution",
+  woocommerce: "WooCommerce Development Company in Delhi NCR | Webgram IT Solution",
+};
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
     // Keep the pre-rename URL working: /services/website-development → Web Portal Development.
@@ -36,9 +40,9 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData, params }) => ({
     links: [{ rel: "canonical", href: `https://webgramitsolution.com/services/${params.slug}` }],
     meta: [
-      { title: `${loaderData?.title ?? "Services"} | Webgram IT Solution` },
+      { title: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Services"} | Webgram IT Solution`) },
       { name: "description", content: loaderData?.description ?? "" },
-      { property: "og:title", content: `${loaderData?.title ?? "Services"} | Webgram IT Solution` },
+      { property: "og:title", content: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Services"} | Webgram IT Solution`) },
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
