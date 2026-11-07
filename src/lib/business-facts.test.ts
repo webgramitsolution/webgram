@@ -1,13 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
 import { businessIdentity } from "./site-identity";
 
 describe("business facts", () => {
   it("uses 2022 as the founding year", () => {
-    expect(businessIdentity.foundingDate).toBe("2022");
+    assert.equal(businessIdentity.foundingDate, "2022");
   });
   it("publishes only the one real phone number", () => {
-    const json = JSON.stringify(businessIdentity);
-    expect(businessIdentity.telephone).toBe("+917551120242");
-    expect(json).not.toContain("7942826612");
+    assert.equal(businessIdentity.telephone, "+917551120242");
+    assert.ok(!JSON.stringify(businessIdentity).includes("7942826612"));
   });
 });
