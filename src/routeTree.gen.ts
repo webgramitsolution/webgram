@@ -33,6 +33,7 @@ import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
 import { Route as ResourcesGuidesRouteImport } from './routes/resources.guides'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as ServicesShopifyRouteImport } from './routes/services.shopify'
 import { Route as ServicesWebsiteDesignRouteImport } from './routes/services.website-design'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
@@ -171,6 +172,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesShopifyRoute = ServicesShopifyRouteImport.update({
+  id: '/services/shopify',
+  path: '/services/shopify',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesWebsiteDesignRoute = ServicesWebsiteDesignRouteImport.update({
   id: '/services/website-design',
   path: '/services/website-design',
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -319,6 +326,7 @@ export interface FileRoutesByTo {
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -361,6 +369,7 @@ export interface FileRoutesById {
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -403,6 +412,7 @@ export interface FileRouteTypes {
     | '/resources/faqs'
     | '/resources/guides'
     | '/services/$slug'
+    | '/services/shopify'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
@@ -443,6 +453,7 @@ export interface FileRouteTypes {
     | '/resources/faqs'
     | '/resources/guides'
     | '/services/$slug'
+    | '/services/shopify'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
@@ -484,6 +495,7 @@ export interface FileRouteTypes {
     | '/resources/faqs'
     | '/resources/guides'
     | '/services/$slug'
+    | '/services/shopify'
     | '/services/website-design'
     | '/solutions/$slug'
     | '/work/$slug'
@@ -527,6 +539,7 @@ export interface RootRouteChildren {
   ResourcesFaqsRoute: typeof ResourcesFaqsRoute
   ResourcesGuidesRoute: typeof ResourcesGuidesRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesShopifyRoute: typeof ServicesShopifyRoute
   ServicesWebsiteDesignRoute: typeof ServicesWebsiteDesignRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
@@ -702,6 +715,13 @@ declare module '@tanstack/react-router' {
       path: '/services/$slug'
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/shopify': {
+      id: '/services/shopify'
+      path: '/services/shopify'
+      fullPath: '/services/shopify'
+      preLoaderRoute: typeof ServicesShopifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/website-design': {
@@ -896,6 +916,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesFaqsRoute: ResourcesFaqsRoute,
   ResourcesGuidesRoute: ResourcesGuidesRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  ServicesShopifyRoute: ServicesShopifyRoute,
   ServicesWebsiteDesignRoute: ServicesWebsiteDesignRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
