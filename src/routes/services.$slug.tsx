@@ -26,7 +26,6 @@ const dedicatedBanners: Record<string, string> = {
 };
 
 const seoTitles: Record<string, string> = {
-  shopify: "Shopify Website Development Company in Delhi NCR | Webgram IT Solution",
   woocommerce: "WooCommerce Development Company in Delhi NCR | Webgram IT Solution",
 };
 export const Route = createFileRoute("/services/$slug")({
