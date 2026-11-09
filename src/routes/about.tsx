@@ -69,10 +69,10 @@ const menu: Array<[string, string[]]> = [
 
 function AboutHero() {
   const stats = [
-    ["100+", "Projects Delivered"],
-    ["50+", "Happy Clients"],
-    ["20+", "Industries Served"],
+    ["2019", "Client Work Since"],
+    ["2022", "GST Registered"],
     ["5+", "Years of Experience"],
+    ["India", "& Overseas Clients"],
   ];
   return (
     <section className="site-hero relative min-h-[520px] overflow-hidden bg-navy md:h-[348px] md:min-h-[348px]">

@@ -94,6 +94,7 @@ const services: Array<{
   title: string;
   text: string;
   link: string;
+  to: "/solutions/ecommerce-development" | "/solutions/b2b-commerce" | "/services/web-portal-development";
   image: string;
   alt: string;
 }> = [
@@ -102,6 +103,7 @@ const services: Array<{
     title: "Ecommerce Development",
     text: "High-converting B2C ecommerce websites designed for performance and scalability.",
     link: "Explore Ecommerce",
+    to: "/solutions/ecommerce-development",
     image: IMAGES.ecommerce,
     alt: "Laptop and phone showing a fashion ecommerce storefront",
   },
@@ -110,6 +112,7 @@ const services: Array<{
     title: "B2B Commerce",
     text: "Wholesale pricing, MOQ, RFQ, customer groups, credit terms and bulk ordering.",
     link: "Explore B2B",
+    to: "/solutions/b2b-commerce",
     image: IMAGES.b2b,
     alt: "Stacked cardboard shipping boxes for wholesale orders",
   },
@@ -119,6 +122,7 @@ const services: Array<{
     title: "Custom Commerce Platforms",
     text: "Custom-built commerce applications designed around your unique business model.",
     link: "Explore Custom Solutions",
+    to: "/services/web-portal-development",
     image: IMAGES.custom,
     alt: "Laptop showing custom commerce application source code",
   },
@@ -127,6 +131,7 @@ const services: Array<{
     title: "Marketplace Development",
     text: "Multi-vendor marketplaces with seller tools, commissions, payouts and order management.",
     link: "Explore Marketplace",
+    to: "/solutions/b2b-commerce",
     image: IMAGES.marketplace,
     alt: "Multi-vendor marketplace storefront and seller dashboard",
   },
@@ -327,15 +332,15 @@ function Services() {
               End-to-end solutions to build, sell and scale your business online.
             </p>
           </div>
-          <a
-            href="#services"
+          <Link
+            to="/solutions/ecommerce-development"
             className="hidden text-[13px] font-bold text-primary underline sm:block"
           >
             View All Solutions →
-          </a>
+          </Link>
         </div>
         <div className="mt-5 grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-3">
-          {services.map(({ icon: IconComponent, title, text, link, image, alt }, index) => (
+          {services.map(({ icon: IconComponent, title, text, link, to, image, alt }, index) => (
             <article
               key={title}
               className={`relative min-h-[320px] overflow-hidden rounded-md border border-border bg-card p-3 shadow-card md:min-h-[210px] md:p-4 md:pr-[46%] ${index === 3 ? "md:hidden" : ""}`}
@@ -345,12 +350,12 @@ function Services() {
               </span>
               <h3 className="mt-3 text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
               <p className="mt-2 text-[13px] font-medium leading-4 text-muted-foreground">{text}</p>
-              <a
-                href="#services"
+              <Link
+                to={to}
                 className="mt-3 inline-block text-[13px] font-extrabold text-primary"
               >
                 {link} →
-              </a>
+              </Link>
               <div className="service-visual max-md:!bottom-0 max-md:!left-0 max-md:!right-0 max-md:!top-auto max-md:!h-[112px] max-md:!w-full">
                 <img src={image} alt={alt} width={1536} height={1024} loading="lazy" />
               </div>
@@ -376,10 +381,11 @@ function Ecosystem() {
             CRM and analytics.
           </p>
           <Button
+            asChild
             size="sm"
             className="mt-3 h-9 bg-primary px-5 text-[13px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[13px] lg:h-9 lg:px-5 lg:text-[13px]"
           >
-            Learn More <ArrowRight />
+            <Link to="/services/api-integration">Learn More <ArrowRight /></Link>
           </Button>
         </div>
         <div className="min-w-0">

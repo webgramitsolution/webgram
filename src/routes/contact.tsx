@@ -40,6 +40,7 @@ import { contactImages } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { submitEnquiry } from "@/lib/enquiry.functions";
 import { publicPageSchema } from "@/lib/site-identity";
+import { contactFaqQuestions, pickFaqs } from "@/lib/faq-content";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -243,7 +244,7 @@ function DirectContact() {
       Mail,
       "Email Us",
       "info@webgramitsolution.com",
-      "We’ll respond within 24 hours",
+      "We usually reply within one business day",
       "text-primary",
     ],
     [
@@ -326,7 +327,7 @@ function ContactMain() {
             Send Us a Message
           </h2>
           <p className="mb-4 mt-1.5 max-w-[360px] text-[14px] leading-5 text-muted-foreground">
-            Tell us about your project, and our team will get back to you within 24 hours.
+            Tell us about your project, and our team will usually reply within one business day.
           </p>
           <ContactForm />
         </div>
@@ -397,14 +398,25 @@ function Location() {
   );
 }
 
+function PinterestIcon({ className }: { className?: string }) {
+  return <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.65 19.31c-.09-1.7-.02-3.74.43-5.67l1.29-5.45s-.32-.65-.32-1.61c0-1.51.87-2.64 1.96-2.64.93 0 1.38.7 1.38 1.53 0 .93-.59 2.32-.9 3.61-.26 1.08.54 1.96 1.6 1.96 1.92 0 3.39-2.02 3.39-4.94 0-2.58-1.86-4.39-4.51-4.39-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.08.31l-.3 1.22c-.05.2-.16.25-.37.15-1.39-.65-2.26-2.68-2.26-4.31 0-3.51 2.55-6.73 7.36-6.73 3.86 0 6.86 2.75 6.86 6.43 0 3.84-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.69 2.64c-.25.97-.93 2.18-1.38 2.92.91.28 1.85.42 2.82.42A10 10 0 0 0 12 2Z" /></svg>;
+}
+
 function ConnectHours() {
   const socials = [
     [Linkedin, "LinkedIn", "Follow Us", "bg-linkedin"],
     [Instagram, "Instagram", "Follow Us", "bg-instagram"],
     [Facebook, "Facebook", "Like Our Page", "bg-facebook"],
     [Youtube, "YouTube", "Subscribe", "bg-youtube"],
-    [Mail, "Newsletter", "Get Updates", "bg-primary"],
+    [PinterestIcon, "Pinterest", "Follow Us", "bg-pinterest"],
   ] as const;
+  const urls: Record<string, string> = {
+    LinkedIn: "https://www.linkedin.com/company/webgramitsolution",
+    Instagram: "https://www.instagram.com/webgramitsolution/",
+    Facebook: "https://www.facebook.com/webgramitsolution/",
+    YouTube: "https://www.youtube.com/@webgramitsolution",
+    Pinterest: "https://www.pinterest.com/webgramitsolution/",
+  };
   return (
     <section className="bg-background py-5">
       <div className="page-shell grid gap-6 md:grid-cols-[1.25fr_.75fr] md:divide-x md:divide-border">
@@ -418,7 +430,10 @@ function ConnectHours() {
           <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-5">
             {socials.map(([Icon, title, sub, tone]) => (
               <a
-                href="#top"
+                href={urls[title]}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Webgram IT Solution on ${title}`}
                 key={title}
                 className="flex items-center gap-2.5 text-navy hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
@@ -460,16 +475,7 @@ function ConnectHours() {
   );
 }
 
-const faqs = [
-  "How quickly can you start my project?",
-  "Do you provide free consultation?",
-  "What information do you need for a quote?",
-  "Can we meet at your office?",
-  "Do you work with businesses outside Delhi NCR?",
-  "What is your typical project timeline?",
-  "Do you provide ongoing support?",
-  "Which technologies do you work with?",
-];
+const faqs = pickFaqs(contactFaqQuestions);
 
 function Faq() {
   return (
@@ -489,10 +495,11 @@ function Faq() {
             </p>
           </div>
           <Button
+            asChild
             variant="outline"
             className="hidden h-9 border-navy text-[13px] text-navy sm:flex"
           >
-            View All FAQs <ArrowRight />
+            <Link to="/resources/faqs">View All FAQs <ArrowRight /></Link>
           </Button>
         </div>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -502,7 +509,7 @@ function Faq() {
               type="multiple"
               className="rounded-lg border border-border bg-card px-4 shadow-card"
             >
-              {column.map((question) => (
+              {column.map(([question, answer]) => (
                 <AccordionItem
                   key={question}
                   value={question}
@@ -512,7 +519,7 @@ function Faq() {
                     {question}
                   </AccordionTrigger>
                   <AccordionContent className="text-[14px] leading-5 text-muted-foreground">
-                    Contact our team for a detailed answer tailored to your business and project.
+                    {answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}

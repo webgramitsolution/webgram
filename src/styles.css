@@ -68,6 +68,7 @@
   --color-instagram: var(--instagram);
   --color-facebook: var(--facebook);
   --color-youtube: var(--youtube);
+  --color-pinterest: var(--pinterest);
   --color-whatsapp: var(--whatsapp);
   --color-sky: var(--sky);
   --color-sky-soft: var(--sky-soft);
@@ -157,6 +158,7 @@
   --instagram: oklch(0.6 0.22 0);
   --facebook: oklch(0.55 0.19 260);
   --youtube: oklch(0.6 0.24 27);
+  --pinterest: oklch(0.55 0.22 25);
   --whatsapp: oklch(0.7 0.18 150);
   --sky: oklch(0.77 0.145 235);
   --sky-soft: oklch(0.974 0.024 240);
