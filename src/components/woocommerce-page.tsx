@@ -110,7 +110,7 @@ export function WooCommercePage() {
     <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
       <img src={wooHero} alt="WooCommerce furniture store displayed on laptop and phone" width={1536} height={768} className="absolute inset-0 h-full w-full object-cover object-center min-[1180px]:!hidden" />
       <div aria-hidden="true" className="ecom-hero-art hidden min-[1180px]:block"><img src={wooHero} alt="" width={1536} height={768} /></div>
-<div className="ecom-hero-shade absolute inset-0 min-[1180px]:hidden" />
+      <div className="ecom-hero-shade absolute inset-0 min-[1180px]:hidden" />
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="relative max-w-[540px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
