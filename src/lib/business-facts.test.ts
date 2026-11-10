@@ -26,6 +26,6 @@ describe("business facts", () => {
   });
   it("Shopify page has eight FAQs and quotes the supplied 4 to 8 week ecommerce timeline", () => {
     assert.equal(shopifyFaqs.length, 8);
-    assert.ok(shopifyFaqs[0][1].includes("4 to 8 weeks"));
+    assert.ok(shopifyFaqs[0]?.[1].includes("4 to 8 weeks"));
   });
 });
