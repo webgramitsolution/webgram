@@ -94,7 +94,8 @@ const services: Array<{
   title: string;
   text: string;
   link: string;
-  to: "/solutions/ecommerce-development" | "/solutions/b2b-commerce" | "/services/web-portal-development";
+  to: "/solutions/$slug" | "/services/$slug";
+  slug: string;
   image: string;
   alt: string;
 }> = [
@@ -103,7 +104,8 @@ const services: Array<{
     title: "Ecommerce Development",
     text: "High-converting B2C ecommerce websites designed for performance and scalability.",
     link: "Explore Ecommerce",
-    to: "/solutions/ecommerce-development",
+    to: "/solutions/$slug",
+    slug: "ecommerce-development",
     image: IMAGES.ecommerce,
     alt: "Laptop and phone showing a fashion ecommerce storefront",
   },
@@ -112,7 +114,8 @@ const services: Array<{
     title: "B2B Commerce",
     text: "Wholesale pricing, MOQ, RFQ, customer groups, credit terms and bulk ordering.",
     link: "Explore B2B",
-    to: "/solutions/b2b-commerce",
+    to: "/solutions/$slug",
+    slug: "b2b-commerce",
     image: IMAGES.b2b,
     alt: "Stacked cardboard shipping boxes for wholesale orders",
   },
@@ -122,7 +125,8 @@ const services: Array<{
     title: "Custom Commerce Platforms",
     text: "Custom-built commerce applications designed around your unique business model.",
     link: "Explore Custom Solutions",
-    to: "/services/web-portal-development",
+    to: "/services/$slug",
+    slug: "web-portal-development",
     image: IMAGES.custom,
     alt: "Laptop showing custom commerce application source code",
   },
@@ -131,7 +135,8 @@ const services: Array<{
     title: "Marketplace Development",
     text: "Multi-vendor marketplaces with seller tools, commissions, payouts and order management.",
     link: "Explore Marketplace",
-    to: "/solutions/b2b-commerce",
+    to: "/solutions/$slug",
+    slug: "b2b-commerce",
     image: IMAGES.marketplace,
     alt: "Multi-vendor marketplace storefront and seller dashboard",
   },
@@ -333,14 +338,15 @@ function Services() {
             </p>
           </div>
           <Link
-            to="/solutions/ecommerce-development"
+            to="/solutions/$slug"
+            params={{ slug: "ecommerce-development" }}
             className="hidden text-[13px] font-bold text-primary underline sm:block"
           >
             View All Solutions →
           </Link>
         </div>
         <div className="mt-5 grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-3">
-          {services.map(({ icon: IconComponent, title, text, link, to, image, alt }, index) => (
+          {services.map(({ icon: IconComponent, title, text, link, to, slug, image, alt }, index) => (
             <article
               key={title}
               className={`relative min-h-[320px] overflow-hidden rounded-md border border-border bg-card p-3 shadow-card md:min-h-[210px] md:p-4 md:pr-[46%] ${index === 3 ? "md:hidden" : ""}`}
@@ -352,6 +358,7 @@ function Services() {
               <p className="mt-2 text-[13px] font-medium leading-4 text-muted-foreground">{text}</p>
               <Link
                 to={to}
+                params={{ slug }}
                 className="mt-3 inline-block text-[13px] font-extrabold text-primary"
               >
                 {link} →
@@ -385,7 +392,7 @@ function Ecosystem() {
             size="sm"
             className="mt-3 h-9 bg-primary px-5 text-[13px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[13px] lg:h-9 lg:px-5 lg:text-[13px]"
           >
-            <Link to="/services/api-integration">Learn More <ArrowRight /></Link>
+            <Link to="/services/$slug" params={{ slug: "api-integration" }}>Learn More <ArrowRight /></Link>
           </Button>
         </div>
         <div className="min-w-0">

@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Open
+- [x] Audit Step 1–2: replace invented service/About numbers with verifiable facts, real Contact FAQs/social links/reply time, real homepage card links, dedicated Shopify page with direct answer, Indian integrations, comparison table and visible FAQ schema.
+- [ ] Replace anonymous case-study result numbers on homepage/Ecommerce page (blocked: needs the user to confirm real client results or approve removal).
 - [x] Update supplied LLM document, 14 supplied FAQ answers plus three retained answers/schema and homepage SEO tags; SSR metadata/FAQ parity, browser expansion and three identity tests pass; Lovable host noindex retained. Live activation requires Hostinger deployment.
 - [x] Fix non-homepage computer hero headings to two lines and phone photo/gradient contrast; About, Contact, Portfolio and shared service heroes checked at 320/394/1024/1280px without overflow; homepage unchanged.
 - [x] Optimize AEO with one linked business identity, visible homepage answers, About/Contact/page breadcrumbs and corrected service schemas; SSR/navigation verified at 393/1280px and three tests pass. Existing live robots/llms return 200; Lovable noindex retained. Hostinger deployment still required.
