@@ -41,7 +41,8 @@
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.com`.
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
-- `/services/website-design` has a dedicated static route so its reference-matched page and metadata cannot fall through the generic service renderer.
+- `/services/website-design` and `/services/shopify` have dedicated static routes so their custom pages, metadata and visible-FAQ schema cannot fall through the generic service renderer.
+- Service CTA bands share `TrustFacts` and FAQ answers come from one approved content module (pickFaqs throws on unknown questions), so no page shows invented counts or placeholder answers.
 - Game rewards need authenticated server replay of owned attempts and an atomic service award; level-only claims stay disabled.
 - Reading rewards remain timed and once-per-post; both sharing award RPCs stay disabled to prevent unverified credits.
 - Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
