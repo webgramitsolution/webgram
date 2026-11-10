@@ -109,12 +109,10 @@ export function WooCommercePage() {
     <SiteHeader />
     <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
       <img src={wooHero} alt="WooCommerce furniture store displayed on laptop and phone" width={1536} height={768} className="absolute inset-0 h-full w-full object-cover object-center min-[1180px]:!hidden" />
-      <div className="ecom-hero-shade absolute inset-0 min-[1180px]:hidden" />
-      <div className="ecom-shell relative flex h-full items-center py-5 min-[1180px]:grid min-[1180px]:grid-cols-[500px_minmax(0,1fr)] min-[1180px]:py-0">
-        <div aria-hidden="true" className="relative col-start-2 row-start-1 hidden h-full min-[1180px]:-ml-32 min-[1180px]:block">
-          <img src={wooHero} alt="" width={1536} height={768} className="absolute inset-y-0 left-0 h-full w-full max-w-[900px] object-cover object-[right_center] [mask-image:linear-gradient(90deg,transparent,black_20%,black_94%,transparent)]" />
-        </div>
-        <div className="relative col-start-1 row-start-1 max-w-[520px] min-[1180px]:py-5">
+      <div aria-hidden="true" className="ecom-hero-art hidden min-[1180px]:block"><img src={wooHero} alt="" width={1536} height={768} /></div>
+<div className="ecom-hero-shade absolute inset-0 min-[1180px]:hidden" />
+      <div className="ecom-shell relative flex h-full items-center py-5">
+        <div className="relative max-w-[540px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
           <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]">Powerful WooCommerce Stores<br />for Your <span className="text-gold">Growing Business.</span></h1>
           <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">We build scalable WooCommerce stores with custom features, secure payment integrations and seamless user experiences to help you sell more online.</p>
