@@ -1024,19 +1024,44 @@ a.bg-gold, button.bg-gold {
 
 .hover-scroll { scrollbar-width: none; }
 /* Image-backed subpage heroes deliberately exclude the homepage hero-shell. */
-@media (min-width: 1024px) {
+/* Tablets and computers: every subpage hero heading stays on its two authored lines. */
+@media (min-width: 768px) {
   :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) > div:first-child {
     width: 720px;
-    max-width: 60%;
+    max-width: 62%;
     min-width: 0;
   }
   :is(.contact-hero, .site-hero, .ecom-hero) h1 {
     max-width: none;
-    font-size: 34px;
+    font-size: clamp(26px, 3.3vw, 34px);
     line-height: 1.16;
     font-weight: 500;
     white-space: nowrap;
   }
+}
+@media (min-width: 1024px) {
+  :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) > div:first-child {
+    max-width: 60%;
+  }
+  :is(.contact-hero, .site-hero, .ecom-hero) h1 {
+    font-size: 34px;
+  }
+}
+/* Computer artwork frame: anchored to the right edge and faded into the navy copy area. */
+.ecom-hero-art {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: clamp(696px, 56%, 880px);
+}
+.ecom-hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: right center;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 }
 @media (max-width: 767px) {
   :is(.contact-hero, .site-hero, .ecom-hero) {
