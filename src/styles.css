@@ -1124,6 +1124,8 @@ a.bg-gold, button.bg-gold {
   :is(html[dir="rtl"], html[lang="ar"]) :is(.bg-hero-overlay, .ecom-hero-shade) {
     background: linear-gradient(270deg, var(--navy) 0%, color-mix(in oklab, var(--navy) 96%, transparent) 35%, color-mix(in oklab, var(--navy) 12%, transparent) 65%, transparent 100%);
   }
+  :is(html[dir="rtl"], html[lang="ar"]) .ecom-hero-art { left: 0; right: auto; }
+  :is(html[dir="rtl"], html[lang="ar"]) .ecom-hero-art img { mask-image: linear-gradient(270deg, transparent 0%, #000 26%); }
   :is(html[dir="rtl"], html[lang="ar"]) .hero-copy > div { max-width: 45%; }
   :is(html[dir="rtl"], html[lang="ar"]) :is(.ecom-hero, .contact-hero, .site-hero) > :is(.ecom-shell, .header-shell, .page-shell) > div:first-child {
     width: 45%;
