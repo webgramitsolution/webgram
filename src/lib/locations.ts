@@ -94,3 +94,21 @@ export const locations: ServiceLocation[] = [
 ];
 
 export const getLocation = (slug: string) => locations.find((l) => l.slug === slug);
+
+const NCR_PLACES = ["Delhi", "Gurgaon", "Gurugram", "Noida", "Faridabad", "Ghaziabad"];
+const CITY_ALIASES: Record<string, string[]> = {
+  delhi: ["Delhi"],
+  "south-delhi": ["South Delhi"],
+  noida: ["Noida"],
+  faridabad: ["Faridabad"],
+  gurugram: ["Gurgaon", "Gurugram"],
+  "delhi-ncr": NCR_PLACES,
+};
+
+/** Real portfolio projects for a city page; falls back to genuine Delhi NCR projects when the city has none. */
+export function projectsForLocation<T extends { location: string }>(slug: string, items: T[]): { local: boolean; items: T[] } {
+  const names = CITY_ALIASES[slug] ?? [];
+  const local = items.filter((item) => names.some((name) => item.location.includes(name)));
+  if (local.length) return { local: slug !== "delhi-ncr", items: local };
+  return { local: false, items: items.filter((item) => NCR_PLACES.some((name) => item.location.includes(name))) };
+}
