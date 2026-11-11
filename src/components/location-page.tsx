@@ -49,7 +49,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
             <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-on-dark/25 bg-on-dark/10 px-3 py-1 text-[14px] font-semibold"><MapPin className="h-4 w-4 text-gold" />Serving {l.city}</p>
-            <h1 className="mt-4 max-w-[760px] text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[42px]">{l.keyword}</h1>
+            <h1 className="mt-4 max-w-[760px] text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[42px]">{l.keyword}</h1>
             <p className="mt-4 max-w-[680px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">{l.intro}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-gold px-6 text-[15px] font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="h-4 w-4" /></Link>
@@ -124,12 +124,12 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div className="min-w-0">
                 <Eyebrow>Our work</Eyebrow>
-                <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">{projects.local ? `Websites we built in ${l.city}` : "Websites we built across Delhi NCR"}</h2>
+                <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">{projects.local ? (projects.withNcr ? `Websites we built in ${l.city} & Delhi NCR` : `Websites we built in ${l.city}`) : "Websites we built across Delhi NCR"}</h2>
               </div>
               <Link to="/work/$slug" params={{ slug: "portfolio" }} className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">View full portfolio <ArrowRight className="h-4 w-4" /></Link>
             </div>
             <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {projects.items.slice(0, 4).map((item) => (
+              {projects.items.map((item) => (
                 <article key={item.url} className="flex min-w-0 flex-col gap-3 rounded-xl border border-border bg-card p-3 shadow-card">
                   <ScrollingFrame item={item} height={220} />
                   <div className="px-1 pb-2">
@@ -191,7 +191,7 @@ export function LocationsHub() {
       <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
         <div className="page-shell relative py-12 md:py-14">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-[14px] text-on-dark/75"><Link to="/" className="hover:text-on-dark">Home</Link><span>›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
-          <h1 className="mt-4 max-w-[780px] text-[30px] font-medium leading-[1.15] md:text-[38px]">Website & Ecommerce Development Across Delhi NCR</h1>
+          <h1 className="mt-4 max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website & Ecommerce Development Across Delhi NCR</h1>
           <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and online stores for businesses in Delhi, Noida, Gurugram, Faridabad and across India and overseas.</p>
         </div>
       </section>

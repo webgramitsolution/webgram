@@ -12,10 +12,12 @@ const items = [
 ];
 
 describe("location projects", () => {
-  it("Gurugram page shows only the Gurgaon project", () => {
+  it("Gurugram page lists the Gurgaon project first, then other Delhi NCR projects", () => {
     const result = projectsForLocation("gurugram", items);
     assert.equal(result.local, true);
-    assert.deepEqual(result.items.map((i) => i.name), ["My Party Suppliers"]);
+    assert.equal(result.items[0]?.name, "My Party Suppliers");
+    assert.equal(result.items.length, 4);
+    assert.ok(!result.items.some((i) => i.location.includes("Canada")));
   });
   it("Noida has no local project, so it shows Delhi NCR projects and never overseas ones", () => {
     const result = projectsForLocation("noida", items);
