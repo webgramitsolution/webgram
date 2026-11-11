@@ -9,8 +9,8 @@ export function normalizeBlogFaqs(raw: unknown): BlogFaq[] {
   const out: BlogFaq[] = [];
   for (const item of raw) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
-    const question = clean((item as Record<string, unknown>).question);
-    const answer = clean((item as Record<string, unknown>).answer);
+    const question = clean((item as Record<string, unknown>)["question"]);
+    const answer = clean((item as Record<string, unknown>)["answer"]);
     const key = question.toLowerCase();
     if (question.length < 5 || answer.length < 5 || seen.has(key)) continue;
     seen.add(key);
