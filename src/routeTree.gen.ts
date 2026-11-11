@@ -28,6 +28,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as LocationsCityRouteImport } from './routes/locations.$city'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
@@ -145,6 +146,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsIndexRoute = LocationsIndexRouteImport.update({
+  id: '/locations/',
+  path: '/locations/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsCityRoute = LocationsCityRouteImport.update({
@@ -290,6 +296,7 @@ export interface FileRoutesByFullPath {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/locations/': typeof LocationsIndexRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
@@ -331,6 +338,7 @@ export interface FileRoutesByTo {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/locations': typeof LocationsIndexRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
@@ -374,6 +382,7 @@ export interface FileRoutesById {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/locations/': typeof LocationsIndexRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/_guest/guest/game': typeof GuestGuestGameRoute
@@ -417,6 +426,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/locations/'
     | '/admin/blog'
     | '/admin/requests'
     | '/guest/game'
@@ -458,6 +468,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/locations'
     | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
@@ -500,6 +511,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/locations/'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/requests'
     | '/_guest/guest/game'
@@ -544,6 +556,7 @@ export interface RootRouteChildren {
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   WorkPortfolioRoute: typeof WorkPortfolioRoute
+  LocationsIndexRoute: typeof LocationsIndexRoute
   BlogCategorySlugRoute: typeof BlogCategorySlugRoute
 }
 
@@ -680,6 +693,13 @@ declare module '@tanstack/react-router' {
       path: '/industries/$slug'
       fullPath: '/industries/$slug'
       preLoaderRoute: typeof IndustriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/': {
+      id: '/locations/'
+      path: '/locations'
+      fullPath: '/locations/'
+      preLoaderRoute: typeof LocationsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/$city': {
@@ -921,6 +941,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   WorkPortfolioRoute: WorkPortfolioRoute,
+  LocationsIndexRoute: LocationsIndexRoute,
   BlogCategorySlugRoute: BlogCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
