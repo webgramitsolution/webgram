@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [x] Fix WooCommerce/Shopify computer hero artwork, keep subpage hero headings on two lines on tablets and computers, show blog FAQs visibly with matching schema, and redesign city pages plus a /locations hub; checked 390–1920px.
 - [x] Audit Step 1–2: replace invented service/About numbers with verifiable facts, real Contact FAQs/social links/reply time, real homepage card links, dedicated Shopify page with direct answer, Indian integrations, comparison table and visible FAQ schema.
 - [ ] Replace anonymous case-study result numbers on homepage/Ecommerce page (blocked: needs the user to confirm real client results or approve removal).
 - [x] Update supplied LLM document, 14 supplied FAQ answers plus three retained answers/schema and homepage SEO tags; SSR metadata/FAQ parity, browser expansion and three identity tests pass; Lovable host noindex retained. Live activation requires Hostinger deployment.

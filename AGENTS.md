@@ -18,7 +18,7 @@
 - Blog lists/articles share a category header; missing pages share the not-found view with HTTP 404.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
 - Keep desktop composition on tablets; only phones compact or stack. Heroes are 348px on tablet/desktop and taller on phones; imagery uses contain.
-- Subpage hero presentation is shared through the contact-hero/site-hero/ecom-hero CSS selectors, excluding homepage hero-shell, so heading and phone photo-overlay changes remain consistent.
+- Subpage hero presentation is shared through the contact-hero/site-hero/ecom-hero CSS selectors, excluding homepage hero-shell, so heading line count (tablet and computer) and phone photo-overlay changes remain consistent; WooCommerce/Shopify computer artwork uses the shared right-anchored `ecom-hero-art` frame.
 - Arabic hero artwork is cropped into a left-side region via language-aware shared CSS, never horizontally mirrored, so printed artwork stays legible.
 - Technology rows keep readable fixed-width logo items with contained horizontal overflow when one row cannot fit.
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
@@ -54,3 +54,5 @@
 - Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
 - FAQ JSON-LD is generated from the same grouped answers shown on the FAQ page and shares its page identity, preventing hidden or inconsistent answers; homepage head changes belong in the index route rather than a standalone HTML file.
 - Agent readiness: start.ts serves llms.txt as Markdown/Link header on `/`; WebMCP tools stay read-only.
+- City pages (`/locations` hub and `/locations/:city`) share `location-page.tsx`; their project section uses `projectsForLocation`, which lists only genuine portfolio items from that city or Delhi NCR.
+- Blog article FAQs pass through one `normalizeBlogFaqs` helper for both the always-visible FAQ section and FAQPage schema, so Google never sees hidden or mismatched answers.
