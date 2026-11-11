@@ -19,7 +19,7 @@ describe("blog FAQ schema", () => {
     const schema = blogFaqSchema([{ question: "What is SEO?", answer: "Search optimisation." }], url, "https://webgramitsolution.com/#website");
     assert.equal(schema["@type"], "FAQPage");
     assert.equal(schema.mainEntity.length, 1);
-    assert.equal(schema.mainEntity[0].name, "What is SEO?");
+    assert.equal(schema.mainEntity[0]?.name, "What is SEO?");
     assert.equal(schema.about["@id"], `${url}#article`);
   });
 });
