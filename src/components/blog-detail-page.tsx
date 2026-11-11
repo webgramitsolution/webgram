@@ -1,3 +1,4 @@
+import { normalizeBlogFaqs } from "@/lib/blog-faqs";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
@@ -114,7 +115,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const expanded = expandedSlug === post.slug;
   const minutes = Math.max(2, Math.ceil(post.content.split(/\s+/).length / 200));
-  const faqs = (Array.isArray(post.faqs) ? post.faqs : []).filter((faq): faq is Faq => Boolean(faq && typeof faq === "object" && "question" in faq && "answer" in faq));
+  const faqs = normalizeBlogFaqs(post.faqs);
   useEffect(() => {
     const key = `viewed:${post.slug}`;
     if (sessionStorage.getItem(key)) return;
@@ -141,8 +142,8 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
       <article id="article-content" className="py-5"><ArticleBody content={post.content} advertisements recommendations={post.related} collapsed={!expanded} /></article>
       {!expanded ? <div className="mb-8 flex justify-center border-t border-border pt-5"><Button size="lg" aria-expanded={expanded} aria-controls="article-content" onClick={() => setExpandedSlug(post.slug)}>Read more<ArrowRight /></Button></div> : null}
       {!expanded ? <BlogAdBand position="afterPreview" label="Advertisement below Read more" /> : null}
+      {faqs.length ? <section id="article-faqs" aria-labelledby="article-faqs-title" className="mx-auto mb-10 w-[min(100%,760px)]"><h2 id="article-faqs-title" className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       <div hidden={!expanded}>
-      {faqs.length ? <section className="mx-auto mb-10 w-[min(100%,760px)]"><h2 className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       {expanded ? <><BlogEngagement postId={post.id} title={post.title} /><BlogAdBand position="afterComments" label="Advertisement below comments" /></> : null}
       </div>
         </div>

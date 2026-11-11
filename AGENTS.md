@@ -18,7 +18,7 @@
 - Blog lists/articles share a category header; missing pages share the not-found view with HTTP 404.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
 - Keep desktop composition on tablets; only phones compact or stack. Heroes are 348px on tablet/desktop and taller on phones; imagery uses contain.
-- Subpage hero presentation is shared through the contact-hero/site-hero/ecom-hero CSS selectors, excluding homepage hero-shell, so heading and phone photo-overlay changes remain consistent.
+- Subpage hero presentation is shared through the contact-hero/site-hero/ecom-hero CSS selectors, excluding homepage hero-shell, so heading line count and phone overlays stay consistent; WooCommerce/Shopify artwork uses `ecom-hero-art`.
 - Arabic hero artwork is cropped into a left-side region via language-aware shared CSS, never horizontally mirrored, so printed artwork stays legible.
 - Technology rows keep readable fixed-width logo items with contained horizontal overflow when one row cannot fit.
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
@@ -54,3 +54,5 @@
 - Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
 - FAQ JSON-LD is generated from the same grouped answers shown on the FAQ page and shares its page identity, preventing hidden or inconsistent answers; homepage head changes belong in the index route rather than a standalone HTML file.
 - Agent readiness: start.ts serves llms.txt as Markdown/Link header on `/`; WebMCP tools stay read-only.
+- `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
+- Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.

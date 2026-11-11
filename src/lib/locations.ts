@@ -105,10 +105,11 @@ const CITY_ALIASES: Record<string, string[]> = {
   "delhi-ncr": NCR_PLACES,
 };
 
-/** Real portfolio projects for a city page; falls back to genuine Delhi NCR projects when the city has none. */
-export function projectsForLocation<T extends { location: string }>(slug: string, items: T[]): { local: boolean; items: T[] } {
+/** Real portfolio projects for a city page; fills remaining places with genuine Delhi NCR projects, never overseas ones. */
+export function projectsForLocation<T extends { location: string }>(slug: string, items: T[]): { local: boolean; items: T[]; withNcr: boolean } {
   const names = CITY_ALIASES[slug] ?? [];
   const local = items.filter((item) => names.some((name) => item.location.includes(name)));
-  if (local.length) return { local: slug !== "delhi-ncr", items: local };
-  return { local: false, items: items.filter((item) => NCR_PLACES.some((name) => item.location.includes(name))) };
+  const ncr = items.filter((item) => !local.includes(item) && NCR_PLACES.some((name) => item.location.includes(name)));
+  if (local.length && slug !== "delhi-ncr") return { local: true, items: [...local, ...ncr].slice(0, 4), withNcr: local.length < 4 && ncr.length > 0 };
+  return { local: false, items: [...local, ...ncr].slice(0, 4), withNcr: false };
 }

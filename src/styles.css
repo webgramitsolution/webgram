@@ -1028,18 +1028,18 @@ a.bg-gold, button.bg-gold {
 @media (min-width: 768px) {
   :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) > div:first-child {
     width: 720px;
-    max-width: 62%;
+    max-width: 66%;
     min-width: 0;
   }
   :is(.contact-hero, .site-hero, .ecom-hero) h1 {
     max-width: none;
-    font-size: clamp(26px, 3.3vw, 34px);
+    font-size: clamp(25px, 3.1vw, 34px);
     line-height: 1.16;
     font-weight: 500;
     white-space: nowrap;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   :is(.contact-hero, .site-hero, .ecom-hero) > :is(.page-shell, .header-shell, .ecom-shell) > div:first-child {
     max-width: 60%;
   }
@@ -1226,4 +1226,10 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
 @media (max-width: 639px) {
   .visual-article-content { min-height: 360px; padding: 14px; }
   .guest-writing-settings input, .guest-writing-settings textarea { font-size: 16px; }
+}
+.location-hero {
+  background:
+    radial-gradient(ellipse at 88% 10%, color-mix(in oklab, var(--primary) 38%, transparent), transparent 55%),
+    radial-gradient(ellipse at 10% 120%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 50%),
+    var(--navy);
 }
