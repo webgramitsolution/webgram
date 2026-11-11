@@ -19,14 +19,15 @@ export function normalizeBlogFaqs(raw: unknown): BlogFaq[] {
   return out;
 }
 
-export function blogFaqSchema(faqs: BlogFaq[], url: string, inLanguage = "en-IN") {
+export function blogFaqSchema(faqs: BlogFaq[], url: string, websiteId: string, inLanguage = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "@id": `${url}#faq`,
     url,
     inLanguage,
-    isPartOf: { "@id": `${url}#article` },
+    isPartOf: { "@id": websiteId },
+    about: { "@id": `${url}#article` },
     mainEntity: faqs.map((faq, index) => ({ "@type": "Question", "@id": `${url}#faq-${index + 1}`, name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
   };
 }
