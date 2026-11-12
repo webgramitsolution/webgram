@@ -34,6 +34,7 @@ const glance: [LucideIcon, string, string][] = [
   [KeyRound, "Ownership", "You own the website, content and domain"],
 ];
 
+const DEFAULT_HERO: [string, string] = [delhiImg, "Ecommerce website on a laptop and phone in New Delhi"];
 const heroImages: Record<string, [string, string]> = {
   delhi: [delhiImg, "Ecommerce website on a laptop and phone with India Gate, New Delhi behind"],
   "south-delhi": [delhiImg, "Online store on a laptop and phone in New Delhi"],
@@ -50,7 +51,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 export function LocationPage({ location: l }: { location: ServiceLocation }) {
   const projects = projectsForLocation(l.slug, portfolio);
   const others = locations.filter((x) => x.slug !== l.slug);
-  const [img, imgAlt] = heroImages[l.slug] ?? heroImages.delhi;
+  const [img, imgAlt] = heroImages[l.slug] ?? DEFAULT_HERO;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -220,7 +221,7 @@ export function LocationsHub() {
         <div className="page-shell grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {locations.map((l) => (
             <Link key={l.slug} to="/locations/$city" params={{ city: l.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-colors hover:border-primary">
-              <img src={(heroImages[l.slug] ?? heroImages.delhi)[0]} alt={(heroImages[l.slug] ?? heroImages.delhi)[1]} width={1536} height={768} loading="lazy" className="aspect-[2/1] w-full object-cover object-right" />
+              <img src={(heroImages[l.slug] ?? DEFAULT_HERO)[0]} alt={(heroImages[l.slug] ?? DEFAULT_HERO)[1]} width={1536} height={768} loading="lazy" className="aspect-[2/1] w-full object-cover object-right" />
               <div className="flex flex-1 flex-col p-6">
               <p className="flex items-center gap-2 text-[14px] font-semibold text-primary"><MapPin className="h-4 w-4" />{l.city}</p>
               <h2 className="mt-3 text-[20px] leading-snug text-navy">{l.keyword}</h2>
