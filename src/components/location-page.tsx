@@ -65,8 +65,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
               <Link to="/locations" className="hover:text-on-dark">Locations</Link><span>›</span>
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
-            <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-on-dark/25 bg-on-dark/10 px-3 py-1 text-[14px] font-semibold"><MapPin className="h-4 w-4 text-gold" />Serving {l.city}</p>
-            <h1 className="mt-3 text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[40px]">{l.keyword}</h1>
+            <h1 className="mt-4 text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[40px]">{l.keyword}</h1>
             <p className="mt-3 text-[16px] leading-7 text-on-dark/90">{l.intro}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-gold px-6 text-[15px] font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="h-4 w-4" /></Link>

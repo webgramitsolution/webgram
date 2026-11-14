@@ -69,7 +69,7 @@ const menu: Array<[string, string[]]> = [
 
 function AboutHero() {
   const stats = [
-    ["2019", "Client Work Since"],
+    ["2022", "Client Work Since"],
     ["2022", "GST Registered"],
     ["5+", "Years of Experience"],
     ["India", "& Overseas Clients"],
@@ -260,19 +260,19 @@ function Journey() {
   const steps = [
     [
       Rocket,
-      "2019",
+      "2022",
       "The Beginning",
-      "Vikas Kumar started building websites for businesses, before Webgram IT Solution was GST registered in 2022.",
+      "Webgram IT Solution was GST registered and started building websites for businesses.",
     ],
     [
       BarChart3,
-      "2020",
+      "2023",
       "Growing Expertise",
       "Expanded services in eCommerce, WordPress and custom web development.",
     ],
     [
       Users,
-      "2022",
+      "2023",
       "Scaling Solutions",
       "Started delivering B2B, B2C and marketplace platforms for diverse industries.",
     ],

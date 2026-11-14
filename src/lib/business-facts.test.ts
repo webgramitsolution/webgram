@@ -13,9 +13,9 @@ describe("business facts", () => {
     assert.equal(businessIdentity.telephone, "+917551120242");
     assert.ok(!JSON.stringify(businessIdentity).includes("7942826612"));
   });
-  it("service CTA facts show client work since 2019 and Mon–Sat support, not invented counts", () => {
+  it("service CTA facts show client work since 2022 and Mon–Sat support, not invented counts", () => {
     const text = JSON.stringify(trustFacts);
-    assert.ok(text.includes("Since 2019"));
+    assert.ok(text.includes("Since 2022"));
     assert.ok(text.includes("Mon–Sat"));
     for (const claim of ["12+", "200+", "98%", "24/7", "500+", "99.9%"]) assert.ok(!text.includes(claim), claim);
   });
