@@ -22,12 +22,12 @@ export function ScrollingFrame({ item, height = 400, eager = false }: { item: Po
   );
 }
 
-export function PortfolioCard({ item, compact = false }: { item: PortfolioItem; compact?: boolean }) {
+export function PortfolioCard({ item, compact = false, eager = false }: { item: PortfolioItem; compact?: boolean; eager?: boolean }) {
   const technologies = technologyStack.filter((t) => t.name !== "More");
 
   return (
     <article className={compact ? "flex min-w-0 flex-col gap-4 rounded-lg border border-border bg-card p-3 shadow-card" : "grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8"}>
-      <ScrollingFrame item={item} height={compact ? 260 : 460} />
+      <ScrollingFrame item={item} height={compact ? 260 : 460} eager={eager} />
       <div className="flex min-w-0 flex-col">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-[14px] font-semibold text-primary">{item.category}</p>

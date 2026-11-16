@@ -3,7 +3,21 @@ import { createServerFn } from "@tanstack/react-start";
 
 import type { Database } from "@/integrations/supabase/types";
 
+// Published reviews change rarely, so the server reuses them for a few minutes
+// instead of asking the database on every homepage visit.
+const REVIEW_CACHE_MS = 5 * 60 * 1000;
+let reviewCache: { at: number; rows: unknown } | undefined;
+
 export const getPublishedHomepageReviews = createServerFn({ method: "GET" }).handler(async () => {
+  if (reviewCache && Date.now() - reviewCache.at < REVIEW_CACHE_MS) {
+    return reviewCache.rows as Awaited<ReturnType<typeof loadPublishedReviews>>;
+  }
+  const rows = await loadPublishedReviews();
+  reviewCache = { at: Date.now(), rows };
+  return rows;
+});
+
+async function loadPublishedReviews() {
   const url = process.env["SUPABASE_URL"];
   const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
   if (!url || !key) throw new Error("Reviews service is not configured.");
@@ -23,4 +37,4 @@ export const getPublishedHomepageReviews = createServerFn({ method: "GET" }).han
     const text = (review.review_text ?? "").trim();
     return text.length >= 140 && text.split(/\s+/).length >= 25;
   });
-});
+}

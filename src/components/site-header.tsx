@@ -1,3 +1,4 @@
+import { loadWeglot } from "@/lib/third-party-loader";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
@@ -62,8 +63,7 @@ export function SiteHeader() {
   }, [mobileOpen]);
   function changeLanguage(value: string) {
     window.localStorage.setItem("webgram-language", value);
-    const weglot = (window as unknown as { Weglot?: { switchTo: (code: string) => void } }).Weglot;
-    if (weglot) weglot.switchTo(value);
+    void loadWeglot().then((weglot) => weglot?.switchTo(value));
     document.documentElement.dir = value === "ar" ? "rtl" : "ltr";
   }
   function changeCountry(value: string) {

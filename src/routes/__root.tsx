@@ -11,14 +11,15 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import manropeLatin from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { supabase } from "@/integrations/supabase/client";
 import { SiteFooter } from "@/components/site-footer";
 import { TestimonialStrip } from "@/components/testimonial-strip";
 import { Toaster } from "@/components/ui/sonner";
 import { NotFoundPage } from "@/components/not-found-page";
 import { SiteWebMCPTools } from "@/components/site-webmcp-tools";
 import { businessIdentity, BUSINESS_ID, WEBSITE_ID } from "@/lib/site-identity";
+import { DEFERRED_GTM_SNIPPET, scheduleWeglot } from "@/lib/third-party-loader";
 
 function NotFoundComponent() {
   return <NotFoundPage />;
@@ -77,9 +78,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" },
+      // Manrope is served from this website, so text no longer waits for Google Fonts.
+      { rel: "preload", as: "font", type: "font/woff2", href: manropeLatin, crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://ik.imagekit.io" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -133,12 +134,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWNQJB9');`,
-          }}
-        />
+        {/* Google Tag Manager — starts after first interaction or shortly after load. */}
+        <script dangerouslySetInnerHTML={{ __html: DEFERRED_GTM_SNIPPET }} />
         <HeadContent />
       </head>
       <body>
@@ -162,24 +159,28 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
 
-  // Weglot loads after hydration so React does not remove its language switcher.
+  // Weglot loads after hydration (so React keeps its switcher) and once the page is idle.
   useEffect(() => {
-    const w = window as unknown as { Weglot?: { initialize: (o: object) => void } };
-    if (w.Weglot || document.getElementById("weglot-sdk")) return;
-    const script = document.createElement("script");
-    script.id = "weglot-sdk";
-    script.src = "https://cdn.weglot.com/weglot.min.js";
-    script.onload = () => w.Weglot?.initialize({ api_key: "wg_872ce6808ebb668649592539a3fafafc3" });
-    document.head.appendChild(script);
+    scheduleWeglot();
   }, []);
 
+  // The sign-in client loads after the page is shown, so it is not part of the first download.
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-      void router.invalidate();
-      if (session) void queryClient.invalidateQueries();
+    let unsubscribe: (() => void) | undefined;
+    let cancelled = false;
+    void import("@/integrations/supabase/client").then(({ supabase }) => {
+      if (cancelled) return;
+      const { data } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+        void router.invalidate();
+        if (session) void queryClient.invalidateQueries();
+      });
+      unsubscribe = () => data.subscription.unsubscribe();
     });
-    return () => data.subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      unsubscribe?.();
+    };
   }, [queryClient, router]);
 
   return (

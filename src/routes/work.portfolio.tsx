@@ -73,7 +73,7 @@ function PortfolioPage() {
       </section>
       <section className="py-10 md:py-14">
         <div className="header-shell grid grid-cols-1 gap-4 md:grid-cols-4">
-          {portfolio.map((item) => <PortfolioCard key={item.domain} item={item} compact />)}
+          {portfolio.map((item, index) => <PortfolioCard key={item.domain} item={item} compact eager={index === 0} />)}
         </div>
       </section>
       <DirectAnswer

@@ -24,12 +24,12 @@ import {
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-import businessWebsites from "@/assets/business-websites.png";
-import corporateWebsites from "@/assets/corporate-websites.png";
-import educationalWebsite from "@/assets/educational-website.png";
-import portfolioWebsites from "@/assets/portfolio-websites.png";
-import productServiceWebsites from "@/assets/product-service-websites.png";
-import professionalWebsites from "@/assets/professional-websites.png";
+import businessWebsites from "@/assets/business-websites.jpg";
+import corporateWebsites from "@/assets/corporate-websites.jpg";
+import educationalWebsite from "@/assets/educational-website.jpg";
+import portfolioWebsites from "@/assets/portfolio-websites.jpg";
+import productServiceWebsites from "@/assets/product-service-websites.jpg";
+import professionalWebsites from "@/assets/professional-websites.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { TrustFacts } from "@/components/trust-facts";
 import { Button } from "@/components/ui/button";

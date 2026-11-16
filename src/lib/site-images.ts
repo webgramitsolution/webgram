@@ -7,35 +7,40 @@
  */
 const lib = "https://ik.imagekit.io/home1/home%20page";
 
+/** Ask ImageKit for a right-sized, modern-format copy of the same original file. */
+export function ikResize(url: string, width: number) {
+  return `${url}${url.includes("?") ? "&" : "?"}tr=w-${width},q-80,f-auto`;
+}
+
 export const IMAGES = {
   /** Wide navy hero banner: laptop + phone storefronts, callouts on the right. */
   hero: `${lib}/home%20page%20slider%201.png`,
   /** Row of review / certification seals on white. */
-  reviewBadges: `${lib}/Media-2.webp`,
+  reviewBadges: ikResize(`${lib}/Media-2.webp`, 1200),
   /** Hub-and-spoke commerce ecosystem diagram on white. */
-  ecosystem: `${lib}/From%20Storefront%20to%20Back%20Office.png`,
+  ecosystem: ikResize(`${lib}/From%20Storefront%20to%20Back%20Office.png`, 1200),
   /** Storefront, admin dashboard and mobile app on three devices, transparent. */
-  platforms: `${lib}/wesite%20devolopment.png?updatedAt=1790573582047`,
+  platforms: ikResize(`${lib}/wesite%20devolopment.png?updatedAt=1790573582047`, 1200),
   /** Solution card artwork — each is a white-background photo. */
-  ecommerce: `${lib}/Ecommerce%20Development.png`,
-  b2b: `${lib}/B2B%20Commerce.png`,
-  marketplace: `${lib}/Marketplace%20Development.png`,
-  custom: `${lib}/Custom%20Commerce%20Platforms.png`,
+  ecommerce: ikResize(`${lib}/Ecommerce%20Development.png`, 800),
+  b2b: ikResize(`${lib}/B2B%20Commerce.png`, 800),
+  marketplace: ikResize(`${lib}/Marketplace%20Development.png`, 800),
+  custom: ikResize(`${lib}/Custom%20Commerce%20Platforms.png`, 800),
   /** Case-study card artwork — wide device shots, one per case study. */
-  caseManufacturing: `${lib}/From%20Traditional%20Sales%20to%20a%20Scalable%20Digital%20Platform.png`,
-  caseLifestyle: `${lib}/Modern%20Ecommerce%20Experience%20for%20a%20Lifestyle%20Brand.png`,
-  caseDistribution: `${lib}/Business%20Management%20Portal%20for%20a%20Distribution%20Company.png`,
+  caseManufacturing: ikResize(`${lib}/From%20Traditional%20Sales%20to%20a%20Scalable%20Digital%20Platform.png`, 1400),
+  caseLifestyle: ikResize(`${lib}/Modern%20Ecommerce%20Experience%20for%20a%20Lifestyle%20Brand.png`, 1400),
+  caseDistribution: ikResize(`${lib}/Business%20Management%20Portal%20for%20a%20Distribution%20Company.png`, 1400),
 } as const;
 
 /** Brand logos shown under "Trusted by Businesses Building Their Digital Future". */
 export const clientLogos = [
-  { name: "GoKwik", src: `${lib}/1.png` },
-  { name: "Hostinger", src: `${lib}/2.png` },
-  { name: "Trustpilot", src: `${lib}/3.png` },
-  { name: "interakt", src: `${lib}/4.png` },
-  { name: "Judge.me", src: `${lib}/5.png` },
-  { name: "WATI", src: `${lib}/6.png` },
-  { name: "Shiprocket", src: `${lib}/7.png` },
+  { name: "GoKwik", src: ikResize(`${lib}/1.png`, 320) },
+  { name: "Hostinger", src: ikResize(`${lib}/2.png`, 320) },
+  { name: "Trustpilot", src: ikResize(`${lib}/3.png`, 320) },
+  { name: "interakt", src: ikResize(`${lib}/4.png`, 320) },
+  { name: "Judge.me", src: ikResize(`${lib}/5.png`, 320) },
+  { name: "WATI", src: ikResize(`${lib}/6.png`, 320) },
+  { name: "Shiprocket", src: ikResize(`${lib}/7.png`, 320) },
 ];
 
 /**
@@ -46,42 +51,42 @@ export const aboutImages = {
   /** Wide navy banner: Webgram reception wall photo, plain navy on the left for copy. */
   banner: `https://ik.imagekit.io/home1/About%20us%20page/About%20us%20-%20banner.png`,
   /** Office photo with the "Ideas. Technology. Growth." wall, for the mission section. */
-  mission: `https://ik.imagekit.io/home1/ArchFacing.png`,
+  mission: ikResize(`https://ik.imagekit.io/home1/ArchFacing.png`, 1200),
   /** Workspace gallery, in display order. */
   workspace: [
-    { label: "Modern Office Space", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(1).png` },
-    { label: "Team Collaboration", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(3).png` },
-    { label: "Focused Development", src: `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(2).png` },
+    { label: "Modern Office Space", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(1).png`, 900) },
+    { label: "Team Collaboration", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(3).png`, 900) },
+    { label: "Focused Development", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(2).png`, 900) },
   ],
 } as const;
 
 /** Contact-page artwork supplied for the single-page contact experience. */
 export const contactImages = {
   banner: `https://ik.imagekit.io/home1/About%20us%20page/cotact%20banner.png`,
-  advisor: `https://ik.imagekit.io/home1/About%20us%20page/about%20us%20page%20-%20coantact%20us%20image.png?updatedAt=1790588444335`,
+  advisor: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/about%20us%20page%20-%20coantact%20us%20image.png?updatedAt=1790588444335`, 900),
 } as const;
 
 /** Technology grid — transparent square logos, listed in reference order. */
 export const technologyStack = [
-  { name: "React.js", src: `${lib}/01_React.js.png` },
-  { name: "Next.js", src: `${lib}/nextjs.svg` },
-  { name: "Node.js", src: `${lib}/03_Node.js.png` },
-  { name: "WordPress", src: `${lib}/04_WordPress.png` },
-  { name: "WooCommerce", src: `${lib}/05_WooCommerce.png` },
-  { name: "Supabase", src: `${lib}/06_Supabase.png` },
-  { name: "PostgreSQL", src: `${lib}/07_PostgreSQL.png` },
-  { name: "Razorpay", src: `${lib}/08_Razorpay.png` },
-  { name: "WhatsApp API", src: `${lib}/09_WhatsApp_API.png` },
-  { name: "AWS", src: `${lib}/10_AWS.png` },
-  { name: "Google Cloud", src: `${lib}/11_Google_Cloud.png` },
-  { name: "More", src: `${lib}/12_More.png` },
+  { name: "React.js", src: ikResize(`${lib}/01_React.js.png`, 160) },
+  { name: "Next.js", src: ikResize(`${lib}/nextjs.svg`, 160) },
+  { name: "Node.js", src: ikResize(`${lib}/03_Node.js.png`, 160) },
+  { name: "WordPress", src: ikResize(`${lib}/04_WordPress.png`, 160) },
+  { name: "WooCommerce", src: ikResize(`${lib}/05_WooCommerce.png`, 160) },
+  { name: "Supabase", src: ikResize(`${lib}/06_Supabase.png`, 160) },
+  { name: "PostgreSQL", src: ikResize(`${lib}/07_PostgreSQL.png`, 160) },
+  { name: "Razorpay", src: ikResize(`${lib}/08_Razorpay.png`, 160) },
+  { name: "WhatsApp API", src: ikResize(`${lib}/09_WhatsApp_API.png`, 160) },
+  { name: "AWS", src: ikResize(`${lib}/10_AWS.png`, 160) },
+  { name: "Google Cloud", src: ikResize(`${lib}/11_Google_Cloud.png`, 160) },
+  { name: "More", src: ikResize(`${lib}/12_More.png`, 160) },
 ];
 
 /**
  * Replacement Next.js mark supplied for the technology rows. The file name ends
  * in ".svg" but ImageKit serves a 180×180 PNG — an <img> tag renders either.
  */
-export const nextjsLogo = `${lib}/nextjs.svg`;
+export const nextjsLogo = ikResize(`${lib}/nextjs.svg`, 160);
 
 /**
  * Industry cards — one photo per sector. The object key and the label used on
@@ -90,13 +95,13 @@ export const nextjsLogo = `${lib}/nextjs.svg`;
  * "(2)", which 404 once percent-encoded.
  */
 export const industryImages = {
-  manufacturing: "https://ik.imagekit.io/home1/Manufacturing.png",
-  architecture: "https://ik.imagekit.io/home1/Architecture%20&%20Interior.png",
-  realEstate: "https://ik.imagekit.io/home1/Real%20Estate.png",
-  retail: "https://ik.imagekit.io/home1/Retail%20&%20Lifestyle.png",
-  education: "https://ik.imagekit.io/home1/Education.png",
-  healthcare: "https://ik.imagekit.io/home1/Healthcare%20(2).png",
-  finance: "https://ik.imagekit.io/home1/Finance%20&%20Consulting.png",
+  manufacturing: ikResize("https://ik.imagekit.io/home1/Manufacturing.png", 700),
+  architecture: ikResize("https://ik.imagekit.io/home1/Architecture%20&%20Interior.png", 700),
+  realEstate: ikResize("https://ik.imagekit.io/home1/Real%20Estate.png", 700),
+  retail: ikResize("https://ik.imagekit.io/home1/Retail%20&%20Lifestyle.png", 700),
+  education: ikResize("https://ik.imagekit.io/home1/Education.png", 700),
+  healthcare: ikResize("https://ik.imagekit.io/home1/Healthcare%20(2).png", 700),
+  finance: ikResize("https://ik.imagekit.io/home1/Finance%20&%20Consulting.png", 700),
 } as const;
 
 /**
@@ -104,21 +109,21 @@ export const industryImages = {
  * URLs stay exactly as supplied (percent-encoded spaces only).
  */
 export const deliveredProjects = {
-  corporate: "https://ik.imagekit.io/home1/Corporate%20Website.png",
-  business: "https://ik.imagekit.io/home1/Business%20Website.png",
-  professional: "https://ik.imagekit.io/home1/Professional%20Website.png",
-  realEstate: "https://ik.imagekit.io/home1/Real%20Estate%20Website.png",
-  healthcare: "https://ik.imagekit.io/home1/Healthcare%20Website.png",
+  corporate: ikResize("https://ik.imagekit.io/home1/Corporate%20Website.png", 900),
+  business: ikResize("https://ik.imagekit.io/home1/Business%20Website.png", 900),
+  professional: ikResize("https://ik.imagekit.io/home1/Professional%20Website.png", 900),
+  realEstate: ikResize("https://ik.imagekit.io/home1/Real%20Estate%20Website.png", 900),
+  healthcare: ikResize("https://ik.imagekit.io/home1/Healthcare%20Website.png", 900),
 } as const;
 
 /** Web Portal Development service page imagery, served from the ImageKit library. */
 export const portalImages = {
   /** Wide navy hero banner: dashboard, vendor portal and customer portal mockups, "Multiple Portals One Solution" script on the right. */
   hero: "https://ik.imagekit.io/home1/custome%20wesite%20banner.png",
-  customer: "https://ik.imagekit.io/home1/Customer%20Portal.png",
-  vendor: "https://ik.imagekit.io/home1/Verndor%20portal.png",
-  employee: "https://ik.imagekit.io/home1/Employee%20portal.png",
-  admin: "https://ik.imagekit.io/home1/Admin%20Portal.png",
+  customer: ikResize("https://ik.imagekit.io/home1/Customer%20Portal.png", 900),
+  vendor: ikResize("https://ik.imagekit.io/home1/Verndor%20portal.png", 900),
+  employee: ikResize("https://ik.imagekit.io/home1/Employee%20portal.png", 900),
+  admin: ikResize("https://ik.imagekit.io/home1/Admin%20Portal.png", 900),
 } as const;
 
 /** API & Third-Party Integration service page artwork supplied through ImageKit. */

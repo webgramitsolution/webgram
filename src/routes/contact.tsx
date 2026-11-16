@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { contactImages } from "@/lib/site-images";
+import { contactImages, ikResize } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { submitEnquiry } from "@/lib/enquiry.functions";
 import { publicPageSchema } from "@/lib/site-identity";
@@ -78,7 +78,9 @@ function ContactHero() {
   return (
     <section id="top" className="contact-hero">
       <img
-        src={contactImages.banner}
+        src={ikResize(contactImages.banner, 1920)}
+        srcSet={`${ikResize(contactImages.banner, 768)} 768w, ${ikResize(contactImages.banner, 1280)} 1280w, ${ikResize(contactImages.banner, 1920)} 1920w`}
+        sizes="100vw"
         alt="Webgram IT Solution reception"
         width={2170}
         height={725}

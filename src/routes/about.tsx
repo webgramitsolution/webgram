@@ -27,7 +27,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
-import { aboutImages } from "@/lib/site-images";
+import { aboutImages, ikResize } from "@/lib/site-images";
 import { publicPageSchema } from "@/lib/site-identity";
 
 export const Route = createFileRoute("/about")({
@@ -77,7 +77,9 @@ function AboutHero() {
   return (
     <section className="site-hero relative min-h-[520px] overflow-hidden bg-navy md:h-[348px] md:min-h-[348px]">
       <img
-        src={aboutImages.banner}
+        src={ikResize(aboutImages.banner, 1920)}
+        srcSet={`${ikResize(aboutImages.banner, 768)} 768w, ${ikResize(aboutImages.banner, 1280)} 1280w, ${ikResize(aboutImages.banner, 1920)} 1920w`}
+        sizes="100vw"
         alt="Webgram IT Solution office reception"
         width={2170}
         height={725}

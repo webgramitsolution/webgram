@@ -6,12 +6,21 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Self-hosted builds (Hostinger Node.js) need a Node server; Lovable's own builds override the preset.
+// Hashed build files never change, so browsers may keep them for a year. The config type only
+// lists a few Nitro keys, but every key here is passed through to Nitro unchanged.
+const selfHostedNitro = {
+  preset: "node-server",
+  routeRules: {
+    "/assets/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+  },
+} as { preset: string };
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  // Self-hosted builds (Hostinger Node.js) need a Node server; Lovable's own builds override this.
-  nitro: { preset: "node-server" },
+  nitro: selfHostedNitro,
 });

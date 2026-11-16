@@ -760,7 +760,7 @@ function HomePortfolio() {
         <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-3 lg:gap-4">
           {portfolio.slice(0, 4).map((item) => (
             <div key={item.domain}>
-              <ScrollingFrame item={item} height={270} eager />
+              <ScrollingFrame item={item} height={270} />
               <h3 className="mt-3 text-[17px] text-navy">{item.name}</h3>
               <p className="text-[14px] text-muted-foreground">{item.category}</p>
             </div>
