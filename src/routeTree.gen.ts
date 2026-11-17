@@ -44,6 +44,7 @@ import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authen
 import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
 import { Route as GuestGuestGameRouteImport } from './routes/_guest.guest.game'
 import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.indexing'
+import { Route as GuestGuestStoriesRouteImport } from './routes/_guest.guest.stories'
 import { Route as GuestGuestSupportRouteImport } from './routes/_guest.guest.support'
 import { Route as GuestGuestWriteRouteImport } from './routes/_guest.guest.write'
 import { Route as BlogCategorySlugRouteImport } from './routes/blog.category.$slug'
@@ -228,6 +229,11 @@ const GuestGuestIndexingRoute = GuestGuestIndexingRouteImport.update({
   path: '/guest/indexing',
   getParentRoute: () => GuestRoute,
 } as any)
+const GuestGuestStoriesRoute = GuestGuestStoriesRouteImport.update({
+  id: '/guest/stories',
+  path: '/guest/stories',
+  getParentRoute: () => GuestRoute,
+} as any)
 const GuestGuestSupportRoute = GuestGuestSupportRouteImport.update({
   id: '/guest/support',
   path: '/guest/support',
@@ -295,6 +301,7 @@ export interface FileRoutesByFullPath {
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
+  '/guest/stories': typeof GuestGuestStoriesRoute
   '/guest/support': typeof GuestGuestSupportRoute
   '/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
@@ -335,6 +342,7 @@ export interface FileRoutesByTo {
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/guest/game': typeof GuestGuestGameRoute
   '/guest/indexing': typeof GuestGuestIndexingRoute
+  '/guest/stories': typeof GuestGuestStoriesRoute
   '/guest/support': typeof GuestGuestSupportRoute
   '/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
@@ -379,6 +387,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/_guest/guest/game': typeof GuestGuestGameRoute
   '/_guest/guest/indexing': typeof GuestGuestIndexingRoute
+  '/_guest/guest/stories': typeof GuestGuestStoriesRoute
   '/_guest/guest/support': typeof GuestGuestSupportRoute
   '/_guest/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
@@ -422,6 +431,7 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
+    | '/guest/stories'
     | '/guest/support'
     | '/guest/write'
     | '/blog/category/$slug'
@@ -462,6 +472,7 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/guest/game'
     | '/guest/indexing'
+    | '/guest/stories'
     | '/guest/support'
     | '/guest/write'
     | '/blog/category/$slug'
@@ -505,6 +516,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/requests'
     | '/_guest/guest/game'
     | '/_guest/guest/indexing'
+    | '/_guest/guest/stories'
     | '/_guest/guest/support'
     | '/_guest/guest/write'
     | '/blog/category/$slug'
@@ -795,6 +807,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestGuestIndexingRouteImport
       parentRoute: typeof GuestRoute
     }
+    '/_guest/guest/stories': {
+      id: '/_guest/guest/stories'
+      path: '/guest/stories'
+      fullPath: '/guest/stories'
+      preLoaderRoute: typeof GuestGuestStoriesRouteImport
+      parentRoute: typeof GuestRoute
+    }
     '/_guest/guest/support': {
       id: '/_guest/guest/support'
       path: '/guest/support'
@@ -874,6 +893,7 @@ const AuthenticatedRouteRouteWithChildren =
 interface GuestRouteChildren {
   GuestGuestGameRoute: typeof GuestGuestGameRoute
   GuestGuestIndexingRoute: typeof GuestGuestIndexingRoute
+  GuestGuestStoriesRoute: typeof GuestGuestStoriesRoute
   GuestGuestSupportRoute: typeof GuestGuestSupportRoute
   GuestGuestWriteRoute: typeof GuestGuestWriteRoute
   GuestGuestIndexRoute: typeof GuestGuestIndexRoute
@@ -882,6 +902,7 @@ interface GuestRouteChildren {
 const GuestRouteChildren: GuestRouteChildren = {
   GuestGuestGameRoute: GuestGuestGameRoute,
   GuestGuestIndexingRoute: GuestGuestIndexingRoute,
+  GuestGuestStoriesRoute: GuestGuestStoriesRoute,
   GuestGuestSupportRoute: GuestGuestSupportRoute,
   GuestGuestWriteRoute: GuestGuestWriteRoute,
   GuestGuestIndexRoute: GuestGuestIndexRoute,
