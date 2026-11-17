@@ -5,7 +5,12 @@
  */
 const WEGLOT_KEY = "wg_872ce6808ebb668649592539a3fafafc3";
 
-type WeglotApi = { initialize: (o: object) => void; switchTo: (code: string) => void };
+type WeglotApi = {
+  initialize: (o: object) => void;
+  switchTo: (code: string) => void;
+  initialized?: boolean;
+  on?: (event: string, cb: () => void) => void;
+};
 
 let weglotPromise: Promise<WeglotApi | undefined> | undefined;
 
@@ -20,8 +25,15 @@ export function loadWeglot(): Promise<WeglotApi | undefined> {
       script.async = true;
       script.src = "https://cdn.weglot.com/weglot.min.js";
       script.onload = () => {
-        w.Weglot?.initialize({ api_key: WEGLOT_KEY });
-        resolve(w.Weglot);
+        const weglot = w.Weglot;
+        if (!weglot) return resolve(undefined);
+        // Language switches only work once Weglot has finished starting up.
+        let settled = false;
+        const done = () => { if (!settled) { settled = true; resolve(weglot); } };
+        weglot.on?.("initialized", done);
+        weglot.initialize({ api_key: WEGLOT_KEY });
+        if (weglot.initialized) done();
+        window.setTimeout(done, 4000);
       };
       script.onerror = () => resolve(undefined);
       document.head.appendChild(script);
