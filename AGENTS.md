@@ -45,15 +45,15 @@
 - Service CTA bands share `TrustFacts` and FAQ answers come from one approved content module (pickFaqs throws on unknown questions), so no page shows invented counts or placeholder answers.
 - Game rewards need authenticated server replay of owned attempts and an atomic service award; level-only claims stay disabled.
 - Reading rewards remain timed and once-per-post; both sharing award RPCs stay disabled to prevent unverified credits.
-- Public enquiry submission uses the validated `submit_enquiry` security-definer RPC via the publishable key, so it works on Hostinger without the private key.
-- Self-hosted builds use the Nitro `node-server` preset (`npm run build` → `npm start`) because Hostinger runs Node.js, not Cloudflare Workers; Lovable builds override the preset.
-- Search engine pings: admin-only server fn calls Google Indexing API (service-account secret) and IndexNow (public key file in public/); RSS at /feed.xml.
+- Public enquiries use the validated `submit_enquiry` security-definer RPC via the publishable key, so Hostinger needs no private key.
+- Self-hosted builds use Nitro `node-server` (`npm run build` → `npm start`) since Hostinger runs Node.js; Lovable builds override the preset.
+- Search pings: admin-only server fn calls Google Indexing API and IndexNow (key file in public/); RSS at /feed.xml.
 - Share the supplied testimonial strip above the public footer; never duplicate it in pages.
 - Portfolio/website previews use bundled assets for self-hosting; PortfolioCard has a compact grid variant to preserve readable details.
-- `/ae` and `/kw` share `RegionalLanding`; leads save via `submit_regional_lead`, then the server forwards to `MAKE_WEBHOOK_URL` (never exposed to browser).
+- `/ae` and `/kw` share `RegionalLanding`; leads save via `submit_regional_lead`, then the server forwards to `MAKE_WEBHOOK_URL`.
 - Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
 - FAQ JSON-LD is generated from the same grouped answers shown on the FAQ page and shares its page identity, preventing hidden or inconsistent answers; homepage head changes belong in the index route rather than a standalone HTML file.
 - Agent readiness: start.ts serves llms.txt as Markdown/Link header on `/`; WebMCP tools stay read-only.
 - `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
 - Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.
-- Speed: GTM/Weglot start late via `third-party-loader`, Manrope is self-hosted, the sign-in client is imported on demand (root, gates, lazy auth attacher) and ImageKit images request sized copies via `ikResize`, keeping the first download small.
+- Speed: GTM/Weglot load late (`third-party-loader`), Manrope self-hosted, sign-in client imported on demand, ImageKit sized via `ikResize`.
