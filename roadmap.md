@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Open
+- [ ] Blog cleanup: keep only "Technology & AI Explainers" (and Guest posting?) — remove every other category and its posts (confirm exact scope first).
 - [x] Speed up all devices: late-start tracking/translation, self-hosted font, smaller first script, right-sized pictures, year-long file caching on Hostinger; lab phone score 42 → 97 on homepage (local Hostinger-style build). Live gain needs Hostinger redeploy.
 - [x] Fix WooCommerce/Shopify computer hero artwork, keep subpage hero headings on two lines on tablets and computers, show blog FAQs visibly with matching schema, and redesign city pages plus a /locations hub; checked 390–1920px.
 - [x] Audit Step 1–2: replace invented service/About numbers with verifiable facts, real Contact FAQs/social links/reply time, real homepage card links, dedicated Shopify page with direct answer, Indian integrations, comparison table and visible FAQ schema.
