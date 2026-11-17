@@ -56,3 +56,4 @@
 - Agent readiness: start.ts serves llms.txt as Markdown/Link header on `/`; WebMCP tools stay read-only.
 - `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
 - Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.
+- Speed: GTM/Weglot start late via `third-party-loader`, Manrope is self-hosted, the sign-in client is imported on demand (root, gates, lazy auth attacher) and ImageKit images request sized copies via `ikResize`, keeping the first download small.
