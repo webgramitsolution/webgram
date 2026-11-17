@@ -13,30 +13,21 @@ export function BlogAuthorHeader({ admin = false, writing = false }: { admin?: b
   const queryClient = useQueryClient();
   const [user, setUser] = useState("");
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setUser(data.user?.email?.split("@")[0] ?? "")); }, []);
-  const base = admin ? "/admin/blog" : "/guest";
-  const items = admin
-    ? [
-        { to: "/admin/blog", label: "Dashboard", icon: LayoutDashboard },
-        { to: "/admin/blog", label: "My Posts", icon: FileText },
-        { to: "/admin/blog/new", label: "Create New Post", icon: PlusCircle },
-        { to: "/admin/blog", label: "Pending Review", icon: CheckCircle2 },
-        { to: "/admin/blog", label: "Published", icon: CheckCircle2 },
-        { to: "/admin/blog", label: "Drafts", icon: FilePenLine },
-      ]
-    : [
-        { to: "/guest", label: "Dashboard", icon: LayoutDashboard },
-        { to: "/guest", label: "My Posts", icon: FileText },
-        { to: "/guest/write", label: "Create New Post", icon: PlusCircle },
-        { to: "/guest", label: "Pending Review", icon: CheckCircle2 },
-        { to: "/resources/blog", label: "Published", icon: CheckCircle2 },
-        { to: "/guest/write", label: "Drafts", icon: FilePenLine },
-      ];
+  const base = "/admin/blog";
+  const items = [
+    { to: "/admin/blog", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/admin/blog", label: "My Posts", icon: FileText },
+    { to: "/admin/blog/new", label: "Create New Post", icon: PlusCircle },
+    { to: "/admin/blog", label: "Pending Review", icon: CheckCircle2 },
+    { to: "/admin/blog", label: "Published", icon: CheckCircle2 },
+    { to: "/admin/blog", label: "Drafts", icon: FilePenLine },
+  ];
 
   async function signOut() {
     await queryClient.cancelQueries();
     queryClient.clear();
     await supabase.auth.signOut();
-    await navigate({ to: admin ? "/auth" : "/guest-login", replace: true });
+    await navigate({ to: "/auth", replace: true });
   }
 
   return <header className="sticky top-0 z-50 border-b border-on-dark/15 bg-navy text-on-dark shadow-card">
@@ -48,8 +39,8 @@ export function BlogAuthorHeader({ admin = false, writing = false }: { admin?: b
       </nav>
       <div className="flex shrink-0 items-center gap-2">
         <Bell className="hidden h-5 w-5 sm:block" aria-hidden />
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-card text-sm font-bold text-primary" aria-hidden>{(user || "G").charAt(0).toUpperCase()}</span>
-        <span className="hidden max-w-36 truncate text-xs font-semibold md:block">{admin ? "Admin" : user || "Guest Author"}</span>
+        <span className="grid h-8 w-8 place-items-center rounded-full bg-card text-sm font-bold text-primary" aria-hidden>{(user || "A").charAt(0).toUpperCase()}</span>
+        <span className="hidden max-w-36 truncate text-xs font-semibold md:block">{admin ? "Admin" : user || "Author"}</span>
         <Button type="button" variant="ghost" size="icon" onClick={signOut} title="Sign out" aria-label="Sign out" className="text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><LogOut /></Button>
       </div>
     </div>

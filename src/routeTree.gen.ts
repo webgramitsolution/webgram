@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AeRouteImport } from './routes/ae'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -21,7 +20,6 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DpdpPolicyRouteImport } from './routes/dpdp-policy'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
-import { Route as GuestLoginRouteImport } from './routes/guest-login'
 import { Route as KwRouteImport } from './routes/kw'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -41,12 +39,6 @@ import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as WorkPortfolioRouteImport } from './routes/work.portfolio'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated.admin.blog'
 import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authenticated.admin.requests'
-import { Route as GuestGuestIndexRouteImport } from './routes/_guest.guest.index'
-import { Route as GuestGuestGameRouteImport } from './routes/_guest.guest.game'
-import { Route as GuestGuestIndexingRouteImport } from './routes/_guest.guest.indexing'
-import { Route as GuestGuestStoriesRouteImport } from './routes/_guest.guest.stories'
-import { Route as GuestGuestSupportRouteImport } from './routes/_guest.guest.support'
-import { Route as GuestGuestWriteRouteImport } from './routes/_guest.guest.write'
 import { Route as BlogCategorySlugRouteImport } from './routes/blog.category.$slug'
 import { Route as AuthenticatedAdminBlogIndexRouteImport } from './routes/_authenticated.admin.blog.index'
 import { Route as AuthenticatedAdminBlogIdRouteImport } from './routes/_authenticated.admin.blog.$id'
@@ -59,10 +51,6 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GuestRoute = GuestRouteImport.update({
-  id: '/_guest',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -111,11 +99,6 @@ const DpdpPolicyRoute = DpdpPolicyRouteImport.update({
 const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
   id: '/feed.xml',
   path: '/feed.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GuestLoginRoute = GuestLoginRouteImport.update({
-  id: '/guest-login',
-  path: '/guest-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KwRoute = KwRouteImport.update({
@@ -214,36 +197,6 @@ const AuthenticatedAdminRequestsRoute =
     path: '/admin/requests',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const GuestGuestIndexRoute = GuestGuestIndexRouteImport.update({
-  id: '/guest/',
-  path: '/guest/',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestGuestGameRoute = GuestGuestGameRouteImport.update({
-  id: '/guest/game',
-  path: '/guest/game',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestGuestIndexingRoute = GuestGuestIndexingRouteImport.update({
-  id: '/guest/indexing',
-  path: '/guest/indexing',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestGuestStoriesRoute = GuestGuestStoriesRouteImport.update({
-  id: '/guest/stories',
-  path: '/guest/stories',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestGuestSupportRoute = GuestGuestSupportRouteImport.update({
-  id: '/guest/support',
-  path: '/guest/support',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestGuestWriteRoute = GuestGuestWriteRouteImport.update({
-  id: '/guest/write',
-  path: '/guest/write',
-  getParentRoute: () => GuestRoute,
-} as any)
 const BlogCategorySlugRoute = BlogCategorySlugRouteImport.update({
   id: '/blog/category/$slug',
   path: '/blog/category/$slug',
@@ -279,7 +232,6 @@ export interface FileRoutesByFullPath {
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
-  '/guest-login': typeof GuestLoginRoute
   '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -299,13 +251,7 @@ export interface FileRoutesByFullPath {
   '/locations/': typeof LocationsIndexRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
-  '/guest/game': typeof GuestGuestGameRoute
-  '/guest/indexing': typeof GuestGuestIndexingRoute
-  '/guest/stories': typeof GuestGuestStoriesRoute
-  '/guest/support': typeof GuestGuestSupportRoute
-  '/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
-  '/guest/': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/blog/': typeof AuthenticatedAdminBlogIndexRoute
@@ -321,7 +267,6 @@ export interface FileRoutesByTo {
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
-  '/guest-login': typeof GuestLoginRoute
   '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -340,13 +285,7 @@ export interface FileRoutesByTo {
   '/work/portfolio': typeof WorkPortfolioRoute
   '/locations': typeof LocationsIndexRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
-  '/guest/game': typeof GuestGuestGameRoute
-  '/guest/indexing': typeof GuestGuestIndexingRoute
-  '/guest/stories': typeof GuestGuestStoriesRoute
-  '/guest/support': typeof GuestGuestSupportRoute
-  '/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
-  '/guest': typeof GuestGuestIndexRoute
   '/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/blog': typeof AuthenticatedAdminBlogIndexRoute
@@ -355,7 +294,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/_guest': typeof GuestRouteWithChildren
   '/about': typeof AboutRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
@@ -365,7 +303,6 @@ export interface FileRoutesById {
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
-  '/guest-login': typeof GuestLoginRoute
   '/kw': typeof KwRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -385,13 +322,7 @@ export interface FileRoutesById {
   '/locations/': typeof LocationsIndexRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
-  '/_guest/guest/game': typeof GuestGuestGameRoute
-  '/_guest/guest/indexing': typeof GuestGuestIndexingRoute
-  '/_guest/guest/stories': typeof GuestGuestStoriesRoute
-  '/_guest/guest/support': typeof GuestGuestSupportRoute
-  '/_guest/guest/write': typeof GuestGuestWriteRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
-  '/_guest/guest/': typeof GuestGuestIndexRoute
   '/_authenticated/admin/blog/$id': typeof AuthenticatedAdminBlogIdRoute
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/_authenticated/admin/blog/': typeof AuthenticatedAdminBlogIndexRoute
@@ -409,7 +340,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/dpdp-policy'
     | '/feed.xml'
-    | '/guest-login'
     | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -429,13 +359,7 @@ export interface FileRouteTypes {
     | '/locations/'
     | '/admin/blog'
     | '/admin/requests'
-    | '/guest/game'
-    | '/guest/indexing'
-    | '/guest/stories'
-    | '/guest/support'
-    | '/guest/write'
     | '/blog/category/$slug'
-    | '/guest/'
     | '/admin/blog/$id'
     | '/admin/blog/new'
     | '/admin/blog/'
@@ -451,7 +375,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/dpdp-policy'
     | '/feed.xml'
-    | '/guest-login'
     | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -470,13 +393,7 @@ export interface FileRouteTypes {
     | '/work/portfolio'
     | '/locations'
     | '/admin/requests'
-    | '/guest/game'
-    | '/guest/indexing'
-    | '/guest/stories'
-    | '/guest/support'
-    | '/guest/write'
     | '/blog/category/$slug'
-    | '/guest'
     | '/admin/blog/$id'
     | '/admin/blog/new'
     | '/admin/blog'
@@ -484,7 +401,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/_guest'
     | '/about'
     | '/ae'
     | '/auth'
@@ -494,7 +410,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/dpdp-policy'
     | '/feed.xml'
-    | '/guest-login'
     | '/kw'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -514,13 +429,7 @@ export interface FileRouteTypes {
     | '/locations/'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/requests'
-    | '/_guest/guest/game'
-    | '/_guest/guest/indexing'
-    | '/_guest/guest/stories'
-    | '/_guest/guest/support'
-    | '/_guest/guest/write'
     | '/blog/category/$slug'
-    | '/_guest/guest/'
     | '/_authenticated/admin/blog/$id'
     | '/_authenticated/admin/blog/new'
     | '/_authenticated/admin/blog/'
@@ -529,7 +438,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  GuestRoute: typeof GuestRouteWithChildren
   AboutRoute: typeof AboutRoute
   AeRoute: typeof AeRoute
   AuthRoute: typeof AuthRoute
@@ -539,7 +447,6 @@ export interface RootRouteChildren {
   DisclaimerRoute: typeof DisclaimerRoute
   DpdpPolicyRoute: typeof DpdpPolicyRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
-  GuestLoginRoute: typeof GuestLoginRoute
   KwRoute: typeof KwRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -574,13 +481,6 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_guest': {
-      id: '/_guest'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof GuestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -644,13 +544,6 @@ declare module '@tanstack/react-router' {
       path: '/feed.xml'
       fullPath: '/feed.xml'
       preLoaderRoute: typeof FeedDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/guest-login': {
-      id: '/guest-login'
-      path: '/guest-login'
-      fullPath: '/guest-login'
-      preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kw': {
@@ -786,48 +679,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRequestsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_guest/guest/': {
-      id: '/_guest/guest/'
-      path: '/guest'
-      fullPath: '/guest/'
-      preLoaderRoute: typeof GuestGuestIndexRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/_guest/guest/game': {
-      id: '/_guest/guest/game'
-      path: '/guest/game'
-      fullPath: '/guest/game'
-      preLoaderRoute: typeof GuestGuestGameRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/_guest/guest/indexing': {
-      id: '/_guest/guest/indexing'
-      path: '/guest/indexing'
-      fullPath: '/guest/indexing'
-      preLoaderRoute: typeof GuestGuestIndexingRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/_guest/guest/stories': {
-      id: '/_guest/guest/stories'
-      path: '/guest/stories'
-      fullPath: '/guest/stories'
-      preLoaderRoute: typeof GuestGuestStoriesRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/_guest/guest/support': {
-      id: '/_guest/guest/support'
-      path: '/guest/support'
-      fullPath: '/guest/support'
-      preLoaderRoute: typeof GuestGuestSupportRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/_guest/guest/write': {
-      id: '/_guest/guest/write'
-      path: '/guest/write'
-      fullPath: '/guest/write'
-      preLoaderRoute: typeof GuestGuestWriteRouteImport
-      parentRoute: typeof GuestRoute
-    }
     '/blog/category/$slug': {
       id: '/blog/category/$slug'
       path: '/blog/category/$slug'
@@ -890,30 +741,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-interface GuestRouteChildren {
-  GuestGuestGameRoute: typeof GuestGuestGameRoute
-  GuestGuestIndexingRoute: typeof GuestGuestIndexingRoute
-  GuestGuestStoriesRoute: typeof GuestGuestStoriesRoute
-  GuestGuestSupportRoute: typeof GuestGuestSupportRoute
-  GuestGuestWriteRoute: typeof GuestGuestWriteRoute
-  GuestGuestIndexRoute: typeof GuestGuestIndexRoute
-}
-
-const GuestRouteChildren: GuestRouteChildren = {
-  GuestGuestGameRoute: GuestGuestGameRoute,
-  GuestGuestIndexingRoute: GuestGuestIndexingRoute,
-  GuestGuestStoriesRoute: GuestGuestStoriesRoute,
-  GuestGuestSupportRoute: GuestGuestSupportRoute,
-  GuestGuestWriteRoute: GuestGuestWriteRoute,
-  GuestGuestIndexRoute: GuestGuestIndexRoute,
-}
-
-const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  GuestRoute: GuestRouteWithChildren,
   AboutRoute: AboutRoute,
   AeRoute: AeRoute,
   AuthRoute: AuthRoute,
@@ -924,7 +754,6 @@ const rootRouteChildren: RootRouteChildren = {
   DisclaimerRoute: DisclaimerRoute,
   DpdpPolicyRoute: DpdpPolicyRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
-  GuestLoginRoute: GuestLoginRoute,
   KwRoute: KwRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

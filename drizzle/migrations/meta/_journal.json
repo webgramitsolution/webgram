@@ -169,6 +169,13 @@
       "when": 1792542838418,
       "tag": "0023_verified_game_attempt_rewards",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794921096996,
+      "tag": "0024_retire_guest_section",
+      "breakpoints": true
     }
   ]
 }
