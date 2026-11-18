@@ -11,4 +11,4 @@ export const Route = createFileRoute("/_authenticated/admin/blog/")({
   ] }),
   component: Page,
 });
-function Page() { const data = Route.useLoaderData(); return <AdminBlogList posts={data.posts} categories={data.categories} name={data.profile?.display_name} guestPostCost={data.guestPostCost} />; }
+function Page() { const data = Route.useLoaderData(); return <AdminBlogList posts={data.posts} categories={data.categories} name={data.profile?.display_name} />; }

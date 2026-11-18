@@ -2,7 +2,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Clock, Eye, FilePenLine, FileText, Grid2x2, Inbox, LogOut, Plus, Save, Search, Send, Settings2, Trash2, Home, User, ChevronDown, FolderOpen, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Clock, Eye, FilePenLine, FileText, Grid2x2, Inbox, LogOut, Plus, Save, Search, Send, Trash2, Home, User, ChevronDown, FolderOpen, Image as ImageIcon } from "lucide-react";
 
 import { BlogAuthorHeader } from "@/components/blog-author-header";
 import { CardTitle, FormPageTitle, MetaRow, cardClass } from "@/components/blog-form-ui";
@@ -10,7 +10,7 @@ import { RichArticleEditor } from "@/components/rich-article-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { deleteBlogCategory, deleteBlogPost, saveBlogCategory, saveBlogPost, updateGuestPostCost } from "@/lib/blog.functions";
+import { deleteBlogCategory, deleteBlogPost, saveBlogCategory, saveBlogPost } from "@/lib/blog.functions";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -19,14 +19,14 @@ type Category = Database["public"]["Tables"]["blog_categories"]["Row"];
 
 const date = (value: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(new Date(value));
 
-type View = "all" | "guest" | "mine" | "pending" | "published" | "draft";
+type View = "all" | "mine" | "pending" | "published" | "draft";
 const postState = (p: Post): "pending" | "published" | "draft" => p.status !== "published" ? "draft" : p.published_at && new Date(p.published_at) > new Date() ? "pending" : "published";
 
 export function AdminShell({ children, name = "Administrator", counts, view, onView }: { children: React.ReactNode; name?: string | undefined; counts?: Record<View, number>; view?: View; onView?: (v: View) => void }) {
   const navigate = useNavigate(); const queryClient = useQueryClient();
   async function signOut() { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await navigate({ to: "/auth", replace: true }); }
   const item = "flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold hover:bg-on-dark/10";
-  const views: [View, string, typeof FileText][] = [["guest", "Guest posts", FileText], ["mine", "My posts (Admin)", User], ["pending", "Pending reviews", Clock], ["published", "Published posts", Send], ["draft", "Drafts", FilePenLine]];
+  const views: [View, string, typeof FileText][] = [["mine", "My posts (Admin)", User], ["pending", "Pending reviews", Clock], ["published", "Published posts", Send], ["draft", "Drafts", FilePenLine]];
   return <div className="min-h-screen bg-sky-soft md:grid md:grid-cols-[240px_minmax(0,1fr)]">
     <aside className="bg-navy p-4 text-on-dark md:sticky md:top-0 md:h-screen md:overflow-hidden">
       <Link to="/admin/blog" className="block text-lg font-extrabold">Webgram Admin</Link><p className="text-xs text-on-dark/65">{name}</p>
@@ -42,30 +42,27 @@ export function AdminShell({ children, name = "Administrator", counts, view, onV
     <div className="min-w-0 bg-background">{children}</div></div>;
 }
 
-export function AdminBlogList({ posts, categories, name, guestPostCost }: { posts: Post[]; categories: Category[]; name?: string | undefined; guestPostCost: number }) {
-  const router = useRouter(); const remove = useServerFn(deleteBlogPost); const saveCost = useServerFn(updateGuestPostCost);
-  const [cost, setCost] = useState(guestPostCost); const [savingCost, setSavingCost] = useState(false); const [costMessage, setCostMessage] = useState("");
+export function AdminBlogList({ posts, categories, name }: { posts: Post[]; categories: Category[]; name?: string | undefined }) {
+  const router = useRouter(); const remove = useServerFn(deleteBlogPost);
   const [view, setView] = useState<View>("all"); const [cat, setCat] = useState(""); const [q, setQ] = useState("");
   const catName = (id: string | null) => categories.find((c) => c.id === id)?.name ?? "Uncategorized";
-  const match = (p: Post, v: View) => v === "all" || (v === "guest" ? !!p.author_id && p.author_name !== "Webgram Team" : v === "mine" ? p.author_name === "Webgram Team" || !p.author_id : postState(p) === v);
-  const counts = Object.fromEntries((["all", "guest", "mine", "pending", "published", "draft"] as View[]).map((v) => [v, posts.filter((p) => match(p, v)).length])) as Record<View, number>;
+  const match = (p: Post, v: View) => v === "all" || (v === "mine" ? p.author_name === "Webgram Team" || !p.author_id : postState(p) === v);
+  const counts = Object.fromEntries((["all", "mine", "pending", "published", "draft"] as View[]).map((v) => [v, posts.filter((p) => match(p, v)).length])) as Record<View, number>;
   const rows = posts.filter((p) => match(p, view) && (!cat || p.category_id === cat) && (!q || p.title.toLowerCase().includes(q.toLowerCase())));
   async function erase(p: Post) { if (!window.confirm(`Delete "${p.title}"?`)) return; await remove({ data: { id: p.id } }); await router.invalidate(); }
-  async function updateCost(event: FormEvent) { event.preventDefault(); setSavingCost(true); setCostMessage(""); try { const result = await saveCost({ data: { cost } }); setCost(result.cost); setCostMessage("Guest post price updated."); await router.invalidate(); } catch (caught) { setCostMessage(caught instanceof Error ? caught.message : "Price could not be updated."); } finally { setSavingCost(false); } }
   const totalViews = posts.reduce((sum, p) => sum + (p.view_count ?? 0), 0);
-  const stats: [string, number, typeof FileText, string][] = [["Total posts", counts.all, FileText, "text-primary bg-primary-soft"], ["Pending reviews", counts.pending, Clock, "text-warning bg-warning-soft"], ["Published", counts.published, Send, "text-success bg-success-soft"], ["Guest posts", counts.guest, User, "text-primary bg-primary-soft"], ["Total views", totalViews, Eye, "text-navy bg-sky-soft"]];
+  const stats: [string, number, typeof FileText, string][] = [["Total posts", counts.all, FileText, "text-primary bg-primary-soft"], ["Pending reviews", counts.pending, Clock, "text-warning bg-warning-soft"], ["Published", counts.published, Send, "text-success bg-success-soft"], ["Total views", totalViews, Eye, "text-navy bg-sky-soft"]];
   const badge = { published: "bg-success-soft text-success", pending: "bg-warning-soft text-warning", draft: "bg-muted text-muted-foreground" };
   return <AdminShell name={name} counts={counts} view={view} onView={setView}><main className="p-4 md:p-6">
-    <div className="flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-3xl font-extrabold text-navy">Guest Posts</h1><p className="mt-1 text-sm text-muted-foreground">Manage, review, edit, approve or delete guest user posts.</p></div><Button asChild><Link to="/admin/blog/new"><Plus />Create new post</Link></Button></div>
-    <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-5">{stats.map(([l, n, Icon, tone]) => <div key={l} className="flex items-center gap-3 rounded-md border border-border bg-card p-4 shadow-card"><span className={`grid h-11 w-11 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><div><p className="text-xs text-muted-foreground">{l}</p><p className="text-2xl font-extrabold text-navy">{n}</p></div></div>)}</div>
+    <div className="flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-3xl font-extrabold text-navy">Blog Posts</h1><p className="mt-1 text-sm text-muted-foreground">Manage, review, edit, publish or delete blog posts.</p></div><Button asChild><Link to="/admin/blog/new"><Plus />Create new post</Link></Button></div>
+    <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">{stats.map(([l, n, Icon, tone]) => <div key={l} className="flex items-center gap-3 rounded-md border border-border bg-card p-4 shadow-card"><span className={`grid h-11 w-11 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><div><p className="text-xs text-muted-foreground">{l}</p><p className="text-2xl font-extrabold text-navy">{n}</p></div></div>)}</div>
     <div className="mt-5 rounded-md border border-border bg-card p-4 shadow-card">
-      <div className="flex flex-wrap gap-3"><select value={view} onChange={(e) => setView(e.target.value as View)} className="h-10 rounded-md border border-input bg-card px-3 text-sm"><option value="all">All status</option><option value="pending">Pending</option><option value="published">Published</option><option value="draft">Draft</option><option value="guest">Guest posts</option><option value="mine">My posts</option></select><select value={cat} onChange={(e) => setCat(e.target.value)} className="h-10 rounded-md border border-input bg-card px-3 text-sm"><option value="">All categories</option>{categories.filter((c) => !c.parent_id).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select><div className="relative min-w-[200px] flex-1"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search posts..." className="h-10 pl-9" /></div><Button variant="outline" onClick={() => { setView("all"); setCat(""); setQ(""); }}>Reset</Button></div>
+      <div className="flex flex-wrap gap-3"><select value={view} onChange={(e) => setView(e.target.value as View)} className="h-10 rounded-md border border-input bg-card px-3 text-sm"><option value="all">All status</option><option value="pending">Pending</option><option value="published">Published</option><option value="draft">Draft</option><option value="mine">My posts</option></select><select value={cat} onChange={(e) => setCat(e.target.value)} className="h-10 rounded-md border border-input bg-card px-3 text-sm"><option value="">All categories</option>{categories.filter((c) => !c.parent_id).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select><div className="relative min-w-[200px] flex-1"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search posts..." className="h-10 pl-9" /></div><Button variant="outline" onClick={() => { setView("all"); setCat(""); setQ(""); }}>Reset</Button></div>
       <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[880px] text-sm"><thead><tr className="border-b border-border bg-sky-soft text-left text-xs text-navy"><th className="p-3">#</th><th className="p-3">Title</th><th className="p-3">Author</th><th className="p-3">Category</th><th className="p-3">Status</th><th className="p-3">Views</th><th className="p-3">Date</th><th className="p-3 text-right">Actions</th></tr></thead><tbody>
         {rows.length ? rows.map((p, i) => { const s = postState(p); return <tr key={p.id} className="border-b border-border last:border-0"><td className="p-3 text-muted-foreground">{i + 1}</td><td className="p-3"><div className="flex items-center gap-3">{p.featured_image ? <img src={p.featured_image} alt="" className="h-10 w-14 rounded object-cover" /> : <span className="grid h-10 w-14 place-items-center rounded bg-sky-soft"><FileText className="h-4 w-4 text-primary" /></span>}<span className="line-clamp-2 font-semibold text-navy">{p.title}</span></div></td><td className="p-3 text-navy">{p.author_name}</td><td className="p-3"><span className="rounded bg-primary-soft px-2 py-1 text-xs text-primary">{catName(p.category_id)}</span></td><td className="p-3"><span className={`rounded px-2 py-1 text-xs font-semibold capitalize ${badge[s]}`}>{s}</span></td><td className="p-3 font-semibold text-navy">{(p.view_count ?? 0).toLocaleString("en-IN")}</td><td className="p-3 text-xs text-muted-foreground">{date(p.published_at ?? p.updated_at)}</td><td className="p-3"><div className="flex justify-end gap-1.5"><Button asChild variant="outline" size="icon" className="h-8 w-8" title="View"><Link to="/blog/$slug" params={{ slug: p.slug }} target="_blank"><Eye /></Link></Button><Button asChild variant="outline" size="icon" className="h-8 w-8" title="Edit / approve"><Link to="/admin/blog/$id" params={{ id: p.id }}><FilePenLine /></Link></Button><Button variant="outline" size="icon" className="h-8 w-8 text-destructive" title="Delete" onClick={() => erase(p)}><Trash2 /></Button></div></td></tr>; }) : <tr><td colSpan={8} className="p-8 text-center text-muted-foreground">No posts found.</td></tr>}
       </tbody></table></div>
       <p className="mt-3 text-xs text-muted-foreground">Showing {rows.length} of {posts.length} posts</p>
     </div>
-    <section className="mt-8 rounded-md border border-border bg-card p-5 shadow-card" aria-labelledby="guest-post-price"><div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end"><div><div className="flex items-center gap-2"><Settings2 className="h-5 w-5 text-primary" /><h2 id="guest-post-price" className="text-xl font-extrabold text-navy">Guest post credits</h2></div><p className="mt-1 text-xs text-muted-foreground">This price is checked and deducted securely when a guest submits an article.</p></div><form onSubmit={updateCost} className="flex items-end gap-2"><label className="text-xs font-bold text-navy">Credits<Input type="number" min={0} max={100000} value={cost} onChange={(event) => setCost(Number(event.target.value))} className="mt-1 h-9 w-32" /></label><Button disabled={savingCost} size="sm"><Save />{savingCost ? "Saving..." : "Update"}</Button></form></div>{costMessage ? <p role="status" className="mt-2 text-xs font-semibold text-primary">{costMessage}</p> : null}</section>
     <div id="categories"><CategoryManager categories={categories} /></div>
   </main></AdminShell>;
 }

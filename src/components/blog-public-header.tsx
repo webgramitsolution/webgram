@@ -24,7 +24,7 @@ export function BlogPublicHeader({ categories, activeSlug, onSelect }: { categor
           {items.map(({ label, category }) => <Button key={category.id} asChild size="sm" variant={activeSlug === category.slug ? "default" : "ghost"} className="shrink-0 text-[13px] uppercase text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/blog/category/$slug" params={{ slug: category.slug }} onClick={onSelect ? (event) => { event.preventDefault(); onSelect(category.id); } : undefined}>{label}</Link></Button>)}
         </nav>
       </div>
-      <Button asChild size="sm" className="h-9 shrink-0 bg-gold px-3 text-[13px] font-semibold text-navy hover:bg-gold/90"><Link to="/contact">Get Free Quote <span aria-hidden>→</span></Link></Button>
+      <Button asChild size="sm" className="h-9 shrink-0 bg-gold px-3 text-[13px] font-semibold text-navy hover:bg-gold/90"><Link to="/contact">Get <span className="hidden sm:inline">Free </span>Quote <span aria-hidden>→</span></Link></Button>
     </div>
   </header>;
 }

@@ -13,7 +13,7 @@
 
 # AGENTS.md
 
-- Routes: `/`, `/contact`, `/about`, dynamic solution/service/work/resource pages, public blog, secured admin, and secured guest panel.
+- Routes: `/`, `/contact`, `/about`, dynamic solution/service/work/resource pages, public blog and secured admin.
 - Shared public header is sticky; shared footer is mounted at root. Dashboard sidebars remain sticky while content scrolls.
 - Blog lists/articles share a category header; missing pages share the not-found view with HTTP 404.
 - Menu data uses `src/lib/menu-pages.ts`; generic pages use `SubpageTemplate`; dedicated pages retain custom layouts.
@@ -23,12 +23,10 @@
 - Technology rows keep readable fixed-width logo items with contained horizontal overflow when one row cannot fit.
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
 - Keep ImageKit URLs verbatim and supplied Next.js/API Integration logos.
-- Email delivery uses Hostinger SMTP through a server-only helper. Guest OTP links are generated server-side and sent by SMTP.
-- Blog management and due guest-email triggers require server-checked admin roles; public posts require published status and elapsed publish time.
-- Guest OTP routes stay under the `_guest` gate. Credit changes use security-definer RPCs and the ledger remains append-only.
-- Guest posts publish after 30 minutes without cron; public access policy hides them until then.
-- AdSense is consent-gated and limited to blog lists/articles, legal rails, game rail/win break and guest-writing top/side units; disclosure helpers set ad counts; no sitewide/footer ads.
-- Guest writing is sidebar-free with edge ad rails that collapse before the editor; its Tiptap editor serializes safe Markdown to keep validation/rendering; admin editor is separate.
+- Email delivery uses Hostinger SMTP through a server-only helper.
+- Blog management requires server-checked admin roles; public posts require published status and elapsed publish time.
+- Guest section is retired: no guest routes, sign-up or comment form, and guest/credit/game RPCs are revoked from visitors so it cannot be used directly; old credit records stay append-only.
+- AdSense is consent-gated and limited to blog lists/articles and legal rails; disclosure helpers set ad counts; no sitewide/footer ads.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
 - Article disclosure keeps full HTML on one URL; hidden ads/rewards mount only after expansion.
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
@@ -36,15 +34,11 @@
 - Legal content lives on dedicated public routes linked from the shared footer.
 - Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
-- Guest articles use safe Markdown; shared browser statistics and a database validator enforce submission limits across RPC overloads, with visible errors and saved drafts.
-- Guest-post credit pricing is stored in protected blog settings; administrators change it and submission deducts it atomically in the database.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.com`.
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` and `/services/shopify` have dedicated static routes so their custom pages, metadata and visible-FAQ schema cannot fall through the generic service renderer.
 - Service CTA bands share `TrustFacts` and FAQ answers come from one approved content module (pickFaqs throws on unknown questions), so no page shows invented counts or placeholder answers.
-- Game rewards need authenticated server replay of owned attempts and an atomic service award; level-only claims stay disabled.
-- Reading rewards remain timed and once-per-post; both sharing award RPCs stay disabled to prevent unverified credits.
 - Public enquiries use the validated `submit_enquiry` security-definer RPC via the publishable key, so Hostinger needs no private key.
 - Self-hosted builds use Nitro `node-server` (`npm run build` → `npm start`) since Hostinger runs Node.js; Lovable builds override the preset.
 - Search pings: admin-only server fn calls Google Indexing API and IndexNow (key file in public/); RSS at /feed.xml.
