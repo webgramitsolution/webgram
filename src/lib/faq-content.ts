@@ -39,6 +39,14 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
       ["How do I contact Webgram IT Solution?", "Call +91 7551120242, email info@webgramitsolution.com or use the contact form on the website. We usually reply within one business day."],
     ],
   },
+  {
+    title: "Website Speed Optimization",
+    items: [
+      ["Which platforms do you optimize?", "We work with Shopify, WordPress, WooCommerce and custom websites, including React and Next.js. The audit identifies what can be improved within your platform and hosting setup."],
+      ["What results can I expect from speed optimization?", "Results depend on the current site, hosting and third-party services. We benchmark the agreed pages under comparable conditions and report what changed after the optimization."],
+      ["How much does speed optimization cost?", "Pricing depends on the platform, the page templates in scope and the work identified in the audit. Share your website URL and priority pages so we can scope a quote."],
+    ],
+  },
 ];
 
 const allFaqs = faqGroups.flatMap((group) => group.items);

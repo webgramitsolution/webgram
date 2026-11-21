@@ -5,6 +5,7 @@ import { WebPortalDevelopmentPage } from "@/components/web-portal-development-pa
 import { WebsiteMaintenancePage } from "@/components/website-maintenance-page";
 import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { WooCommercePage } from "@/components/woocommerce-page";
+import { SpeedOptimizationPage } from "@/components/speed-optimization-page";
 import { SubpageTemplate } from "@/components/subpage";
 import { LatestBlogPosts } from "@/components/latest-blog-posts";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
@@ -26,6 +27,7 @@ const dedicatedBanners: Record<string, string> = {
 };
 
 const seoTitles: Record<string, string> = {
+  "speed-optimization": "Website Speed Optimization Services in Delhi NCR | Webgram IT Solution",
   woocommerce: "WooCommerce Development Company in Delhi NCR | Webgram IT Solution",
 };
 export const Route = createFileRoute("/services/$slug")({
@@ -68,6 +70,7 @@ function ServicesPage() {
     slug === "woocommerce" ? <WooCommercePage /> :
     slug === "api-integration" ? <ApiIntegrationPage /> :
     slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
+    slug === "speed-optimization" ? <SpeedOptimizationPage /> :
     <SubpageTemplate sectionLabel={section.label} page={page} />;
   const showLatestPosts = slug !== "web-portal-development" && slug !== "website-maintenance";
   return <>{body}{showLatestPosts ? <LatestBlogPosts /> : null}</>;

@@ -102,9 +102,9 @@ export const menuSections: Record<SectionKey, MenuSection> = {
       },
       "speed-optimization": {
         title: "Speed Optimization",
-        tagline: "Faster pages, better rankings",
+        tagline: "Faster pages on mobile",
         description:
-          "We audit and optimize your website for Core Web Vitals — faster load times, better SEO and higher conversions.",
+          "Improve mobile load times and Core Web Vitals with website speed optimization for Shopify, WooCommerce and custom sites in Delhi NCR and across India.",
         points: ["Core Web Vitals", "Image & code optimization", "Caching & CDN setup", "Performance audits"],
       },
     },
